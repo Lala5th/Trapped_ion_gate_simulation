@@ -1,0 +1,9 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.2}%
+\contentsline {section}{\numberline {2}Trapping techniques}{1}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Penning trap}{1}{subsection.4}%
+\contentsline {subsection}{\numberline {2.2}Paul trap}{3}{subsection.12}%
+\contentsline {section}{\numberline {3}Cooling techniques}{4}{section.19}%
+\contentsline {subsection}{\numberline {3.1}Resolved sideband cooling}{5}{subsection.20}%
+\contentsline {section}{\numberline {4}QI Processing}{5}{section.21}%
+\contentsline {section}{\numberline {5}Conclusion}{6}{section.23}%

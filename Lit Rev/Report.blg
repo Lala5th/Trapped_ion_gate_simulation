@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2020/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Report.aux
+The style file: ieeetr.bst
+Database file #1: sources.bib
+Warning--entry type for "Sideband_cooling_penning_trap" isn't style-file defined
+--line 308 of file sources.bib
+Warning--empty publisher in Penning_traps
+Warning--empty year in Penning_traps
+Warning--empty publisher in RF_Traps
+Warning--empty year in RF_Traps
+Warning--empty publisher in Cooling_techniques
+Warning--empty year in Cooling_techniques
+Warning--empty publisher in QIP_Trapped_ions
+Warning--empty year in QIP_Trapped_ions
+You've used 25 entries,
+            1876 wiz_defined-function locations,
+            657 strings with 7659 characters,
+and the built_in function-call counts, 7639 in all, are:
+= -- 762
+> -- 282
+< -- 0
++ -- 106
+- -- 81
+* -- 508
+:= -- 999
+add.period$ -- 30
+call.type$ -- 25
+change.case$ -- 16
+chr.to.int$ -- 0
+cite$ -- 33
+duplicate$ -- 422
+empty$ -- 692
+format.name$ -- 81
+if$ -- 1936
+int.to.chr$ -- 0
+int.to.str$ -- 25
+missing$ -- 34
+newline$ -- 84
+num.names$ -- 25
+pop$ -- 85
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 375
+stack$ -- 0
+substring$ -- 471
+swap$ -- 230
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 8
+while$ -- 62
+width$ -- 27
+write$ -- 239
+(There were 9 warnings)

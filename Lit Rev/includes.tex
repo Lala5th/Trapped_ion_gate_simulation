@@ -1,0 +1,124 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University Assignment Title Page 
+% LaTeX Template
+% Version 1.0 (27/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% WikiBooks (http://en.wikibooks.org/wiki/LaTeX/Title_Creation)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\usepackage[a4paper,hmargin=2.8cm,vmargin=2.0cm,includeheadfoot]{geometry}
+\usepackage{textpos}
+\usepackage{cite} % for bibliography
+\usepackage{tabularx,longtable,multirow,subcaption,caption,wrapfig}%hangcaption
+\usepackage{fncylab} %formatting of labels
+\usepackage{fancyhdr} % page layout
+\usepackage{url} % URLs
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{epstopdf} % automatically replace .eps with .pdf in graphics
+\usepackage{backref} % needed for citations
+\usepackage{array}
+\usepackage{latexsym}
+\usepackage{braket}
+\usepackage[pdftex,pagebackref,hypertexnames=false,colorlinks]{hyperref} % provide links in pdf
+
+\hypersetup{pdftitle={},
+  pdfsubject={}, 
+  pdfauthor={},
+  pdfkeywords={}, 
+  pdfstartview=FitH,
+  pdfpagemode={UseOutlines},% None, FullScreen, UseOutlines
+  bookmarksnumbered=true, bookmarksopen=true, colorlinks,
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black}
+
+\usepackage[all]{hypcap}
+
+
+%\usepackage{color}
+%\usepackage[tight,ugly]{units}
+%\usepackage{float}
+%\usepackage{tcolorbox}
+%\usepackage[colorinlistoftodos]{todonotes}
+% \usepackage{ntheorem}
+% \theoremstyle{break}
+% \newtheorem{lemma}{Lemma}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{remark}{Remark}
+% \newtheorem{definition}{Definition}
+% \newtheorem{proof}{Proof}
+
+
+%%% Default fonts
+\renewcommand*{\rmdefault}{bch}
+\renewcommand*{\ttdefault}{cmtt}
+
+
+
+%%% Default settings (page layout)
+\setlength{\parindent}{0em}  % indentation of paragraph
+
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}} 
+
+\fancyfoot[ER,OL]{\sffamily\textbf{\thepage}}%Page no. in the left on odd pages and on right on even pages
+\fancyfoot[OC,EC]{\sffamily }
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+\captionsetup{margin=10pt,font=small,labelfont=bf}
+
+
+%--- chapter heading
+
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \sffamily
+    \interlinepenalty\@M
+    \Huge\bfseries \thechapter \space\space #1\par\nobreak
+    \vskip 30\p@
+  }}
+
+%---chapter heading for \chapter*  
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright
+    \sffamily
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 30\p@
+  }}
+
+\allowdisplaybreaks
+
+\newcommand{\der}[3][]{\frac{\text{d}^{#1}#2}{\text{d}#3^{#1}}}
+\newcommand{\partder}[3][]{\frac{\partial^{#1}#2}{\partial#3^{#1}}}
+\newcommand{\expon}[2]{#1\cdot 10^{#2}}
+\newcommand{\figref}[1]{Figure \ref{#1}}
+\newcommand{\eref}[1]{Equation \eqref{#1}}
+\newcommand{\tabref}[1]{Table \ref{#1}}
+\newcommand{\result}[3]{$#1 \pm #2\,\text{#3}$}
+\newcommand{\resexp}[4]{$\expon{(#1 \pm #2)}{#4}\,\text{#3}$}
+\newcommand{\absresult}[3]{$\mathbf{#1 \pm #2\,\text{#3}}$}
+\newcommand{\absresexp}[4]{$\mathbf{\expon{(#1 \pm #2)}{#4}\,\text{#3}}$}
+
+\usepackage[export]{adjustbox}
+\usepackage{pdfpages}
+\usepackage{pgf}
+\usepackage{relsize}
+\usepackage{hyperref}

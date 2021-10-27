@@ -1,0 +1,120 @@
+\begin{thebibliography}{10}
+
+\bibitem{Foot}
+C.~J. Foot, {\em Atomic physics}.
+\newblock Oxford master series on atomic, optical and laser physics, Oxford:
+  Oxford University Press, 2005.
+
+\bibitem{Woodgate}
+G.~K. Woodgate, {\em Elementary atomic structure}.
+\newblock Oxford science publications, Oxford: Clarendon, 2nd ed.~ed., 1983.
+
+\bibitem{Thompson_Coulomb_Crystals}
+R.~C. Thompson, ``Ion coulomb crystals,'' {\em Contemporary Physics}, vol.~56,
+  no.~1, pp.~63--79, 2015.
+
+\bibitem{Dipole_trap_BEC}
+S.~Stellmer, B.~Pasquiou, R.~Grimm, and F.~Schreck, ``Laser cooling to quantum
+  degeneracy,'' {\em Phys. Rev. Lett.}, vol.~110, p.~263003, Jun 2013.
+
+\bibitem{Cold_trapped_ions_QC}
+J.~I. Cirac and P.~Zoller, ``Quantum computations with cold trapped ions,''
+  {\em Phys. Rev. Lett.}, vol.~74, pp.~4091--4094, May 1995.
+
+\bibitem{QuTip1}
+J.~Johansson, P.~Nation, and F.~Nori, ``Qutip: An open-source python framework
+  for the dynamics of open quantum systems,'' {\em Computer Physics
+  Communications}, vol.~183, p.~1760–1772, Aug 2012.
+
+\bibitem{QuTip2}
+J.~Johansson, P.~Nation, and F.~Nori, ``Qutip 2: A python framework for the
+  dynamics of open quantum systems,'' {\em Computer Physics Communications},
+  vol.~184, p.~1234–1240, Apr 2013.
+
+\bibitem{Charged_Particle_traps_Penning}
+F.~G. Major, {\em Charged particle traps : physics and techniques of charged
+  particle field confinement}, ch.~3, pp.~51 -- 85.
+\newblock Springer series on atomic, optical, and plasma physics, 37, Berlin ;:
+  Springer, 2005.
+
+\bibitem{Penning_traps}
+R.~C. Thompson, {\em Trapped Charged Particles}, ch.~1, pp.~1--33.
+
+\bibitem{Sideband_cooling_penning_trap}
+J.~F. Goodwin, ``Sideband cooling to the quantum ground state in a penning
+  trap.''
+
+\bibitem{Single_ion_Penning}
+L.~S. Brown and G.~Gabrielse, ``Geonium theory: Physics of a single electron or
+  ion in a penning trap,'' {\em Rev. Mod. Phys.}, vol.~58, pp.~233--311, Jan
+  1986.
+
+\bibitem{Charged_Particle_traps_Paul}
+F.~G. Major, {\em Charged particle traps : physics and techniques of charged
+  particle field confinement}, ch.~2, pp.~17--49.
+\newblock Springer series on atomic, optical, and plasma physics, 37, Berlin ;:
+  Springer, 2005.
+
+\bibitem{RF_Traps}
+M.~Knoop, {\em Trapped Charged Particles}, ch.~2, pp.~35--53.
+
+\bibitem{Single_trapped_ions}
+D.~Leibfried, R.~Blatt, C.~Monroe, and D.~Wineland, ``{Quantum dynamics of
+  single trapped ions},'' {\em {Reviews Of Modern Physics}}, vol.~{75},
+  pp.~{281--324}, {Jan} {2003}.
+
+\bibitem{Foot_two_freq_paul_trap}
+C.~Foot, D.~Trypogeorgos, E.~Bentine, A.~Gardner, and M.~Keller,
+  ``Two-frequency operation of a paul trap to optimise confinement of two
+  species of ions,'' {\em International Journal of Mass Spectrometry},
+  vol.~430, pp.~117--125, 2018.
+
+\bibitem{QI_Application}
+H.~Nagerl, F.~Schmidt-Kaler, J.schner, R.~Blatt, W.~Lange, H.~Baldauf, and
+  H.~Walther, {\em Linear Ion Traps for Quantum Computation}.
+\newblock Berlin: Springer, 2000.
+
+\bibitem{Cooling_techniques}
+D.~M. Segal and C.~Wunderlich, {\em Physics with Trapped Charged Particles},
+  ch.~3, pp.~43--81.
+
+\bibitem{Charged_Particle_traps_Cooling}
+F.~G. Major, {\em Charged particle traps : physics and techniques of charged
+  particle field confinement}, ch.~14, pp.~221--258.
+\newblock Springer series on atomic, optical, and plasma physics, 37, Berlin ;:
+  Springer, 2005.
+
+\bibitem{Penning_Doppler_One_Laser}
+W.~M. Itano and D.~J. Wineland, ``Laser cooling of ions stored in harmonic and
+  penning traps,'' {\em Phys. Rev. A}, vol.~25, pp.~35--54, Jan 1982.
+
+\bibitem{QIP_Trapped_ions}
+C.~F. Roos, {\em Physics with Trapped Charged Particles}, ch.~9, pp.~239--260.
+
+\bibitem{Ion_cooling}
+D.~M. Segal and C.~Wunderlich, ``Chapter 3: Cooling techniques for trapped
+  ions,'' {\em Physics with Trapped Charged Particles}, p.~43–81, Feb 2014.
+
+\bibitem{EIT_cooling}
+R.~Lechner, C.~Maier, C.~Hempel, P.~Jurcevic, B.~P. Lanyon, T.~Monz,
+  M.~Brownnutt, R.~Blatt, and C.~F. Roos,
+  ``Electromagnetically-induced-transparency ground-state cooling of long ion
+  strings,'' {\em Physical Review A}, vol.~93, May 2016.
+
+\bibitem{Trapped_ion_qbit_toolbox}
+R.~Ozeri, ``The trapped-ion qubit tool box,'' {\em Contemporary Physics},
+  vol.~52, no.~6, pp.~531--550, 2011.
+
+\bibitem{Trapped_Quantum_Computer}
+I.~Pogorelov, T.~Feldker, C.~D. Marciniak, L.~Postler, G.~Jacob,
+  O.~Krieglsteiner, V.~Podlesnic, M.~Meth, V.~Negnevitsky, M.~Stadler,
+  B.~H\"ofer, C.~W\"achter, K.~Lakhmanskiy, R.~Blatt, P.~Schindler, and
+  T.~Monz, ``Compact ion-trap quantum computing demonstrator,'' {\em PRX
+  Quantum}, vol.~2, p.~020343, Jun 2021.
+
+\bibitem{Elementary_QGates}
+A.~Barenco, C.~H. Bennett, R.~Cleve, D.~P. DiVincenzo, N.~Margolus, P.~Shor,
+  T.~Sleator, J.~A. Smolin, and H.~Weinfurter, ``Elementary gates for quantum
+  computation,'' {\em Physical Review A}, vol.~52, p.~3457–3467, Nov 1995.
+
+\end{thebibliography}
