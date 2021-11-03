@@ -9,8 +9,8 @@ from multiprocessing import Pool, Value
 
 # plt.ion()
 
-n_num = 4
-state_start = 2
+n_num = 7
+state_start = 3
 counter = None
 num_cores = 16
 
@@ -69,7 +69,7 @@ a_tilde = lambda t : a*np.exp(-1j*nu0*t)
 a_tilde_dagger = lambda t : a_dagger*np.exp(1j*nu0*t)
 
 # Rabi frequency
-Omega0 = (1)*nu0
+Omega0 = (1/5)*nu0
 Omegas = np.array([[0,Omega0],[Omega0,0]], dtype=np.complex128)
 # Omegas = Omega*(sigma+ + sigma-)
 
@@ -82,7 +82,7 @@ omegas = np.array([[[[E_diffs[s1,0,s2,0]/hbar for n2 in range(n_num)] for s2 in 
 omega0 = np.abs(omegas[1,0,0,0])
 # omega = omega0 + Omegas[0,1]
 
-z_0 = 1*c/(omega0 + nu0)
+z_0 = 0.1*c/(omega0 + nu0)
 # Detuning
 deltas = lambda omega : np.abs(abs(omega) - np.abs(omegas))
 sums = lambda omega : np.abs(abs(omega) + np.abs(omegas))
@@ -140,7 +140,7 @@ def H(t,omega):
 # Set up solver
 # ts = np.arange(0,const.pi*2/np.abs(Omegas[0,1]),1e-3*const.pi*2/np.abs(Omegas[0,1]))
 sols = []
-os = np.linspace(-5,5,1001)
+os = np.linspace(-20,20,1201)
 sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
 s3d = []
 max_time = 30*const.pi/Omega0
