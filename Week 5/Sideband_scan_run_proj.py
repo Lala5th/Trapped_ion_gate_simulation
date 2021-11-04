@@ -28,12 +28,13 @@ a_0 = 4*const.pi*epsilon_0*hbar**2/(m_e*e**2)
 # Set up the ODE
 # progr = -100000
 def Schroedinger(ts, state, Hamiltonian,*args):
+    # global progr
     # Reconstruct original shape
     c_state = np.reshape(state,(2,n_num))
     # Reconstruct complex state
     # c_state = unflattened_state[0] + 1j*unflattened_state[1]
 
-    dsdt = -(1j/hbar)*np.einsum('ijkl,kl->ij',Hamiltonian(ts,*args),c_state)
+    dsdt = -(1j)*np.einsum('ijkl,kl->ij',Hamiltonian(ts,*args),c_state)
 
     # if ts - 1e-3 > progr:
     #     print(ts,end="\r")
@@ -82,23 +83,25 @@ omegas = np.array([[[[E_diffs[s1,0,s2,0]/hbar for n2 in range(n_num)] for s2 in 
 omega0 = np.abs(omegas[1,0,0,0])
 # omega = omega0 + Omegas[0,1]
 
-z_0 = 0.1*c/(omega0 + nu0)
+z_0 = 0.5*c/(omega0 + nu0)
 # Detuning
 deltas = lambda omega : np.abs(abs(omega) - np.abs(omegas))
 sums = lambda omega : np.abs(abs(omega) + np.abs(omegas))
 
 
-proj = np.eye(n_num)
+# proj = np.eye(n_num)
 # proj[state_start,state_start] = 1
 # proj[state_start-1,state_start-1] = 1
-proj = np.einsum('ij,kl->ikjl',np.eye(2),proj)
+# proj = np.einsum('ij,kl->ikjl',np.eye(2),proj)
+sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
+# proj_A = np.array([[1,0],[0,1]])
 # Set up Interaction Hamiltonian
 def Rabi_RWA(t,omega):
-    global z_0, proj
+    global z_0
     k = omega/c
     lamb_dicke = k*z_0
     
-    H_Asp = hbar*np.array([[0,0],[Omega0,0]],dtype=np.complex128)/2
+    H_Asp = np.array([[0,0],[Omega0,0]],dtype=np.complex128)/2
     # H_Asn = hbar*np.array([[0,Omega0],[0,0]],dtype=np.complex128)/2
     ds = omega - omega0
     H_Asp *= np.exp(-1j*ds*t)
@@ -119,8 +122,22 @@ def Rabi_RWA(t,omega):
     Hn = np.einsum('ijkl->klij',np.conj(Hp)) #np.einsum('ij,kl->ikjl',H_Asn,mot_term_dagger)
 
     Hamiltonian = Hn + Hp
-    # Hamiltonian = np.einsum('ijkl,klmn->ijmn',Hamiltonian,proj)
-    # Hamiltonian = np.einsum('ijkl,klmn->ijmn',proj,Hamiltonian)
+
+    d = (omega - omega0)/Omega0
+    i = np.argmin(np.abs(d - sidebands))
+    state_a = np.zeros((2,n_num))
+    state_b = np.zeros((2,n_num))
+
+    state_a[0,state_start] = 1
+    state_b[1,i] = 1
+
+    # print(d,i,sidebands)
+    proj_a = np.einsum('ij,kl->ijkl',state_a,state_a)
+    proj_b = np.einsum('ij,kl->ijkl',state_b,state_b)
+    proj = proj_a + proj_b
+
+    Hamiltonian = np.einsum('ijkl,klmn->ijmn',Hamiltonian,proj)
+    Hamiltonian = np.einsum('ijkl,ijmn->klmn',proj,Hamiltonian)
 
     return Hamiltonian
 
@@ -140,11 +157,10 @@ def H(t,omega):
 # Set up solver
 # ts = np.arange(0,const.pi*2/np.abs(Omegas[0,1]),1e-3*const.pi*2/np.abs(Omegas[0,1]))
 sols = []
-sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
-os = np.array([np.linspace(sidebands[i]-10,sidebands[i]+10,401) for i in range(n_num)]).flatten()
+os = np.array([np.linspace(sidebands[i]-20,sidebands[i]+20,401) for i in range(n_num)]).flatten()
 s3d = []
 max_time = 10*const.pi/Omega0
-ts = np.linspace(0,max_time,100)
+ts = np.linspace(0,max_time,1000)
 
 def init(args):
     global counter
@@ -179,7 +195,7 @@ if __name__ == '__main__':
 
 
     metadata = [n_num,state_start,nu0,Omega0]
-    np.savez(f'O{Omega0}_nu{nu0}_eta0{(omega0 + nu0)*z_0/c}_LDR',os = os, ts = ts, s3d = s3d, metadata = metadata)
+    np.savez(f'O{Omega0}_nu{nu0}_eta0{(omega0 + nu0)*z_0/c}',os = os, ts = ts, s3d = s3d, metadata = metadata)
     # for o in os:
     #     progr = -1000
     #     # Omega = np.sqrt((1 + (np.min(np.abs(o - sidebands)))**2)*abs(mod_Rabi_freq(omega0 + o*Omega0))**2)
