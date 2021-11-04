@@ -12,7 +12,7 @@ from multiprocessing import Pool, Value
 n_num = 7
 state_start = 3
 counter = None
-num_cores = 16
+num_cores = 8
 
 # Set some constants to use later
 # Current setup uses SI units, i.e. kg, s, J, m
@@ -54,7 +54,7 @@ state_0_flat = state_0.flatten() # Flatten state so we can work with it
 E_levels = np.array([0,1e10*hbar])
 
 # Set up Hamiltonian and relevant operators
-nu0 = const.pi*1e3
+nu0 = 2*const.pi*1e3
 H_motional = np.zeros((2,10,2,10),dtype=np.complex128)
 for i in range(n_num):
     H_motional[:,i,:,i] = hbar*nu0*(i + 0.5)
@@ -105,8 +105,8 @@ def Rabi_RWA(t,omega):
     # H_Asn *= np.exp(-1j*ds[1,0,0,0]*t)
 
     a_sum = a_tilde(t) + a_tilde_dagger(t)
-    mot_term = np.eye(n_num) + 1j*lamb_dicke*a_sum
-    # mot_term = expm( 1j*lamb_dicke*a_sum)
+    # mot_term = np.eye(n_num) + 1j*lamb_dicke*a_sum
+    mot_term = expm( 1j*lamb_dicke*a_sum)
     # mot_term_dagger = np.conj(mot_term).T#expm(-1j*lamb_dicke*a_sum)
     #mot_term = np.einsum('ij,kl->ikjl',np.eye(2),mot_term)
     #mot_term_dagger = np.einsum('ij,kl->ikjl',np.eye(2),mot_term_dagger)
@@ -143,8 +143,8 @@ sols = []
 os = np.linspace(-20,20,1201)
 sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
 s3d = []
-max_time = 30*const.pi/Omega0
-ts = np.linspace(0,max_time,1000)
+max_time = 10*const.pi/Omega0
+ts = np.linspace(0,max_time,100)
 
 def init(args):
     global counter
@@ -179,7 +179,7 @@ if __name__ == '__main__':
 
 
     metadata = [n_num,state_start,nu0,Omega0]
-    np.savez(f'O{Omega0}_nu{nu0}_eta0{(omega0 + nu0)*z_0/c}_LDR',os = os, ts = ts, s3d = s3d, metadata = metadata)
+    # np.savez(f'O{Omega0}_nu{nu0}_eta0{(omega0 + nu0)*z_0/c}_LDR',os = os, ts = ts, s3d = s3d, metadata = metadata)
     # for o in os:
     #     progr = -1000
     #     # Omega = np.sqrt((1 + (np.min(np.abs(o - sidebands)))**2)*abs(mod_Rabi_freq(omega0 + o*Omega0))**2)
