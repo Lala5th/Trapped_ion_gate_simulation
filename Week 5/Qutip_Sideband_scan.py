@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import numpy as np
-import matplotlib.pyplot as plt
 import qutip as qtip
 from qutip.operators import qutrit_ops
 from qutip.qobj import Qobj
@@ -8,12 +7,8 @@ from qutip.qobjevo import QobjEvo
 import scipy.constants as const
 from multiprocessing import Pool, Value
 
-plt.ion()
-
-# qtip.settings.auto_tidyup=False # WITHOUT THIS MATRIX BECOMES 0!!!!
-
 # Multiprocessing parameters
-n_cores = 16
+n_cores = 1
 counter = Value('i',0)
 
 # Set up constants
@@ -46,7 +41,9 @@ sigma_m = qtip.sigmap() # and internally within QuTiP
 a_tilde = lambda t : a*np.exp(-1j*nu0*t)
 # a_tilde_dagger = lambda t : a_dagger*np.exp(1j*nu0*t) # Probably calculating exponentials is harder than dag[?] Test?
 a_tilde_dagger = lambda t : a_dagger*np.exp(1j*nu0*t)
-a_sum = lambda t : a_tilde(t) + a_tilde_dagger(t)
+def a_sum(t):
+    a_t = a_tilde(t)
+    return a_t + a_t.dag()
 det_p = lambda t, omega : np.exp(-1j*(omega - omega0)*t)
 identity = qtip.tensor(qtip.identity(2),qtip.identity(n_num))
 
@@ -56,14 +53,18 @@ state0_M = qtip.basis(n_num,state_start)
 state0 = qtip.tensor(state0_A,state0_M)
 
 # Create Hamiltonian
-H_A_p = lambda t, args : (Omega0/2)*sigma_p*det_p(t,args['omega'])
-H_M_p = lambda t, args : (1j*args['eta']*a_sum(t)).expm()
-H_i_p = lambda t, args : qtip.tensor(H_A_p(t,args),H_M_p(t,args))
-H_i = lambda t, args : (H_i_p(t,args) + H_i_p(t,args).dag())
-
+# H_A_p = lambda t, args : (Omega0/2)*sigma_p*det_p(t,args['omega'])
+# H_M_p = lambda t, args : (1j*args['eta']*a_sum(t)).expm()
+# H_i_p = lambda t, args : qtip.tensor(H_A_p(t,args),H_M_p(t,args))
+# H_i = lambda t, args : (H_i_p(t,args) + H_i_p(t,args).dag())
+def H_i(t,args):
+    H_A_p = (Omega0/2)*sigma_p*det_p(t,args['omega'])
+    H_M_p = (1j*args['eta']*a_sum(t)).expm()
+    H_i_p = qtip.tensor(H_A_p,H_M_p)
+    return H_i_p + H_i_p.dag()
 
 # Simulation ranges
-os = np.linspace(-20,20,1201)
+os = np.linspace(-10,10,401)
 ts = np.linspace(0,10*const.pi/Omega0,100)
 
 # Simulation run function

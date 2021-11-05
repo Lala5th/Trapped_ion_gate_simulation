@@ -12,7 +12,7 @@ from multiprocessing import Pool, Value
 n_num = 7
 state_start = 3
 counter = None
-num_cores = 16
+num_cores = 1
 
 # Set some constants to use later
 # Current setup uses SI units, i.e. kg, s, J, m
@@ -69,7 +69,7 @@ a_tilde = lambda t : a*np.exp(-1j*nu0*t)
 a_tilde_dagger = lambda t : a_dagger*np.exp(1j*nu0*t)
 
 # Rabi frequency
-Omega0 = (1/200)*nu0
+Omega0 = (1/5)*nu0
 Omegas = np.array([[0,Omega0],[Omega0,0]], dtype=np.complex128)
 # Omegas = Omega*(sigma+ + sigma-)
 
@@ -141,7 +141,8 @@ def H(t,omega):
 # ts = np.arange(0,const.pi*2/np.abs(Omegas[0,1]),1e-3*const.pi*2/np.abs(Omegas[0,1]))
 sols = []
 sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
-os = np.array([np.linspace(sidebands[i]-10,sidebands[i]+10,401) for i in range(n_num)]).flatten()
+#os = np.array([np.linspace(sidebands[i]-10,sidebands[i]+10,401) for i in range(n_num)]).flatten()
+os = np.linspace(-10,10,401)
 s3d = []
 max_time = 10*const.pi/Omega0
 ts = np.linspace(0,max_time,100)

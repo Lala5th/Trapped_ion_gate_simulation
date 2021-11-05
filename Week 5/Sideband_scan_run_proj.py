@@ -9,8 +9,8 @@ from multiprocessing import Pool, Value
 
 # plt.ion()
 
-n_num = 7
-state_start = 3
+n_num = 21
+state_start = 10
 counter = None
 num_cores = 16
 
@@ -56,7 +56,7 @@ E_levels = np.array([0,1e10*hbar])
 
 # Set up Hamiltonian and relevant operators
 nu0 = 2*const.pi*1e3
-H_motional = np.zeros((2,10,2,10),dtype=np.complex128)
+H_motional = np.zeros((2,n_num,2,n_num),dtype=np.complex128)
 for i in range(n_num):
     H_motional[:,i,:,i] = hbar*nu0*(i + 0.5)
 
@@ -157,7 +157,7 @@ def H(t,omega):
 # Set up solver
 # ts = np.arange(0,const.pi*2/np.abs(Omegas[0,1]),1e-3*const.pi*2/np.abs(Omegas[0,1]))
 sols = []
-os = np.array([np.linspace(sidebands[i]-20,sidebands[i]+20,401) for i in range(n_num)]).flatten()
+os = np.array([np.linspace(sidebands[i]-10,sidebands[i]+10,201) for i in range(n_num)]).flatten()
 s3d = []
 max_time = 10*const.pi/Omega0
 ts = np.linspace(0,max_time,1000)
