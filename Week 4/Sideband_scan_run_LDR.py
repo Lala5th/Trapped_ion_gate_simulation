@@ -141,8 +141,8 @@ def Rabi_RWA_cached(omega):
 
         a_sum = a_tilde(t)# + a_tilde_dagger(t)
         a_sum += np.conj(a_sum).T
-        # mot_term = I_M + 1j*lamb_dicke*a_sum
-        mot_term = expm( 1j*lamb_dicke*a_sum)
+        mot_term = I_M + 1j*lamb_dicke*a_sum
+        # mot_term = expm( 1j*lamb_dicke*a_sum)
 
         Hp = np.einsum('ij,kl->ikjl',H_Asp,mot_term)
         Hn = np.einsum('ijkl->klij',np.conj(Hp))

@@ -32,20 +32,20 @@ if __name__ == '__main__':
 
     state_data = np.zeros((len(os),2,n_num,len(ts)))
 
-    # proj_e = qtip.basis(2,1)*qtip.basis(2,1).dag()
-    # proj_g = qtip.basis(2,0)*qtip.basis(2,0).dag()
-    # for i in range(n_num):
-    #     proj_M = qtip.basis(n_num,i)*qtip.basis(n_num,i).dag()
-    #     proj_e_c = qtip.tensor(proj_e,proj_M)
-    #     proj_g_c = qtip.tensor(proj_g,proj_M)
-    #     for j,o in enumerate(s3d):
-    #         print(j,"/",len(os))
-    #         for k,t_s in enumerate(o):
-    #             t_s = qtip.Qobj(t_s,[[2,7],[1,1]])
-    #             state_data[j,0,i,k] = abs((t_s.dag()*proj_g_c*t_s)[0,0])
-    #             state_data[j,1,i,k] = abs((t_s.dag()*proj_e_c*t_s)[0,0])
+    proj_e = qtip.basis(2,1)*qtip.basis(2,1).dag()
+    proj_g = qtip.basis(2,0)*qtip.basis(2,0).dag()
+    for i in range(n_num):
+        proj_M = qtip.basis(n_num,i)*qtip.basis(n_num,i).dag()
+        proj_e_c = qtip.tensor(proj_e,proj_M)
+        proj_g_c = qtip.tensor(proj_g,proj_M)
+        for j,o in enumerate(s3d):
+            print(j,"/",len(os))
+            for k,t_s in enumerate(o):
+                t_s = qtip.Qobj(t_s,[[2,7],[1,1]])
+                state_data[j,0,i,k] = abs((t_s.dag()*proj_g_c*t_s)[0,0])
+                state_data[j,1,i,k] = abs((t_s.dag()*proj_e_c*t_s)[0,0])
 
-    state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(s3d,dtype = np.complex128)),(len(os),2,n_num,-1))
+    state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(state_data,dtype = np.complex128)),(len(os),2,n_num,-1))
     state_data = np.abs(np.einsum('ijkl,ijkl->ijkl',state_data,np.conj(state_data)))
 
     fig, ax = plt.subplots()
