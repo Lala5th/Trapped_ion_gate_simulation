@@ -3,13 +3,13 @@ from dataclasses import dataclass
 from typing import List,Dict,Union
 from copy import deepcopy
 import numpy as np
-from functools import cache
+from functools import lru_cache
 import qutip as qtip
 
 @dataclass
 class entry:
     val: np.complex128
-    exp: float
+    exp: int
 
     def __mul__(self, other : 'entry') -> 'entry':
         return entry(val=self.val*other.val, exp=self.exp + other.exp)
@@ -19,7 +19,7 @@ class entry:
 
 class simplified_matrix_data:
     value: List[entry]
-    index: Dict[float,int]
+    index: Dict[int,int]
 
     def rebuild_index(self) -> None:
         self.index = {}
@@ -122,7 +122,7 @@ class simplified_matrix_data:
             return self.divself(other)
         return self.divnum(other)
 
-@cache
+@lru_cache(maxsize=None)
 def factorial(n : int):
     if(n >= 2):
         return n*factorial(n-1)
@@ -135,12 +135,13 @@ def manual_taylor_expm(M : np.ndarray,n : int =7) -> np.ndarray:
     ret = generate_zeros(M.shape[0])
     A = np.array([[simplified_matrix_data() if i!=j else simplified_matrix_data([entry(val=1,exp=0)]) for i in range(M.shape[0])] for j in range(M.shape[1])],dtype=simplified_matrix_data)
     ret += A
-    for i in range(n-1):
+    for i in range(n):
         A = A @ M
         ret += A/factorial(i+1)
     return ret
 
-def generate_qutip_operator(M,dims = None):
+def generate_qutip_operator(M, exp_factor, dims = None):
+
     id_dict = {}
     for i in range(M.shape[0]):
         for j in range(M.shape[1]):
@@ -150,11 +151,14 @@ def generate_qutip_operator(M,dims = None):
                 id_dict[e.exp][i,j] = e.val
 
     ret_array = []
-    for e in id_dict.keys():
-        ret_array.append([qtip.Qobj(id_dict[e],dims=dims),lambda t, args : np.exp(1j*e*t)])
+    for i,e in enumerate(id_dict):
+        # def func(t, args):
+        #     return np.exp(1j*exponent*t)
+        ret_array.append([qtip.Qobj(id_dict[e],dims=dims), lambda t, args, ex = e : np.exp(1j*ex*exp_factor*t)])
+
     return ret_array
 
-def generate_python_operator(M, shape = None):
+def generate_python_operator(M, exp_factor, shape = None):
     if shape == None:
         shape = M.shape
     id_dict = {}
@@ -168,8 +172,8 @@ def generate_python_operator(M, shape = None):
     for e in id_dict.keys():
         id_dict[e] = np.reshape(id_dict[e],shape)
     
-    ret_array = lambda t, args : np.array([id_dict[e]*np.exp(1j*e*t) for e in id_dict.keys()])
-    return lambda t, args : np.sum(ret_array(t,args),axis=0)
+    ret_array = lambda t : np.array([id_dict[e]*np.exp(1j*e*exp_factor*t) for e in id_dict.keys()])
+    return lambda t : np.sum(ret_array(t),axis=0)
 
 
 if __name__ == '__main__':

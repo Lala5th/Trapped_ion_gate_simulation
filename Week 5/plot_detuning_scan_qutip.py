@@ -45,8 +45,8 @@ if __name__ == '__main__':
                 state_data[j,0,i,k] = abs((t_s.dag()*proj_g_c*t_s)[0,0])
                 state_data[j,1,i,k] = abs((t_s.dag()*proj_e_c*t_s)[0,0])
 
-    state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(state_data,dtype = np.complex128)),(len(os),2,n_num,-1))
-    state_data = np.abs(np.einsum('ijkl,ijkl->ijkl',state_data,np.conj(state_data)))
+    # state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(state_data,dtype = np.complex128)),(len(os),2,n_num,-1))
+    # state_data = np.abs(np.einsum('ijkl,ijkl->ijkl',state_data,np.conj(state_data)))
 
     fig, ax = plt.subplots()
     ps = []
