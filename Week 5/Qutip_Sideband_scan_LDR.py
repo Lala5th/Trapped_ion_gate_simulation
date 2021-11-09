@@ -8,7 +8,7 @@ import scipy.constants as const
 from multiprocessing import Pool, Value
 
 # Multiprocessing parameters
-n_cores = 1
+n_cores = 16
 counter = Value('i',0)
 
 # Set up constants
@@ -84,7 +84,7 @@ def H_i(args):
 
 # Simulation ranges
 os = np.linspace(-10,10,401)
-ts = np.linspace(0,10*const.pi/Omega0,2)
+ts = np.linspace(0,10*const.pi/Omega0,100)
 
 # Simulation run function
 options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6,method='bdf')

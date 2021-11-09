@@ -62,19 +62,13 @@ if __name__ == '__main__':
 
     fig, ax = plt.subplots()
     ps = []
-    for i in range(n_num):
-        # col = [0.3,1,0.3]
-        # if (i < state_start):
-        #     col = [1 - (state_start - i - 1)/(state_start),0.2,0.2]
-        # elif (i > state_start):
-        #     col = [0.2,0.2,(i - state_start + 1)/(n_num - state_start)]
-        p, = ax.plot(os,state_data[:,1,i,0],label = f"|e,{i}>")
-        p1,= ax.plot(os,state_data[:,0,i,0],label = f"|g,{i}>",linestyle='--', color = p.get_color())
-        ps.append(p1)
-        ps.append(p)
-        ax.axvline((i - state_start)*nu0/Omega0,c = p.get_color(),linestyle='dashdot')
 
-    ps = np.reshape(np.array(ps),(-1,2)).T
+    p, = ax.plot(os,np.einsum('ij->i',state_data[:,1,:,0]),label = f"|e>")
+    p1,= ax.plot(os,np.einsum('ij->i',state_data[:,0,:,0]),label = f"|g>",linestyle='--', color = p.get_color())
+    ps.append(p1)
+    ps.append(p)
+    for i in range(n_num):
+        ax.axvline((i - state_start)*nu0/Omega0,c = p.get_color(),linestyle='dashdot')
 
     ax.legend()
     # fig2, ax2 = plt.subplots()
@@ -102,8 +96,7 @@ if __name__ == '__main__':
     def update_time(val):
         id = np.argmin(np.abs(val - ts))
         for i in range(2):
-            for j in range(n_num):
-                ps[i,j].set_ydata(state_data[:,i,j,id])
+            ps[i].set_ydata(np.einsum('ij->i',state_data[:,i,:,id]))
         fig.canvas.draw_idle()
 
     time_slider.on_changed(update_time)

@@ -10,7 +10,7 @@ from expm_decomp import simplified_matrix_data, entry, generate_qutip_operator, 
 from copy import deepcopy
 
 # Multiprocessing parameters
-n_cores = 1
+n_cores = 16
 counter = Value('i',0)
 
 # Set up constants
@@ -23,11 +23,11 @@ c = const.c
 # a_0 = 4*const.pi*epsilon_0*hbar**2/(m_e*e**2)
 
 # Set up params
-n_num = 7
-state_start = 3
+n_num = 21
+state_start = 10
 omega0 = 1e10
 nu0 = 2*const.pi*1000
-Omega0 = nu0/5
+Omega0 = nu0/200
 z_0 = 0.1*c/(omega0 + nu0)
 
 # Set up standard operators
@@ -71,8 +71,10 @@ def H_i(arg):
     return ret
 
 # Simulation ranges
-os = np.linspace(-10,10,401)
-ts = np.linspace(0,10*const.pi/Omega0,2)
+sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
+os = np.array([np.linspace(sidebands[i]-10,sidebands[i]+10,201) for i in [state_start-1,state_start,state_start+1]]).flatten()
+# os = np.linspace(-10,10,401)
+ts = np.linspace(0,10*const.pi/Omega0,1000)
 
 # Simulation run function
 options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
@@ -96,7 +98,7 @@ if __name__ == "__main__":
     with Pool(n_cores,initializer=init, initargs=(counter,)) as process_pool:
         result = process_pool.map(run_sim,os)
     metadata = [n_num,state_start,nu0,Omega0]
-    # np.savez('a',os=os,ts=ts,metadata=metadata,s3d=np.array(result,dtype=object))
+    np.savez('qutip_temp',os=os,ts=ts,metadata=metadata,s3d=np.array(result,dtype=object))
 
     # res = run_sim(5).states
     # proj_e = qtip.basis(2,1)*qtip.basis(2,1).dag()

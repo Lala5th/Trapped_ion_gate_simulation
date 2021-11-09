@@ -13,7 +13,7 @@ from expm_decomp import simplified_matrix_data, entry, manual_taylor_expm, gener
 n_num = 7
 state_start = 3
 counter = None
-num_cores = 1
+num_cores = 16
 
 # Set some constants to use later
 # Current setup uses SI units, i.e. kg, s, J, m
@@ -138,7 +138,7 @@ def Rabi_RWA_cached(omega):
     
     H_Asp_0 = Omega0*simga_p/2
 
-    H_Mp_0 = generate_python_operator(manual_taylor_expm(a_sum*1j*lamb_dicke,n=2*n_num),nu0)
+    H_Mp_0 = generate_python_operator(manual_taylor_expm(a_sum*1j*lamb_dicke,n=2*n_num-1),nu0)
 
     def Hamiltonian(t):
         # H_Asp = Omega0*simga_p/2
@@ -174,7 +174,7 @@ sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
 os = np.linspace(-10,10,401)
 s3d = []
 max_time = 10*const.pi/Omega0
-ts = np.linspace(0,max_time,2)
+ts = np.linspace(0,max_time,100)
 
 def init(args):
     global counter
@@ -208,7 +208,7 @@ if __name__ == '__main__':
 
 
     metadata = [n_num,state_start,nu0,Omega0]
-    # np.savez(f'O{Omega0}_nu{nu0}_eta0{(omega0 + nu0)*z_0/c}_LDR',os = os, ts = ts, s3d = s3d, metadata = metadata)
+    np.savez('Sideband_temp',os = os, ts = ts, s3d = s3d, metadata = metadata)
     # for o in os:
     #     progr = -1000
     #     # Omega = np.sqrt((1 + (np.min(np.abs(o - sidebands)))**2)*abs(mod_Rabi_freq(omega0 + o*Omega0))**2)

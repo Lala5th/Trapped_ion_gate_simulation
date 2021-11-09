@@ -152,8 +152,6 @@ def generate_qutip_operator(M, exp_factor, dims = None):
 
     ret_array = []
     for i,e in enumerate(id_dict):
-        # def func(t, args):
-        #     return np.exp(1j*exponent*t)
         ret_array.append([qtip.Qobj(id_dict[e],dims=dims), lambda t, args, ex = e : np.exp(1j*ex*exp_factor*t)])
 
     return ret_array

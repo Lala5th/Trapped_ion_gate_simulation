@@ -12,7 +12,7 @@ from multiprocessing import Pool, Value
 n_num = 7
 state_start = 3
 counter = None
-num_cores = 1
+num_cores = 16
 
 # Set some constants to use later
 # Current setup uses SI units, i.e. kg, s, J, m
@@ -172,7 +172,7 @@ sidebands = np.array([(i - state_start)*nu0/Omega0 for i in range(n_num)])
 os = np.linspace(-10,10,401)
 s3d = []
 max_time = 10*const.pi/Omega0
-ts = np.linspace(0,max_time,2)
+ts = np.linspace(0,max_time,100)
 
 def init(args):
     global counter
