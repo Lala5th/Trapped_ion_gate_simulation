@@ -128,12 +128,17 @@ def factorial(n : int):
         return n*factorial(n-1)
     return 1
 
+@lru_cache(maxsize=None)
 def generate_zeros(n):
     return np.array([[simplified_matrix_data() for _ in range(n)] for _ in range(n)],dtype=simplified_matrix_data)
 
+@lru_cache(maxsize=None)
+def generate_identity(n):
+    return np.array([[simplified_matrix_data() if i!=j else simplified_matrix_data([entry(val=1,exp=0)]) for i in range(n)] for j in range(n)],dtype=simplified_matrix_data)
+
 def manual_taylor_expm(M : np.ndarray,n : int =7) -> np.ndarray:
     ret = generate_zeros(M.shape[0])
-    A = np.array([[simplified_matrix_data() if i!=j else simplified_matrix_data([entry(val=1,exp=0)]) for i in range(M.shape[0])] for j in range(M.shape[1])],dtype=simplified_matrix_data)
+    A = generate_identity()
     ret += A
     for i in range(n):
         A = A @ M
