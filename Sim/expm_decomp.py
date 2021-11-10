@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from typing import List,Dict,Union
 from copy import deepcopy
 import numpy as np
-from functools import lru_cache
 import qutip as qtip
 
 @dataclass
@@ -122,27 +121,14 @@ class simplified_matrix_data:
             return self.divself(other)
         return self.divnum(other)
 
-@lru_cache(maxsize=None)
-def factorial(n : int):
-    if(n >= 2):
-        return n*factorial(n-1)
-    return 1
-
-@lru_cache(maxsize=None)
-def generate_zeros(n):
-    return np.array([[simplified_matrix_data() for _ in range(n)] for _ in range(n)],dtype=simplified_matrix_data)
-
-@lru_cache(maxsize=None)
-def generate_identity(n):
-    return np.array([[simplified_matrix_data() if i!=j else simplified_matrix_data([entry(val=1,exp=0)]) for i in range(n)] for j in range(n)],dtype=simplified_matrix_data)
-
 def manual_taylor_expm(M : np.ndarray,n : int =7) -> np.ndarray:
-    ret = generate_zeros(M.shape[0])
-    A = generate_identity()
+    ret = np.array([[simplified_matrix_data() for _ in range(M.shape[0])] for _ in range(M.shape[0])],dtype=simplified_matrix_data)
+    A = np.array([[simplified_matrix_data() if i!=j else simplified_matrix_data([entry(val=1,exp=0)]) for i in range(M.shape[0])] for j in range(M.shape[1])],dtype=simplified_matrix_data)
     ret += A
     for i in range(n):
         A = A @ M
-        ret += A/factorial(i+1)
+        A = A/(i+1)
+        ret += A
     return ret
 
 def generate_qutip_operator(M, exp_factor, dims = None):
