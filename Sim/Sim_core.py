@@ -13,7 +13,7 @@ sim_methods = {
     'QuTiP_LDR'             : QuTiP_LDR,
     # 'Ground_up_raw_func'    : None,
     'Ground_up_expm'        : Ground_up_full,
-    # 'Ground_up_LDR'         : Ground_up_LDA # Does not work currently, weird bug
+    'Ground_up_LDR'         : Ground_up_LDA # Does not work currently, weird bug
 }
 
 

@@ -4,3 +4,5 @@
 *.npz
 __pycache__/*
 __pycache__
+*.json
+!Sim/run_example.json

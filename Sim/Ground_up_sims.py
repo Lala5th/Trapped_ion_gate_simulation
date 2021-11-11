@@ -160,7 +160,6 @@ def Ground_up_LDA(data):
         s = solve_ivp(Schroedinger,[ts[0],ts[-1]],state_0_flat,args=(Rabi_RWA_cached(omega0 + o*Omega0),),t_eval = ts, method='DOP853',dense_output=False,atol=1e-8,rtol=1e-8)
         sol = s['y']
 
-        sol = np.einsum('ij->ji',sol)
         sol = sol.reshape((2,n_num,-1))
 
         return sol
