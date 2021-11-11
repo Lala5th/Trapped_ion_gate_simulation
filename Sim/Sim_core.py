@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import QuTiP_full, QuTiP_LDR
+from Qutip_sims import QuTiP_full, QuTiP_LDR, QuTiP_Cython
 from Ground_up_sims import Ground_up_full, Ground_up_LDA
 from multiprocessing import Pool, Value
 import qutip as qtip
@@ -11,6 +11,7 @@ sim_methods = {
     # 'Qutip_raw_func'        : None,
     'QuTiP_expm'            : QuTiP_full,
     'QuTiP_LDR'             : QuTiP_LDR,
+    'QuTiP_Cython'          : QuTiP_Cython,
     # 'Ground_up_raw_func'    : None,
     'Ground_up_expm'        : Ground_up_full,
     'Ground_up_LDR'         : Ground_up_LDA # Does not work currently, weird bug

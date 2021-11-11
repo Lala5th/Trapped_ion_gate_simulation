@@ -3,9 +3,8 @@ import numpy as np
 from matplotlib.widgets import Slider
 import matplotlib.pyplot as plt
 
-def plot_QuTiP_time(fname):
-    global ax, time_slider,axtime
-
+def load_QuTiP(fname):
+    
     d = np.load(fname,allow_pickle=True)
 
     n_num,state_start,nu0,Omega0 = d['metadata']
@@ -15,11 +14,35 @@ def plot_QuTiP_time(fname):
     os = d['os']
     ts = d['ts']
     s3d = d['s3d']
+    max_time = ts[-1]
     max_detuning = os[-1]
     min_detuning = os[0]
 
     state_data = np.array([[np.array(s,dtype=complex) for s in e] for e in s3d], dtype= complex)
     state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(state_data,dtype = np.complex128)),(len(os),2,n_num,-1))
+    return state_data, os, ts, max_detuning, min_detuning, max_time, nu0, Omega0, n_num, state_start
+
+def load_Ground_up(fname):
+
+    d = np.load(fname)
+
+    n_num,state_start,nu0,Omega0 = d['metadata']
+    n_num = int(n_num)
+    state_start = int(state_start)
+
+    os = d['os']
+    ts = d['ts']
+    s3d = d['s3d']
+    max_detuning = os[-1]
+    max_time = ts[-1]
+    min_detuning = os[0]
+    return np.array(s3d,dtype=np.complex128), os, ts, max_detuning, min_detuning, max_time, nu0, Omega0, n_num, state_start
+
+def plot_time_scan(data_pack):
+    global ax, time_slider,axtime
+
+    state_data, os, ts, max_detuning, min_detuning, _, nu0, Omega0, n_num, state_start = data_pack
+
     state_data = np.abs(np.einsum('ijkl,ijkl->ijkl',state_data,np.conj(state_data)))
 
     fig, ax = plt.subplots()
@@ -69,22 +92,11 @@ def plot_QuTiP_time(fname):
 
     plt.show()
 
-def plot_QuTiP_detuning(fname):
+def plot_detuning_scan(data_pack):
     global ax, time_slider,axtime
 
-    d = np.load(fname,allow_pickle=True)
+    state_data, os, ts, _, _, max_time, nu0, Omega0, n_num, state_start = data_pack
 
-    n_num,state_start,nu0,Omega0 = d['metadata']
-    n_num = int(n_num)
-    state_start = int(state_start)
-
-    os = d['os']
-    ts = d['ts']
-    s3d = d['s3d']
-    max_time = ts[-1]
-
-    state_data = np.array([[np.array(s,dtype=complex) for s in e] for e in s3d], dtype= complex)
-    state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(state_data,dtype = np.complex128)),(len(os),2,n_num,-1))
     state_data = np.abs(np.einsum('ijkl,ijkl->ijkl',state_data,np.conj(state_data)))
 
     fig, ax = plt.subplots()
@@ -132,35 +144,27 @@ def plot_QuTiP_detuning(fname):
 
     plt.show()
 
-def plot_Ground_up_time(fname):
+def plot_time_scan_projeg(data_pack):
     global ax, time_slider,axtime
 
-    d = np.load(fname)
+    state_data, os, ts, max_detuning, min_detuning, _, nu0, Omega0, n_num, state_start = data_pack
 
-    n_num,state_start,nu0,Omega0 = d['metadata']
-    n_num = int(n_num)
-    state_start = int(state_start)
-
-    os = d['os']
-    ts = d['ts']
-    s3d = d['s3d']
-    max_detuning = os[-1]
-    min_detuning = os[0]
-    s3d = np.einsum('ijkl,ijkl->ijkl',s3d,np.conj(s3d))
+    state_data = np.abs(np.einsum('ijkl,ijkl->ijl',state_data,np.conj(state_data)))
 
     fig, ax = plt.subplots()
     ps = []
-    for i in range(n_num):
+    p, = ax.plot(ts,state_data[0,1,:],label = f"|e>")
+    p1,= ax.plot(ts,state_data[0,0,:],label = f"|g>",linestyle='--', color = p.get_color())
+    ps.append(p1)
+    ps.append(p)
 
-        p, = ax.plot(ts,np.abs(s3d[0,1,i,:]),label = f"|e,{i}>")
-        p1,= ax.plot(ts,np.abs(s3d[0,0,i,:]),label = f"|g,{i}>",linestyle='--', color = p.get_color())
-        ps.append(p1)
-        ps.append(p)
-
-    ps = np.reshape(np.array(ps),(-1,2)).T
+    ps = np.array(ps)
 
     ax.legend()
-
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
     ax.set_xlabel("Time [s]")
     ax.set_ylabel("p[1]")
     # ax.set_yscale("logit")
@@ -180,48 +184,41 @@ def plot_Ground_up_time(fname):
     )
 
     for i in range(n_num):
-        axdetuning.axvline((i - state_start)*nu0/Omega0,c = ps[0,i].get_color(),linestyle='dashdot')
+        axdetuning.axvline((i - state_start)*nu0/Omega0,linestyle='dashdot',c='r')
 
     def update_time(val):
         id = np.argmin(np.abs(val - os))
         for i in range(2):
-            for j in range(n_num):
-                ps[i,j].set_ydata(np.abs(s3d[id,i,j,:]))
+            ps[i].set_ydata(np.abs(state_data[id,i,:]))
         fig.canvas.draw_idle()
 
     time_slider.on_changed(update_time)
 
     plt.show()
 
-def plot_Ground_up_detuning(fname):
+def plot_detuning_scan_projeg(data_pack):
     global ax, time_slider,axtime
 
-    d = np.load(fname)
+    state_data, os, ts, _, _, max_time, nu0, Omega0, n_num, state_start = data_pack
 
-    n_num,state_start,nu0,Omega0 = d['metadata']
-    n_num = int(n_num)
-    state_start = int(state_start)
-
-    os = d['os']
-    ts = d['ts']
-    s3d = d['s3d']
-    max_time = ts[-1]
-
-    s3d = np.einsum('ijkl,ijkl->ijkl',s3d,np.conj(s3d))
+    state_data = np.abs(np.einsum('ijkl,ijkl->ijl',state_data,np.conj(state_data)))
 
     fig, ax = plt.subplots()
     ps = []
+    p, = ax.plot(os,state_data[:,1,0],label = f"|e>")
+    p1,= ax.plot(os,state_data[:,0,0],label = f"|g>",linestyle='--', color = p.get_color())
+    ps.append(p1)
+    ps.append(p)
     for i in range(n_num):
+        ax.axvline((i - state_start)*nu0/Omega0,c = 'r',linestyle='dashdot')
 
-        p, = ax.plot(os,np.abs(s3d[:,1,i,0]),label = f"|e,{i}>")
-        p1,= ax.plot(os,np.abs(s3d[:,0,i,0]),label = f"|g,{i}>",linestyle='--', color = p.get_color())
-        ps.append(p1)
-        ps.append(p)
-        ax.axvline((i - state_start)*nu0/Omega0,c = p.get_color(),linestyle='dashdot')
-
-    ps = np.reshape(np.array(ps),(-1,2)).T
+    ps = np.array(ps)
 
     ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
     ax.set_xlabel("Detuning [$\\Omega$]")
     ax.set_ylabel("p[1]")
     # ax.set_yscale("logit")
@@ -243,20 +240,20 @@ def plot_Ground_up_detuning(fname):
     def update_time(val):
         id = np.argmin(np.abs(val - ts))
         for i in range(2):
-            for j in range(n_num):
-                ps[i,j].set_ydata(np.abs(s3d[:,i,j,id]))
+            ps[i].set_ydata(state_data[:,i,id])
         fig.canvas.draw_idle()
 
     time_slider.on_changed(update_time)
 
     plt.show()
 
-
 plot_methods = {
-    'qutip_time'        : plot_QuTiP_time,
-    'qutip_detuning'    : plot_QuTiP_detuning,
-    'groundup_time'     : plot_Ground_up_time,
-    'groundup_detuning' : plot_Ground_up_detuning
+    'qutip_time'            : [load_QuTiP,plot_time_scan],
+    'qutip_detuning'        : [load_QuTiP,plot_detuning_scan],
+    'qutip_time_projeg'     : [load_QuTiP,plot_time_scan_projeg],
+    'qutip_detuning_projeg' : [load_QuTiP,plot_detuning_scan_projeg],
+    'groundup_time'         : [load_Ground_up,plot_time_scan],
+    'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }
 
 if __name__ == '__main__':
@@ -278,4 +275,6 @@ if __name__ == '__main__':
 
     args = argv[1:]
     
-    plot_methods[args[0]](args[1])
+    last = args[1]
+    for m in plot_methods[args[0]]:
+        last = m(last)

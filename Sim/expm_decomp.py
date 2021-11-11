@@ -147,6 +147,22 @@ def generate_qutip_operator(M, exp_factor, dims = None):
 
     return ret_array
 
+def generate_qutip_exp_factor(M, exp_factor, dims = None):
+    
+    id_dict = {}
+    for i in range(M.shape[0]):
+        for j in range(M.shape[1]):
+            for e in M[i,j].value:
+                if(e.exp not in id_dict.keys()):
+                    id_dict[e.exp] = np.zeros(M.shape,dtype=np.complex)
+                id_dict[e.exp][i,j] = e.val
+
+    ret_array = []
+    for i,e in enumerate(id_dict):
+        ret_array.append([qtip.Qobj(id_dict[e],dims=dims), e*exp_factor])
+
+    return ret_array
+
 def generate_python_operator(M, exp_factor, shape = None):
     if shape == None:
         shape = M.shape
