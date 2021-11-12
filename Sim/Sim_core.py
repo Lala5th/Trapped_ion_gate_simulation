@@ -14,7 +14,7 @@ sim_methods = {
     'QuTiP_Cython'          : QuTiP_Cython,
     # 'Ground_up_raw_func'    : None,
     'Ground_up_expm'        : Ground_up_full,
-    'Ground_up_LDR'         : Ground_up_LDA # Does not work currently, weird bug
+    'Ground_up_LDR'         : Ground_up_LDA
 }
 
 
@@ -45,7 +45,7 @@ def init(arg, d):
     data = d
 
 def wrap_solver(o): # Needed because pickling error
-    global solvr,data
+    global data
     ret = sim_methods[data["solver"]](data)(o)
     with counter.get_lock():
         counter.value += 1

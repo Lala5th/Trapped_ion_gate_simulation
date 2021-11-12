@@ -62,7 +62,7 @@ def QuTiP_full(data):
         eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
 
-        return res.states # May move projection here
+        return res.states
 
     return run_sim
 
@@ -134,10 +134,9 @@ def QuTiP_LDR(data):
         eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
 
-        return res.states # May move projection here
+        return res.states
 
     return run_sim
-
     
 def QuTiP_Cython(data):
 
@@ -194,6 +193,6 @@ def QuTiP_Cython(data):
         eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
 
-        return res.states # May move projection here
+        return res.states
 
     return run_sim
