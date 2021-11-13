@@ -9,3 +9,5 @@ __pycache__
 *.o
 *.so
 *.dll
+c_exp_cython.c
+*.pyd

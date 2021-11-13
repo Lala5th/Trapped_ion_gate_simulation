@@ -5,7 +5,7 @@ import scipy.constants as const
 from multiprocessing import Pool, Value
 from expm_decomp import simplified_matrix_data, entry, generate_qutip_operator, manual_taylor_expm, generate_qutip_exp_factor
 from copy import deepcopy
-from cpp_exp_python import c_exp
+from c_exp_cython import c_exp
 
 def QuTiP_full(data):
 
@@ -197,8 +197,8 @@ def QuTiP_Cython(data):
         return res.states
 
     return run_sim
-    
-def QuTiP_Cpp(data):
+
+def QuTiP_C(data):
 
     # Set up constants
     c = const.c
