@@ -11,3 +11,4 @@ __pycache__
 *.dll
 c_exp_cython.c
 *.pyd
+build

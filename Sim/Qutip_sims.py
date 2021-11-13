@@ -5,7 +5,7 @@ import scipy.constants as const
 from multiprocessing import Pool, Value
 from expm_decomp import simplified_matrix_data, entry, generate_qutip_operator, manual_taylor_expm, generate_qutip_exp_factor
 from copy import deepcopy
-from c_exp_cython import c_exp
+from c_exp_direct import c_exp
 
 def QuTiP_full(data):
 
@@ -238,8 +238,8 @@ def QuTiP_C(data):
         H_i_p = [[qtip.tensor(H_A_p,H_M_p[i][0]), H_M_p[i][1]] for i in range(len(H_M_p))]
         H_i = []
         for i in H_i_p:
-            H_i.append([i[0]        ,lambda t,args,e = i[1] : c_exp(t,e,arg['det'])])
-            H_i.append([i[0].dag()  ,lambda t,args,e = i[1] : c_exp(t,arg['det'],e)])
+            H_i.append([i[0]        ,lambda t,args,e = i[1] - arg['det'] : c_exp(t,e)])
+            H_i.append([i[0].dag()  ,lambda t,args,e = arg['det'] - i[1] : c_exp(t,e)])
         return H_i
 
     # Simulation ranges
