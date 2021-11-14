@@ -9,7 +9,7 @@
 #define DECLSPEC
 #endif
 
-DECLSPEC static PyObject* c_exp(PyObject* self, PyObject* args){
+static PyObject* c_exp(PyObject* self, PyObject* args){
     const double t, a;
     if(!PyArg_ParseTuple(args,"dd",&t,&a))
         return NULL;
@@ -20,13 +20,13 @@ DECLSPEC static PyObject* c_exp(PyObject* self, PyObject* args){
     return PyComplex_FromDoubles(creal(val),cimag(val));
 }
 
-DECLSPEC static PyMethodDef cexpMethods[] = {
+static PyMethodDef cexpMethods[] = {
     {"c_exp",  c_exp, METH_VARARGS,
      "Complex exponential of form c_exp(t : double, a : double) => e^(i*a*t)."},
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
-DECLSPEC static struct PyModuleDef cexpmodule = {
+static struct PyModuleDef cexpmodule = {
     PyModuleDef_HEAD_INIT,
     "c_exp_direct",   /* name of module */
     NULL, /* module documentation, may be NULL */
