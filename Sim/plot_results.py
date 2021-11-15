@@ -22,6 +22,18 @@ def load_QuTiP(fname):
     state_data = np.reshape(np.einsum('ijkl->ikj',np.asarray(state_data,dtype = np.complex128)),(len(os),2,n_num,-1))
     return state_data, os, ts, max_detuning, min_detuning, max_time, nu0, Omega0, n_num, state_start
 
+def load_QuTiP_seq(fname):
+    
+    d = np.load(fname,allow_pickle=True)
+    ts = d['ts']
+    s3d = d['s3d']
+    n_num, = d['metadata']
+    t0s = d['t0s']
+
+    state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex)
+    state_data = np.reshape(np.einsum('ijk->ji',np.asarray(state_data,dtype = np.complex128)),(2,n_num,-1))
+    return state_data, ts, n_num, t0s
+
 def load_Ground_up(fname):
 
     d = np.load(fname)
@@ -247,11 +259,102 @@ def plot_detuning_scan_projeg(data_pack):
 
     plt.show()
 
+def plot_seq_scan(data_pack):
+    global ax
+
+    state_data, ts, n_num, t0s = data_pack
+
+    state_data = np.abs(np.einsum('ijk,ijk->ijk',state_data,np.conj(state_data)))
+
+    _, ax = plt.subplots()
+    for i in range(n_num):
+        p, = ax.plot(ts,state_data[1,i,:],label = f"|e,{i}>")
+        ax.plot(ts,state_data[0,i,:],label = f"|g,{i}>",linestyle='--', color = p.get_color())
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(t0 + t,linestyle='dashdot')
+        t0 += t
+
+    ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("Time [s]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
+def plot_seq_scan_projeg(data_pack):
+    global ax
+
+    state_data, ts, _, t0s = data_pack
+
+    state_data = np.abs(np.einsum('ijk,ijk->ik',state_data,np.conj(state_data)))
+
+    _, ax = plt.subplots()
+    p, = ax.plot(ts,state_data[1,:],label = f"|e>")
+    ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(t0 + t,linestyle='dashdot')
+        t0 += t
+
+    ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("Time [s]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
+def plot_seq_scan_Fockexp(data_pack):
+    global ax
+
+    state_data, ts, n_num, t0s = data_pack
+
+    state_data = np.abs(np.einsum('ijk,ijk->ijk',state_data,np.conj(state_data)))
+
+    exp = np.diag([i for i in range(n_num)])
+    state_data = np.einsum('ijk,jl->ilk',state_data,exp)
+    state_data = np.einsum('ijk->k',state_data)
+
+    _, ax = plt.subplots()
+    ax.plot(ts,state_data,label = "<$a^\\dagger{}a$>",linestyle='--')
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(t0 + t,linestyle='dashdot')
+        t0 += t
+
+    ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("Time [s]")
+    ax.set_ylabel("E[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
 plot_methods = {
     'qutip_time'            : [load_QuTiP,plot_time_scan],
     'qutip_detuning'        : [load_QuTiP,plot_detuning_scan],
     'qutip_time_projeg'     : [load_QuTiP,plot_time_scan_projeg],
     'qutip_detuning_projeg' : [load_QuTiP,plot_detuning_scan_projeg],
+    'qutip_seq'             : [load_QuTiP_seq,plot_seq_scan],
+    'qutip_seq_projeg'      : [load_QuTiP_seq,plot_seq_scan_projeg],
+    'qutip_seq_fockexp'     : [load_QuTiP_seq,plot_seq_scan_Fockexp],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }

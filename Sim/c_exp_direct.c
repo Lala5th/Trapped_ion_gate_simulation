@@ -3,20 +3,16 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 
-#ifdef WIN32
-#define DECLSPEC __declspec(dllexport)
-#else
-#define DECLSPEC
-#endif
-
 static PyObject* c_exp(PyObject* self, PyObject* args){
     const double t, a;
     if(!PyArg_ParseTuple(args,"dd",&t,&a))
         return NULL;
     
-    double complex val = cexp(I*t*a);
-    //memcpy(&ret,&val,sizeof(Py_complex));
-    // ret = {.real = creal(val), .imag = cimag(val)}
+    #ifdef _WIN32
+        _Dcomplex val = cexp(_Cbuild(0,a*t));
+    #else
+        double complex val = cexp(I*t*a);
+    #endif
     return PyComplex_FromDoubles(creal(val),cimag(val));
 }
 
@@ -35,7 +31,7 @@ static struct PyModuleDef cexpmodule = {
     cexpMethods
 };
 
-DECLSPEC PyMODINIT_FUNC PyInit_c_exp_direct(void){
+PyMODINIT_FUNC PyInit_c_exp_direct(void){
     PyObject* m;
 
     m = PyModule_Create(&cexpmodule);

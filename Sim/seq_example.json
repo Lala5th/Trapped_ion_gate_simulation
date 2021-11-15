@@ -1,0 +1,45 @@
+{
+    "solver"        : "QuTiP_C",
+    "n_cores"       : 16,
+
+    "omega0"        : 1e10,
+    "nu0Hz"         : 1000,
+    "nu0"           : null,
+
+    "n_num"         : 7,
+    "n0"            : 3,
+    "eta0"          : 0.1,
+
+    "sequence"      : [
+        {
+            "reltime"       : 5.7735,
+            "abstime"       : null,
+            "n_t"           : 1000,
+    
+            "detuning"      : -50,
+            "Omega0_rel"    : 0.02,
+            "Omega0"        : null
+        },
+        {
+            "reltime"       : 1,
+            "abstime"       : null,
+            "n_t"           : 1000,
+
+            "detuning"      : 0,
+            "Omega0_rel"    : 0.02,
+            "Omega0"        : null
+        },
+        {
+            "reltime"       : 7.07,
+            "abstime"       : null,
+            "n_t"           : 1000,
+    
+            "detuning"      : -50,
+            "Omega0_rel"    : 0.02,
+            "Omega0"        : null
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : null
+}

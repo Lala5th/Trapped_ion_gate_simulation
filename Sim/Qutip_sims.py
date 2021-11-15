@@ -58,7 +58,7 @@ def QuTiP_full(data):
 
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
-    def run_sim(detuning):
+    def run_sim(detuning, state0=state0):
         omega = omega0 + detuning*Omega0
         eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
@@ -130,7 +130,7 @@ def QuTiP_LDR(data):
 
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
-    def run_sim(detuning):
+    def run_sim(detuning, state0=state0):
         omega = omega0 + detuning*Omega0
         eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
@@ -189,7 +189,7 @@ def QuTiP_Cython(data):
 
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
-    def run_sim(detuning):
+    def run_sim(detuning, state0=state0):
         omega = omega0 + detuning*Omega0
         eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
@@ -200,16 +200,11 @@ def QuTiP_Cython(data):
 
 def QuTiP_C(data):
 
-    # Set up constants
-    c = const.c
-
     # Set up params
     n_num = data["n_num"]
     state_start = data["n0"]
-    omega0 = data['omega0']
     nu0 = data['nu0']
     Omega0 = data['Omega0']
-    z_0 = data['eta0']*c/(omega0 + nu0)
 
     # Set up standard operators
     # Most of these could be called on demand, however 
@@ -247,7 +242,7 @@ def QuTiP_C(data):
 
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
-    def run_sim(detuning):
+    def run_sim(detuning, state0=state0):
         eta = data['eta0']
         res = qtip.sesolve(H=H_i({'det' : detuning*Omega0, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
 
