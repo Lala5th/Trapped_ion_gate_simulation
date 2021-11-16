@@ -176,23 +176,22 @@ def QuTiP_Cython(data):
         H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
         
         # H_M_p = (1j*args['eta']*a_sum(t)).expm()
-        d = arg['omega'] - omega0
-        H_i_p = [[qtip.tensor(H_A_p,H_M_p[i][0]), H_M_p[i][1] - d] for i in range(len(H_M_p))]
+        H_i_p = [[qtip.tensor(H_A_p,H_M_p[i][0]), H_M_p[i][1],1] for i in range(len(H_M_p))]
         H_i = deepcopy(H_i_p)
         for i in H_i_p:
-            H_i.append([i[0].dag(),-i[1]])
-        ret = [[e[0],"exp(t*1j*%lf)" % (e[1],)] for e in H_i]
+            H_i.append([i[0].dag(),i[1],-1])
+        ret = [[e[0],"exp(%d*t*1j*(%lf - det))" % (e[2],e[1])] for e in H_i]
         return ret
 
     # Simulation ranges
     ts = data["ts"]
 
     # Simulation run function
-    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6,rhs_reuse=True)
     def run_sim(detuning, state0=state0):
         omega = omega0 + detuning*Omega0
         eta = z_0*omega/c
-        res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
+        res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : data['eta0']}),args={'det' : detuning*Omega0},psi0=state0,tlist=ts,options=options)
 
         return res.states
 
