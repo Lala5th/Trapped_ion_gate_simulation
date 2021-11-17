@@ -39,10 +39,10 @@ def parse_json(js_fname):
             
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
-                    beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
+                    beam["phase0"] = (beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0']))
                 else:
                     beam["phase0"] = 0    
-
+        t += d['abstime']
     return data
 
 def run_sim(js_fname):

@@ -13,3 +13,4 @@ __pycache__
 c_exp_cython.c
 *.pyd
 build
+!Sim/seq_run_exp.json
