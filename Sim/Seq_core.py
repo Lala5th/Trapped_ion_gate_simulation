@@ -2,20 +2,20 @@
 import json
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import QuTiP_full, QuTiP_LDR, QuTiP_Cython, QuTiP_C
-from Ground_up_sims import Ground_up_full, Ground_up_LDA
+from Qutip_sims import QuTiP_C_mult_laser
+# from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
 from copy import deepcopy
 
 sim_methods = {
     # 'Qutip_raw_func'        : None,
-    'QuTiP_expm'            : QuTiP_full,
-    'QuTiP_LDR'             : QuTiP_LDR,
-    'QuTiP_Cython'          : QuTiP_Cython,
-    'QuTiP_C'               : QuTiP_C,
+    # 'QuTiP_expm'            : QuTiP_full,
+    # 'QuTiP_LDR'             : QuTiP_LDR,
+    'QuTiP_C'               : QuTiP_C_mult_laser,
+    # 'QuTiP_C'               : QuTiP_C,
     # 'Ground_up_raw_func'    : None,
-    'Ground_up_expm'        : Ground_up_full,
-    'Ground_up_LDR'         : Ground_up_LDA
+    # 'Ground_up_expm'        : Ground_up_full,
+    # 'Ground_up_LDR'         : Ground_up_LDA
 }
 
 
@@ -26,12 +26,22 @@ def parse_json(js_fname):
     if(data['nu0'] == None):
         data['nu0'] = data['nu0Hz']*2*const.pi
     
+    t = 0
     for d in data['sequence']:
-        if(d["Omega0"] == None):
-            d["Omega0"] = data["nu0"]*d["Omega0_rel"]
 
         if(d["abstime"] == None):
-            d['abstime'] = d["reltime"]*const.pi/d['Omega0']
+            d['abstime'] = d["reltime"]*const.pi/d['beams'][0]['Omega0']
+        
+        for beam in d["beams"]:
+
+            if(beam["Omega0"] == None):
+                beam["Omega0"] = data["nu0"]*beam["Omega0_rel"]
+            
+            if(beam["phase0"] == None):
+                if(beam["phase0abs"] != None):
+                    beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
+                else:
+                    beam["phase0"] = 0    
 
     return data
 
@@ -48,15 +58,19 @@ def run_sim(js_fname):
     ts = np.array([])
     for i,d in enumerate(data['sequence']):
         params = deepcopy(data)
-        params["Omega0"] = d["Omega0"]
+        params["beams"] = d["beams"]
+        args = {}
+        for j,beam in enumerate(d['beams']):
+            args["det%1.0d" % (j,)] = beam['detuning']*data['nu0']
+            args["phase%1.0d" % (j,)] = beam['phase0']
         params["ts"] = np.linspace(0,d["abstime"],d['n_t'])
         ts = np.append(ts,params['ts']+t_abs)
         t_abs = ts[-1]
         if i!= 0:
-            ret.append(sim_methods[data["solver"]](params)(d['detuning'],ret[-1][-1]))
+            ret.append(sim_methods[data["solver"]](params)(args,ret[-1][-1]))
         else:
             #ret.append(sim_methods[data["solver"]](params)(d['detuning']))
-            ret = [sim_methods[data["solver"]](params)(d['detuning'])]
+            ret = [sim_methods[data["solver"]](params)(args)]
         print("Completed pulse %d out of %d" % (i+1,len(data['sequence'])))
     data['ts'] = ts
     ret = np.array(ret,dtype=object)

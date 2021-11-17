@@ -232,8 +232,8 @@ def QuTiP_C(data):
         H_i_p = [[qtip.tensor(H_A_p,H_M_p[i][0]), H_M_p[i][1]] for i in range(len(H_M_p))]
         H_i = []
         for i in H_i_p:
-            H_i.append([i[0]        ,lambda t,args,e = i[1] - arg['det'] : c_exp(t,e)])
-            H_i.append([i[0].dag()  ,lambda t,args,e = arg['det'] - i[1] : c_exp(t,e)])
+            H_i.append([i[0]        ,lambda t,args,e = i[1] - arg['det'] : c_exp(t,e,0)])
+            H_i.append([i[0].dag()  ,lambda t,args,e = arg['det'] - i[1] : c_exp(t,e,0)])
         return H_i
 
     # Simulation ranges
@@ -244,6 +244,56 @@ def QuTiP_C(data):
     def run_sim(detuning, state0=state0):
         eta = data['eta0']
         res = qtip.sesolve(H=H_i({'det' : detuning*Omega0, 'eta' : eta}),psi0=state0,tlist=ts,options=options)
+
+        return res.states
+
+    return run_sim
+
+def QuTiP_C_mult_laser(data):
+
+    # Set up params
+    n_num = data["n_num"]
+    state_start = data["n0"]
+    nu0 = data['nu0']
+
+    # Set up standard operators
+    # Most of these could be called on demand, however 
+    # caching these will reduce calling overhead
+    sigma_p = qtip.sigmam() # Due to different convention used in previous code
+                            # and internally within QuTiP
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    # Create the initial state as the outer product H_A x H_M
+    state0_A = qtip.basis(2,0)
+    state0_M = qtip.basis(n_num,state_start)
+    state0 = qtip.tensor(state0_A,state0_M)
+
+    # Create Hamiltonian
+    def H_i(arg):
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
+        ret = []
+        for d in data['beams']:
+            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
+            
+            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            H_i_p = [[qtip.tensor(H_A_p,H_M_p[i][0]), H_M_p[i][1],1] for i in range(len(H_M_p))]
+            print(d)
+            for i in H_i_p:
+                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t,e, b['phase0'])])
+                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t,e,-b['phase0'])])
+        return ret
+
+    # Simulation ranges
+    ts = data["ts"]
+
+    # Simulation run function
+    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    def run_sim(args, state0=state0):
+        res = qtip.sesolve(H=H_i({'eta' : data['eta0']}),psi0=state0,tlist=ts,options=options)
 
         return res.states
 

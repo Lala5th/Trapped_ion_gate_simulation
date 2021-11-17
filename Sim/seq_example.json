@@ -16,27 +16,30 @@
             "abstime"       : null,
             "n_t"           : 1000,
     
-            "detuning"      : -50,
-            "Omega0_rel"    : 0.02,
-            "Omega0"        : null
-        },
-        {
-            "reltime"       : 1,
-            "abstime"       : null,
-            "n_t"           : 1000,
+            "beams"         : [
+                {
+                    "detuning"      : 0,
+                    "Omega0_rel"    : 0.02,
+                    "Omega0"        : null,
 
-            "detuning"      : 0,
-            "Omega0_rel"    : 0.02,
-            "Omega0"        : null
+                    "phase0"        : 1
+                }
+            ]
         },
         {
-            "reltime"       : 7.07,
+            "reltime"       : 5.7735,
             "abstime"       : null,
             "n_t"           : 1000,
     
-            "detuning"      : -50,
-            "Omega0_rel"    : 0.02,
-            "Omega0"        : null
+            "beams"         : [
+                {
+                    "detuning"      : -1,
+                    "Omega0_rel"    : 0.02,
+                    "Omega0"        : null,
+
+                    "phase0"        : 0
+                }
+            ]
         }
     ],
 
