@@ -1,6 +1,5 @@
 {
     "solver"        : "QuTiP_C",
-    "n_cores"       : 16,
 
     "omega0"        : 1e10,
     "nu0Hz"         : 1000,

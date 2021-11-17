@@ -11,7 +11,7 @@ static PyObject* c_exp(PyObject* self, PyObject* args){
     #ifdef _WIN32
         _Dcomplex val = cexp(_Cbuild(0,a*t + phase));
     #else
-        double complex val = cexp(I*t*(a + phase));
+        double complex val = cexp(I*(t*a + phase));
     #endif
     return PyComplex_FromDoubles(creal(val),cimag(val));
 }
