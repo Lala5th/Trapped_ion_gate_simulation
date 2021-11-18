@@ -39,6 +39,14 @@
 
                     "phase0"        : null,
                     "phase0abs"     : -1.57079632679
+                },
+                {
+                    "detuning"      : 100,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 900e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : -1.57079632679
                 }
             ]
         },
@@ -71,6 +79,14 @@
 
                     "phase0"        : null,
                     "phase0abs"     : 1.57079632679
+                },
+                {
+                    "detuning"      : 100,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 900e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 1.57079632679
                 }
             ]
         },
@@ -84,6 +100,14 @@
                     "detuning"      : -1,
                     "Omega0_rel"    : null,
                     "Omega0"        : 90e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0
+                },
+                {
+                    "detuning"      : 100,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 900e3,
 
                     "phase0"        : null,
                     "phase0abs"     : 0
@@ -119,6 +143,14 @@
 
                     "phase0"        : null,
                     "phase0abs"     : -0.91106186954
+                },
+                {
+                    "detuning"      : 100,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 900e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : -0.91106186954
                 }
             ]
         },
@@ -148,6 +180,14 @@
                     "detuning"      : -1,
                     "Omega0_rel"    : null,
                     "Omega0"        : 90e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : -1.60221225333
+                },
+                {
+                    "detuning"      : 100,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 900e3,
 
                     "phase0"        : null,
                     "phase0abs"     : -1.60221225333
