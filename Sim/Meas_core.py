@@ -58,14 +58,14 @@ def run_sim(js_fname):
         ts = np.append(ts,params['ts']+t_abs)
         t_abs = ts[-1]
         if i!= 0:
-            ret.append(sim_methods[data["solver"]](params)(args,ret[-1][-1]))
+            ret.append(sim_methods[data["solver"]](params)(args,ret[-1]))
         else:
             #ret.append(sim_methods[data["solver"]](params)(d['detuning']))
             ret = [sim_methods[data["solver"]](params)(args)]
         print("Completed pulse %d out of %d" % (i+1,len(data['sequence'])))
     data['ts'] = ts
     ret = np.array(ret,dtype=object)
-    ret = ret.reshape((-1,2*data['n_num'],1))
+    # ret = ret.reshape((,2*data['n_num'],1))
     return ret, data
 
 if __name__ == "__main__":
@@ -82,5 +82,8 @@ if __name__ == "__main__":
         if(data["fname"] == None):
             data["fname"] = "temp"
         metadata = [data['n_num']]
+        if(data['params']["abstime"] == None):
+            data['params']['abstime'] = data['params']["reltime"]*const.pi/data['params']['beams'][0]['Omega0']
         t0s = [d['abstime'] for d in data['sequence']]
-        np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s)
+        ts = np.linspace(0,data['params']['abstime'],data['params']['n_t'])
+        np.savez(data["fname"], ts = ts, s3d = result[-1],metadata=metadata)

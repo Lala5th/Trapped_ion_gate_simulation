@@ -34,6 +34,18 @@ def load_QuTiP_seq(fname):
     state_data = np.reshape(np.einsum('ijk->ji',np.asarray(state_data,dtype = np.complex128)),(2,n_num,-1))
     return state_data, ts, n_num, t0s
 
+def load_QuTiP_meas(fname):
+    
+    d = np.load(fname,allow_pickle=True)
+    ts = d['ts']
+    s3d = d['s3d']
+    n_num, = d['metadata']
+    t0s = []
+
+    state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex)
+    state_data = np.reshape(np.einsum('ijk->ji',np.asarray(state_data,dtype = np.complex128)),(2,n_num,-1))
+    return state_data, ts, n_num, t0s
+
 def load_Ground_up(fname):
 
     d = np.load(fname)
@@ -355,6 +367,8 @@ plot_methods = {
     'qutip_seq'             : [load_QuTiP_seq,plot_seq_scan],
     'qutip_seq_projeg'      : [load_QuTiP_seq,plot_seq_scan_projeg],
     'qutip_seq_fockexp'     : [load_QuTiP_seq,plot_seq_scan_Fockexp],
+    'qutip_meas'            : [load_QuTiP_meas,plot_seq_scan],
+    'qutip_meas_projeg'     : [load_QuTiP_meas,plot_seq_scan_projeg],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }

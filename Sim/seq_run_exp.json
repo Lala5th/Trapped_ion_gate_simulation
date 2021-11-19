@@ -1,5 +1,5 @@
 {
-    "solver"        : "QuTiP_C",
+    "solver"        : "QuTiP_C_mult_laser",
 
     "omega0"        : 411e12,
     "nu0Hz"         : 1.1e6,
@@ -11,7 +11,8 @@
         {
             "builder"       : "Single_state",
 
-            "n0"            : 0
+            "n0"            : 0,
+            "g"             : true
         },
 
     "eta0"          : 0.09,
@@ -94,110 +95,6 @@
 
                     "phase0"        : null,
                     "phase0abs"     : 1.57079632679
-                }
-            ]
-        },
-        {
-            "reltime"       : 7.8888888,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : -1,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 0
-                },
-                {
-                    "detuning"      : 100,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 900e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 0
-                }
-            ]
-        },
-        {
-            "reltime"       : 0.5,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : 0,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 2.23053078405
-                }
-            ]
-        },
-        {
-            "reltime"       : 15.7777777778,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : -1,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : -0.91106186954
-                },
-                {
-                    "detuning"      : 100,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 900e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : -0.91106186954
-                }
-            ]
-        },
-        {
-            "reltime"       : 1.59,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : 0,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 0.3141592653
-                }
-            ]
-        },
-        {
-            "reltime"       : 8,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : -1,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : -1.60221225333
-                },
-                {
-                    "detuning"      : 100,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 900e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : -1.60221225333
                 }
             ]
         }
