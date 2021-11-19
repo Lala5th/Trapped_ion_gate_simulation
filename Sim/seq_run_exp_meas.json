@@ -1,30 +1,31 @@
 {
-    "solver"        : "QuTiP_C",
+    "solver"        : "Measure_wrapper",
 
     "omega0"        : 411e12,
     "nu0Hz"         : 1.1e6,
     "nu0"           : null,
 
     "n_num"         : 7,
-
+    
     "state0"        :
         {
-            "builder"       : "Single_state",
+            "builder"       : "Final_state",
+            
+            "sim_file"      : "exp.npz"
 
-            "n0"            : 0
         },
-
-    "eta0"          : 0.09,
-
-    "sequence"      : [
-        {
-            "reltime"       : 0.5,
-            "abstime"       : null,
-            "n_t"           : 1000,
     
-            "beams"         : [
+    "params"        :
+        {
+            "solver"        : "QuTiP_C",
+
+            "reltime"       : 2,
+            "abstime"       : null,
+            "n_t"           : 100,
+            
+            "beams" : [
                 {
-                    "detuning"      : 0,
+                    "detuning"      : -1,
                     "Omega0_rel"    : null,
                     "Omega0"        : 90e3,
 
@@ -33,70 +34,10 @@
                 }
             ]
         },
-        {
-            "reltime"       : 7.777777,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : -1,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
 
-                    "phase0"        : null,
-                    "phase0abs"     : -1.57079632679
-                },
-                {
-                    "detuning"      : 100,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 900e3,
+    "eta0"          : 0.09,
 
-                    "phase0"        : null,
-                    "phase0abs"     : -1.57079632679
-                }
-            ]
-        },
-        {
-            "reltime"       : 0.73,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : 0,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 3.141592653
-                }
-            ]
-        },
-        {
-            "reltime"       : 7.8888888,
-            "abstime"       : null,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : -1,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 90e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 1.57079632679
-                },
-                {
-                    "detuning"      : 100,
-                    "Omega0_rel"    : null,
-                    "Omega0"        : 900e3,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 1.57079632679
-                }
-            ]
-        },
+    "sequence"      : [
         {
             "reltime"       : 7.8888888,
             "abstime"       : null,
@@ -204,5 +145,5 @@
     ],
 
     "output"        : true,
-    "fname"         : "exp.npz"
+    "fname"         : null
 }
