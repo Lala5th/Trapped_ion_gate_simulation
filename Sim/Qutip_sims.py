@@ -298,25 +298,28 @@ def QuTiP_C_mult_laser(data):
 
     return run_sim
 
-
 def QuTiP_C_meas_mult_laser(data):
     underlying_solver = data['params']
-
-    if(underlying_solver["abstime"] == None):
-        underlying_solver['abstime'] = underlying_solver["reltime"]*const.pi/underlying_solver['beams'][0]['Omega0']
-    
-    underlying_solver['ts'] = np.linspace(0,underlying_solver['abstime'],underlying_solver['n_t'])
 
     for beam in underlying_solver["beams"]:
 
         if(beam["Omega0"] == None):
-            beam["Omega0"] = data["nu0"]*beam["Omega0_rel"]
-        
+            if(beam["Omega0_rel"] != None):
+                beam["Omega0"] = data["nu0"]*beam["Omega0_rel"]
+            else:
+                beam["Omega0"] = 2*const.pi*beam["Omega0Hz"]
+
+
         if(beam["phase0"] == None):
             if(beam["phase0abs"] != None):
                 beam["phase0"] = beam["phase0abs"]
             else:
                 beam["phase0"] = 0    
+
+    if(underlying_solver["abstime"] == None):
+        underlying_solver['abstime'] = underlying_solver["reltime"]*const.pi/underlying_solver['beams'][0]['Omega0']
+    
+    underlying_solver['ts'] = np.linspace(0,underlying_solver['abstime'],underlying_solver['n_t'])
 
     data['state0']['n_num'] = data['n_num']
 
@@ -340,18 +343,7 @@ def QuTiP_C_meas_mult_laser(data):
 
 
     def H_i(arg,params):
-        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
-        ret = []
-        for d in params['beams']:
-            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
-            
-            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
-            H_i_p = [[qtip.tensor(H_A_p,H_M_p[i][0]), H_M_p[i][1],1] for i in range(len(H_M_p))]
-            print(d)
-            for i in H_i_p:
-                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t,e, b['phase0'])])
-                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t,e,-b['phase0'])])
-        return ret
+        return 0*qtip.tensor(qtip.sigmaz()/2,qtip.identity(n_num)) + 0*qtip.tensor(qtip.identity(2),nu0*(qtip.create(n_num)*qtip.destroy(n_num) + qtip.identity(n_num)/2))
 
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
 
@@ -361,8 +353,11 @@ def QuTiP_C_meas_mult_laser(data):
 
     # Simulation run function
     def run_sim(args, state0=state0):
+        data0 = deepcopy(data)
         res = []
-        for state in state0:
+        for j,state in enumerate(state0):
+            for i,_ in enumerate(data['beams']):
+                data['beams'][i]['phase0'] = np.angle(c_exp(underlying_solver['ts'][j],nu0*data['beams'][i]['detuning'],data0['beams'][i]['phase0']))
             state = qtip.Qobj(state,dims=[[2,n_num],[1,1]])
             res.append(sim_methods[data['params']['solver']](data)(args,state)[-1])
         res = np.array(res)

@@ -1,0 +1,71 @@
+{
+    "solver"        : "QuTiP_C_mult_laser",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : 1.1e6,
+    "nu0"           : null,
+
+    "n_num"         : 7,
+
+    "state0"        :
+        {
+            "builder"       : "Multiple_state",
+            "states"        : [
+                {
+                    "n0"            : 0,
+                    "g"             : true,
+                    "factor"        : 0.57735026919
+                },
+                {
+                    "n0"            : 1,
+                    "g"             : true,
+                    "factor"        : 0.57735026919
+                },
+                {
+                    "n0"            : 2,
+                    "g"             : true,
+                    "factor"        : 0.57735026919
+                }
+            ]
+
+        },
+
+    "eta0"          : 0.09,
+
+    "t_prep"        : 0,
+
+    "sequence"      : [
+        {
+            "reltime"       : 0,
+            "abstime"       : 1e-3,
+            "n_t"           : 1000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 1,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : 82e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false
+                },
+                {
+                    "detuning"      : -100,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : 820e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "evo.npz"
+}

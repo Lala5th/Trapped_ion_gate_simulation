@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import *
+from Qutip_sims import sim_methods
 # from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
 from c_exp_direct import c_exp
@@ -15,24 +15,35 @@ def parse_json(js_fname):
     if(data['nu0'] == None):
         data['nu0'] = data['nu0Hz']*2*const.pi
     
-    t = 0
+    if(data['omega0'] == None):
+        data['omega0'] = 2*const.pi*data['omega0Hz']
+
+    if(data['t_prep'] == None):
+        t = 0
+    else:
+        t = data['t_prep']
     for d in data['sequence']:
 
-        if(d["abstime"] == None):
-            d['abstime'] = d["reltime"]*const.pi/d['beams'][0]['Omega0']
-        
-        for beam in d["beams"]:
+        for i,beam in enumerate(d["beams"]):
 
             if(beam["Omega0"] == None):
-                beam["Omega0"] = data["nu0"]*beam["Omega0_rel"]
-            
+                if(beam["Omega0Hz"] == None):
+                    beam["Omega0"] = data["nu0"]*beam["Omega0_rel"]
+                else:
+                    beam["Omega0"] = 2*const.pi*beam["Omega0Hz"]
+
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
-                    beam["phase0"] = np.angle(c_exp(t,data['omega0'] + beam['detuning']*data['nu0'],beam["phase0abs"]))
+                    beam["phase0"] = np.angle(c_exp(t,beam['detuning']*data['nu0'],beam["phase0abs"]))
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
-                    beam["phase0"] = 0    
+                    beam["phase0"] = 0
+            # if(i == 1):
+            #     beam['phase0'] = d['beams'][i-1]['phase0']
+        if(d["abstime"] == None):
+            d['abstime'] = d["reltime"]*const.pi/d['beams'][0]['Omega0']
+        
         t += d['abstime']
     return data
 
@@ -82,6 +93,14 @@ if __name__ == "__main__":
         if(data["fname"] == None):
             data["fname"] = "temp"
         metadata = [data['n_num']]
+        for beam in data['params']["beams"]:
+
+            if(beam["Omega0"] == None):
+                if(beam["Omega0_rel"] != None):
+                    beam["Omega0"] = data["nu0"]*beam["Omega0_rel"]
+                else:
+                    beam["Omega0"] = 2*const.pi*beam["Omega0Hz"]
+  
         if(data['params']["abstime"] == None):
             data['params']['abstime'] = data['params']["reltime"]*const.pi/data['params']['beams'][0]['Omega0']
         t0s = [d['abstime'] for d in data['sequence']]
