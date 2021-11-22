@@ -142,16 +142,12 @@ def QuTiP_LDR(data):
     
 def QuTiP_Cython(data):
 
-    # Set up constants
-    c = const.c
-
     # Set up params
     n_num = data["n_num"]
     state_start = data["n0"]
     omega0 = data['omega0']
     nu0 = data['nu0']
     Omega0 = data['Omega0']
-    z_0 = data['eta0']*c/(omega0 + nu0)
 
     # Set up standard operators
     # Most of these could be called on demand, however 
@@ -191,7 +187,6 @@ def QuTiP_Cython(data):
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6,rhs_reuse=True)
     def run_sim(detuning, state0=state0):
         omega = omega0 + detuning*Omega0
-        eta = z_0*omega/c
         res = qtip.sesolve(H=H_i({'omega' : omega, 'eta' : data['eta0']}),args={'det' : detuning*Omega0},psi0=state0,tlist=ts,options=options)
 
         return res.states
@@ -327,29 +322,16 @@ def QuTiP_C_meas_mult_laser(data):
     data['n0'] = 0
 
     # Set up params
-    nu0 = data['nu0']
     n_num = data['n_num']
-
-    # Set up standard operators
-    # Most of these could be called on demand, however 
-    # caching these will reduce calling overhead
-    sigma_p = qtip.sigmam() # Due to different convention used in previous code
-                            # and internally within QuTiP
 
     a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
     for i in range(n_num-1):
         a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
         a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
 
-
-    def H_i(arg,params):
-        return 0*qtip.tensor(qtip.sigmaz()/2,qtip.identity(n_num)) + 0*qtip.tensor(qtip.identity(2),nu0*(qtip.create(n_num)*qtip.destroy(n_num) + qtip.identity(n_num)/2))
-
-    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
-
     # Prepare states
     p = underlying_solver
-    state0 = qtip.sesolve(H=H_i({'eta' : data['eta0']},p),psi0=state0,tlist=p['ts'],options=options).states
+    state0 = [state0]*p['n_t']
 
     # Simulation run function
     def run_sim(args, state0=state0):
@@ -357,7 +339,7 @@ def QuTiP_C_meas_mult_laser(data):
         res = []
         for j,state in enumerate(state0):
             for i,_ in enumerate(data['beams']):
-                data['beams'][i]['phase0'] = np.angle(c_exp(underlying_solver['ts'][j],nu0*data['beams'][i]['detuning'],data0['beams'][i]['phase0']))
+                data['beams'][i]['phase0'] = np.angle(c_exp(underlying_solver['ts'][j],-data['beams'][i]['detuning'],data0['beams'][i]['phase0']))
             state = qtip.Qobj(state,dims=[[2,n_num],[1,1]])
             res.append(sim_methods[data['params']['solver']](data)(args,state)[-1])
         res = np.array(res)

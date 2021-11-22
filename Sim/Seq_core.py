@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import *
+from Qutip_sims import sim_methods
 # from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
 from c_exp_direct import c_exp
@@ -24,7 +24,7 @@ def parse_json(js_fname):
         t = data['t_prep']
     for d in data['sequence']:
 
-        for i,beam in enumerate(d["beams"]):
+        for _,beam in enumerate(d["beams"]):
 
             if(beam["Omega0"] == None):
                 if(beam["Omega0Hz"] == None):
@@ -35,7 +35,7 @@ def parse_json(js_fname):
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
-                    beam["phase0"] = np.angle(c_exp(t,beam['detuning']*data['nu0'],beam["phase0abs"]))
+                    beam["phase0"] = np.angle(c_exp(t,-beam['detuning']*data['nu0'],beam["phase0abs"]))
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
                     beam["phase0"] = 0

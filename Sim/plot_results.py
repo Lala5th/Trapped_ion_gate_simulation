@@ -3,6 +3,34 @@ import numpy as np
 from matplotlib.widgets import Slider
 import matplotlib.pyplot as plt
 
+def multiple_formatter(denominator=2, number=np.pi, latex='\\pi'):
+    def gcd(a, b):
+        while b:
+            a, b = b, a%b
+        return a
+    def _multiple_formatter(x, pos):
+        den = denominator
+        num = np.int(np.rint(den*x/number))
+        com = gcd(num,den)
+        (num,den) = (int(num/com),int(den/com))
+        if den==1:
+            if num==0:
+                return r'$0$'
+            if num==1:
+                return r'$%s$'%latex
+            elif num==-1:
+                return r'$-%s$'%latex
+            else:
+                return r'$%s%s$'%(num,latex)
+        else:
+            if num==1:
+                return r'$\frac{%s}{%s}$'%(latex,den)
+            elif num==-1:
+                return r'$\frac{-%s}{%s}$'%(latex,den)
+            else:
+                return r'$\frac{%s%s}{%s}$'%(num,latex,den)
+    return _multiple_formatter
+
 def load_QuTiP(fname):
     
     d = np.load(fname,allow_pickle=True)
@@ -308,8 +336,8 @@ def plot_seq_scan_projeg(data_pack):
     state_data = np.abs(np.einsum('ijk,ijk->ik',state_data,np.conj(state_data)))
 
     _, ax = plt.subplots()
-    p, = ax.plot(ts,state_data[1,:],label = f"|e>")
-    ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
+    _, = ax.plot(ts,state_data[1,:],label = f"|e>")
+    # ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
 
     t0 = 0
     for t in t0s:
@@ -322,6 +350,67 @@ def plot_seq_scan_projeg(data_pack):
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
     ax.set_xlabel("Time [s]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
+def plot_meas_scan(data_pack):
+    global ax
+
+    state_data, ts, n_num, t0s = data_pack
+
+    state_data = np.abs(np.einsum('ijk,ijk->ijk',state_data,np.conj(state_data)))
+
+    _, ax = plt.subplots()
+    for i in range(n_num):
+        p, = ax.plot(ts,state_data[1,i,:],label = f"|e,{i}>")
+        ax.plot(ts,state_data[0,i,:],label = f"|g,{i}>",linestyle='--', color = p.get_color())
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(t0 + t,linestyle='dashdot')
+        t0 += t
+
+    ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    ax.xaxis.set_major_locator(plt.MultipleLocator(np.pi / 2))
+    ax.xaxis.set_minor_locator(plt.MultipleLocator(np.pi / 10))
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(multiple_formatter()))
+    ax.set_xlabel("$\\phi$ [1]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
+def plot_meas_scan_projeg(data_pack):
+    global ax
+
+    state_data, ts, _, t0s = data_pack
+
+    state_data = np.abs(np.einsum('ijk,ijk->ik',state_data,np.conj(state_data)))
+
+    _, ax = plt.subplots()
+    p, = ax.plot(ts,state_data[1,:],label = f"|e>")
+    ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(t0 + t,linestyle='dashdot')
+        t0 += t
+
+    ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    ax.xaxis.set_major_locator(plt.MultipleLocator(np.pi / 2))
+    ax.xaxis.set_minor_locator(plt.MultipleLocator(np.pi / 10))
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(multiple_formatter()))
+    ax.set_xlabel("$\\phi$ [1]")
     ax.set_ylabel("p[1]")
     # ax.set_yscale("logit")
     ax.grid()
@@ -367,8 +456,8 @@ plot_methods = {
     'qutip_seq'             : [load_QuTiP_seq,plot_seq_scan],
     'qutip_seq_projeg'      : [load_QuTiP_seq,plot_seq_scan_projeg],
     'qutip_seq_fockexp'     : [load_QuTiP_seq,plot_seq_scan_Fockexp],
-    'qutip_meas'            : [load_QuTiP_meas,plot_seq_scan],
-    'qutip_meas_projeg'     : [load_QuTiP_meas,plot_seq_scan_projeg],
+    'qutip_meas'            : [load_QuTiP_meas,plot_meas_scan],
+    'qutip_meas_projeg'     : [load_QuTiP_meas,plot_meas_scan_projeg],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }

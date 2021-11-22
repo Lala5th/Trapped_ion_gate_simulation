@@ -35,7 +35,7 @@ def parse_json(js_fname):
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
-                    beam["phase0"] = np.angle(c_exp(t,beam['detuning']*data['nu0'],beam["phase0abs"]))
+                    beam["phase0"] = np.angle(c_exp(t,-beam['detuning']*data['nu0'],beam["phase0abs"]))
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
                     beam["phase0"] = 0

@@ -6,11 +6,12 @@
     "nu0"           : null,
     "nu0Hz"         : 1.1e6,
 
-    "n_num"         : 5,
+    "n_num"         : 7,
     
     "state0"        :
         {
-            "builder"       : "Multiple_state",
+            "builder"       : "Final_state",
+            "sim_file"      : "exp.npz",
             "states"        : [
                 {
                     "n0"            : 0,
@@ -36,25 +37,15 @@
             "solver"        : "QuTiP_C_mult_laser",
 
             "reltime"       : 2,
-            "abstime"       : 9.09090909090909e-07,
-            "n_t"           : 50,
+            "abstime"       : 6.28318530718,
+            "n_t"           : 10,
             
-            "beams"         : [
-                {
-                    "detuning"      : 0,
-                    "Omega0_rel"    : null,
-                    "Omega0Hz"      : 90e3,
-                    "Omega0"        : null,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 0
-                }
-            ]
+            "beams"         : [ ]
         },
 
     "eta0"          : 0.09,
 
-    "t_prep"        : 0,
+    "t_prep"        : 9.387036999999998e-05,
 
     "sequence"      : [
         {
@@ -75,7 +66,7 @@
                 {
                     "detuning"      : 100,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 0e3,
+                    "Omega0Hz"      : 900e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
@@ -118,7 +109,7 @@
                 {
                     "detuning"      : 100,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 0e3,
+                    "Omega0Hz"      : 900e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
@@ -161,7 +152,7 @@
                 {
                     "detuning"      : 100,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 0e3,
+                    "Omega0Hz"      : 900e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
