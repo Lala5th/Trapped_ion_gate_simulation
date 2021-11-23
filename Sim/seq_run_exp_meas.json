@@ -38,14 +38,14 @@
 
             "reltime"       : 2,
             "abstime"       : 6.28318530718,
-            "n_t"           : 10,
+            "n_t"           : 21, 
             
             "beams"         : [ ]
         },
 
     "eta0"          : 0.09,
 
-    "t_prep"        : 9.387036999999998e-05,
+    "t_prep"        : 0,
 
     "sequence"      : [
         {
@@ -61,7 +61,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0
+                    "phase0abs"     : 0,
+                    "abspi"         : true
                 },
                 {
                     "detuning"      : 100,
@@ -70,7 +71,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0
+                    "phase0abs"     : 0,
+                    "abspi"         : true
                 }
             ]
         },
@@ -87,7 +89,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 2.23053078405
+                    "phase0abs"     : 0.71,
+                    "abspi"         : true
                 }
             ]
         },
@@ -104,7 +107,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.91106186954
+                    "phase0abs"     : -0.29,
+                    "abspi"         : true
                 },
                 {
                     "detuning"      : 100,
@@ -113,7 +117,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.91106186954
+                    "phase0abs"     : -0.29,
+                    "abspi"         : true
                 }
             ]
         },
@@ -130,7 +135,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.3141592653
+                    "phase0abs"     : 0.1,
+                    "abspi"         : true
                 }
             ]
         },
@@ -147,7 +153,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.60221225333
+                    "phase0abs"     : -0.51,
+                    "abspi"         : true
                 },
                 {
                     "detuning"      : 100,
@@ -156,7 +163,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.60221225333
+                    "phase0abs"     : -0.5,
+                    "abspi"         : true
                 }
             ]
         }

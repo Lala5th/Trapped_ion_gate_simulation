@@ -395,8 +395,8 @@ def plot_meas_scan_projeg(data_pack):
     state_data = np.abs(np.einsum('ijk,ijk->ik',state_data,np.conj(state_data)))
 
     _, ax = plt.subplots()
-    p, = ax.plot(ts,state_data[1,:],label = f"|e>")
-    ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
+    _, = ax.plot(ts,state_data[1,:],label = f"|e>")
+    # ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
 
     t0 = 0
     for t in t0s:

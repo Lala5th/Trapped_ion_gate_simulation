@@ -35,7 +35,7 @@
 
                     "phase0"        : null,
                     "phase0abs"     : 0,
-                    "phase_match"   : false
+                    "abspi"         : false
                 }
             ]
         },
@@ -52,8 +52,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.57079632679,
-                    "phase_match"   : false
+                    "phase0abs"     : -0.5,
+                    "abspi"         : true
                 },
                 {
                     "detuning"      : 100,
@@ -62,8 +62,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.57079632679,
-                    "phase_match"   : true
+                    "phase0abs"     : -0.5,
+                    "abspi"         : true
                 }
             ]
         },
@@ -80,8 +80,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 3.141592653,
-                    "phase_match"   : false
+                    "phase0abs"     : 1,
+                    "abspi"         : true
                 }
             ]
         },
@@ -98,8 +98,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 1.57079632679,
-                    "phase_match"   : false
+                    "phase0abs"     : 0.5,
+                    "abspi"         : true
                 },
                 {
                     "detuning"      : 100,
@@ -108,8 +108,8 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 1.57079632679,
-                    "phase_match"   : true
+                    "phase0abs"     : 0.5,
+                    "abspi"         : true
                 }
             ]
         }

@@ -24,7 +24,7 @@ def parse_json(js_fname):
         t = data['t_prep']
     for d in data['sequence']:
 
-        for i,beam in enumerate(d["beams"]):
+        for _,beam in enumerate(d["beams"]):
 
             if(beam["Omega0"] == None):
                 if(beam["Omega0Hz"] == None):
@@ -34,8 +34,10 @@ def parse_json(js_fname):
 
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
+                    if(beam['abspi']):
+                        beam['phase0abs'] = beam['phase0abs']*const.pi
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
-                    beam["phase0"] = np.angle(c_exp(t,-beam['detuning']*data['nu0'],beam["phase0abs"]))
+                    beam["phase0"] = np.angle(c_exp(t,beam['detuning']*data['nu0'],beam["phase0abs"]))
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
                     beam["phase0"] = 0
@@ -44,7 +46,7 @@ def parse_json(js_fname):
         if(d["abstime"] == None):
             d['abstime'] = d["reltime"]*const.pi/d['beams'][0]['Omega0']
         
-        t += d['abstime']
+        t += 0*d['abstime']
     return data
 
 def run_sim(js_fname):
