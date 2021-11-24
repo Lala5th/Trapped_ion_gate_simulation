@@ -70,7 +70,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.5,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -118,7 +118,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.5,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -137,7 +137,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1,
+                    "phase0abs"     : 0,
                     "abspi"         : true
                 },
                 {
@@ -147,7 +147,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -165,7 +165,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.71,
+                    "phase0abs"     : -0.71,
                     "abspi"         : true
                 }
             ]
@@ -183,7 +183,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.29,
+                    "phase0abs"     : 0.29,
                     "abspi"         : true
                 },
                 {
@@ -193,7 +193,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.29,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -211,7 +211,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.1,
+                    "phase0abs"     : -0.1,
                     "abspi"         : true
                 }
             ]
@@ -229,7 +229,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.51,
+                    "phase0abs"     : 0.51,
                     "abspi"         : true
                 },
                 {
@@ -239,7 +239,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -1.51,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]

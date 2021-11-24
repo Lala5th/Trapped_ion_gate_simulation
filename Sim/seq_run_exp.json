@@ -41,7 +41,7 @@
             ]
         },
         {
-            "reltime"       : 7.7777778,
+            "reltime"       : 0.7,
             "abstime"       : null,
             "n_t"           : 1000,
             "t0"            : null,
@@ -58,9 +58,9 @@
                     "abspi"         : true
                 },
                 {
-                    "detuning"      : 100,
+                    "detuning"      : 1.5,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 900e3,
+                    "Omega0Hz"      : 110.227038425e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
@@ -89,7 +89,7 @@
             ]
         },
         {
-            "reltime"       : 7.8888888,
+            "reltime"       : 0.71,
             "abstime"       : null,
             "n_t"           : 1000,
             "t0"            : null,
@@ -106,9 +106,9 @@
                     "abspi"         : true
                 },
                 {
-                    "detuning"      : 100,
+                    "detuning"      : 1.5,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 900e3,
+                    "Omega0Hz"      : 110.227038425e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
