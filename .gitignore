@@ -15,5 +15,6 @@ c_exp_cython.c
 build
 !Sim/seq_run_exp.json
 !Sim/seq_run_exp_meas.json
+!Sim/seq_run_exp_meas_seq.json
 !Sim/seq_time_evo.json
 *.db

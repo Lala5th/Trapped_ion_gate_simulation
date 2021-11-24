@@ -336,12 +336,12 @@ def plot_seq_scan_projeg(data_pack):
     state_data = np.abs(np.einsum('ijk,ijk->ik',state_data,np.conj(state_data)))
 
     _, ax = plt.subplots()
-    _, = ax.plot(ts,state_data[1,:],label = f"|e>")
+    _, = ax.plot(ts*1e6,state_data[1,:],label = f"|e>")
     # ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
 
     t0 = 0
     for t in t0s:
-        ax.axvline(t0 + t,linestyle='dashdot')
+        ax.axvline(1e6*(t0 + t),linestyle='dashdot')
         t0 += t
 
     ax.legend()
@@ -349,7 +349,7 @@ def plot_seq_scan_projeg(data_pack):
     # ax2.plot(t,sol[0])
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
-    ax.set_xlabel("Time [s]")
+    ax.set_xlabel("Time [$\\mu$s]")
     ax.set_ylabel("p[1]")
     # ax.set_yscale("logit")
     ax.grid()
