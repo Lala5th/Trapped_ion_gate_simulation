@@ -37,7 +37,7 @@ def parse_json(js_fname):
                     if(beam['abspi']):
                         beam['phase0abs'] = beam['phase0abs']*const.pi
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
-                    beam["phase0"] = np.angle(c_exp(t,beam['detuning']*data['nu0'],beam["phase0abs"]))
+                    beam["phase0"] = beam["phase0abs"]
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
                     beam["phase0"] = 0
@@ -46,7 +46,8 @@ def parse_json(js_fname):
         if(d["abstime"] == None):
             d['abstime'] = d["reltime"]*const.pi/d['beams'][0]['Omega0']
         
-        t += 0*d['abstime']
+        d['t0'] = t
+        t += d['abstime']
     return data
 
 def run_sim(js_fname):
@@ -68,6 +69,7 @@ def run_sim(js_fname):
             args["det%1.0d" % (j,)] = beam['detuning']*data['nu0']
             args["phase%1.0d" % (j,)] = beam['phase0']
         params["ts"] = np.linspace(0,d["abstime"],d['n_t'])
+        params['t0'] = d['t0']
         ts = np.append(ts,params['ts']+t_abs)
         t_abs = ts[-1]
         if i!= 0:

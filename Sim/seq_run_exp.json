@@ -25,6 +25,7 @@
             "reltime"       : 0.5,
             "abstime"       : null,
             "n_t"           : 1000,
+            "t0"            : null,
     
             "beams"         : [
                 {
@@ -43,6 +44,7 @@
             "reltime"       : 7.7777778,
             "abstime"       : null,
             "n_t"           : 1000,
+            "t0"            : null,
     
             "beams"         : [
                 {
@@ -71,6 +73,7 @@
             "reltime"       : 0.73,
             "abstime"       : null,
             "n_t"           : 1000,
+            "t0"            : null,
     
             "beams"         : [
                 {
@@ -89,6 +92,7 @@
             "reltime"       : 7.8888888,
             "abstime"       : null,
             "n_t"           : 1000,
+            "t0"            : null,
     
             "beams"         : [
                 {
