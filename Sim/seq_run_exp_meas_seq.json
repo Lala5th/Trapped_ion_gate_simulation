@@ -6,7 +6,7 @@
     "nu0"           : null,
     "nu0Hz"         : 1.1e6,
 
-    "n_num"         : 7,
+    "n_num"         : 4,
     
     "state0"        :
         {
