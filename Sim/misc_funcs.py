@@ -2,6 +2,7 @@ import qutip as qtip
 import numpy as np
 import scipy.constants as const
 from expm_decomp import generate_qutip_exp_factor, entry, simplified_matrix_data
+from functools import lru_cache
 
 def Single_state(data):
     if(data['g']):
@@ -30,8 +31,28 @@ def Multiple_state(data):
         ret += state0
     return ret
 
+@lru_cache(maxsize=None)
+def factorial(n):
+    if(n <= 1):
+        return 1
+    return n*factorial(n-1)
+
+def Coherent_state(data):
+    ret = qtip.Qobj(dims=[[2,data['n_num']],[1,1]])
+    e = qtip.basis(2,1)
+    g = qtip.basis(2,0)
+    atomic = data['e']['size']*e*np.exp(1j*const.pi*data['e']['phase']) + data['g']['size']*g*np.exp(1j*const.pi*data['g']['phase'])
+    for n in range(data['n_num']):
+        basis = qtip.basis(data['n_num'],n)
+        alpha = data['alpha']['size']*np.exp(1j*const.pi*data['alpha']['phase'])
+        basis = basis*np.exp(-data['alpha']['size']**2/2)*alpha**n/(np.sqrt(factorial(n)))
+        ret += qtip.tensor(atomic,basis)
+    return ret
+
+
 state_builders = {
     'Single_state'      : Single_state,
     'Final_state'       : Final_state,
-    'Multiple_state'    : Multiple_state
+    'Multiple_state'    : Multiple_state,
+    'Coherent_state'    : Coherent_state
 }

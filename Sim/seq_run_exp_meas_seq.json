@@ -10,8 +10,22 @@
     
     "state0"        :
         {
-            "builder"       : "Multiple_state",
+            "builder"       : "Coherent_state",
             "sim_file"      : "exp.npz",
+            
+            "alpha"         : {
+                "size"          : 0.02,
+                "phase"         : 0
+            },
+            "g"         : {
+                "size"          : 1,
+                "phase"         : 0
+            },
+            "e"         : {
+                "size"          : 0,
+                "phase"         : 0
+            },
+
             "states"        : [
                 {
                     "n0"            : 0,

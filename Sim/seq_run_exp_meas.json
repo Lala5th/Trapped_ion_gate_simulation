@@ -45,13 +45,14 @@
 
     "eta0"          : 0.09,
 
-    "t_prep"        : 0,
+    "t_prep"        : 9.387037037037035e-05,
 
     "sequence"      : [
         {
-            "reltime"       : 7.88888888889,
+            "reltime"       : 0.71,
             "abstime"       : null,
-            "n_t"           : 10,
+            "n_t"           : 1000,
+            "t0"            : null,
     
             "beams"         : [
                 {
@@ -65,13 +66,13 @@
                     "abspi"         : true
                 },
                 {
-                    "detuning"      : 100,
+                    "detuning"      : 1.5,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 900e3,
+                    "Omega0Hz"      : 110.227038425e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -79,7 +80,7 @@
         {
             "reltime"       : 0.5,
             "abstime"       : null,
-            "n_t"           : 10,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {
@@ -89,15 +90,15 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.71,
+                    "phase0abs"     : -0.71,
                     "abspi"         : true
                 }
             ]
         },
         {
-            "reltime"       : 15.7777777778,
+            "reltime"       : 1.42,
             "abstime"       : null,
-            "n_t"           : 10,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {
@@ -107,17 +108,17 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.29,
+                    "phase0abs"     : 0.29,
                     "abspi"         : true
                 },
                 {
-                    "detuning"      : 100,
+                    "detuning"      : 1.5,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 900e3,
+                    "Omega0Hz"      : 110.227038425e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.29,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -125,7 +126,7 @@
         {
             "reltime"       : 1.59,
             "abstime"       : null,
-            "n_t"           : 10,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {
@@ -135,15 +136,15 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.1,
+                    "phase0abs"     : -0.1,
                     "abspi"         : true
                 }
             ]
         },
         {
-            "reltime"       : 8,
+            "reltime"       : 0.72,
             "abstime"       : null,
-            "n_t"           : 10,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {
@@ -153,17 +154,17 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.51,
+                    "phase0abs"     : 0.51,
                     "abspi"         : true
                 },
                 {
-                    "detuning"      : 100,
+                    "detuning"      : 1.5,
                     "Omega0_rel"    : null,
-                    "Omega0Hz"      : 900e3,
+                    "Omega0Hz"      : 110.227038425e3,
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.5,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]

@@ -5,12 +5,22 @@ import scipy.constants as const
 from Qutip_sims import sim_methods
 # from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
+from expm_decomp import entry, simplified_matrix_data, manual_taylor_expm
 from c_exp_direct import c_exp
 from copy import deepcopy
 
 def parse_json(js_fname):
     with open(js_fname, "r") as fp:
         data = json.load(fp)
+
+    n_num = data['n_num']
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    corrections = manual_taylor_expm(a_sum*1j*data['eta0'],1)
     
     if(data['nu0'] == None):
         data['nu0'] = data['nu0Hz']*2*const.pi
@@ -37,14 +47,19 @@ def parse_json(js_fname):
                     if(beam['abspi']):
                         beam['phase0abs'] = beam['phase0abs']*const.pi
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
-                    beam["phase0"] = beam["phase0abs"]
+                    beam["phase0"] = -beam["phase0abs"]
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
                     beam["phase0"] = 0
             # if(i == 1):
             #     beam['phase0'] = d['beams'][i-1]['phase0']
         if(d["abstime"] == None):
-            d['abstime'] = d["reltime"]*const.pi/d['beams'][0]['Omega0']
+            d['abstime'] = d["reltime"]*const.pi/(d['beams'][0]['Omega0']*abs(corrections[abs(int(d['beams'][0]['detuning'])),0].value[0].val))
+        try:
+            if(d['t0'] != None):
+                t = d['t0']
+        except KeyError as _:
+            pass
         d['t0'] = t
         t += d['abstime']
     return data

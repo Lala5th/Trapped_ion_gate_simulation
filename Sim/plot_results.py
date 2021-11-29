@@ -472,7 +472,7 @@ if __name__ == '__main__':
     # 'xtick.labelsize'   : 12,
     # 'ytick.labelsize'   : 12,
     # 'legend.fontsize'   : 12,
-    'font.size'         : 14
+    'font.size'         : 16
     }
     for e in rcparams.keys():
         mpl.rcParams[e] = rcparams[e]

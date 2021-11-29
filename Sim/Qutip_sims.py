@@ -339,7 +339,7 @@ def QuTiP_C_meas_mult_laser(data):
         res = []
         for j,state in enumerate(state0):
             for i,_ in enumerate(data['beams']):
-                data['beams'][i]['phase0'] = np.angle(c_exp(underlying_solver['ts'][j],data['beams'][i]['detuning'],data0['beams'][i]['phase0']))
+                data['beams'][i]['phase0'] = underlying_solver['ts'][j]*data['beams'][i]['detuning'] + data0['beams'][i]['phase0']
             state = qtip.Qobj(state,dims=[[2,n_num],[1,1]])
             res.append(sim_methods[data['params']['solver']](data)(args,state)[-1])
         res = np.array(res)
