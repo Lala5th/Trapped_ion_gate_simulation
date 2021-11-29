@@ -64,7 +64,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : -0.5,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]
@@ -112,7 +112,7 @@
                     "Omega0"        : null,
 
                     "phase0"        : null,
-                    "phase0abs"     : 0.5,
+                    "phase0abs"     : null,
                     "abspi"         : true
                 }
             ]

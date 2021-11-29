@@ -10,9 +10,40 @@
 
     "state0"        :
         {
-            "builder"       : "Final_state",
-            "sim_file"      : "exp.npz"
-
+            "builder"       : "Multiple_state",
+            "sim_file"      : "exp.npz",
+            "states"        : [
+                {
+                    "n0"            : 0,
+                    "g"             : true,
+                    "factor"        : 0.5744562646538028
+                },
+                {
+                    "n0"            : 1,
+                    "g"             : true,
+                    "factor"        : 0.5477225575051661
+                },
+                {
+                    "n0"            : 2,
+                    "g"             : true,
+                    "factor"        : 0.5744562646538028
+                },
+                {
+                    "n0"            : 0,
+                    "g"             : false,
+                    "factor"        : 0.1251665557
+                },
+                {
+                    "n0"            : 1,
+                    "g"             : false,
+                    "factor"        : 0.1051665557
+                },
+                {
+                    "n0"            : 2,
+                    "g"             : false,
+                    "factor"        : 0.1251665557
+                }
+            ]
         },
 
     "eta0"          : 0.09,
@@ -23,28 +54,30 @@
         {
             "reltime"       : 0,
             "abstime"       : 1e-3,
-            "n_t"           : 1000,
+            "n_t"           : 10000,
     
             "beams"         : [
                 {
                     "detuning"      : 1,
                     "Omega0_rel"    : null,
                     "Omega0"        : null,
-                    "Omega0Hz"      : 81e3,
+                    "Omega0Hz"      : 77.1111111111e3,
 
                     "phase0"        : null,
                     "phase0abs"     : 0,
-                    "phase_match"   : false
+                    "phase_match"   : false,
+                    "abspi"         : false 
                 },
                 {
-                    "detuning"      : -100,
+                    "detuning"      : -1.5,
                     "Omega0_rel"    : null,
                     "Omega0"        : null,
-                    "Omega0Hz"      : 810e3,
+                    "Omega0Hz"      : 94.4414378606e3,
 
                     "phase0"        : null,
                     "phase0abs"     : 0,
-                    "phase_match"   : false
+                    "phase_match"   : false,
+                    "abspi"         : false
                 }
             ]
         }
