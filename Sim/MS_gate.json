@@ -3,15 +3,20 @@
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
-    "nu0Hz"         : 1.1e6,
-    "nu0"           : null,
+    "nu0Hz"         : null,
+    "nu0"           : 1e6,
 
-    "n_num"         : 5,
+    "n_num"         : 20,
     "n_ion"         : 2,
 
     "state0"        :
         {
-            "builder"       : "Generic_state",
+            "builder"       : "Generic_coherent_state",
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
 
             "states"        : [
                 {
@@ -21,50 +26,46 @@
                         "size"          : 1,
                         "phase"         : 0
                     }
-                },
-                {
-                    "n"             : 1,
-                    "atoms"         : [false,false],
-                    "factor"        : {
-                        "size"          : 1,
-                        "phase"         : 0
-                    }
                 }
             ]
         },
 
-    "eta0"          : 0.09,
+    "eta0"          : 0.10,
 
     "t_prep"        : 0,
 
     "sequence"      : [
         {
             "reltime"       : 0,
-            "abstime"       : 1e-3,
-            "n_t"           : 10000,
+            "abstime"       : 15e-3,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {
                     "detuning"      : 0.9,
-                    "Omega0_rel"    : null,
+                    "Omega0_rel"    : 0.1,
                     "Omega0"        : null,
-                    "Omega0Hz"      : 90e3,
+                    "Omega0Hz"      : null,
 
                     "phase0"        : null,
                     "phase0abs"     : 0,
                     "phase_match"   : false,
-                    "abspi"         : false 
+                    "abspi"         : false,
+
+                    "ion"           : 0
                 },
                 {
                     "detuning"      : -0.9,
-                    "Omega0_rel"    : null,
+                    "Omega0_rel"    : 0.1,
                     "Omega0"        : null,
-                    "Omega0Hz"      : 90e3,
+                    "Omega0Hz"      : null,
 
                     "phase0"        : null,
                     "phase0abs"     : 0,
                     "phase_match"   : false,
-                    "abspi"         : false
+                    "abspi"         : false,
+
+                    "ion"           : 1
                 }
             ]
         }

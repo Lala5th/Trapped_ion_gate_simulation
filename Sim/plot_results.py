@@ -343,7 +343,7 @@ def plot_seq_scan_projeg(data_pack):
     _, ax = plt.subplots()
     for i in range(2**n_ion):
         atomic_state = ("{:b}").format(i + 2**n_ion).replace('0','g').replace('1','e')[1:]
-        _, = ax.plot(ts*1e6,state_data[i,:],label = f"|{atomic_state}>")
+        _, = ax.plot(ts*1e6,state_data[i,:],label = f"|{atomic_state}><{atomic_state}|")
     # ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
 
     t0 = 0
@@ -427,7 +427,7 @@ def plot_meas_scan_projeg(data_pack):
 def plot_seq_scan_Fockexp(data_pack):
     global ax
 
-    state_data, ts, n_num, t0s = data_pack
+    state_data, ts, n_num, t0s, _ = data_pack
 
     state_data = np.abs(np.einsum('ijk,ijk->ijk',state_data,np.conj(state_data)))
 

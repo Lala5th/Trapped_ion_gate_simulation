@@ -87,11 +87,39 @@ def Generic_state(data):
             ret += state0
     return ret
 
+def Generic_coherent_state(data):
+    ret = None
+    atomic = None
+    for state in data['states']:
+        state0_A = None
+        for i in range(data['n_ion']):
+            if(state0_A == None):
+                state0_A = qtip.basis(2,1 if state['atoms'][i] else 0)
+            else:
+                state0_A = qtip.tensor(state0_A,qtip.basis(2,1 if state['atoms'][i] else 0))
+
+        if(atomic == None):
+            atomic = factor(state['factor'])*state0_A
+        else:
+            atomic += factor(state['factor'])*state0_A
+    coeff = 1
+    for n in range(data['n_num']):
+        if(n > 0):
+            coeff = coeff/n
+        basis = qtip.basis(data['n_num'],n)
+        alpha = data['alpha']['size']*np.exp(1j*const.pi*data['alpha']['phase'])
+        basis = basis*np.exp(-data['alpha']['size']**2/2)*alpha**n*np.sqrt(coeff)
+        if(ret == None):
+            ret = qtip.tensor(atomic,basis)
+        else:
+            ret += qtip.tensor(atomic,basis)
+    return ret
 
 state_builders = {
-    'Single_state'      : Single_state,
-    'Final_state'       : Final_state,
-    'Multiple_state'    : Multiple_state,
-    'Coherent_state'    : Coherent_state,
-    'Generic_state'     : Generic_state
+    'Single_state'              : Single_state,
+    'Final_state'               : Final_state,
+    'Multiple_state'            : Multiple_state,
+    'Coherent_state'            : Coherent_state,
+    'Generic_state'             : Generic_state,
+    'Generic_coherent_state'    : Generic_coherent_state
 }

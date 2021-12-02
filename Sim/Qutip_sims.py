@@ -371,11 +371,17 @@ def QuTiP_C_mult_laser_generic(data):
             H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
             
             # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            address = None
+            if("ion" in d):
+                address = d['ion']
             H_i_p = []
             for i in range(len(H_M_p)):
                 H_data = None
                 for j in range(data['n_ion']):
                     H_p = None
+                    if(address!=None):
+                        if(address!=j):
+                            continue
                     for k in range(data['n_ion']):
                         H_part = qtip.identity(2) if j!=k else H_A_p
                         if(H_p == None):
