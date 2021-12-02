@@ -17,4 +17,5 @@ build
 !Sim/seq_run_exp_meas.json
 !Sim/seq_run_exp_meas_seq.json
 !Sim/seq_time_evo.json
+!Sim/MS_gate.json
 *.db

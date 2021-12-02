@@ -62,6 +62,13 @@ def parse_json(js_fname):
             pass
         d['t0'] = t
         t += d['abstime']
+
+    data['state0']['n_num'] = data['n_num']
+    if('n_ion' in data):
+        data['state0']['n_ion'] = data['n_ion']
+    else:
+        data['n_ion'] = 1
+
     return data
 
 def run_sim(js_fname):
@@ -99,7 +106,7 @@ def run_sim(js_fname):
             npret = np.append(npret,b)
     ret = npret
     if(not isinstance(ret[0],qtip.Qobj)):
-        ret = ret.reshape((-1,2*data['n_num'],1))
+        ret = ret.reshape((-1,(2**data['n_ion'])*data['n_num'],1))
     return ret, data
 
 if __name__ == "__main__":
@@ -115,6 +122,6 @@ if __name__ == "__main__":
             result = np.array(result,dtype=np.complex128)
         if(data["fname"] == None):
             data["fname"] = "temp"
-        metadata = [data['n_num']]
+        metadata = [data['n_num'],data['n_ion']]
         t0s = [d['abstime'] for d in data['sequence']]
         np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s)

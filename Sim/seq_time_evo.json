@@ -1,5 +1,5 @@
 {
-    "solver"        : "QuTiP_C_mult_laser",
+    "solver"        : "QuTiP_C_mult_laser_generic",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
@@ -7,6 +7,7 @@
     "nu0"           : null,
 
     "n_num"         : 7,
+    "n_ion"         : 1,
 
     "state0"        :
         {
@@ -36,12 +37,12 @@
                 {
                     "n0"            : 1,
                     "g"             : false,
-                    "factor"        : 0.1051665557
+                    "factor"        : -0.075
                 },
                 {
                     "n0"            : 2,
                     "g"             : false,
-                    "factor"        : 0.1251665557
+                    "factor"        : 0
                 }
             ]
         },
@@ -61,7 +62,7 @@
                     "detuning"      : 1,
                     "Omega0_rel"    : null,
                     "Omega0"        : null,
-                    "Omega0Hz"      : 77.1111111111e3,
+                    "Omega0Hz"      : 78e3,
 
                     "phase0"        : null,
                     "phase0abs"     : 0,
@@ -72,7 +73,7 @@
                     "detuning"      : -1.5,
                     "Omega0_rel"    : null,
                     "Omega0"        : null,
-                    "Omega0Hz"      : 94.4414378606e3,
+                    "Omega0Hz"      : 0e3,
 
                     "phase0"        : null,
                     "phase0abs"     : 0,

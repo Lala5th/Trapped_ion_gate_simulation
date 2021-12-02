@@ -55,19 +55,19 @@ def load_QuTiP_seq(fname):
     d = np.load(fname,allow_pickle=True)
     ts = d['ts']
     s3d = d['s3d']
-    n_num, = d['metadata']
+    n_num, n_ion = d['metadata']
     t0s = d['t0s']
 
     state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex)
-    state_data = np.reshape(np.einsum('ijk->ji',np.asarray(state_data,dtype = np.complex128)),(2,n_num,-1))
-    return state_data, ts, n_num, t0s
+    state_data = np.reshape(np.einsum('ijk->ji',np.asarray(state_data,dtype = np.complex128)),(2**n_ion,n_num,-1))
+    return state_data, ts, n_num, t0s, n_ion
 
 def load_QuTiP_meas(fname):
     
     d = np.load(fname,allow_pickle=True)
     ts = d['ts']
     s3d = d['s3d']
-    n_num, = d['metadata']
+    n_num = d['metadata']
     t0s = []
 
     state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex)
@@ -302,18 +302,23 @@ def plot_detuning_scan_projeg(data_pack):
 def plot_seq_scan(data_pack):
     global ax
 
-    state_data, ts, n_num, t0s = data_pack
+    state_data, ts, n_num, t0s, n_ion = data_pack
 
-    state_data = np.abs(np.einsum('ijk,ijk->ijk',state_data,np.conj(state_data)))
+    state_data = np.abs(np.einsum('...,...->...',state_data,np.conj(state_data)))
 
     _, ax = plt.subplots()
     for i in range(n_num):
-        p, = ax.plot(ts,state_data[1,i,:],label = f"|e,{i}>")
-        ax.plot(ts,state_data[0,i,:],label = f"|g,{i}>",linestyle='--', color = p.get_color())
+        for j in range(2**n_ion):
+            atomic_state = "{0:b}".format(j+2**n_ion).replace('0','g').replace('1','e')[1:]
+            if ((int(i/2) + j)%2 == 0):
+                linestyle = 'dashed'
+            else:
+                linestyle = 'solid'
+            ax.plot(1e6*ts,state_data[j,i,:],label = f"|{atomic_state},{i}>",linestyle=linestyle)
 
     t0 = 0
     for t in t0s:
-        ax.axvline(t0 + t,linestyle='dashdot')
+        ax.axvline(1e6*(t0 + t),linestyle='dashdot')
         t0 += t
 
     ax.legend()
@@ -321,7 +326,7 @@ def plot_seq_scan(data_pack):
     # ax2.plot(t,sol[0])
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
-    ax.set_xlabel("Time [s]")
+    ax.set_xlabel("Time [$\\mu$s]")
     ax.set_ylabel("p[1]")
     # ax.set_yscale("logit")
     ax.grid()
@@ -331,12 +336,14 @@ def plot_seq_scan(data_pack):
 def plot_seq_scan_projeg(data_pack):
     global ax
 
-    state_data, ts, _, t0s = data_pack
+    state_data, ts, _, t0s, n_ion = data_pack
 
-    state_data = np.abs(np.einsum('ijk,ijk->ik',state_data,np.conj(state_data)))
+    state_data = np.abs(np.einsum('...ik,...ik->...k',state_data,np.conj(state_data)))
 
     _, ax = plt.subplots()
-    _, = ax.plot(ts*1e6,state_data[1,:],label = f"|e>")
+    for i in range(2**n_ion):
+        atomic_state = ("{:b}").format(i + 2**n_ion).replace('0','g').replace('1','e')[1:]
+        _, = ax.plot(ts*1e6,state_data[i,:],label = f"|{atomic_state}>")
     # ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
 
     t0 = 0
