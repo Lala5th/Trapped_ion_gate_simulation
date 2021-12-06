@@ -1,0 +1,17 @@
+{
+    "prep"          : "ijk,ljk->ilk",
+    "plot"          : [
+        {
+            "index"         : [0,0],
+            "label"         : "$\\langle$gg|$\\hat{\\rho}$|gg$\\rangle$"
+        },
+        {
+            "index"         : [3,3],
+            "label"         : "$\\langle$ee|$\\hat{\\rho}$|ee$\\rangle$"
+        },
+        {
+            "index"         : [0,3],
+            "label"         : "$\\langle$gg|$\\hat{\\rho}$|ee$\\rangle$"
+        }
+    ]
+}

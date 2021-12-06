@@ -38,7 +38,7 @@
         {
             "reltime"       : 0,
             "abstime"       : 15e-3,
-            "n_t"           : 1000,
+            "n_t"           : 10000,
     
             "beams"         : [
                 {

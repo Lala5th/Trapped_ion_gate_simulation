@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+from matplotlib import lines
 import numpy as np
 from matplotlib.widgets import Slider
 import matplotlib.pyplot as plt
+import json
 
 def multiple_formatter(denominator=2, number=np.pi, latex='\\pi'):
     def gcd(a, b):
@@ -314,7 +316,7 @@ def plot_seq_scan(data_pack):
                 linestyle = 'dashed'
             else:
                 linestyle = 'solid'
-            ax.plot(1e6*ts,state_data[j,i,:],label = f"|{atomic_state},{i}>",linestyle=linestyle)
+            ax.plot(1e6*ts,state_data[j,i,:],label = f"<{atomic_state},{i}|\\rho|{atomic_state},{i}>",linestyle=linestyle)
 
     t0 = 0
     for t in t0s:
@@ -322,6 +324,46 @@ def plot_seq_scan(data_pack):
         t0 += t
 
     ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("Time [$\\mu$s]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
+def plot_seq_scan_dm(data_pack):
+    global ax, args
+
+    state_data, ts, _, t0s, _ = data_pack
+    with open(args[2]) as jsfile:
+        params = json.load(jsfile)
+
+    density_matrix = np.einsum(params['prep'],state_data,np.conj(state_data))
+
+    _, ax = plt.subplots()
+    ps = []
+    legend = []
+    for m_index in params['plot']:
+        p, =  ax.plot(1e6*ts,np.real(density_matrix)[tuple(m_index['index'])],label = f"Re({m_index['label']})")
+        b, = ax.plot(1e6*ts,np.imag(density_matrix)[tuple(m_index['index'])],label = f"Im({m_index['label']})",linestyle='dashed',c=p.get_color())
+        if(ps == []):
+            ps.append(plt.Line2D([0],[0],color='black'))
+            ps.append(plt.Line2D([0],[0],color='black',linestyle='dashed'))
+            legend.append("Real")
+            legend.append("Imag")
+        ps.append(p)
+        legend.append(f"{m_index['label']}")
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(1e6*(t0 + t),linestyle='dashdot')
+        t0 += t
+
+    ax.legend(ps,legend)
     # fig2, ax2 = plt.subplots()
     # ax2.plot(t,sol[0])
     # ax2.plot(t,sol[1])q
@@ -343,7 +385,7 @@ def plot_seq_scan_projeg(data_pack):
     _, ax = plt.subplots()
     for i in range(2**n_ion):
         atomic_state = ("{:b}").format(i + 2**n_ion).replace('0','g').replace('1','e')[1:]
-        _, = ax.plot(ts*1e6,state_data[i,:],label = f"|{atomic_state}><{atomic_state}|")
+        _, = ax.plot(ts*1e6,state_data[i,:],label = f"<{atomic_state}|$\\rho$|{atomic_state}>")
     # ax.plot(ts,state_data[0,:],label = f"|g>",linestyle='--', color = p.get_color())
 
     t0 = 0
@@ -461,6 +503,7 @@ plot_methods = {
     'qutip_time_projeg'     : [load_QuTiP,plot_time_scan_projeg],
     'qutip_detuning_projeg' : [load_QuTiP,plot_detuning_scan_projeg],
     'qutip_seq'             : [load_QuTiP_seq,plot_seq_scan],
+    'qutip_seq_dm'          : [load_QuTiP_seq,plot_seq_scan_dm],
     'qutip_seq_projeg'      : [load_QuTiP_seq,plot_seq_scan_projeg],
     'qutip_seq_fockexp'     : [load_QuTiP_seq,plot_seq_scan_Fockexp],
     'qutip_meas'            : [load_QuTiP_meas,plot_meas_scan],
