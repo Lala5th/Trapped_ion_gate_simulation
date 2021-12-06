@@ -4,6 +4,10 @@ import numpy as np
 from matplotlib.widgets import Slider
 import matplotlib.pyplot as plt
 import json
+from scipy.integrate import quad
+from scipy.linalg import expm
+import scipy.constants as const
+from functools import lru_cache
 
 def multiple_formatter(denominator=2, number=np.pi, latex='\\pi'):
     def gcd(a, b):
@@ -497,6 +501,60 @@ def plot_seq_scan_Fockexp(data_pack):
 
     plt.show()
 
+def plot_seq_scan_Wigner(data_pack):
+    global ax
+
+    state_data, _, n_num, _, _ = data_pack
+
+    @lru_cache(maxsize=None)
+    def coherent_state(alpha): # this should be cached
+        ret = np.zeros(n_num)
+        fact = 1
+        for i in range(n_num):
+            if(i != 0):
+                fact /= i
+            ret[i] = np.exp(-np.abs(alpha)**2/2)*alpha**i*np.sqrt(fact)
+        return ret
+
+    density_matrix = np.einsum('ijk,ilk->jlk',state_data,np.conj(state_data))
+
+    density_matrix = density_matrix[:,:,0]
+
+    wigner_int = lambda y,x,p : np.exp(-2j*p*y)*np.einsum('i,ij,j->',coherent_state(x + y), density_matrix, coherent_state(x - y))
+
+    ps = np.linspace(-3,3,61)
+    xs = np.linspace(-3,3,61)
+
+    wigner = []
+    for p in ps:
+        for x in xs:
+            print(p,x)
+            wigner.append((1/(const.pi))*quad(wigner_int,-np.inf,np.inf,args=(x,p))[0])
+
+    wigner = np.reshape(wigner,(ps.size,xs.size))
+
+    plt.set_cmap('gnuplot')
+    _, ax = plt.subplots()
+    ps = np.append(ps, ps[-1] + ps[1] - ps[0])
+    ps -= (ps[1] - ps[0])/2
+    xs = np.append(xs, xs[-1] + xs[1] - xs[0])
+    xs -= (xs[1] - xs[0])/2
+    mesh = ax.pcolormesh(ps,xs,wigner)
+    axc = plt.colorbar(mesh)
+    axc.set_label('W[$\hbar$]')
+
+    # ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("x[1]")
+    ax.set_ylabel("p[$\hbar$]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
 plot_methods = {
     'qutip_time'            : [load_QuTiP,plot_time_scan],
     'qutip_detuning'        : [load_QuTiP,plot_detuning_scan],
@@ -506,6 +564,7 @@ plot_methods = {
     'qutip_seq_dm'          : [load_QuTiP_seq,plot_seq_scan_dm],
     'qutip_seq_projeg'      : [load_QuTiP_seq,plot_seq_scan_projeg],
     'qutip_seq_fockexp'     : [load_QuTiP_seq,plot_seq_scan_Fockexp],
+    'qutip_seq_wigner'      : [load_QuTiP_seq,plot_seq_scan_Wigner],
     'qutip_meas'            : [load_QuTiP_meas,plot_meas_scan],
     'qutip_meas_projeg'     : [load_QuTiP_meas,plot_meas_scan_projeg],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
