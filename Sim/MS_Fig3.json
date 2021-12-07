@@ -1,0 +1,118 @@
+{
+    "solver"        : "QuTiP_C_mult_laser_generic",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : null,
+    "nu0"           : 1e6,
+
+    "n_num"         : 20,
+    "n_ion"         : 2,
+
+    "state0"        :
+        {
+            "builder"       : "Generic_coherent_state",
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 2,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 0.71,
+                        "phase"         : 0
+                    }
+                },
+                {
+                    "n"             : 2,
+                    "atoms"         : [true,false],
+                    "factor"        : {
+                        "size"          : 0.71,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+
+    "eta0"          : 0.10,
+
+    "t_prep"        : 0,
+
+    "sequence"      : [
+        {
+            "reltime"       : 0,
+            "abstime"       : 12566.370614359172e-6,
+            "n_t"           : 1000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 0.9,
+                    "Omega0_rel"    : 0.05,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : 0
+                },
+                {
+                    "detuning"      : -0.9,
+                    "Omega0_rel"    : 0.05,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : 1
+                }
+            ]
+        },
+        {
+            "reltime"       : 0,
+            "abstime"       : 12566.370614359172e-6,
+            "n_t"           : 1000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : -0.9,
+                    "Omega0_rel"    : 0.05,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : 0
+                },
+                {
+                    "detuning"      : 0.9,
+                    "Omega0_rel"    : 0.05,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : 1
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "ms_tinv.npz"
+}

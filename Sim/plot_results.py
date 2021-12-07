@@ -502,9 +502,9 @@ def plot_seq_scan_Fockexp(data_pack):
     plt.show()
 
 def plot_seq_scan_Wigner(data_pack):
-    global ax
+    global ax, fig, time_slider
 
-    state_data, _, n_num, _, _ = data_pack
+    state_data, ts, n_num, t0s, _ = data_pack
 
     @lru_cache(maxsize=None)
     def coherent_state(alpha): # this should be cached
@@ -518,29 +518,33 @@ def plot_seq_scan_Wigner(data_pack):
 
     density_matrix = np.einsum('ijk,ilk->jlk',state_data,np.conj(state_data))
 
-    density_matrix = density_matrix[:,:,0]
+    wigner_int = lambda y,x,p,dm : np.exp(-2j*p*y)*np.einsum('i,ij,j->',coherent_state(x + y), dm, coherent_state(x - y))
 
-    wigner_int = lambda y,x,p : np.exp(-2j*p*y)*np.einsum('i,ij,j->',coherent_state(x + y), density_matrix, coherent_state(x - y))
+    ps = np.linspace(-3,3,31)
+    xs = np.linspace(-3,3,31)
 
-    ps = np.linspace(-3,3,61)
-    xs = np.linspace(-3,3,61)
+    @lru_cache(maxsize=None)
+    def get_wigner_func(id):
+        wigner = []
+        for p in ps:
+            for x in xs:
+                print(p,x)
+                wigner.append((1/(const.pi))*quad(wigner_int,-np.inf,np.inf,args=(x,p,density_matrix[:,:,id]))[0])
 
-    wigner = []
-    for p in ps:
-        for x in xs:
-            print(p,x)
-            wigner.append((1/(const.pi))*quad(wigner_int,-np.inf,np.inf,args=(x,p))[0])
+        wigner = np.reshape(wigner,(ps.size,xs.size))
+        return wigner
 
-    wigner = np.reshape(wigner,(ps.size,xs.size))
+    wigner = get_wigner_func(0)
 
     plt.set_cmap('gnuplot')
-    _, ax = plt.subplots()
-    ps = np.append(ps, ps[-1] + ps[1] - ps[0])
-    ps -= (ps[1] - ps[0])/2
-    xs = np.append(xs, xs[-1] + xs[1] - xs[0])
-    xs -= (xs[1] - xs[0])/2
-    mesh = ax.pcolormesh(ps,xs,wigner)
-    axc = plt.colorbar(mesh)
+    fig, ax = plt.subplots()
+    fig.subplots_adjust(bottom=0.25)
+    psa = np.append(ps, ps[-1] + ps[1] - ps[0])
+    psa -= (ps[1] - ps[0])/2
+    xsa = np.append(xs, xs[-1] + xs[1] - xs[0])
+    xsa -= (xs[1] - xs[0])/2
+    mesh = ax.pcolormesh(psa,xsa,wigner)
+    axc = fig.colorbar(mesh)
     axc.set_label('W[$\hbar$]')
 
     # ax.legend()
@@ -553,7 +557,31 @@ def plot_seq_scan_Wigner(data_pack):
     # ax.set_yscale("logit")
     ax.grid()
 
-    plt.show()
+    axtime = fig.add_axes([0.25, 0.1, 0.65, 0.03])
+    time_slider = Slider(
+        ax=axtime,
+        label="Time[$\\mu$s]",
+        valmin=ts[0]*1e6,
+        valmax=ts[-1]*1e6,
+        valinit=ts[0]*1e6,
+        orientation="horizontal",
+        valfmt="%2.4lf"
+    )
+
+    for i in t0s:
+        axtime.axvline(i,linestyle='dashdot')
+
+    def update_time(val):
+        nonlocal mesh,axc
+        id = np.argmin(np.abs(val - 1e6*ts))
+        mesh.remove()
+        wigner = get_wigner_func(id)
+        mesh = ax.pcolormesh(psa,xsa,wigner)
+        ax.grid()
+        axc.update_normal(mesh)
+        fig.canvas.draw_idle()
+
+    time_slider.on_changed(update_time)
 
 plot_methods = {
     'qutip_time'            : [load_QuTiP,plot_time_scan],
