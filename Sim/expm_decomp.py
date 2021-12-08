@@ -121,6 +121,12 @@ class simplified_matrix_data:
             return self.divself(other)
         return self.divnum(other)
 
+    def __lt__(self, num):
+        for val in self.value:
+            if(np.abs(val.val) >= num):
+                return False
+        return True
+
 def manual_taylor_expm(M : np.ndarray,n : int =7) -> np.ndarray:
     ret = np.array([[simplified_matrix_data() for _ in range(M.shape[0])] for _ in range(M.shape[0])],dtype=simplified_matrix_data)
     A = np.array([[simplified_matrix_data() if i!=j else simplified_matrix_data([entry(val=1,exp=0)]) for i in range(M.shape[0])] for j in range(M.shape[1])],dtype=simplified_matrix_data)
@@ -129,6 +135,9 @@ def manual_taylor_expm(M : np.ndarray,n : int =7) -> np.ndarray:
         A = A @ M
         A = A/(i+1)
         ret += A
+        if (A < 1e-10).all():
+            print(f"Truncating exponential at {i} as no noticeable increase is in HOT")
+            break
     return ret
 
 def generate_qutip_operator(M, exp_factor, dims = None):
