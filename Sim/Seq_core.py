@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import json
+from matplotlib.pyplot import get
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import sim_methods
+from Qutip_sims import sim_methods, get_t_col
 # from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
 from c_exp_direct import c_exp
@@ -82,6 +83,7 @@ def run_sim(js_fname):
     ret = []
     t_abs = 0
     ts = np.array([])
+    t_cols = []
     for i,d in enumerate(data['sequence']):
         params = deepcopy(data)
         params["beams"] = d["beams"]
@@ -98,6 +100,11 @@ def run_sim(js_fname):
         else:
             #ret.append(sim_methods[data["solver"]](params)(d['detuning']))
             ret = [sim_methods[data["solver"]](params)(args)]
+        
+        t_col = get_t_col()
+        if(t_col!=None):
+            t_cols.append(t_abs + d['t0'])
+
         print("Completed pulse %d out of %d" % (i+1,len(data['sequence'])))
     data['ts'] = ts
     npret = np.array([],dtype=object)
@@ -107,6 +114,9 @@ def run_sim(js_fname):
     ret = npret
     if(not isinstance(ret[0],qtip.Qobj)):
         ret = ret.reshape((-1,(2**data['n_ion'])*data['n_num'],1))
+
+    if(t_cols !=[]):
+        data['t_col'] = np.array(t_col).flatten()
     return ret, data
 
 if __name__ == "__main__":
@@ -124,4 +134,7 @@ if __name__ == "__main__":
             data["fname"] = "temp"
         metadata = [data['n_num'],data['n_ion']]
         t0s = [d['abstime'] for d in data['sequence']]
-        np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s)
+        if('t_col' not in data):
+            np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s)
+        else:
+            np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s, t_col = data['t_col'])

@@ -18,6 +18,7 @@ build
 !Sim/seq_run_exp_meas_seq.json
 !Sim/seq_time_evo.json
 !Sim/MS_gate.json
+!Sim/MS_heating.json
 !Sim/MS_Fig3.json
 !Sim/plot_dm.json
 !Sim/plot_dm_fig3.json

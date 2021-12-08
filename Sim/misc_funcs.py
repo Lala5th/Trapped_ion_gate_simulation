@@ -123,3 +123,23 @@ state_builders = {
     'Generic_state'             : Generic_state,
     'Generic_coherent_state'    : Generic_coherent_state
 }
+
+def heating_collapse(param):
+    c1 = np.sqrt(param['Gamma']*(1 + param['n_therm']))*qtip.destroy(param['n_num'])
+    c2 = np.sqrt(param['Gamma']*param['n_therm'])*qtip.create(param['n_num'])
+
+    c_A = None
+    for i in range(param['n_ion']):
+        if(c_A == None):
+            c_A = qtip.identity(2)
+        else:
+            c_A = qtip.tensor(c_A,qtip.identity(2))
+        
+    c = c1 + c2
+    c1 = qtip.tensor(c_A,c1)
+    c2 = qtip.tensor(c_A,c2)
+    return [c1,c2]
+
+collapse_operators = {
+    'heating_collapse'      : heating_collapse
+}

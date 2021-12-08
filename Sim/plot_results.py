@@ -66,7 +66,13 @@ def load_QuTiP_seq(fname):
 
     state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex)
     state_data = np.reshape(np.einsum('ijk->ji',np.asarray(state_data,dtype = np.complex128)),(2**n_ion,n_num,-1))
-    return state_data, ts, n_num, t0s, n_ion
+
+    if 't_col' in d:
+        t_col = d['t_col']
+    else:
+        t_col = None
+
+    return state_data, ts, n_num, t0s, n_ion, t_col
 
 def load_QuTiP_meas(fname):
     
@@ -308,7 +314,7 @@ def plot_detuning_scan_projeg(data_pack):
 def plot_seq_scan(data_pack):
     global ax
 
-    state_data, ts, n_num, t0s, n_ion = data_pack
+    state_data, ts, n_num, t0s, n_ion, _ = data_pack
 
     state_data = np.abs(np.einsum('...,...->...',state_data,np.conj(state_data)))
 
@@ -342,7 +348,7 @@ def plot_seq_scan(data_pack):
 def plot_seq_scan_dm(data_pack):
     global ax, args
 
-    state_data, ts, _, t0s, _ = data_pack
+    state_data, ts, _, t0s, _, t_cols = data_pack
     with open(args[2]) as jsfile:
         params = json.load(jsfile)
 
@@ -367,6 +373,12 @@ def plot_seq_scan_dm(data_pack):
         ax.axvline(1e6*(t0 + t),linestyle='dashdot')
         t0 += t
 
+    if(t_cols is not None):
+        t0 = 0
+        for t in t_cols:
+            ax.axvline(1e6*(t + t0),0,0.25,color='red')
+            t0 = 0
+
     ax.legend(ps,legend)
     # fig2, ax2 = plt.subplots()
     # ax2.plot(t,sol[0])
@@ -382,7 +394,7 @@ def plot_seq_scan_dm(data_pack):
 def plot_seq_scan_projeg(data_pack):
     global ax
 
-    state_data, ts, _, t0s, n_ion = data_pack
+    state_data, ts, _, t0s, n_ion, _ = data_pack
 
     state_data = np.abs(np.einsum('...ik,...ik->...k',state_data,np.conj(state_data)))
 
@@ -473,7 +485,7 @@ def plot_meas_scan_projeg(data_pack):
 def plot_seq_scan_Fockexp(data_pack):
     global ax
 
-    state_data, ts, n_num, t0s, _ = data_pack
+    state_data, ts, n_num, t0s, _, _ = data_pack
 
     state_data = np.abs(np.einsum('ijk,ijk->ijk',state_data,np.conj(state_data)))
 
@@ -504,7 +516,7 @@ def plot_seq_scan_Fockexp(data_pack):
 def plot_seq_scan_Wigner(data_pack):
     global ax, fig, time_slider
 
-    state_data, ts, n_num, t0s, _ = data_pack
+    state_data, ts, n_num, t0s, _, _ = data_pack
 
     @lru_cache(maxsize=None)
     def coherent_state(alpha): # this should be cached

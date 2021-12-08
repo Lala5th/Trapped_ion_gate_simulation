@@ -1,0 +1,85 @@
+{
+    "solver"        : "QuTiP_C_mult_laser_generic_collapse",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : null,
+    "nu0"           : 1e6,
+
+    "n_num"         : 40,
+    "n_ion"         : 2,
+
+    "ntraj"         : 1,
+
+    "state0"        :
+        {
+            "builder"       : "Generic_coherent_state",
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 10,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 1,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+
+    "c_param"       : {
+        "c_operator"        : "heating_collapse",
+
+        "n_therm"           : 2,
+        "Gamma"             : 2e2
+    },
+
+    "eta0"          : 0.10,
+
+    "t_prep"        : 0,
+
+    "sequence"      : [
+        {
+            "reltime"       : 0,
+            "abstime"       : 15e-3,
+            "n_t"           : 10000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 0.9,
+                    "Omega0_rel"    : 0.1,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : 0
+                },
+                {
+                    "detuning"      : -0.9,
+                    "Omega0_rel"    : 0.1,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : 1
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "ms_heating.npz"
+}
