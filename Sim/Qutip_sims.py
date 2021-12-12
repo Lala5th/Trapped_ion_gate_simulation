@@ -488,10 +488,11 @@ def QuTiP_C_mult_laser_generic_collapse(data):
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
     def run_sim(args, state0=state0):
         global t_col
+        # print(state0.shape)
         res = qtip.mcsolve(H=H_i({'eta' : data['eta0']}),psi0=state0,tlist=ts,options=options,c_ops=c_ops,map_func=qtip.serial_map,ntraj=data['ntraj'])
         t_col = res.col_times
 
-        return res.states
+        return res.states[0]
 
     return run_sim
 

@@ -37,8 +37,8 @@
     "sequence"      : [
         {
             "reltime"       : 0,
-            "abstime"       : 250e-6,
-            "n_t"           : 250,
+            "abstime"       : 600e-6,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {

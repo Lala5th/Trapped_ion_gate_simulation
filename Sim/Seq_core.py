@@ -83,7 +83,7 @@ def run_sim(js_fname):
     ret = []
     t_abs = 0
     ts = np.array([])
-    t_cols = []
+    t_cols = np.array([])
     for i,d in enumerate(data['sequence']):
         params = deepcopy(data)
         params["beams"] = d["beams"]
@@ -101,9 +101,9 @@ def run_sim(js_fname):
             #ret.append(sim_methods[data["solver"]](params)(d['detuning']))
             ret = [sim_methods[data["solver"]](params)(args)]
         
-        t_col = get_t_col()
-        if(t_col!=None):
-            t_cols.append(t_abs + d['t0'])
+        t_col = np.array(get_t_col())
+        if(t_col != None).any():
+            t_cols = np.append(t_cols, t_col + d['t0'])
 
         print("Completed pulse %d out of %d" % (i+1,len(data['sequence'])))
     data['ts'] = ts
@@ -115,8 +115,8 @@ def run_sim(js_fname):
     if(not isinstance(ret[0],qtip.Qobj)):
         ret = ret.reshape((-1,(2**data['n_ion'])*data['n_num'],1))
 
-    if(t_cols !=[]):
-        data['t_col'] = np.array(t_col).flatten()
+    if(t_cols.size > 0):
+        data['t_col'] = np.array(t_cols).flatten()
     return ret, data
 
 if __name__ == "__main__":
