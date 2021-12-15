@@ -1,19 +1,19 @@
 {
-    "solver"        : "QuTiP_C_mult_laser_generic_collapse",
+    "solver"        : "ME_C_mult_laser_generic_collapse",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
     "nu0Hz"         : null,
     "nu0"           : 1e6,
 
-    "n_num"         : 40,
+    "n_num"         : 20,
     "n_ion"         : 2,
 
     "ntraj"         : 1,
 
     "state0"        :
         {
-            "builder"       : "Generic_coherent_state",
+            "builder"       : "Generic_state",
 
             "alpha"         : {
                 "size"          : 1.41421356237,
@@ -22,7 +22,7 @@
 
             "states"        : [
                 {
-                    "n"             : 10,
+                    "n"             : 2,
                     "atoms"         : [false,false],
                     "factor"        : {
                         "size"          : 1,
@@ -31,7 +31,7 @@
                 }
             ]
         },
-
+    
     "c_param"       : {
         "c_operator"        : "heating_collapse",
 
@@ -46,13 +46,13 @@
     "sequence"      : [
         {
             "reltime"       : 0,
-            "abstime"       : 15e-3,
-            "n_t"           : 10000,
+            "abstime"       : 600e-6,
+            "n_t"           : 1000,
     
             "beams"         : [
                 {
-                    "detuning"      : 0.9,
-                    "Omega0_rel"    : 0.1,
+                    "detuning"      : 0.95,
+                    "Omega0_rel"    : 0.177,
                     "Omega0"        : null,
                     "Omega0Hz"      : null,
 
@@ -61,11 +61,11 @@
                     "phase_match"   : false,
                     "abspi"         : false,
 
-                    "ion"           : 0
+                    "ion"           : null
                 },
                 {
-                    "detuning"      : -0.9,
-                    "Omega0_rel"    : 0.1,
+                    "detuning"      : -0.95,
+                    "Omega0_rel"    : 0.177,
                     "Omega0"        : null,
                     "Omega0Hz"      : null,
 
@@ -74,7 +74,7 @@
                     "phase_match"   : false,
                     "abspi"         : false,
 
-                    "ion"           : 1
+                    "ion"           : null
                 }
             ]
         }

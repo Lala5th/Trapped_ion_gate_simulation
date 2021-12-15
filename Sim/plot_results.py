@@ -77,6 +77,24 @@ def load_QuTiP_seq(fname):
 
     return state_data, ts, n_num, t0s, n_ion, t_col
 
+def load_ME_seq(fname):
+    
+    d = np.load(fname,allow_pickle=True)
+    ts = d['ts']
+    s3d = d['s3d']
+    n_num, n_ion = d['metadata']
+    t0s = d['t0s']
+
+    state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex).reshape((-1,2**n_ion,n_num,2**n_ion,n_num))
+    state_data = np.reshape(np.einsum('k...->...k',np.asarray(state_data,dtype = np.complex128)),(2**n_ion,n_num,2**n_ion,n_num,-1))
+
+    if 't_col' in d:
+        t_col = d['t_col']
+    else:
+        t_col = None
+
+    return state_data, ts, n_num, t0s, n_ion, t_col
+
 def load_QuTiP_meas(fname):
     
     d = np.load(fname,allow_pickle=True)
@@ -356,6 +374,49 @@ def plot_seq_scan_dm(data_pack):
         params = json.load(jsfile)
 
     density_matrix = np.einsum(params['prep'],state_data,np.conj(state_data))
+    _, ax = plt.subplots()
+    ps = []
+    legend = []
+    for m_index in params['plot']:
+        p, =  ax.plot(1e6*ts,np.real(density_matrix)[tuple(m_index['index'])],label = f"Re({m_index['label']})")
+        ax.plot(1e6*ts,np.imag(density_matrix)[tuple(m_index['index'])],label = f"Im({m_index['label']})",linestyle='dashed',c=p.get_color())
+        if(ps == []):
+            ps.append(plt.Line2D([0],[0],color='black'))
+            ps.append(plt.Line2D([0],[0],color='black',linestyle='dashed'))
+            legend.append("Real")
+            legend.append("Imag")
+        ps.append(p)
+        legend.append(f"{m_index['label']}")
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(1e6*(t0 + t),linestyle='dashdot')
+        t0 += t
+
+    if(t_cols is not None):
+        for t in t_cols:
+            ax.axvline(1e6*t,0,0.25,color='red')
+
+    ax.legend(ps,legend)
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("Time [$\\mu$s]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
+def plot_me_seq_scan_dm(data_pack):
+    global ax, args
+
+    state_data, ts, _, t0s, _, t_cols = data_pack
+    with open(args[2]) as jsfile:
+        params = json.load(jsfile)
+
+    density_matrix = np.einsum(params['prep'],state_data)
 
     _, ax = plt.subplots()
     ps = []
@@ -535,12 +596,11 @@ def plot_seq_scan_Wigner(data_pack):
     # cat_state = (1/np.sqrt(2))*(coherent_state(5) + coherent_state(-5))
     # density_matrix = np.array(np.einsum('i,j->ij',cat_state,np.conj(cat_state))).reshape((n_num,n_num,1))
 
-    ps = np.linspace(-3,3,61)
-    xs = np.linspace(-3,3,61)
+    ps = np.linspace(-3,3,301)
+    xs = np.linspace(-3,3,301)
 
     bound = 2*const.pi/(2*(ps[1] - ps[0]))
     fft_offsets = np.linspace(-bound, bound, ps.size)
-    print(fftfreq(fft_offsets.size,fft_offsets[1]-fft_offsets[0]))
 
     @lru_cache(maxsize=None)
     def get_wigner_func(id):
@@ -550,16 +610,14 @@ def plot_seq_scan_Wigner(data_pack):
             for os in fft_offsets:
                 col.append(np.einsum('i,ij,j->',np.conj(coherent_state(x + os/2)), density_matrix[:,:,id], coherent_state(x - os/2)))
             dmfft.append(col)
-        wigner = np.abs(fftshift(fft(dmfft,axis=1),axes=1))
+        wigner = np.abs(np.real(fftshift(fft(dmfft,axis=1),axes=1)))
         wigner = np.reshape(wigner,(xs.size,ps.size)).T
         return wigner
 
     wigner = get_wigner_func(0)
 
-    norm = colors.Normalize(0,np.max(wigner)*1.05)
-
-    plt.set_cmap('gnuplot')
     fig, ax = plt.subplots()
+    plt.set_cmap('gnuplot')
     fig.subplots_adjust(bottom=0.25)
     psa = np.append(ps, ps[-1] + ps[1] - ps[0])
     psa -= (ps[1] - ps[0])/2
@@ -604,7 +662,97 @@ def plot_seq_scan_Wigner(data_pack):
         fig.canvas.draw_idle()
 
     time_slider.on_changed(update_time)
+    plt.show()
 
+
+def plot_me_seq_scan_Wigner(data_pack):
+    global ax, fig, time_slider
+
+    state_data, ts, n_num, t0s, _, _ = data_pack
+
+    @lru_cache(maxsize=None)
+    def coherent_state(alpha):
+        ret = []
+        fact = np.exp(-np.abs(alpha)**2/2)
+        for i in range(n_num):
+            if(i != 0):
+                fact /= np.sqrt(i)
+                fact *= alpha
+            
+            ret.append(fact)
+        return np.array(ret,dtype=np.complex128)
+
+    density_matrix = np.einsum('ijikm->jkm',state_data)
+    # cat_state = (1/np.sqrt(2))*(coherent_state(1j))
+    # density_matrix = np.array(np.einsum('i,j->ij',cat_state,np.conj(cat_state))).reshape((n_num,n_num,1))
+
+    ps = np.linspace(-3,3,301)
+    xs = np.linspace(-3,3,301)
+
+    bound = 2*const.pi/(2*(ps[1] - ps[0]))
+    fft_offsets = np.linspace(-bound, bound, ps.size)
+
+    @lru_cache(maxsize=None)
+    def get_wigner_func(id):
+        dmfft = []
+        for x in xs:
+            col = []
+            for os in fft_offsets:
+                col.append(np.einsum('i,ij,j->',np.conj(coherent_state(x + os/2)), density_matrix[:,:,id], coherent_state(x - os/2)))
+            dmfft.append(col)
+        wigner = np.abs(np.real(fftshift(fft(dmfft,axis=1),axes=1)))
+        wigner = np.reshape(wigner,(xs.size,ps.size)).T
+        return wigner
+
+    wigner = get_wigner_func(0)
+
+    fig, ax = plt.subplots()
+    plt.set_cmap('gnuplot')
+    fig.subplots_adjust(bottom=0.25)
+    psa = np.append(ps, ps[-1] + ps[1] - ps[0])
+    psa -= (ps[1] - ps[0])/2
+    xsa = np.append(xs, xs[-1] + xs[1] - xs[0])
+    xsa -= (xs[1] - xs[0])/2
+    mesh = ax.pcolormesh(xsa,psa,wigner)
+    axc = fig.colorbar(mesh)
+    axc.set_label('W[$\\hbar$]')
+
+    # ax.legend()
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("x[1]")
+    ax.set_ylabel("p[$\\hbar$]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    axtime = fig.add_axes([0.25, 0.1, 0.65, 0.03])
+    time_slider = Slider(
+        ax=axtime,
+        label="Time[$\\mu$s]",
+        valmin=ts[0]*1e6,
+        valmax=ts[-1]*1e6,
+        valinit=ts[0]*1e6,
+        orientation="horizontal",
+        valfmt="%2.4lf"
+    )
+
+    for i in t0s:
+        axtime.axvline(i,linestyle='dashdot')
+
+    def update_time(val):
+        nonlocal mesh,axc
+        id = np.argmin(np.abs(val - 1e6*ts))
+        mesh.remove()
+        wigner = get_wigner_func(id)
+        mesh = ax.pcolormesh(xsa,psa,wigner)
+        ax.grid()
+        axc.update_normal(mesh)
+        fig.canvas.draw_idle()
+
+    time_slider.on_changed(update_time)
+    plt.show()
 
 
 plot_methods = {
@@ -619,6 +767,8 @@ plot_methods = {
     'qutip_seq_wigner'      : [load_QuTiP_seq,plot_seq_scan_Wigner],
     'qutip_meas'            : [load_QuTiP_meas,plot_meas_scan],
     'qutip_meas_projeg'     : [load_QuTiP_meas,plot_meas_scan_projeg],
+    'me_seq_dm'             : [load_ME_seq,plot_me_seq_scan_dm],
+    'me_seq_wigner'         : [load_ME_seq,plot_me_seq_scan_Wigner],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }

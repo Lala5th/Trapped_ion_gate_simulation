@@ -107,11 +107,7 @@ def run_sim(js_fname):
 
         print("Completed pulse %d out of %d" % (i+1,len(data['sequence'])))
     data['ts'] = ts
-    npret = np.array([],dtype=object)
-    for a in ret:
-        for b in a:
-            npret = np.append(npret,b)
-    ret = npret
+    ret = np.array(ret).flatten()
     if(not isinstance(ret[0],qtip.Qobj)):
         ret = ret.reshape((-1,(2**data['n_ion'])*data['n_num'],1))
 
