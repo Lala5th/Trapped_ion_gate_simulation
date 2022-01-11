@@ -22,7 +22,7 @@
 
             "states"        : [
                 {
-                    "n"             : 2,
+                    "n"             : 0,
                     "atoms"         : [false,false],
                     "factor"        : {
                         "size"          : 1,
@@ -35,18 +35,19 @@
     "c_param"       : {
         "c_operator"        : "heating_collapse",
 
+
         "n_therm"           : 2,
-        "Gamma"             : 2e2
+        "Gamma"             : 0
     },
 
-    "eta0"          : 0.10,
+    "eta0"          : 0.1,
 
     "t_prep"        : 0,
 
     "sequence"      : [
         {
             "reltime"       : 0,
-            "abstime"       : 600e-6,
+            "abstime"       : 250e-6,
             "n_t"           : 1000,
     
             "beams"         : [

@@ -11,6 +11,7 @@ from functools import lru_cache
 from matplotlib import colors, cm
 from scipy.optimize import minimize
 from numpy.fft import fft, fftfreq, fftshift
+from misc_funcs import factor
 
 def multiple_formatter(denominator=2, number=np.pi, latex='\\pi'):
     def gcd(a, b):
@@ -453,6 +454,113 @@ def plot_me_seq_scan_dm(data_pack):
 
     plt.show()
 
+def plot_me_seq_scan_phase(data_pack):
+    global ax, args
+
+    density_matrix, ts, n_num, _, n_ion, _ = data_pack
+
+    # @lru_cache(maxsize=None)
+    # def coherent_state(alpha):
+    #     ret = []
+    #     fact = np.exp(-np.abs(alpha)**2/2)
+    #     for i in range(n_num):
+    #         if(i != 0):
+    #             fact /= np.sqrt(i)
+    #             fact *= alpha
+            
+    #         ret.append(fact)
+    #     return np.array(ret,dtype=np.complex128)
+
+    proj = np.ones((2**n_ion,2**n_ion))
+    # for i in range(4):
+    #     for j in range(4):
+    #         if ((i == 1 or i == 2) and (j == 3 or j == 0)) or \
+    #            ((j == 1 or j == 2) and (i == 3 or i == 0)):
+    #             proj[i,j] *= -1
+    proj /= 4
+    # proj = np.identity(2**n_ion)
+    # proj = np.einsum('ij,kl->ikjl',proj,np.eye(n_num))
+    density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
+
+    a = np.zeros((n_num,n_num))
+    adag = np.zeros((n_num,n_num))
+    for i in range(n_num-1):
+        a[i,i+1] = np.sqrt(i+1)
+        adag[i+1,i] = np.sqrt(i+1)
+        
+    at = lambda t : np.einsum('ij,k->ijk',a,np.exp(-1j*1e6*t))
+    adagt = lambda t : np.einsum('ij,k->ijk',adag,np.exp(1j*1e6*t))
+    xhat = (a + adag)/np.sqrt(2)
+    phat = -1j*(a - adag)/np.sqrt(2)
+
+    Jy = np.zeros((2**n_ion,2**n_ion),dtype=np.complex128)
+    Jyp = np.zeros((2**n_ion,2**n_ion),dtype=np.complex128)
+    Jym = np.zeros((2**n_ion,2**n_ion),dtype=np.complex128)
+
+    for i in range(n_ion):
+        Jy_p = None
+        Jy_plus = None
+        Jy_minus = None
+        for j in range(n_ion):
+            if(j==i):
+                Jy_pp = np.array([[0,1],[1,0]],dtype=np.complex128)
+                Jy_pplus = np.array([[0,0],[1j,0]],dtype=np.complex128)
+                Jy_pminus = np.array([[0,-1j],[0,0]],dtype=np.complex128)
+            else:
+                Jy_pp = np.identity(2,dtype=np.complex128)
+                Jy_pplus = np.identity(2,dtype=np.complex128)
+                Jy_pminus = np.identity(2,dtype=np.complex128)
+            if(Jy_p is not None):
+                Jy_p = np.kron(Jy_p,Jy_pp)
+                Jy_plus = np.kron(Jy_plus,Jy_pplus)
+                Jy_minus = np.kron(Jy_minus,Jy_pminus)
+            else:
+                Jy_p = Jy_pp
+                Jy_plus = Jy_pplus
+                Jy_minus = Jy_pminus
+        Jy += Jy_p
+        Jyp += Jy_plus
+        Jym += Jy_minus
+
+    Jy /= n_ion
+    Jyp /= n_ion
+    Jym /= n_ion
+
+    # Jy = np.einsum('ij,kl->ikjl',Jy,np.identity(n_num))
+    Jyt = lambda t : np.einsum('ij,k->ijk',Jyp,np.exp(-1j*411e12*t)) + np.einsum('ij,k->ijk',Jym,np.exp(1j*411e12*t))
+
+    xdata = np.real(np.einsum('ijimk,mj->k',density_matrix,xhat))
+    ydata = np.real(np.einsum('ijimk,mj->k',density_matrix,phat))
+
+    # ydata = np.real(np.einsum('ijimk,mjk->k',density_matrix,1j*(at(ts) - adagt(ts))))
+    # xdata = np.real(np.einsum('ijimk,mjk->k',density_matrix,(at(ts) + adagt(ts))))
+
+    # density_matrix = np.einsum('ijikt->jkt',density_matrix)
+
+    # xdata = []
+    # ydata = []
+
+    # for i in range(density_matrix.shape[2]):
+    #     p = minimize(lambda x : -np.abs(np.einsum('i,ij,j->',np.conj(coherent_state(x[0] + 1j*x[1])),density_matrix[:,:,i],coherent_state(x[0] + 1j*x[1]))),x0 = (1,0)).x
+    #     xdata.append(p[0])
+    #     ydata.append(p[1])
+
+    _, ax = plt.subplots()
+    ax.plot(xdata,(ydata))
+
+
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("$\\langle$x$\\rangle$")
+    ax.set_ylabel("$\\langle$p$\\rangle$")
+    # ax.set_yscale("logit")
+    ax.set_aspect('equal','datalim')
+    ax.grid()
+
+    plt.show()
+
 def plot_seq_scan_projeg(data_pack):
     global ax
 
@@ -668,7 +776,18 @@ def plot_seq_scan_Wigner(data_pack):
 def plot_me_seq_scan_Wigner(data_pack):
     global ax, fig, time_slider
 
-    state_data, ts, n_num, t0s, _, _ = data_pack
+    state_data, ts, n_num, t0s, n_ion, _ = data_pack
+
+    proj = np.ones((2**n_ion,2**n_ion))
+    # for i in range(4):
+    #     for j in range(4):
+    #         if ((i == 1 or i == 2) and (j == 3 or j == 0)) or \
+    #            ((j == 1 or j == 2) and (i == 3 or i == 0)):
+    #             proj[i,j] *= -1
+    proj /= 4
+    print(proj)
+    # proj = np.einsum('ij,kl->ikjl',proj,np.eye(n_num))
+    state_data = np.einsum('ij,jlont,om->ilmnt',proj,state_data,proj)
 
     @lru_cache(maxsize=None)
     def coherent_state(alpha):
@@ -754,6 +873,47 @@ def plot_me_seq_scan_Wigner(data_pack):
     time_slider.on_changed(update_time)
     plt.show()
 
+def plot_me_seq_scan_fidelity(data_pack):
+    global ax, args
+
+    state_data, ts, _, t0s, _, t_cols = data_pack
+    with open(args[2]) as jsfile:
+        params = json.load(jsfile)
+
+    density_matrix = np.einsum(params['prep'],state_data)
+
+    _, ax = plt.subplots()
+    target = np.zeros(density_matrix.shape[:int((len(density_matrix.shape)-1)/2)],dtype=np.complex128)
+    for m_index in params['target']:
+        target[tuple(m_index['index'])] += factor(m_index['factor'])
+
+    target /= np.sqrt(np.sum(target*np.conj(target)))
+
+    ax.plot(ts*1e6,np.abs(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
+    ax.legend()
+    print(target)
+
+    t0 = 0
+    for t in t0s:
+        ax.axvline(1e6*(t0 + t),linestyle='dashdot')
+        t0 += t
+
+    if(t_cols is not None):
+        for t in t_cols:
+            ax.axvline(1e6*t,0,0.25,color='red')
+
+    # ax.legend(ps,legend)
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel("Time [$\\mu$s]")
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
+
 
 plot_methods = {
     'qutip_time'            : [load_QuTiP,plot_time_scan],
@@ -768,7 +928,9 @@ plot_methods = {
     'qutip_meas'            : [load_QuTiP_meas,plot_meas_scan],
     'qutip_meas_projeg'     : [load_QuTiP_meas,plot_meas_scan_projeg],
     'me_seq_dm'             : [load_ME_seq,plot_me_seq_scan_dm],
+    'me_seq_phase'          : [load_ME_seq,plot_me_seq_scan_phase],
     'me_seq_wigner'         : [load_ME_seq,plot_me_seq_scan_Wigner],
+    'me_seq_fidelity'       : [load_ME_seq,plot_me_seq_scan_fidelity],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }

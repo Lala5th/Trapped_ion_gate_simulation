@@ -21,5 +21,7 @@ build
 !Sim/MS_heating.json
 !Sim/MS_Fig3.json
 !Sim/plot_dm.json
+!Sim/plot_fidelity.json
+!Sim/Strong_coupling.json
 !Sim/plot_dm_fig3.json
 *.db

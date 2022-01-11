@@ -562,7 +562,7 @@ def ME_C_mult_laser_generic_collapse(data):
     # Simulation ranges
     ts = data["ts"]
 
-    state0 = state0*state0.dag()
+    state0 = state0
 
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
