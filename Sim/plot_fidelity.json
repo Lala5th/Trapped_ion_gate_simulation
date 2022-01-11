@@ -1,0 +1,20 @@
+{
+    "prep"          : "ijljk->ilk",
+    "expectation"   : "i,ijk,j->k",
+    "target"          : [
+        {
+            "index"         : [0],
+            "factor"        : {
+                "size"          : 1,
+                "phase"         : 0.25
+            }
+        },
+        {
+            "index"         : [3],
+            "factor"        : {
+                "size"          : 1,
+                "phase"         : -0.25
+            }
+        }
+    ]
+}
