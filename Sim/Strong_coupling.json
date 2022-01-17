@@ -39,7 +39,7 @@
 
 
         "n_therm"           : 2,
-        "Gamma"             : 2e2
+        "Gamma"             : 0
     },
 
     "eta0"          : 0.01,
@@ -50,8 +50,9 @@
         {
             "builder"       : "strong_coupling2",
             "n_t"           : 1000,
-            "phase"         : -0.5,
-            "detuning"      : 0.025
+            "phase"         : 0.5,
+            "detuning"      : null,
+			"Omega0"		: 0.2
         }
     ],
 

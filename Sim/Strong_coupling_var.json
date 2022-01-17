@@ -60,7 +60,8 @@
                 "builder"       : "strong_coupling2",
                 "n_t"           : 200,
                 "phase"         : 0.5,
-                "detuning"      : 0.025
+                "detuning"      : null,
+				"Omega0"		: 0.1
             }
         ]
 

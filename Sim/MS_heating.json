@@ -46,39 +46,11 @@
 
     "sequence"      : [
         {
-            "reltime"       : 0,
-            "abstime"       : 250e-6,
-            "n_t"           : 1000,
-    
-            "beams"         : [
-                {
-                    "detuning"      : 0.95,
-                    "Omega0_rel"    : 0.177,
-                    "Omega0"        : null,
-                    "Omega0Hz"      : null,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 0,
-                    "phase_match"   : false,
-                    "abspi"         : false,
-
-                    "ion"           : null
-                },
-                {
-                    "detuning"      : -0.95,
-                    "Omega0_rel"    : 0.177,
-                    "Omega0"        : null,
-                    "Omega0Hz"      : null,
-
-                    "phase0"        : null,
-                    "phase0abs"     : 0,
-                    "phase_match"   : false,
-                    "abspi"         : false,
-
-                    "ion"           : null
-                }
-            ]
-        }
+			"builder"       : "fast_ms",
+			"n_t"           : 1000,
+			"K"         	: 2,
+			"detuning"      : 0.05
+		}
     ],
 
     "output"        : true,
