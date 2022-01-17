@@ -37,7 +37,7 @@
 
 
         "n_therm"           : 2,
-        "Gamma"             : 0
+        "Gamma"             : 2e2
     },
 
     "eta0"          : 0.1,

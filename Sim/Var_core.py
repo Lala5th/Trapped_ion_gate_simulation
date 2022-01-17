@@ -9,11 +9,33 @@ import qutip as qtip
 from c_exp_direct import c_exp
 from expm_decomp import entry, simplified_matrix_data, manual_taylor_expm
 from copy import deepcopy
+from multiprocessing import Pool
 from misc_funcs import sequence_builders
+
+def get_nested_key(a,key,val):
+    for k in key:
+        a = a[k]
+    a = val
 
 def parse_json(js_fname):
     with open(js_fname, "r") as fp:
-        data = json.load(fp)
+        js_obj = json.load(fp)
+
+    data = js_obj['template']
+    params = js_obj['params']
+
+    for param in params:
+        param['value'] = np.linspace(*param['range'])
+
+
+    return js_obj
+
+def fill_template(data,params):
+    for p in params:
+        a = [data]
+        for k in p['key'][:-1]:
+            a = a[-1][k]
+        a[-1][p['key'][-1]] = p['value']
 
     n_num = data['n_num']
 
@@ -42,7 +64,7 @@ def parse_json(js_fname):
         seqs = sequence_builders[sb['builder']](data,sb)
         for s in seqs:
             data['sequence'].append(s)
-    
+
     for d in data['sequence']:
 
         for _,beam in enumerate(d["beams"]):
@@ -79,17 +101,14 @@ def parse_json(js_fname):
         data['state0']['n_ion'] = data['n_ion']
     else:
         data['n_ion'] = 1
-
     return data
-
-def run_sim(js_fname):
     
-    data = parse_json(js_fname)
+def run_templated_sim(data):
+    
+    params = data['params']
 
-    if(data["solver"] not in sim_methods.keys()):
-        raise KeyError("No solver named %s exists, use one of %s" % (data["solver"], str(sim_methods)))
+    data = fill_template(data['template'],params)
 
-    print("Got data:\n%s" % (str(data),))
     ret = []
     t_abs = 0
     ts = np.array([])
@@ -119,17 +138,44 @@ def run_sim(js_fname):
     data['ts'] = ts
     ret = np.array(ret).flatten()
     if(not isinstance(ret[0],qtip.Qobj)):
-        ret = ret.reshape((-1,(2**data['n_ion'])*data['n_num'],1))
+        ret = ret.reshape((ts.size,-1))
 
     if(t_cols.size > 0):
         data['t_col'] = np.array(t_cols).flatten()
-    return ret, data
+    return ret[-1]
+
+def run_var(js_fname):
+    
+    data = parse_json(js_fname)
+    print("Got template:\n%s\nParams:\n%s" % (str(data['template']),str(data['params'])))
+
+    def gen_map(params):
+        ret = []
+        for p in params[0]['value']:
+            val = {'key' : params[0]['key'], 'value' : p}
+            if(len(params) != 1):
+                for a in gen_map(params[0]):
+                    ret.append([a.append(val)])
+            else:
+                ret.append([val])     
+        return ret
+    ps = gen_map(data['params'])
+    templates = []
+    print(ps)
+    for p in ps:
+        templates.append(deepcopy(data))
+        templates[-1]['params'] = p
+
+    with Pool(8) as process_pool:
+        results = process_pool.map(run_templated_sim,templates)
+
+    return results,data
 
 if __name__ == "__main__":
 
     from sys import argv
     args = argv[1:]
-    result, data = run_sim(args[0])
+    result, data = run_var(args[0])
     
     if(data['output']):
         if(isinstance(result[0],qtip.Qobj)):
@@ -138,9 +184,5 @@ if __name__ == "__main__":
             result = np.array(result,dtype=np.complex128)
         if(data["fname"] == None):
             data["fname"] = "temp"
-        metadata = [data['n_num'],data['n_ion']]
-        t0s = [d['abstime'] for d in data['sequence']]
-        if('t_col' not in data):
-            np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s)
-        else:
-            np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s, t_col = data['t_col'])
+        metadata = [data['template']['n_num'],data['template']['n_ion']]
+        np.savez(data["fname"], s3d = result,metadata=metadata,params=[i['value'] for i in data['params']],param_id=[i['key'] for i in data['params']])

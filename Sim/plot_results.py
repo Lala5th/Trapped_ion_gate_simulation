@@ -96,6 +96,19 @@ def load_ME_seq(fname):
 
     return state_data, ts, n_num, t0s, n_ion, t_col
 
+def load_ME_var(fname):
+    
+    d = np.load(fname,allow_pickle=True)
+    s3d = d['s3d']
+    n_num, n_ion = d['metadata']
+    params = d['params']
+    param_id = d['param_id']
+
+    state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex).reshape((-1,2**n_ion,n_num,2**n_ion,n_num))
+    state_data = np.reshape(np.einsum('k...->...k',np.asarray(state_data,dtype = np.complex128)),(2**n_ion,n_num,2**n_ion,n_num,-1))
+
+    return state_data, params, n_num, param_id, n_ion, None
+
 def load_QuTiP_meas(fname):
     
     d = np.load(fname,allow_pickle=True)
@@ -480,7 +493,8 @@ def plot_me_seq_scan_phase(data_pack):
     proj /= 4
     # proj = np.identity(2**n_ion)
     # proj = np.einsum('ij,kl->ikjl',proj,np.eye(n_num))
-    density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
+    # proj = np.array([[1,1j,1j,-1],[-1j,1,1,1j],[-1j,1,1,1j],[-1,-1j,-1j,1]])/4
+    # density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
 
     a = np.zeros((n_num,n_num))
     adag = np.zeros((n_num,n_num))
@@ -503,7 +517,7 @@ def plot_me_seq_scan_phase(data_pack):
         Jy_minus = None
         for j in range(n_ion):
             if(j==i):
-                Jy_pp = np.array([[0,1],[1,0]],dtype=np.complex128)
+                Jy_pp = np.array([[0,-1j],[1j,0]],dtype=np.complex128)
                 Jy_pplus = np.array([[0,0],[1j,0]],dtype=np.complex128)
                 Jy_pminus = np.array([[0,-1j],[0,0]],dtype=np.complex128)
             else:
@@ -525,12 +539,14 @@ def plot_me_seq_scan_phase(data_pack):
     Jy /= n_ion
     Jyp /= n_ion
     Jym /= n_ion
-
+    # density_matrix = np.einsum('ij,jklmt,ln->iknmt',Jy,density_matrix,Jy)
+    # print(Jy)
     # Jy = np.einsum('ij,kl->ikjl',Jy,np.identity(n_num))
+    # Jy = np.identity(2**n_ion)
     Jyt = lambda t : np.einsum('ij,k->ijk',Jyp,np.exp(-1j*411e12*t)) + np.einsum('ij,k->ijk',Jym,np.exp(1j*411e12*t))
 
-    xdata = np.real(np.einsum('ijimk,mj->k',density_matrix,xhat))
-    ydata = np.real(np.einsum('ijimk,mj->k',density_matrix,phat))
+    xdata = np.real(np.einsum('ijlmk,mj,li->k',density_matrix,xhat,Jy))
+    ydata = np.real(np.einsum('ijlmk,mj,li->k',density_matrix,phat,Jy))
 
     # ydata = np.real(np.einsum('ijimk,mjk->k',density_matrix,1j*(at(ts) - adagt(ts))))
     # xdata = np.real(np.einsum('ijimk,mjk->k',density_matrix,(at(ts) + adagt(ts))))
@@ -914,6 +930,37 @@ def plot_me_seq_scan_fidelity(data_pack):
 
     plt.show()
 
+def plot_var_1d(data_pack):
+    global ax, args
+
+    state_data, ps, _, param_ids, _, _ = data_pack
+    with open(args[2]) as jsfile:
+        params = json.load(jsfile)
+
+    density_matrix = np.einsum(params['prep'],state_data)
+
+    _, ax = plt.subplots()
+    target = np.zeros(density_matrix.shape[:int((len(density_matrix.shape)-1)/2)],dtype=np.complex128)
+    for m_index in params['target']:
+        target[tuple(m_index['index'])] += factor(m_index['factor'])
+
+    target /= np.sqrt(np.sum(target*np.conj(target)))
+    ax.plot(ps[0],np.abs(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
+    ax.legend()
+    print(target)
+
+
+    # ax.legend(ps,legend)
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel(param_ids[0][0])
+    ax.set_ylabel("p[1]")
+    # ax.set_yscale("logit")
+    ax.grid()
+
+    plt.show()
 
 plot_methods = {
     'qutip_time'            : [load_QuTiP,plot_time_scan],
@@ -931,6 +978,7 @@ plot_methods = {
     'me_seq_phase'          : [load_ME_seq,plot_me_seq_scan_phase],
     'me_seq_wigner'         : [load_ME_seq,plot_me_seq_scan_Wigner],
     'me_seq_fidelity'       : [load_ME_seq,plot_me_seq_scan_fidelity],
+    'me_var_1d_fidelity'    : [load_ME_var,plot_var_1d],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }

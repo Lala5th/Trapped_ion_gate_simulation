@@ -166,3 +166,59 @@ def heating_collapse(param):
 collapse_operators = {
     'heating_collapse'      : heating_collapse
 }
+
+def raw_sequence(_,params):
+    return params['sequence']
+
+def strong_coupling2(data,params):
+    Omega0 = np.sqrt((1+data['eta0']**2 - np.sqrt((1+data['eta0']**2)**2 - 4*params['phase']*3*data['eta0']**2))/(6*data['eta0']**2))*np.exp(data['eta0']**2/2)/data['eta0']
+    # assert Omega0 > 0
+    Omega0 *= params['detuning']*data['nu0']
+    sequence = [{
+        "reltime"          : 0,
+        "abstime"          : 2*const.pi/(params['detuning']*data['nu0']),
+        "n_t"              : params['n_t'],
+        "beams"            : []
+    }]
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0,
+        "detuning"          : 1-2*params['detuning'],
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0,
+        "detuning"          : -1+2*params['detuning'],
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : -Omega0,
+        "detuning"          : 2-params['detuning'],
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0,
+        "detuning"          : -2+params['detuning'],
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    return sequence
+
+sequence_builders = {
+    "raw"               : raw_sequence,
+    "strong_coupling2"  : strong_coupling2
+}

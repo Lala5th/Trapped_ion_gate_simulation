@@ -23,5 +23,6 @@ build
 !Sim/plot_dm.json
 !Sim/plot_fidelity.json
 !Sim/Strong_coupling.json
+!Sim/Strong_coupling_var.json
 !Sim/plot_dm_fig3.json
 *.db
