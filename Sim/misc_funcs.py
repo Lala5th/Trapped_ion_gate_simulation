@@ -171,8 +171,15 @@ def raw_sequence(_,params):
     return params['sequence']
 
 def fast_ms(data,params):
-    Omega0 = (params["detuning"]*data["nu0"])/(2*data['eta0']*np.sqrt(params['K']))
-    time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
+    if (params['detuning'] is not None):
+        Omega0 = (params["detuning"]*data["nu0"])/(2*data['eta0']*np.sqrt(params['K']))
+        time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
+        detuning  = params['detuning']
+    else:
+        detuning = (params["Omega0"])*(2*data['eta0']*np.sqrt(params['K']))
+        Omega0  = params['Omega0']*data['nu0']
+        time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
+
     sequence = [{
         "reltime"          : 0,
         "abstime"          : time,
@@ -181,7 +188,7 @@ def fast_ms(data,params):
     }]
     sequence[0]["beams"].append({
         "Omega0"            : Omega0,
-        "detuning"          : 1-params['detuning'],
+        "detuning"          : 1-detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
         "abspi"             : False,
@@ -190,7 +197,7 @@ def fast_ms(data,params):
     })
     sequence[0]["beams"].append({
         "Omega0"            : Omega0,
-        "detuning"          : -1+params['detuning'],
+        "detuning"          : -1+detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
         "abspi"             : False,

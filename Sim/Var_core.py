@@ -166,7 +166,7 @@ def run_var(js_fname):
         templates.append(deepcopy(data))
         templates[-1]['params'] = p
 
-    with Pool(16) as process_pool:
+    with Pool(4) as process_pool:
         results = process_pool.map(run_templated_sim,templates)
 
     return results,data

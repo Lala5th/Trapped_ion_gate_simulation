@@ -37,7 +37,7 @@
 
 
         "n_therm"           : 2,
-        "Gamma"             : 2e2
+        "Gamma"             : 0
     },
 
     "eta0"          : 0.1,
@@ -49,7 +49,8 @@
 			"builder"       : "fast_ms",
 			"n_t"           : 1000,
 			"K"         	: 2,
-			"detuning"      : 0.05
+			"detuning"      : null,
+            "Omega0"        : 0.05
 		}
     ],
 

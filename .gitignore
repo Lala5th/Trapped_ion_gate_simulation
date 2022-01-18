@@ -19,6 +19,7 @@ build
 !Sim/seq_time_evo.json
 !Sim/MS_gate.json
 !Sim/MS_heating.json
+!Sim/MS_heating_var.json
 !Sim/MS_Fig3.json
 !Sim/plot_dm.json
 !Sim/plot_fidelity.json
