@@ -48,11 +48,11 @@
 
     "sequence"      : [
         {
-            "builder"       : "strong_coupling3",
+            "builder"       : "strong_coupling2",
             "n_t"           : 1000,
-            "phase"         : -0.5,
+            "phase"         : 1,
             "detuning"      : null,
-			"Omega0"		: 0.2
+            "Omega0"		: 0.1
         }
     ],
 

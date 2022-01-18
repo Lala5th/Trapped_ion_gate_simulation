@@ -210,11 +210,11 @@ def strong_coupling2(data,params):
     r = np.roots([3*data['eta0']**2,-(1+data['eta0']**2),params['phase']])
     frac = np.sqrt(r[np.logical_and((r.imag==0),(r.real>=0))].real.min())*np.exp(data['eta0']**2/2)/data['eta0']
     if (params['detuning'] is not None):
-        Omega0 = frac*params['detuning']*data['nu0']
+        Omega0 = -1j*frac*params['detuning']*data['nu0']
         detuning = params['detuning']
     else:
         detuning = params['Omega0']/frac
-        Omega0 = params['Omega0']*data['nu0']
+        Omega0 = -1j*params['Omega0']*data['nu0']
 
     sequence = [{
         "reltime"          : 0,
@@ -232,7 +232,7 @@ def strong_coupling2(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : -Omega0,
         "detuning"          : -1+2*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -241,7 +241,7 @@ def strong_coupling2(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0,
+        "Omega0"            : Omega0,
         "detuning"          : 2-detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -265,11 +265,11 @@ def strong_coupling3(data,params):
     f = np.sqrt(r[(r.imag==0) & (r.real>=0) ].real.min())
     frac = f*np.exp(data['eta0']**2/2)/data['eta0']
     if (params['detuning'] is not None):
-        Omega0 = frac*params['detuning']*data['nu0']
+        Omega0 = -1j*frac*params['detuning']*data['nu0']
         detuning = params['detuning']
     else:
         detuning = params['Omega0']/frac
-        Omega0 = params['Omega0']*data['nu0']
+        Omega0 = -1j*params['Omega0']*data['nu0']
     sequence = [{
         "reltime"          : 0,
         "abstime"          : 2*const.pi/(detuning*data['nu0']),
@@ -286,7 +286,7 @@ def strong_coupling3(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : -Omega0,
         "detuning"          : -1+5*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -295,7 +295,7 @@ def strong_coupling3(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0*2/np.sqrt(5),
+        "Omega0"            : Omega0*2/np.sqrt(5),
         "detuning"          : 2-2*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -313,7 +313,7 @@ def strong_coupling3(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -f*Omega0*7/(np.sqrt(5)*5),
+        "Omega0"            : f*Omega0*7/(np.sqrt(5)*5),
         "detuning"          : 2+7*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -331,7 +331,7 @@ def strong_coupling3(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0*np.sqrt(3/5),
+        "Omega0"            : -Omega0*np.sqrt(3/5),
         "detuning"          : 3-detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
