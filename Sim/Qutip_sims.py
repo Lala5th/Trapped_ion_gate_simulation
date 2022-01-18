@@ -443,7 +443,7 @@ def QuTiP_C_mult_laser_generic_collapse(data):
 
     # Create Hamiltonian
     def H_i(arg):
-        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=1), nu0)
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
         ret = []
         for d in data['beams']:
             H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
