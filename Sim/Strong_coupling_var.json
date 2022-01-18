@@ -3,7 +3,7 @@
     "params"    : [
         {
             "key"   : ["eta0"],
-            "range" : [0.01,0.4,40]
+            "range" : [0.2,0.54,16]
         }
     ],
 
@@ -58,8 +58,8 @@
         "sequence"      : [
             {
                 "builder"       : "strong_coupling2",
-                "n_t"           : 200,
-                "phase"         : 0.5,
+                "n_t"           : 1000,
+                "phase"         : -0.5,
                 "detuning"      : null,
 				"Omega0"		: 0.1
             }

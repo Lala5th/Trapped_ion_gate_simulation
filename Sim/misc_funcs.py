@@ -207,7 +207,8 @@ def fast_ms(data,params):
     return sequence
 
 def strong_coupling2(data,params):
-    frac = np.sqrt((1+data['eta0']**2 - np.sqrt((1+data['eta0']**2)**2 - 4*params['phase']*3*data['eta0']**2))/(6*data['eta0']**2))*np.exp(data['eta0']**2/2)/data['eta0']
+    r = np.roots([3*data['eta0']**2,-(1+data['eta0']**2),params['phase']])
+    frac = np.sqrt(r[np.logical_and((r.imag==0),(r.real>=0))].real.min())*np.exp(data['eta0']**2/2)/data['eta0']
     if (params['detuning'] is not None):
         Omega0 = frac*params['detuning']*data['nu0']
         detuning = params['detuning']
@@ -259,8 +260,99 @@ def strong_coupling2(data,params):
     })
     return sequence
 
+def strong_coupling3(data,params):
+    r = np.roots([382/1875,-(56/75)*(2+1/(data['eta0']**2)),1+2/(data['eta0']**2)+2/(data['eta0']**4),5*params['phase']/(data['eta0']**4)])
+    f = np.sqrt(r[(r.imag==0) & (r.real>=0) ].real.min())
+    frac = f*np.exp(data['eta0']**2/2)/data['eta0']
+    if (params['detuning'] is not None):
+        Omega0 = frac*params['detuning']*data['nu0']
+        detuning = params['detuning']
+    else:
+        detuning = params['Omega0']/frac
+        Omega0 = params['Omega0']*data['nu0']
+    sequence = [{
+        "reltime"          : 0,
+        "abstime"          : 2*const.pi/(detuning*data['nu0']),
+        "n_t"              : params['n_t'],
+        "beams"            : []
+    }]
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0,
+        "detuning"          : 1-5*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0,
+        "detuning"          : -1+5*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : -Omega0*2/np.sqrt(5),
+        "detuning"          : 2-2*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0*2/np.sqrt(5),
+        "detuning"          : -2+2*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : -f*Omega0*7/(np.sqrt(5)*5),
+        "detuning"          : 2+7*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : f*Omega0*7/(np.sqrt(5)*5),
+        "detuning"          : -2-7*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0*np.sqrt(3/5),
+        "detuning"          : 3-detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : Omega0*np.sqrt(3/5),
+        "detuning"          : -3+detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    return sequence
+
 sequence_builders = {
     "raw"               : raw_sequence,
     "fast_ms"           : fast_ms,
-    "strong_coupling2"  : strong_coupling2
+    "strong_coupling2"  : strong_coupling2,
+    "strong_coupling3"  : strong_coupling3
 }
