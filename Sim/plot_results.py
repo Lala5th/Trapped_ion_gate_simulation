@@ -944,11 +944,11 @@ def plot_var_1d(data_pack):
     for m_index in params['target']:
         target[tuple(m_index['index'])] += factor(m_index['factor'])
 
-    target /= np.sqrt(np.sum(target*np.conj(target)))
+    target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
     if(params['fidelity']):
-        ax.plot(ps[0],np.abs(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
+        ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
     else:
-        ax.plot(ps[0],1-np.abs(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Infidelity")
+        ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Infidelity")
     ax.legend()
     print(target)
 

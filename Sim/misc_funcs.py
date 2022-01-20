@@ -207,7 +207,7 @@ def fast_ms(data,params):
     return sequence
 
 def strong_coupling2(data,params):
-    r = np.roots([3*data['eta0']**2,-(1+data['eta0']**2),params['phase']])
+    r = np.roots([3*(data['eta0'])**2,-(1+data['eta0']**2),params['phase']])
     frac = np.sqrt(r[np.logical_and((r.imag==0),(r.real>=0))].real.min())*np.exp(data['eta0']**2/2)/data['eta0']
     if (params['detuning'] is not None):
         Omega0 = -1j*frac*params['detuning']*data['nu0']
@@ -261,7 +261,7 @@ def strong_coupling2(data,params):
     return sequence
 
 def strong_coupling3(data,params):
-    r = np.roots([382/1875,-(56/75)*(2+1/(data['eta0']**2)),1+2/(data['eta0']**2)+2/(data['eta0']**4),5*params['phase']/(data['eta0']**4)])
+    r = np.roots([382/1875,-(56/75)*(2+1/(data['eta0']**2)),1+2/(data['eta0']**2)+2/(data['eta0']**4),-5*params['phase']/(data['eta0']**4)])
     f = np.sqrt(r[(r.imag==0) & (r.real>=0) ].real.min())
     frac = f*np.exp(data['eta0']**2/2)/data['eta0']
     if (params['detuning'] is not None):

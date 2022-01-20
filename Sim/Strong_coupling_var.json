@@ -3,12 +3,12 @@
     "params"    : [
         {
             "key"   : ["eta0"],
-            "range" : [0.2,0.5,21]
+            "range" : [0.01,0.5,100]
         }
     ],
 
     "template"  : {
-        "solver"        : "ME_C_mult_laser_generic_collapse",
+        "solver"        : "SC_paper",
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
@@ -22,7 +22,7 @@
 
         "state0"        :
             {
-                "builder"       : "Thermal_state",
+                "builder"       : "Generic_state",
 
                 "n"             : 0,
 
@@ -33,7 +33,7 @@
 
                 "states"        : [
                     {
-                        "n"             : 2,
+                        "n"             : 1,
                         "atoms"         : [false,false],
                         "factor"        : {
                             "size"          : 1,
@@ -57,7 +57,7 @@
 
         "sequence"      : [
             {
-                "builder"       : "strong_coupling2",
+                "builder"       : "strong_coupling3",
                 "n_t"           : 1000,
                 "phase"         : 0.5,
                 "detuning"      : null,
