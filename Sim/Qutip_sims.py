@@ -715,7 +715,7 @@ def ME_C_mult_laser_generic_collapse_reduced(data):
                 H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
                 
             for i in H_i_p:
-                if abs(i[1]/data['nu0'] - d['detuning']) > np.abs(10*d['Omega0']/data['nu0']):
+                if abs(i[1]/data['nu0'] - d['detuning']) > np.abs(20*d['Omega0']/data['nu0']):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])

@@ -1,7 +1,7 @@
 {
     "prep"          : "ijljk->ilk",
     "expectation"   : "i,ijk,j->k",
-    "fidelity"      : true,
+    "fidelity"      : false,
     "target"          : [
         {
             "index"         : [0],

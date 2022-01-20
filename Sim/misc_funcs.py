@@ -152,13 +152,12 @@ def heating_collapse(param):
     c2 = np.sqrt(param['Gamma']*param['n_therm'])*qtip.create(param['n_num'])
 
     c_A = None
-    for i in range(param['n_ion']):
+    for _ in range(param['n_ion']):
         if(c_A == None):
             c_A = qtip.identity(2)
         else:
             c_A = qtip.tensor(c_A,qtip.identity(2))
         
-    c = c1 + c2
     c1 = qtip.tensor(c_A,c1)
     c2 = qtip.tensor(c_A,c2)
     return [c1,c2]
@@ -350,9 +349,45 @@ def strong_coupling3(data,params):
     })
     return sequence
 
+def cardioid(data,params):
+    if (params['detuning'] is not None):
+        Omega0 = params['detuning']*data['nu0']/(2*data['eta0'])
+        detuning = params['detuning']
+    else:
+        detuning = params['Omega0']*2*data['eta0']
+        Omega0 = params['Omega0']*data['nu0']
+    r = params['r']/np.sqrt(np.sum([ri*ri/ni for ri,ni in zip(params['r'],params['n'])]))
+    sequence = [{
+        "reltime"          : 0,
+        "abstime"          : 2*const.pi/(detuning*data['nu0']),
+        "n_t"              : params['n_t'],
+        "beams"            : []
+    }]
+    for ri,ni in zip(r,params['n']):
+        sequence[0]["beams"].append({
+            "Omega0"            : 1j*ri*Omega0,
+            "detuning"          : 1+ni*detuning,
+            "phase0abs"         : 0,
+            "phase_match"       : False,
+            "abspi"             : False,
+            "ion"               : None,
+            "phase0"            : 0
+        })
+        sequence[0]["beams"].append({
+            "Omega0"            : 1j*ri*Omega0,
+            "detuning"          : -1-ni*detuning,
+            "phase0abs"         : 0,
+            "phase_match"       : False,
+            "abspi"             : False,
+            "ion"               : None,
+            "phase0"            : 0
+        })
+    return sequence
+
 sequence_builders = {
     "raw"               : raw_sequence,
     "fast_ms"           : fast_ms,
     "strong_coupling2"  : strong_coupling2,
-    "strong_coupling3"  : strong_coupling3
+    "strong_coupling3"  : strong_coupling3,
+    "cardioid"          : cardioid
 }

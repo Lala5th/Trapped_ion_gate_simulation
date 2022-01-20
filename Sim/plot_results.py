@@ -470,7 +470,7 @@ def plot_me_seq_scan_dm(data_pack):
 def plot_me_seq_scan_phase(data_pack):
     global ax, args
 
-    density_matrix, ts, n_num, _, n_ion, _ = data_pack
+    density_matrix, _, n_num, _, n_ion, _ = data_pack
 
     # @lru_cache(maxsize=None)
     # def coherent_state(alpha):
@@ -494,7 +494,7 @@ def plot_me_seq_scan_phase(data_pack):
     # proj = np.identity(2**n_ion)
     # proj = np.einsum('ij,kl->ikjl',proj,np.eye(n_num))
     # proj = np.array([[1,1j,1j,-1],[-1j,1,1,1j],[-1j,1,1,1j],[-1,-1j,-1j,1]])/4
-    # density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
+    density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
 
     a = np.zeros((n_num,n_num))
     adag = np.zeros((n_num,n_num))
@@ -502,8 +502,8 @@ def plot_me_seq_scan_phase(data_pack):
         a[i,i+1] = np.sqrt(i+1)
         adag[i+1,i] = np.sqrt(i+1)
         
-    at = lambda t : np.einsum('ij,k->ijk',a,np.exp(-1j*1e6*t))
-    adagt = lambda t : np.einsum('ij,k->ijk',adag,np.exp(1j*1e6*t))
+    # at = lambda t : np.einsum('ij,k->ijk',a,np.exp(-1j*1e6*t))
+    # adagt = lambda t : np.einsum('ij,k->ijk',adag,np.exp(1j*1e6*t))
     xhat = (a + adag)/np.sqrt(2)
     phat = -1j*(a - adag)/np.sqrt(2)
 
@@ -542,8 +542,8 @@ def plot_me_seq_scan_phase(data_pack):
     # density_matrix = np.einsum('ij,jklmt,ln->iknmt',Jy,density_matrix,Jy)
     # print(Jy)
     # Jy = np.einsum('ij,kl->ikjl',Jy,np.identity(n_num))
-    # Jy = np.identity(2**n_ion)
-    Jyt = lambda t : np.einsum('ij,k->ijk',Jyp,np.exp(-1j*411e12*t)) + np.einsum('ij,k->ijk',Jym,np.exp(1j*411e12*t))
+    Jy = np.identity(2**n_ion)
+    # Jyt = lambda t : np.einsum('ij,k->ijk',Jyp,np.exp(-1j*411e12*t)) + np.einsum('ij,k->ijk',Jym,np.exp(1j*411e12*t))
 
     xdata = np.real(np.einsum('ijlmk,mj,li->k',density_matrix,xhat,Jy))
     ydata = np.real(np.einsum('ijlmk,mj,li->k',density_matrix,phat,Jy))
@@ -945,13 +945,13 @@ def plot_var_1d(data_pack):
         target[tuple(m_index['index'])] += factor(m_index['factor'])
 
     target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
+    # density_matrix /= np.sqrt(np.einsum('iik->k',np.abs(density_matrix)))
     if(params['fidelity']):
         ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
     else:
         ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Infidelity")
     ax.legend()
     print(target)
-
 
     # ax.legend(ps,legend)
     # fig2, ax2 = plt.subplots()
