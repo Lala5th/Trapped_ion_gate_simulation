@@ -946,11 +946,9 @@ def plot_var_1d(data_pack):
 
     target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
     density_matrix /= np.sqrt(np.einsum(params['norm'],np.abs(density_matrix)))
-    if(params['fidelity']):
-        ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
-    else:
-        ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Infidelity")
-    ax.legend()
+
+    ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+    # ax.legend()
     print(target)
 
     # ax.legend(ps,legend)
@@ -959,7 +957,11 @@ def plot_var_1d(data_pack):
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
     ax.set_xlabel(str(param_ids[0]))
-    ax.set_ylabel("p[1]")
+    if(params['fidelity']):
+        ax.set_ylabel("Fidelity [1]")
+    else:
+        ax.set_ylabel("Infidelity [1]")
+
     # ax.set_yscale("logit")
     ax.grid()
 
