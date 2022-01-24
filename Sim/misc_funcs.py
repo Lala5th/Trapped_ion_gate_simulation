@@ -186,7 +186,7 @@ def fast_ms(data,params):
         "beams"            : []
     }]
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : -1j*Omega0,
         "detuning"          : 1-detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -195,7 +195,7 @@ def fast_ms(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : -1j*Omega0,
         "detuning"          : -1+detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -365,8 +365,8 @@ def cardioid(data,params):
     }]
     for ri,ni in zip(r,params['n']):
         sequence[0]["beams"].append({
-            "Omega0"            : 1j*ri*Omega0,
-            "detuning"          : 1+ni*detuning,
+            "Omega0"            : ri*Omega0,
+            "detuning"          : 1-ni*detuning,
             "phase0abs"         : 0,
             "phase_match"       : False,
             "abspi"             : False,
@@ -374,8 +374,8 @@ def cardioid(data,params):
             "phase0"            : 0
         })
         sequence[0]["beams"].append({
-            "Omega0"            : 1j*ri*Omega0,
-            "detuning"          : -1-ni*detuning,
+            "Omega0"            : ri*Omega0,
+            "detuning"          : -1+ni*detuning,
             "phase0abs"         : 0,
             "phase_match"       : False,
             "abspi"             : False,

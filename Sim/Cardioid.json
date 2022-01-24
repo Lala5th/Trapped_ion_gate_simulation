@@ -13,7 +13,7 @@
 
     "state0"        :
         {
-            "builder"       : "Generic_state",
+            "builder"       : "Thermal_state",
 
             "n"             : 0,
 
@@ -24,7 +24,7 @@
 
             "states"        : [
                 {
-                    "n"             : 1,
+                    "n"             : 2,
                     "atoms"         : [false,false],
                     "factor"        : {
                         "size"          : 1,
@@ -48,14 +48,16 @@
 
     "sequence"      : [
         {
-            "builder"       : "strong_coupling3",
+            "builder"       : "cardioid",
             "n_t"           : 1000,
-            "phase"         : 0.5,
+            "n"             : [2,3],
+            "r"             : [1,-1],
             "detuning"      : null,
             "Omega0"		: 0.1
         }
     ],
 
     "output"        : true,
-    "fname"         : "strong_coupling.npz"
+    "fname"         : "cardioid.npz"
+    
 }

@@ -494,7 +494,7 @@ def plot_me_seq_scan_phase(data_pack):
     # proj = np.identity(2**n_ion)
     # proj = np.einsum('ij,kl->ikjl',proj,np.eye(n_num))
     # proj = np.array([[1,1j,1j,-1],[-1j,1,1,1j],[-1j,1,1,1j],[-1,-1j,-1j,1]])/4
-    density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
+    # density_matrix = np.einsum('ij,jklmt,ln->iknmt',proj,density_matrix,proj)
 
     a = np.zeros((n_num,n_num))
     adag = np.zeros((n_num,n_num))
@@ -542,7 +542,7 @@ def plot_me_seq_scan_phase(data_pack):
     # density_matrix = np.einsum('ij,jklmt,ln->iknmt',Jy,density_matrix,Jy)
     # print(Jy)
     # Jy = np.einsum('ij,kl->ikjl',Jy,np.identity(n_num))
-    Jy = np.identity(2**n_ion)
+    # Jy = np.identity(2**n_ion)
     # Jyt = lambda t : np.einsum('ij,k->ijk',Jyp,np.exp(-1j*411e12*t)) + np.einsum('ij,k->ijk',Jym,np.exp(1j*411e12*t))
 
     xdata = np.real(np.einsum('ijlmk,mj,li->k',density_matrix,xhat,Jy))
@@ -569,8 +569,8 @@ def plot_me_seq_scan_phase(data_pack):
     # ax2.plot(t,sol[0])
     # ax2.plot(t,sol[1])
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
-    ax.set_xlabel("$\\langle$x$\\rangle$")
-    ax.set_ylabel("$\\langle$p$\\rangle$")
+    ax.set_xlabel("$\\langle\\hat{J_y}\\hat{x}\\rangle$")
+    ax.set_ylabel("$\\langle\\hat{J_y}\\hat{p}\\rangle$")
     # ax.set_yscale("logit")
     ax.set_aspect('equal','datalim')
     ax.grid()
@@ -945,7 +945,7 @@ def plot_var_1d(data_pack):
         target[tuple(m_index['index'])] += factor(m_index['factor'])
 
     target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
-    # density_matrix /= np.sqrt(np.einsum('iik->k',np.abs(density_matrix)))
+    density_matrix /= np.sqrt(np.einsum(params['norm'],np.abs(density_matrix)))
     if(params['fidelity']):
         ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)),label="Fidelity")
     else:
@@ -958,7 +958,7 @@ def plot_var_1d(data_pack):
     # ax2.plot(t,sol[0])
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
-    ax.set_xlabel(param_ids[0][0])
+    ax.set_xlabel(str(param_ids[0]))
     ax.set_ylabel("p[1]")
     # ax.set_yscale("logit")
     ax.grid()
