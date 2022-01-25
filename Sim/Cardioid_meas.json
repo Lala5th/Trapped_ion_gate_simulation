@@ -1,0 +1,74 @@
+{
+
+    "params"    : [
+        {
+            "key"   : ["t_prep"],
+            "range" : [0,1e-3,1001]
+        }
+    ],
+
+    "template"  : {
+        "solver"        : "SC_paper",
+
+        "omega0Hz"      : 411e12,
+        "omega0"        : null,
+        "nu0Hz"         : null,
+        "nu0"           : 1e6,
+
+        "n_num"         : 20,
+        "n_ion"         : 2,
+
+        "ntraj"         : 1,
+
+        "state0"        :
+            {
+                "builder"       : "Final_dm",
+
+                "sim_file"      : "cardioid.npz",
+                "n"             : 0,
+
+                "alpha"         : {
+                    "size"          : 1.41421356237,
+                    "phase"         : 0
+                },
+
+                "states"        : [
+                    {
+                        "n"             : 2,
+                        "atoms"         : [false,false],
+                        "factor"        : {
+                            "size"          : 1,
+                            "phase"         : 0
+                        }
+                    }
+                ]
+            },
+        
+        "c_param"       : {
+            "c_operator"        : "heating_collapse",
+
+
+            "n_therm"           : 2,
+            "Gamma"             : 0
+        },
+
+        "eta0"          : 0.1,
+
+        "t_prep"        : 0,
+
+        "sequence"      : [
+            {
+                "builder"       : "cardioid",
+                "n_t"           : 2,
+                "n"             : [2,3],
+                "r"             : [1,-1],
+                "detuning"      : null,
+				"Omega0"		: 0.1
+            }
+        ]
+
+    },
+
+    "output"        : true,
+    "fname"         : "cardioid_meas.npz"
+}

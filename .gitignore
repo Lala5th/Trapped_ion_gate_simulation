@@ -27,5 +27,7 @@ build
 !Sim/Strong_coupling_var.json
 !Sim/Cardioid.json
 !Sim/Cardioid_var.json
+!Sim/Cardioid_meas.json
+!Sim/plot_excited.json
 !Sim/plot_dm_fig3.json
 *.db

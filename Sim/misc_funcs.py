@@ -16,9 +16,26 @@ def Single_state(data):
 def Final_state(data):
     sim = np.load(data['sim_file'], allow_pickle=True)
     states = sim['s3d']
-    final = qtip.Qobj(states[-1],dims=[[2,data['n_num']],[1,1]])
+    dim = []
+    dim0 = []
+    for _ in range(data['n_ion']):
+        dim0.append(1)
+        dim.append(2)
+    dim0.append(1)
+    dim.append(data['n_num'])
+    final = qtip.Qobj(states[-1],dims=[dim,dim0])
     return final
-    
+
+def Final_dm(data):
+    sim = np.load(data['sim_file'], allow_pickle=True)
+    states = np.reshape(sim['s3d'],[-1,2**data['n_ion']*data['n_num'],2**data['n_ion']*data['n_num']])
+    dim = []
+    for _ in range(data['n_ion']):
+        dim.append(2)
+    dim.append(data['n_num'])
+    final = qtip.Qobj(states[-1],dims=[dim,dim])
+    return final
+
 def Multiple_state(data):
     ret = qtip.Qobj(dims=[[2,data['n_num']],[1,1]])
     for s in data['states']:
@@ -139,6 +156,7 @@ def Thermal_state(data):
 state_builders = {
     'Single_state'              : Single_state,
     'Final_state'               : Final_state,
+    'Final_dm'                  : Final_dm,
     'Multiple_state'            : Multiple_state,
     'Coherent_state'            : Coherent_state,
     'Generic_state'             : Generic_state,

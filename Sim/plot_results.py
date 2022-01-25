@@ -947,7 +947,10 @@ def plot_var_1d(data_pack):
     target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
     density_matrix /= np.sqrt(np.einsum(params['norm'],np.abs(density_matrix)))
 
-    ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+    if(params['fidelity']):
+        ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+    else:
+        ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
     # ax.legend()
     print(target)
 
