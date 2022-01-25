@@ -1,5 +1,5 @@
 {
-    "solver"        : "ME_C_mult_laser_generic_collapse_reduced",
+    "solver"        : "SC_paper",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,

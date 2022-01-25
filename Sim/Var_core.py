@@ -21,7 +21,7 @@ def parse_json(js_fname):
     with open(js_fname, "r") as fp:
         js_obj = json.load(fp)
 
-    data = js_obj['template']
+    # data = js_obj['template']
     params = js_obj['params']
 
     for param in params:
@@ -166,7 +166,7 @@ def run_var(js_fname):
         templates.append(deepcopy(data))
         templates[-1]['params'] = p
 
-    with Pool(8) as process_pool:
+    with Pool(16) as process_pool:
         results = process_pool.map(run_templated_sim,templates)
 
     return results,data
