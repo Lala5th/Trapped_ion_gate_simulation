@@ -9,6 +9,23 @@ from c_exp_direct import c_exp
 from misc_funcs import state_builders, collapse_operators
 from qutip.ui.progressbar import EnhancedTextProgressBar
 
+def state_error(data):
+    if(data.get('zeta',None) is None):
+        return None
+    
+    Sz = None
+    sz = qtip.sigmaz()
+    identity = qtip.identity(2)
+    for i in range(data['n_ion']):
+        Sz_p = None
+        for j in range(data['n_ion']):
+            c = identity if i != j else sz
+            Sz_p = c if Sz_p is None else qtip.tensor(Sz_p,c)
+        Sz = Sz_p if Sz is None else Sz + Sz_p
+    Sz = qtip.tensor(Sz,qtip.identity(data['n_num']))
+
+    return data['zeta']*Sz/2
+
 # def QuTiP_full(data):
 
 #     # Set up constants
@@ -475,6 +492,9 @@ def QuTiP_C_mult_laser_generic_collapse(data):
             for i in H_i_p:
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+        err = state_error(data)
+        if err is not None:
+            ret.append(err)
         return ret
 
     params = data['c_param']
@@ -552,6 +572,9 @@ def ME_C_mult_laser_generic_collapse(data):
             for i in H_i_p:
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+        err = state_error(data)
+        if err is not None:
+            ret.append(err)
         return ret
 
     params = data['c_param']
@@ -640,6 +663,9 @@ def SC_paper(data):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+        err = state_error(data)
+        if err is not None:
+            ret.append(err)
         return ret
 
     params = data['c_param']
@@ -719,6 +745,9 @@ def ME_C_mult_laser_generic_collapse_reduced(data):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+        err = state_error(data)
+        if err is not None:
+            ret.append(err)
         return ret
 
     params = data['c_param']

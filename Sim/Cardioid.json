@@ -10,6 +10,7 @@
     "n_ion"         : 2,
 
     "ntraj"         : 1,
+    "zeta"          : 1e3,
 
     "state0"        :
         {
