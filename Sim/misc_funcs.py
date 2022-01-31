@@ -404,9 +404,9 @@ def cardioid(data,params):
 
 def add_carrier_S(data,params):
     sequence = sequence_builders[params['inner']['builder']](data,params['inner'])
-    Omega0 = 1j*2*const.pi*params['m']/sequence[0]['abstime'] if params['y'] else 2*const.pi*params['m']/sequence[0]['abstime']
+    Omega0 = 2*const.pi*params['m']/sequence[0]['abstime']
     sequence[0]['beams'].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : Omega0*np.exp(-1j*const.pi*params['phi']),
         "detuning"          : 0,
         "phase0abs"         : 0,
         "phase_match"       : False,

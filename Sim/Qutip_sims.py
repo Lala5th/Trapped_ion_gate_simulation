@@ -602,7 +602,6 @@ def SC_paper(data):
 
     # Set up params
     n_num = data["n_num"]
-    nu0 = data['nu0']
 
     # Set up standard operators
     # Most of these could be called on demand, however 

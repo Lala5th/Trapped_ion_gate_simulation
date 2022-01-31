@@ -2,13 +2,13 @@
 
     "params"    : [
         {
-            "key"   : ["eta0"],
-            "range" : [0.01,1,100]
+            "key"   : ["zeta"],
+            "range" : [0,1e4,101]
         }
     ],
 
     "template"  : {
-        "solver"        : "ME_C_mult_laser_generic_collapse",
+        "solver"        : "SC_paper",
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
@@ -51,17 +51,25 @@
             "Gamma"             : 0
         },
 
-        "eta0"          : null,
+        "eta0"          : 0.1,
 
         "t_prep"        : 0,
+        "zeta"          : 0,
 
         "sequence"      : [
             {
-                "builder"       : "strong_coupling3",
-                "n_t"           : 1000,
-                "phase"         : 0.5,
-                "detuning"      : null,
-				"Omega0"		: 0.1
+                "builder"       : "Add_carrier_S",
+                "m"             : 0,
+                "y"             : true,
+    
+                "inner"         : {
+                    "builder"       : "strong_coupling3",
+                    "n_t"           : 1000,
+                    "phase"         : 0.5,
+                    "K"             : 2,
+                    "detuning"      : null,
+                    "Omega0"		: 0.1
+                }
             }
         ]
 

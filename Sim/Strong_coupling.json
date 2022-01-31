@@ -50,7 +50,7 @@
     "sequence"      : [
         {
             "builder"       : "Add_carrier_S",
-            "m"             : 2,
+            "m"             : 1,
             "y"             : true,
 
             "inner"         : {

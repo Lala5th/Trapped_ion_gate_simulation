@@ -2,8 +2,8 @@
 
     "params"    : [
         {
-            "key"   : ["eta0"],
-            "range" : [0.01,1,100]
+            "key"   : ["zeta"],
+            "range" : [0,1e4,101]
         }
     ],
 
@@ -51,18 +51,25 @@
             "Gamma"             : 0
         },
 
-        "eta0"          : null,
+        "eta0"          : 0.1,
+        "zeta"          : 0,
 
         "t_prep"        : 0,
 
         "sequence"      : [
             {
-                "builder"       : "cardioid",
-                "n_t"           : 1000,
-                "n"             : [2,3],
-                "r"             : [1,-1],
-                "detuning"      : null,
-				"Omega0"		: 0.1
+                "builder"       : "Add_carrier_S",
+                "m"             : 5,
+                "phi"           : 0.5,
+    
+                "inner"         : {
+                        "builder"       : "cardioid",
+                        "n_t"           : 1000,
+                        "n"             : [2,3],
+                        "r"             : [1,-1],
+                        "detuning"      : null,
+                        "Omega0"		: 0.1
+                    }
             }
         ]
 
