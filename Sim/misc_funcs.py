@@ -402,10 +402,25 @@ def cardioid(data,params):
         })
     return sequence
 
+def add_carrier_S(data,params):
+    sequence = sequence_builders[params['inner']['builder']](data,params['inner'])
+    Omega0 = 1j*2*const.pi*params['m']/sequence[0]['abstime'] if params['y'] else 2*const.pi*params['m']/sequence[0]['abstime']
+    sequence[0]['beams'].append({
+        "Omega0"            : Omega0,
+        "detuning"          : 0,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : 0
+    })
+    return sequence
+
 sequence_builders = {
     "raw"               : raw_sequence,
     "fast_ms"           : fast_ms,
     "strong_coupling2"  : strong_coupling2,
     "strong_coupling3"  : strong_coupling3,
-    "cardioid"          : cardioid
+    "cardioid"          : cardioid,
+    "Add_carrier_S"     : add_carrier_S
 }
