@@ -4,7 +4,7 @@
         {
             "key"   : ["xi"],
             "label" : "$\\xi [\\frac{1}{s}]$",
-            "range" : [0,20e3,51]
+            "range" : [0,10e3,21]
         }
     ],
 
@@ -60,7 +60,7 @@
         "sequence"      : [
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 10,
+                "m"             : 1000,
                 "y"             : true,
     
                 "inner"         : {
@@ -69,7 +69,7 @@
                     "phase"         : 0.5,
                     "K"             : 2,
                     "detuning"      : null,
-                    "Omega0"		: 0.1
+                    "Omega0"		: 0.01
                 }
             }
         ]
