@@ -2,19 +2,19 @@
 
     "params"    : [
         {
-            "key"   : ["xi"],
-            "label" : "$\\xi [\\frac{1}{s}]$",
-            "range" : [0,20e3,51]
+            "key"   : ["sequence",-1,"sequence",0,"beams",0,"phase0"],
+            "label" : "$\\phi [\\pi]$",
+            "range" : [0,2,32]
         }
     ],
 
     "template"  : {
         "solver"        : "ME_Interaction_OR",
 
-        "omega0Hz"      : 411e12,
+        "omega0Hz"      : 3.2e9,
         "omega0"        : null,
-        "nu0Hz"         : null,
-        "nu0"           : 1e6,
+        "nu0Hz"         : 3.255e6,
+        "nu0"           : null,
 
         "n_num"         : 20,
         "n_ion"         : 2,
@@ -55,27 +55,47 @@
         "eta0"          : 0.1,
 
         "t_prep"        : 0,
-        "xi"            : 0,
+        "xi"            : 20,
 
         "sequence"      : [
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 10,
-                "y"             : true,
+                "Omegac"        : 23.24778563656447e3,
+                "y"             : false,
     
                 "inner"         : {
-                    "builder"       : "strong_coupling3",
-                    "n_t"           : 1000,
+                    "builder"       : "fast_ms",
+                    "n_t"           : 2,
                     "phase"         : 0.5,
-                    "K"             : 2,
+                    "K"             : 4,
                     "detuning"      : null,
-                    "Omega0"		: 0.1
+                    "Omega0"		: 9.462365591397849e-04
                 }
+            },
+            {
+                "builder"       : "raw",
+                "sequence"      : [
+                    {
+                        "abstime"           : 157.07963e-6,
+                        "n_t"               : 2,
+                        "beams"             : [
+                            {
+                                "Omega0"            : 1e4,
+                                "detuning"          : 0,
+                                "phase0abs"         : 0,
+                                "phase_match"       : false,
+                                "abspi"             : false,
+                                "ion"               : null,
+                                "phase0"            : null
+                            }
+                        ]
+                    }
+                ]
             }
         ]
 
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling_var.npz"
+    "fname"         : "ddms_meas.npz"
 }

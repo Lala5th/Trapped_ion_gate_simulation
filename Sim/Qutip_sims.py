@@ -823,6 +823,7 @@ def ME_Interaction_OR(data):
 
     # Create Hamiltonian
     def H_i(arg):
+        C_corr = False
         H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
         ret = []
         for d in data['beams']:
@@ -830,6 +831,8 @@ def ME_Interaction_OR(data):
             if(d.get('carrier_corr',False)):
                 ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(np.abs(d['Omega0'])*t)])
                 ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if d['y'] else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(np.abs(d['Omega0'])*t)])
+                assert not C_corr
+                C_corr = True
                 continue
 
             H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
@@ -863,9 +866,9 @@ def ME_Interaction_OR(data):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
-        # err = state_error(data)
-        # if err is not None:
-        #     ret.append(err)
+        err = state_error(data)
+        if err is not None and not C_corr:
+            ret.append(err)
         return ret
 
     params = data['c_param']

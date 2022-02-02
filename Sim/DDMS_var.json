@@ -2,19 +2,19 @@
 
     "params"    : [
         {
-            "key"   : ["xi"],
-            "label" : "$\\xi [\\frac{1}{s}]$",
-            "range" : [0,20e3,51]
+            "key"   : ["sequence",0,"inner","detuning"],
+            "label" : "$\\delta/\\nu_0 [1]$",
+            "range" : [0,0.0006144393241167435,101]
         }
     ],
 
     "template"  : {
         "solver"        : "ME_Interaction_OR",
 
-        "omega0Hz"      : 411e12,
+        "omega0Hz"      : 3.2e9,
         "omega0"        : null,
-        "nu0Hz"         : null,
-        "nu0"           : 1e6,
+        "nu0Hz"         : 3.255e6,
+        "nu0"           : null,
 
         "n_num"         : 20,
         "n_ion"         : 2,
@@ -55,21 +55,21 @@
         "eta0"          : 0.1,
 
         "t_prep"        : 0,
-        "xi"            : 0,
+        "xi"            : 0e3,
 
         "sequence"      : [
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 10,
+                "Omegac"        : 23.24778563656447e3,
                 "y"             : true,
     
                 "inner"         : {
-                    "builder"       : "strong_coupling3",
+                    "builder"       : "fast_ms",
                     "n_t"           : 1000,
                     "phase"         : 0.5,
-                    "K"             : 2,
+                    "K"             : 4,
                     "detuning"      : null,
-                    "Omega0"		: 0.1
+                    "Omega0"		: 9.462365591397849e-04
                 }
             }
         ]
@@ -77,5 +77,5 @@
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling_var.npz"
+    "fname"         : "ddms_var.npz"
 }

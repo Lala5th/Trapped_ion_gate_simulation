@@ -189,7 +189,11 @@ def raw_sequence(_,params):
     return params['sequence']
 
 def fast_ms(data,params):
-    if (params['detuning'] is not None):
+    if (params['detuning'] is not None and params['Omega0'] is not None):
+        detuning = params['detuning']
+        Omega0  = params['Omega0']*data['nu0']
+        time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
+    elif (params['detuning'] is not None):
         Omega0 = (params["detuning"]*data["nu0"])/(2*data['eta0']*np.sqrt(params['K']))
         time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
         detuning  = params['detuning']
@@ -405,7 +409,10 @@ def cardioid(data,params):
 
 def add_carrier_S(data,params):
     sequence = sequence_builders[params['inner']['builder']](data,params['inner'])
-    Omega0 = 2*const.pi*params['m']/sequence[0]['abstime']
+    if (params.get('Omegac',None) is not None):
+        Omega0 = params['Omegac']
+    else:
+        Omega0 = 2*const.pi*params['m']/sequence[0]['abstime']
     sequence[0]['beams'].append({
         "Omega0"            : Omega0,
         "carrier_corr"      : True,

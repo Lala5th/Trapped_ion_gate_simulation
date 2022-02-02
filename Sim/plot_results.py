@@ -12,6 +12,10 @@ from matplotlib import colors, cm
 from scipy.optimize import minimize
 from numpy.fft import fft, fftfreq, fftshift
 from misc_funcs import factor
+args = None
+
+try: ax
+except NameError: ax = None
 
 def multiple_formatter(denominator=2, number=np.pi, latex='\\pi'):
     def gcd(a, b):
@@ -106,7 +110,6 @@ def load_ME_var(fname):
 
     state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex).reshape((-1,2**n_ion,n_num,2**n_ion,n_num))
     state_data = np.reshape(np.einsum('k...->...k',np.asarray(state_data,dtype = np.complex128)),(2**n_ion,n_num,2**n_ion,n_num,-1))
-
     return state_data, params, n_num, labels, n_ion, None
 
 def load_QuTiP_meas(fname):
@@ -930,7 +933,7 @@ def plot_me_seq_scan_fidelity(data_pack):
 
     plt.show()
 
-def plot_var_1d(data_pack):
+def plot_var_1d_fid(data_pack):
     global ax, args
 
     state_data, ps, _, labels, _, _ = data_pack
@@ -938,8 +941,13 @@ def plot_var_1d(data_pack):
         params = json.load(jsfile)
 
     density_matrix = np.einsum(params['prep'],state_data)
+    if(len(args) <= 3):
+        _, ax = plt.subplots()
+        ax.grid()
+    elif(args[3] != "True"):
+        _, ax = plt.subplots()
+        ax.grid()
 
-    _, ax = plt.subplots()
     target = np.zeros(density_matrix.shape[:int((len(density_matrix.shape)-1)/2)],dtype=np.complex128)
     for m_index in params['target']:
         target[tuple(m_index['index'])] += factor(m_index['factor'])
@@ -966,8 +974,36 @@ def plot_var_1d(data_pack):
         ax.set_ylabel("Infidelity [1]")
 
     # ax.set_yscale("logit")
-    ax.grid()
 
+    plt.show()
+
+def plot_var_1d_exp(data_pack):
+    global ax, args
+
+    state_data, ps, _, labels, _, _ = data_pack
+    with open(args[2]) as jsfile:
+        params = json.load(jsfile)
+
+    density_matrix = np.einsum(params['prep'],state_data)
+
+    _, ax = plt.subplots()
+    target = np.array(params['target'])
+    # target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
+    density_matrix /= np.sqrt(np.einsum(params['norm'],np.abs(density_matrix)))
+    ax.plot(ps[0],np.real(np.einsum(params['expectation'],density_matrix,target)))
+    # ax.legend()
+    print(target)
+
+    # ax.legend(ps,legend)
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel(labels[0])
+    ax.set_ylabel(params['label'])
+
+    # ax.set_yscale("logit")
+    ax.grid()
     plt.show()
 
 plot_methods = {
@@ -986,30 +1022,8 @@ plot_methods = {
     'me_seq_phase'          : [load_ME_seq,plot_me_seq_scan_phase],
     'me_seq_wigner'         : [load_ME_seq,plot_me_seq_scan_Wigner],
     'me_seq_fidelity'       : [load_ME_seq,plot_me_seq_scan_fidelity],
-    'me_var_1d_fidelity'    : [load_ME_var,plot_var_1d],
+    'me_var_1d_fidelity'    : [load_ME_var,plot_var_1d_fid],
+    'me_var_1d_expectation' : [load_ME_var,plot_var_1d_exp],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }
-
-if __name__ == '__main__':
-    from sys import argv
-    import matplotlib as mpl
-
-    rcparams = {
-    # 'axes.titlesize'    : 18,
-    # 'axes.labelsize'    : 16,
-    # 'xtick.labelsize'   : 12,
-    # 'ytick.labelsize'   : 12,
-    # 'legend.fontsize'   : 12,
-    'font.size'         : 16
-    }
-    for e in rcparams.keys():
-        mpl.rcParams[e] = rcparams[e]
-
-    plt.ion()
-
-    args = argv[1:]
-    
-    last = args[1]
-    for m in plot_methods[args[0]]:
-        last = m(last)

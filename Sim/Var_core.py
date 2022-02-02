@@ -34,7 +34,7 @@ def fill_template(data,params):
     for p in params:
         a = [data]
         for k in p['key'][:-1]:
-            a = a[-1][k]
+            a.append(a[-1][k])
         a[-1][p['key'][-1]] = p['value']
 
     n_num = data['n_num']
@@ -165,7 +165,7 @@ def run_var(js_fname):
         templates.append(deepcopy(data))
         templates[-1]['params'] = p
 
-    with Pool(8) as process_pool:
+    with Pool(16) as process_pool:
         results = process_pool.map(run_templated_sim,templates)
 
     return results,data

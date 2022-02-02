@@ -1,0 +1,121 @@
+{
+
+    "params"    : [
+        {
+            "key"   : ["sequence",-1,"sequence",0,"beams",0,"phase0"],
+            "label" : "$\\phi [\\pi]$",
+            "range" : [0,2,32]
+        }
+    ],
+
+    "template"  : {
+        "solver"        : "ME_Interaction_OR",
+
+        "omega0Hz"      : 3.2e9,
+        "omega0"        : null,
+        "nu0Hz"         : 3.255e6,
+        "nu0"           : null,
+
+        "n_num"         : 20,
+        "n_ion"         : 1,
+
+        "ntraj"         : 1,
+
+        "state0"        :
+            {
+                "builder"       : "Generic_state",
+
+                "n"             : 0,
+
+                "alpha"         : {
+                    "size"          : 1.41421356237,
+                    "phase"         : 0
+                },
+
+                "states"        : [
+                    {
+                        "n"             : 1,
+                        "atoms"         : [false],
+                        "factor"        : {
+                            "size"          : 1,
+                            "phase"         : 0
+                        }
+                    }
+                ]
+            },
+        
+        "c_param"       : {
+            "c_operator"        : "heating_collapse",
+
+
+            "n_therm"           : 2,
+            "Gamma"             : 0
+        },
+
+        "eta0"          : 0.1,
+
+        "t_prep"        : 0,
+        "xi"            : 125.663706144,
+
+        "sequence"      : [
+            {
+                "builder"       : "raw",
+                "sequence"      : [
+                    {
+                        "abstime"           : 157.07963e-6,
+                        "n_t"               : 2,
+                        "beams"             : [
+                            {
+                                "Omega0"            : 1e4,
+                                "detuning"          : 0,
+                                "phase0abs"         : 0,
+                                "phase_match"       : false,
+                                "abspi"             : false,
+                                "ion"               : null,
+                                "phase0"            : 1
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "builder"       : "Add_carrier_S",
+                "Omegac"        : 0,
+                "y"             : false,
+    
+                "inner"         : {
+                    "builder"       : "fast_ms",
+                    "n_t"           : 2,
+                    "phase"         : 0.5,
+                    "K"             : 4,
+                    "detuning"      : null,
+                    "Omega0"		: 9.462365591397849e-04
+                }
+            },
+            {
+                "builder"       : "raw",
+                "sequence"      : [
+                    {
+                        "abstime"           : 157.07963e-6,
+                        "n_t"               : 2,
+                        "beams"             : [
+                            {
+                                "Omega0"            : 1e4,
+                                "detuning"          : 0,
+                                "phase0abs"         : 0,
+                                "phase_match"       : false,
+                                "abspi"             : false,
+                                "ion"               : null,
+                                "phase0"            : null
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+
+    },
+
+    "output"        : true,
+    "fname"         : "ddms_meas_1ion.npz"
+}

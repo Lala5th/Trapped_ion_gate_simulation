@@ -30,4 +30,5 @@ build
 !Sim/Cardioid_meas.json
 !Sim/plot_excited.json
 !Sim/plot_dm_fig3.json
+!Sim/DDMS*.json
 *.db
