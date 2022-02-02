@@ -2,8 +2,9 @@
 
     "params"    : [
         {
-            "key"   : ["eta0"],
-            "range" : [0.01,1,100]
+            "key"   : ["xi"],
+            "label" : "$\\xi [\\frac{1}{s}]$",
+            "range" : [0,1e4,101]
         }
     ],
 
@@ -51,17 +52,24 @@
             "Gamma"             : 0
         },
 
-        "eta0"          : null,
+        "eta0"          : 0.1,
+        "xi"          : 0,
 
         "t_prep"        : 0,
 
         "sequence"      : [
             {
-                "builder"       : "fast_ms",
-                "n_t"           : 1000,
-                "K"             : 2,
-                "detuning"      : null,
-				"Omega0"		: 0.1
+                "builder"       : "Add_carrier_S",
+                "m"             : 100,
+                "phi"           : 0.5,
+    
+                "inner"         : {
+                    "builder"       : "fast_ms",
+                    "n_t"           : 1000,
+                    "K"             : 2,
+                    "detuning"      : null,
+                    "Omega0"		: 0.1
+                }
             }
         ]
 

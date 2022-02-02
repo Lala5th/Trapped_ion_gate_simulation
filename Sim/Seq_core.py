@@ -55,13 +55,12 @@ def parse_json(js_fname):
 
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
-                    if(beam['abspi']):
-                        beam['phase0abs'] = beam['phase0abs']*const.pi
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
                     beam["phase0"] = -beam["phase0abs"]
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
                 else:
                     beam["phase0"] = 0
+            beam['phase0'] *= const.pi
             # if(i == 1):
             #     beam['phase0'] = d['beams'][i-1]['phase0']
         if(d["abstime"] == None):

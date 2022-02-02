@@ -102,12 +102,12 @@ def load_ME_var(fname):
     s3d = d['s3d']
     n_num, n_ion = d['metadata']
     params = d['params']
-    param_id = d['param_id']
+    labels = d['labels']
 
     state_data = np.array([np.array(s,dtype=complex) for s in s3d], dtype= complex).reshape((-1,2**n_ion,n_num,2**n_ion,n_num))
     state_data = np.reshape(np.einsum('k...->...k',np.asarray(state_data,dtype = np.complex128)),(2**n_ion,n_num,2**n_ion,n_num,-1))
 
-    return state_data, params, n_num, param_id, n_ion, None
+    return state_data, params, n_num, labels, n_ion, None
 
 def load_QuTiP_meas(fname):
     
@@ -933,7 +933,7 @@ def plot_me_seq_scan_fidelity(data_pack):
 def plot_var_1d(data_pack):
     global ax, args
 
-    state_data, ps, _, param_ids, _, _ = data_pack
+    state_data, ps, _, labels, _, _ = data_pack
     with open(args[2]) as jsfile:
         params = json.load(jsfile)
 
@@ -959,7 +959,7 @@ def plot_var_1d(data_pack):
     # ax2.plot(t,sol[0])
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
-    ax.set_xlabel(str(param_ids[0]))
+    ax.set_xlabel(labels[0])
     if(params['fidelity']):
         ax.set_ylabel("Fidelity [1]")
     else:

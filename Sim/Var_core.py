@@ -77,8 +77,6 @@ def fill_template(data,params):
 
             if(beam["phase0"] == None):
                 if(beam["phase0abs"] != None):
-                    if(beam['abspi']):
-                        beam['phase0abs'] = beam['phase0abs']*const.pi
                     # beam["phase0"] = beam['phase0abs'] + t*(data['omega0'] + beam['detuning']*data['nu0'])
                     beam["phase0"] = -beam["phase0abs"]
                     # beam["phase0"] = beam['phase0abs'] + np.angle(beam["phase0"])
@@ -86,6 +84,7 @@ def fill_template(data,params):
                     beam["phase0"] = 0
             # if(i == 1):
             #     beam['phase0'] = d['beams'][i-1]['phase0']
+            beam['phase0'] *= const.pi
         if(d["abstime"] == None):
             d['abstime'] = d["reltime"]*const.pi/(d['beams'][0]['Omega0']*abs(corrections[abs(int(d['beams'][0]['detuning'])),0].value[0].val))
         try:
@@ -166,7 +165,7 @@ def run_var(js_fname):
         templates.append(deepcopy(data))
         templates[-1]['params'] = p
 
-    with Pool(16) as process_pool:
+    with Pool(8) as process_pool:
         results = process_pool.map(run_templated_sim,templates)
 
     return results,data
@@ -185,4 +184,4 @@ if __name__ == "__main__":
         if(data["fname"] == None):
             data["fname"] = "temp"
         metadata = [data['template']['n_num'],data['template']['n_ion']]
-        np.savez(data["fname"], s3d = result,metadata=metadata,params=[i['value'] for i in data['params']],param_id=[i['key'] for i in data['params']])
+        np.savez(data["fname"], s3d = result,metadata=metadata,params=[i['value'] for i in data['params']],labels=[i['label'] for i in data['params']])

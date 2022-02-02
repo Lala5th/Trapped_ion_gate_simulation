@@ -2,7 +2,7 @@
 
     "params"    : [
         {
-            "key"   : ["zeta"],
+            "key"   : ["xi"],
             "range" : [0,1e4,101]
         }
     ],
@@ -54,7 +54,7 @@
         "eta0"          : 0.1,
 
         "t_prep"        : 0,
-        "zeta"          : 0,
+        "xi"          : 0,
 
         "sequence"      : [
             {

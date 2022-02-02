@@ -10,6 +10,10 @@
             "label"         : "$\\langle$ee|$\\hat{\\rho}$|ee$\\rangle$"
         },
         {
+            "index"         : [2,2],
+            "label"         : "$\\langle$eg|$\\hat{\\rho}$|eg$\\rangle$"
+        },
+        {
             "index"         : [0,-1],
             "label"         : "$\\langle$gg|$\\hat{\\rho}$|ee$\\rangle$"
         }

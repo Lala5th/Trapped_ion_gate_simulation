@@ -1,3 +1,4 @@
+from itertools import chain
 import qutip as qtip
 import numpy as np
 import scipy.constants as const
@@ -204,7 +205,7 @@ def fast_ms(data,params):
         "beams"            : []
     }]
     sequence[0]["beams"].append({
-        "Omega0"            : -1j*Omega0,
+        "Omega0"            : Omega0,
         "detuning"          : 1-detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -213,7 +214,7 @@ def fast_ms(data,params):
         "phase0"            : 0
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -1j*Omega0,
+        "Omega0"            : Omega0,
         "detuning"          : -1+detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -406,14 +407,23 @@ def add_carrier_S(data,params):
     sequence = sequence_builders[params['inner']['builder']](data,params['inner'])
     Omega0 = 2*const.pi*params['m']/sequence[0]['abstime']
     sequence[0]['beams'].append({
-        "Omega0"            : Omega0*np.exp(-1j*const.pi*params['phi']),
+        "Omega0"            : Omega0,
+        "carrier_corr"      : True,
+        "phase0"            : 0,
         "detuning"          : 0,
-        "phase0abs"         : 0,
-        "phase_match"       : False,
-        "abspi"             : False,
-        "ion"               : None,
-        "phase0"            : 0
+        "y"                 : params['y']
     })
+    return sequence
+
+def chain_sequence(data,params):
+    sequence = []
+    for builder in params['seqs']:
+        for pulse in sequence_builders[builder['builder']](data,builder):
+            sequence.append(pulse)
+    return sequence
+
+def midway_interrupt(data,params):
+    sequence = sequence_builders[params['inner']['builder']](data,params['inner'])
     return sequence
 
 sequence_builders = {
@@ -422,5 +432,6 @@ sequence_builders = {
     "strong_coupling2"  : strong_coupling2,
     "strong_coupling3"  : strong_coupling3,
     "cardioid"          : cardioid,
-    "Add_carrier_S"     : add_carrier_S
+    "Add_carrier_S"     : add_carrier_S,
+    "Chain_sequence"    : chain_sequence
 }

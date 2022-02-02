@@ -1,5 +1,5 @@
 {
-    "solver"        : "ME_C_mult_laser_generic_collapse",
+    "solver"        : "ME_Interaction_OR",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
@@ -41,17 +41,24 @@
     },
 
     "eta0"          : 0.1,
+    "xi"            : 1e4,
 
     "t_prep"        : 0,
 
     "sequence"      : [
         {
-			"builder"       : "fast_ms",
-			"n_t"           : 1000,
-			"K"         	: 2,
-			"detuning"      : null,
-            "Omega0"        : 0.05
-		}
+            "builder"       : "Add_carrier_S",
+            "m"             : 100000,
+            "phi"           : 0,
+
+            "inner"         : {
+                "builder"       : "fast_ms",
+                "n_t"           : 1000,
+                "K"             : 2,
+                "detuning"      : null,
+                "Omega0"		: 0.1
+            }
+        }
     ],
 
     "output"        : true,
