@@ -1027,3 +1027,27 @@ plot_methods = {
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]
 }
+
+
+if __name__ == '__main__':
+    import matplotlib as mpl
+    from sys import argv
+    args = argv[1:]
+
+    rcparams = {
+    # 'axes.titlesize'    : 18,
+    # 'axes.labelsize'    : 16,
+    # 'xtick.labelsize'   : 12,
+    # 'ytick.labelsize'   : 12,
+    # 'legend.fontsize'   : 12,
+    'font.size'         : 16
+    }
+    for e in rcparams.keys():
+        mpl.rcParams[e] = rcparams[e]
+
+    plt.ion()
+
+    
+    last = args[1]
+    for m in plot_methods[args[0]]:
+        last = m(last)
