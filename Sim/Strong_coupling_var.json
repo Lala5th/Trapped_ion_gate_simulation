@@ -69,7 +69,7 @@
                     "phase"         : 0.5,
                     "K"             : 2,
                     "detuning"      : null,
-                    "Omega0"		: 0.01
+                    "Omega0"		: 0.025
                 }
             }
         ]

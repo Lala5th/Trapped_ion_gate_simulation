@@ -135,7 +135,7 @@ def run_templated_sim(data):
 
         print("Completed pulse %d out of %d" % (i+1,len(data['sequence'])))
     data['ts'] = ts
-    ret = np.array(ret).flatten()
+    ret = np.vstack(ret).flatten()
     if(not isinstance(ret[0],qtip.Qobj)):
         ret = ret.reshape((ts.size,-1))
 

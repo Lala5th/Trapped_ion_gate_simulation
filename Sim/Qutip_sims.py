@@ -862,6 +862,97 @@ def ME_Interaction_OR(data):
                 H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
                 
             for i in H_i_p:
+                if np.abs(i[1]/data['nu0'] - d['detuning']) > 0.5:
+                    continue
+                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
+                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+        err = state_error(data)
+        if err is not None and not C_corr:
+            ret.append(err)
+        return ret
+
+    params = data['c_param']
+    params['n_ion'] = data['n_ion']
+    params['n_num'] = data['n_num']
+    c_ops = collapse_operators[params['c_operator']](params)
+
+    # Simulation ranges
+    ts = data["ts"]
+
+    state0 = state0
+
+    # Simulation run function
+    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    def run_sim(args, state0=state0):
+        global t_col
+        # print(state0.shape)
+        res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+        return res.states
+
+    return run_sim
+
+def ME_Interaction_Reduced(data):
+    global t_col
+
+    # Set up params
+    n_num = data["n_num"]
+    nu0 = data['nu0']
+
+    # Set up standard operators
+    # Most of these could be called on demand, however 
+    # caching these will reduce calling overhead
+    sigma_p = qtip.sigmam() # Due to different convention used in previous code
+                            # and internally within QuTiP
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    # Create the initial state.
+    state0 = state_builders[data['state0']['builder']](data['state0'])
+
+    # Create Hamiltonian
+    def H_i(arg):
+        C_corr = False
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
+        ret = []
+        for d in data['beams']:
+
+            if(d.get('carrier_corr',False)):
+                ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(np.abs(d['Omega0'])*t)])
+                ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if d['y'] else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(np.abs(d['Omega0'])*t)])
+                assert not C_corr
+                C_corr = True
+                continue
+
+            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
+            
+            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            address = None
+            if("ion" in d):
+                address = d['ion']
+            H_i_p = []
+            for i in range(len(H_M_p)):
+                H_data = None
+                for j in range(data['n_ion']):
+                    H_p = None
+                    if(address!=None):
+                        if(address!=j):
+                            continue
+                    for k in range(data['n_ion']):
+                        H_part = qtip.identity(2) if j!=k else H_A_p
+                        if(H_p == None):
+                            H_p = H_part
+                        else:
+                            H_p = qtip.tensor(H_p,H_part)
+                    if(H_data == None):
+                        H_data = H_p
+                    else:
+                        H_data += H_p
+                H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
+                
+            for i in H_i_p:
                 if abs(i[1]/data['nu0'] - d['detuning']) > np.abs(20*d['Omega0']/data['nu0']):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
@@ -901,5 +992,6 @@ sim_methods = {
     'ME_C_mult_laser_generic_collapse'          : ME_C_mult_laser_generic_collapse,
     'ME_C_mult_laser_generic_collapse_reduced'  : ME_C_mult_laser_generic_collapse_reduced,
     'SC_paper'                                  : SC_paper,
-    'ME_Interaction_OR'                         : ME_Interaction_OR
+    'ME_Interaction_OR'                         : ME_Interaction_OR,
+    'ME_Interaction_Reduced'                    : ME_Interaction_Reduced
 }
