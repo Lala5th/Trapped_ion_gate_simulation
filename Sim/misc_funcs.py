@@ -203,10 +203,11 @@ def fast_ms(data,params):
         time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
 
     sequence = [{
-        "reltime"          : 0,
-        "abstime"          : time,
-        "n_t"              : params['n_t'],
-        "beams"            : []
+        "reltime"           : 0,
+        "abstime"           : time,
+        "n_t"               : params['n_t'],
+        "tau"               : params.get('tau',0),
+        "beams"             : []
     }]
     sequence[0]["beams"].append({
         "Omega0"            : Omega0,
@@ -239,10 +240,11 @@ def strong_coupling2(data,params):
         Omega0 = -1j*params['Omega0']*data['nu0']
 
     sequence = [{
-        "reltime"          : 0,
-        "abstime"          : 2*const.pi/(detuning*data['nu0']),
-        "n_t"              : params['n_t'],
-        "beams"            : []
+        "reltime"           : 0,
+        "abstime"           : 2*const.pi/(detuning*data['nu0']),
+        "n_t"               : params['n_t'],
+        "tau"               : params.get('tau',0),
+        "beams"             : []
     }]
     sequence[0]["beams"].append({
         "Omega0"            : Omega0,
@@ -293,10 +295,11 @@ def strong_coupling3(data,params):
         detuning = params['Omega0']/frac
         Omega0 = -1j*params['Omega0']*data['nu0']
     sequence = [{
-        "reltime"          : 0,
-        "abstime"          : 2*const.pi/(detuning*data['nu0']),
-        "n_t"              : params['n_t'],
-        "beams"            : []
+        "reltime"           : 0,
+        "abstime"           : 2*const.pi/(detuning*data['nu0']),
+        "n_t"               : params['n_t'],
+        "tau"               : params.get('tau',0),
+        "beams"             : []
     }]
     sequence[0]["beams"].append({
         "Omega0"            : Omega0,
@@ -305,7 +308,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : -Omega0,
@@ -314,7 +317,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : Omega0*2/np.sqrt(5),
@@ -323,7 +326,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : Omega0*2/np.sqrt(5),
@@ -332,7 +335,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : f*Omega0*7/(np.sqrt(5)*5),
@@ -341,7 +344,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : f*Omega0*7/(np.sqrt(5)*5),
@@ -350,7 +353,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : -Omega0*np.sqrt(3/5),
@@ -359,7 +362,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
         "Omega0"            : Omega0*np.sqrt(3/5),
@@ -368,7 +371,7 @@ def strong_coupling3(data,params):
         "phase_match"       : False,
         "abspi"             : False,
         "ion"               : None,
-        "phase0"            : 0
+        "phase0"            : params.get('phase0',0)
     })
     return sequence
 
@@ -381,10 +384,11 @@ def cardioid(data,params):
         Omega0 = params['Omega0']*data['nu0']
     r = params['r']/np.sqrt(np.sum([ri*ri/ni for ri,ni in zip(params['r'],params['n'])]))
     sequence = [{
-        "reltime"          : 0,
-        "abstime"          : 2*const.pi/(detuning*data['nu0']),
-        "n_t"              : params['n_t'],
-        "beams"            : []
+        "reltime"           : 0,
+        "abstime"           : 2*const.pi/(detuning*data['nu0']),
+        "n_t"               : params['n_t'],
+        "tau"               : params.get('tau',0),
+        "beams"             : []
     }]
     for ri,ni in zip(r,params['n']):
         sequence[0]["beams"].append({

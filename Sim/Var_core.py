@@ -3,7 +3,7 @@ import json
 from matplotlib.pyplot import get
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import sim_methods, get_t_col
+from Qutip_sims import sim_methods, get_t_col, pre_sim
 # from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
 from c_exp_direct import c_exp
@@ -103,7 +103,6 @@ def fill_template(data,params):
     return data
     
 def run_templated_sim(data):
-    
     params = data['params']
 
     data = fill_template(data['template'],params)
@@ -119,7 +118,9 @@ def run_templated_sim(data):
         for j,beam in enumerate(d['beams']):
             args["det%1.0d" % (j,)] = beam['detuning']*data['nu0']
             args["phase%1.0d" % (j,)] = beam['phase0']
-        params["ts"] = np.linspace(0,d["abstime"],d['n_t'])
+        params["ts"] = np.linspace(0,d["abstime"] + 2*pre_sim(d.get('tau',0)),d['n_t'])
+        params['tau'] = d.get('tau',0)
+        params['abstime'] = d['abstime']
         params['t0'] = d['t0']
         ts = np.append(ts,params['ts']+t_abs)
         t_abs = ts[-1]

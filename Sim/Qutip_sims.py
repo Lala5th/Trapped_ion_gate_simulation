@@ -9,6 +9,8 @@ from c_exp_direct import c_exp
 from misc_funcs import state_builders, collapse_operators
 from qutip.ui.progressbar import EnhancedTextProgressBar
 
+pre_sim = lambda tau : 25*tau
+
 def Sz(data):
     Sz = None
     sz = qtip.sigmaz()
@@ -47,6 +49,26 @@ def Sy(data):
 
 def state_error(data):
     return -data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num']))/2
+
+def sigmoid(t,t0,tau,forward):
+    if not forward:
+        if (t - t0) > 100*tau:
+            return 0
+        elif (t - t0) < -100*tau:
+            return 1
+        return 1/(np.exp((t - t0)/tau) + 1)
+    if (t - t0) > 100*tau:
+        return 1
+    elif (t - t0) < -100*tau:
+        return 0
+    return 1/(np.exp(-(t - t0)/tau) + 1)
+    
+
+beamI = lambda t, te, tau : sigmoid(t,0,tau,True) + sigmoid(t,te,tau,False) - 1
+tp = lambda t, te, tau : tau*(np.log(1 + np.exp(-t/tau)) - np.log(np.exp(-t/tau) + np.exp(-te/tau)))
+tprime = lambda t, te, tau, tstart : tp(t,te,tau) - tp(tstart,te,tau)
+# tprime = lambda t, te, tau : tau*(np.log(1 + np.exp(-t/tau)) - 0*np.log(2) - np.log(np.exp(-t/tau) + np.exp(-te/tau)) + 0*np.log(np.exp(-te/tau) + 1))
+# tprime = lambda t, *_ : t
 
 # def QuTiP_full(data):
 
@@ -982,6 +1004,224 @@ def ME_Interaction_Reduced(data):
 
     return run_sim
 
+phase = 0
+endphase = None
+
+def perturbing_term(data, Omega0, y = True):
+    global endphase
+    ret = []
+    ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(phase + Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau'])))])
+    ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if y else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(phase + Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau'])))])
+    endphase = lambda t : Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau']))
+    return ret
+
+def ME_Interaction_Windup_Reduced(data):
+    global t_col
+
+    # if(data['tau'] == 0):
+    #     return ME_Interaction_Reduced(data)
+
+    # Set up params
+    n_num = data["n_num"]
+    nu0 = data['nu0']
+
+    # Set up standard operators
+    # Most of these could be called on demand, however 
+    # caching these will reduce calling overhead
+    sigma_p = qtip.sigmam() # Due to different convention used in previous code
+                            # and internally within QuTiP
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    # Create the initial state.
+    state0 = state_builders[data['state0']['builder']](data['state0'])
+
+    # Create Hamiltonian
+    def H_i(arg):
+        C_corr = False
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
+        ret = []
+        for d in data['beams']:
+
+            if(d.get('carrier_corr',False)):
+                for i in perturbing_term(data,d["Omega0"],d['y']):
+                    ret.append(i)
+                assert not C_corr
+                C_corr = True
+                continue
+
+            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
+            
+            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            address = None
+            if("ion" in d):
+                address = d['ion']
+            H_i_p = []
+            for i in range(len(H_M_p)):
+                H_data = None
+                for j in range(data['n_ion']):
+                    H_p = None
+                    if(address!=None):
+                        if(address!=j):
+                            continue
+                    for k in range(data['n_ion']):
+                        H_part = qtip.identity(2) if j!=k else H_A_p
+                        if(H_p == None):
+                            H_p = H_part
+                        else:
+                            H_p = qtip.tensor(H_p,H_part)
+                    if(H_data == None):
+                        H_data = H_p
+                    else:
+                        H_data += H_p
+                H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
+                
+            for i in H_i_p:
+                if abs(i[1]/data['nu0'] - d['detuning']) > np.abs(20*d['Omega0']/data['nu0']):
+                    continue
+                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t - pre_sim(data['tau']) + data['t0'],e, b['phase0'])*beamI(t - pre_sim(data['tau']), data['abstime'], data['tau'])])
+                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t - pre_sim(data['tau']) + data['t0'],e,-b['phase0'])*beamI(t - pre_sim(data['tau']), data['abstime'], data['tau'])])
+
+        if not C_corr:
+            for i in perturbing_term(data,0,data.get('y',True)):
+                ret.append(i)
+        return ret
+
+    params = data['c_param']
+    params['n_ion'] = data['n_ion']
+    params['n_num'] = data['n_num']
+    c_ops = collapse_operators[params['c_operator']](params)
+
+    # Simulation ranges
+    ts = data["ts"]
+    # ts += 2*data['tau']
+    # np.insert(ts,0,0)
+    # ts.append(ts[-1] + 2*data['tau'])
+
+    state0 = state0
+
+    # Simulation run function
+    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    def run_sim(args, state0=state0):
+        global t_col,phase, endphase
+        endphase = None
+        # print(state0.shape)
+        res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+        
+        if data['t0'] == 0:
+            phase = endphase(ts[-1])
+        else:
+            phase += endphase(ts[-1])
+        return res.states
+
+    return run_sim
+
+def ME_Interaction_Windup_OR(data):
+    global t_col
+
+    # if(data['tau'] == 0):
+    #     return ME_Interaction_OR(data)
+
+    # Set up params
+    n_num = data["n_num"]
+    nu0 = data['nu0']
+
+    # Set up standard operators
+    # Most of these could be called on demand, however 
+    # caching these will reduce calling overhead
+    sigma_p = qtip.sigmam() # Due to different convention used in previous code
+                            # and internally within QuTiP
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    # Create the initial state.
+    state0 = state_builders[data['state0']['builder']](data['state0'])
+
+    # Create Hamiltonian
+    def H_i(arg):
+        C_corr = False
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
+        ret = []
+        for d in data['beams']:
+
+            if(d.get('carrier_corr',False)):
+                for i in perturbing_term(data,d["Omega0"],d['y']):
+                    ret.append(i)
+                assert not C_corr
+                C_corr = True
+                continue
+
+            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
+            
+            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            address = None
+            if("ion" in d):
+                address = d['ion']
+            H_i_p = []
+            for i in range(len(H_M_p)):
+                H_data = None
+                for j in range(data['n_ion']):
+                    H_p = None
+                    if(address!=None):
+                        if(address!=j):
+                            continue
+                    for k in range(data['n_ion']):
+                        H_part = qtip.identity(2) if j!=k else H_A_p
+                        if(H_p == None):
+                            H_p = H_part
+                        else:
+                            H_p = qtip.tensor(H_p,H_part)
+                    if(H_data == None):
+                        H_data = H_p
+                    else:
+                        H_data += H_p
+                H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
+                
+            for i in H_i_p:
+                if np.abs(i[1]/data['nu0'] - d['detuning']) > 0.5:
+                    continue
+                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t - pre_sim(data['tau']) + data['t0'],e, b['phase0'])*beamI(t - pre_sim(data['tau']), data['abstime'], data['tau'])])
+                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t - pre_sim(data['tau']) + data['t0'],e,-b['phase0'])*beamI(t - pre_sim(data['tau']), data['abstime'], data['tau'])])
+
+        if not C_corr:
+            for i in perturbing_term(data,0,data.get('y',True)):
+                ret.append(i)
+        return ret
+
+    params = data['c_param']
+    params['n_ion'] = data['n_ion']
+    params['n_num'] = data['n_num']
+    c_ops = collapse_operators[params['c_operator']](params)
+
+    # Simulation ranges
+    ts = data["ts"]
+    # ts += 2*data['tau']
+    # np.insert(ts,0,0)
+    # ts.append(ts[-1] + 2*data['tau'])
+
+    state0 = state0
+
+    # Simulation run function
+    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    def run_sim(args, state0=state0):
+        global t_col, phase, endphase
+        endphase = None
+        # print(state0.shape)
+        res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+        if data['t0'] == 0:
+            phase = endphase(ts[-1])
+        else:
+            phase += endphase(ts[-1])
+        return res.states
+
+    return run_sim
+
 sim_methods = {
     # 'QuTiP_Cython'                          : QuTiP_Cython,
     'QuTiP_C_mult_laser'                        : QuTiP_C_mult_laser,
@@ -993,5 +1233,7 @@ sim_methods = {
     'ME_C_mult_laser_generic_collapse_reduced'  : ME_C_mult_laser_generic_collapse_reduced,
     'SC_paper'                                  : SC_paper,
     'ME_Interaction_OR'                         : ME_Interaction_OR,
-    'ME_Interaction_Reduced'                    : ME_Interaction_Reduced
+    'ME_Interaction_Reduced'                    : ME_Interaction_Reduced,
+    'ME_Interaction_Windup_Reduced'             : ME_Interaction_Windup_Reduced,
+    'ME_Interaction_Windup_OR'                  : ME_Interaction_Windup_OR
 }

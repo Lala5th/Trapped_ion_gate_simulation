@@ -8,14 +8,14 @@
             "index"         : [0],
             "factor"        : {
                 "size"          : 1,
-                "phase"         : 0.25
+                "phase"         : 0
             }
         },
         {
             "index"         : [3],
             "factor"        : {
                 "size"          : 1,
-                "phase"         : -0.25
+                "phase"         : -0.5
             }
         }
     ]

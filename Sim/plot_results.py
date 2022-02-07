@@ -434,6 +434,22 @@ def plot_me_seq_scan_dm(data_pack):
         params = json.load(jsfile)
 
     density_matrix = np.einsum(params['prep'],state_data)
+    # from Qutip_sims import tprime
+    # Oc = 4461676.319009142
+    # phases = Oc*tprime(ts-t0s[0],t0s[1],t0s[0]/4)/2
+    # print(phases[-1])
+    # u = np.einsum("ijk,jlk->ilk",np.array([[np.cos(phases),-1*np.sin(phases)],[1*np.sin(phases),np.cos(phases)]],dtype=np.complex128),np.array([[np.exp(1j*5e3*(ts - 2*t0s[0] - t0s[1])/2),0*ts],[0*ts,np.exp(-1j*5e3*(ts - 2*t0s[0] - t0s[1])/2)]],dtype=np.complex128))
+    # U = None
+    # identity = np.array([np.identity(2) for _ in range(ts.size)])
+    # identity = np.einsum('kij->ijk',identity)
+    # for i in range(2):
+    #     U_p = None
+    #     for j in range(2):
+    #         c = identity if i != j else u
+    #         U_p = c if U_p is None else np.einsum("ijk,lmk->iljmk",U_p,c)
+    #     U = U_p if U is None else np.einsum("ijklm,klnom->ijnom",U,U_p)
+    # U = np.reshape(U,(4,4,-1))
+    # density_matrix = np.einsum('ijk,jlk,mlk->imk',U,density_matrix,np.conj(U))
 
     _, ax = plt.subplots()
     ps = []

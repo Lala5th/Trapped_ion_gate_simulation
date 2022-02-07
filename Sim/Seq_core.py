@@ -3,7 +3,7 @@ import json
 from matplotlib.pyplot import get
 import numpy as np
 import scipy.constants as const
-from Qutip_sims import sim_methods, get_t_col
+from Qutip_sims import sim_methods, get_t_col, pre_sim
 # from Ground_up_sims import Ground_up_full, Ground_up_LDA
 import qutip as qtip
 from c_exp_direct import c_exp
@@ -82,7 +82,6 @@ def parse_json(js_fname):
     return data
 
 def run_sim(js_fname):
-    
     data = parse_json(js_fname)
 
     if(data["solver"] not in sim_methods.keys()):
@@ -100,7 +99,9 @@ def run_sim(js_fname):
         for j,beam in enumerate(d['beams']):
             args["det%1.0d" % (j,)] = beam['detuning']*data['nu0']
             args["phase%1.0d" % (j,)] = beam['phase0']
-        params["ts"] = np.linspace(0,d["abstime"],d['n_t'])
+        params["ts"] = np.linspace(0,d["abstime"] + 2*pre_sim(d.get('tau',0)),d['n_t'])
+        params['tau'] = d.get('tau',0)
+        params['abstime'] = d['abstime']
         params['t0'] = d['t0']
         ts = np.append(ts,params['ts']+t_abs)
         t_abs = ts[-1]
@@ -138,7 +139,8 @@ if __name__ == "__main__":
         if(data["fname"] == None):
             data["fname"] = "temp"
         metadata = [data['n_num'],data['n_ion']]
-        t0s = [d['abstime'] for d in data['sequence']]
+        t0s = [[pre_sim(d['tau']),d['abstime'],pre_sim(d['tau'])] for d in data['sequence']]
+        t0s = np.hstack(t0s)
         if('t_col' not in data):
             np.savez(data["fname"], ts = data['ts'], s3d = result,metadata=metadata, t0s = t0s)
         else:

@@ -2,14 +2,14 @@
 
     "params"    : [
         {
-            "key"   : ["xi"],
-            "label" : "$\\xi [\\frac{1}{s}]$",
-            "range" : [0,10e3,21]
+            "key"   : ["sequence",0,"inner","tau"],
+            "label" : "$\\tau [s]$",
+            "range" : [0,50e-6,51]
         }
     ],
 
     "template"  : {
-        "solver"        : "ME_Interaction_OR",
+        "solver"        : "ME_Interaction_Windup_OR",
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
@@ -62,14 +62,15 @@
                 "builder"       : "Add_carrier_S",
                 "m"             : 1000,
                 "y"             : true,
-    
+                
                 "inner"         : {
+                    "tau"           : 25e-6,
                     "builder"       : "strong_coupling3",
                     "n_t"           : 1000,
                     "phase"         : 0.5,
                     "K"             : 2,
                     "detuning"      : null,
-                    "Omega0"		: 0.025
+                    "Omega0"		: 0.05
                 }
             }
         ]
