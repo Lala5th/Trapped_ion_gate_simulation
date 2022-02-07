@@ -4,7 +4,7 @@
         {
             "key"   : ["sequence",0,"inner","tau"],
             "label" : "$\\tau [s]$",
-            "range" : [0,50e-6,51]
+            "range" : [2e-6,50e-6,49]
         }
     ],
 
@@ -35,7 +35,7 @@
                 "states"        : [
                     {
                         "n"             : 1,
-                        "atoms"         : [false,false],
+                        "atoms"         : [false,true],
                         "factor"        : {
                             "size"          : 1,
                             "phase"         : 0
@@ -64,7 +64,7 @@
                 "y"             : true,
                 
                 "inner"         : {
-                    "tau"           : 25e-6,
+                    "tau"           : 5e-6,
                     "builder"       : "strong_coupling3",
                     "n_t"           : 1000,
                     "phase"         : 0.5,

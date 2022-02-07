@@ -51,6 +51,14 @@ def state_error(data):
     return -data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num']))/2
 
 def sigmoid(t,t0,tau,forward):
+    if tau == 0:
+        if forward:
+            if t < t0:
+                return 0
+            return 1
+        if t > t0:
+            return 0
+        return 1
     if not forward:
         if (t - t0) > 100*tau:
             return 0

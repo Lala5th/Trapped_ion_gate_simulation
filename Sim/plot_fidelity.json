@@ -5,17 +5,17 @@
     "fidelity"      : false,
     "target"          : [
         {
-            "index"         : [0],
+            "index"         : [1],
             "factor"        : {
                 "size"          : 1,
                 "phase"         : 0
             }
         },
         {
-            "index"         : [3],
+            "index"         : [2],
             "factor"        : {
                 "size"          : 1,
-                "phase"         : -0.5
+                "phase"         : 0.5
             }
         }
     ]
