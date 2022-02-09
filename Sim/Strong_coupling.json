@@ -1,5 +1,5 @@
 {
-    "solver"        : "ME_Interaction_Windup_Reduced",
+    "solver"        : "ME_Interaction_OR",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
@@ -43,7 +43,7 @@
     },
 
     "eta0"          : 0.1,
-    "xi"            : 5e3,
+    "xi"            : 0,
 
     "t_prep"        : 0,
 
@@ -54,25 +54,10 @@
             "y"             : true,
             
             "inner"         : {
-                "tau"           : 5e-6,
+                "tau"           : 0,
                 "builder"       : "strong_coupling3",
                 "n_t"           : 500,
-                "phase"         : 0.25,
-                "K"             : 2,
-                "detuning"      : null,
-                "Omega0"		: 0.05
-            }
-        },
-        {
-            "builder"       : "Add_carrier_S",
-            "m"             : -1000.1,
-            "y"             : true,
-            
-            "inner"         : {
-                "tau"           : 5e-6,
-                "builder"       : "strong_coupling3",
-                "n_t"           : 500,
-                "phase"         : 0.25,
+                "phase"         : 0.5,
                 "K"             : 2,
                 "detuning"      : null,
                 "Omega0"		: 0.05
