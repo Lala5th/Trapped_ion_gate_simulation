@@ -35,7 +35,7 @@
                 "states"        : [
                     {
                         "n"             : 1,
-                        "atoms"         : [false,false],
+                        "atoms"         : [false,true],
                         "factor"        : {
                             "size"          : 1,
                             "phase"         : 0
