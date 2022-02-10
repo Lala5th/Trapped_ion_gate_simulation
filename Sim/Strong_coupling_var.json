@@ -35,7 +35,7 @@
                 "states"        : [
                     {
                         "n"             : 1,
-                        "atoms"         : [false,true],
+                        "atoms"         : [false,false],
                         "factor"        : {
                             "size"          : 1,
                             "phase"         : 0
@@ -66,11 +66,11 @@
                 "inner"         : {
                     "tau"           : 0,
                     "builder"       : "strong_coupling3",
-                    "n_t"           : 1000,
+                    "n_t"           : 10,
                     "phase"         : 0.5,
                     "K"             : 2,
                     "detuning"      : null,
-                    "Omega0"		: 0.05
+                    "Omega0"		: 0.01
                 }
             }
         ]

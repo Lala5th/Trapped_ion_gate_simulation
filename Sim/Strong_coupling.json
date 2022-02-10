@@ -1,5 +1,5 @@
 {
-    "solver"        : "ME_Interaction_OR",
+    "solver"        : "ME_Interaction_Reduced",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
@@ -25,7 +25,7 @@
             "states"        : [
                 {
                     "n"             : 1,
-                    "atoms"         : [false,true],
+                    "atoms"         : [false,false],
                     "factor"        : {
                         "size"          : 1,
                         "phase"         : 0
@@ -50,7 +50,7 @@
     "sequence"      : [
         {
             "builder"       : "Add_carrier_S",
-            "m"             : 1000.1,
+            "m"             : 0,
             "y"             : true,
             
             "inner"         : {
@@ -60,7 +60,7 @@
                 "phase"         : 0.5,
                 "K"             : 2,
                 "detuning"      : null,
-                "Omega0"		: 0.05
+                "Omega0"		: 0.01
             }
         }
     ],
