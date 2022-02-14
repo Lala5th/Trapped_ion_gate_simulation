@@ -55,19 +55,19 @@
         "eta0"          : 0.1,
 
         "t_prep"        : 0,
-        "xi"            : 5e3,
+        "xi"            : 0,
         "omega_xi"      : 0,
 
         "sequence"      : [
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 1000,
+                "m"             : 0,
                 "y"             : true,
                 
                 "inner"         : {
                     "tau"           : 0,
-                    "builder"       : "strong_coupling3",
-                    "n_t"           : 100,
+                    "builder"       : "strong_coupling2",
+                    "n_t"           : 2,
                     "phase"         : 0.125,
                     "K"             : 2,
                     "detuning"      : null,
@@ -79,5 +79,5 @@
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling3_var.npz"
+    "fname"         : "strong_coupling2_var.npz"
 }
