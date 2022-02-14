@@ -338,7 +338,7 @@ def strong_coupling3(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : f*Omega0*7/(5*np.sqrt(5)),
+        "Omega0"            : f*Omega0*7/(5),
         "detuning"          : 2+7*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -347,7 +347,7 @@ def strong_coupling3(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : f*Omega0*7/(5*np.sqrt(5)),
+        "Omega0"            : f*Omega0*7/(5),
         "detuning"          : -2-7*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -356,7 +356,7 @@ def strong_coupling3(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0*np.sqrt(3/5),
+        "Omega0"            : -Omega0*np.sqrt(3/5),
         "detuning"          : 3-detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -365,7 +365,7 @@ def strong_coupling3(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0*np.sqrt(3/5),
+        "Omega0"            : Omega0*np.sqrt(3/5),
         "detuning"          : -3+detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,

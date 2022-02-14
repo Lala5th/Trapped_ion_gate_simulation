@@ -4,7 +4,7 @@
         {
             "key"   : ["eta0"],
             "label" : "$\\eta [1]$",
-            "range" : [0.01,0.5,50]
+            "range" : [0.05,1,20]
         }
     ],
 
@@ -16,7 +16,7 @@
         "nu0Hz"         : null,
         "nu0"           : 1e6,
 
-        "n_num"         : 20,
+        "n_num"         : 25,
         "n_ion"         : 2,
 
         "ntraj"         : 1,
@@ -34,7 +34,7 @@
 
                 "states"        : [
                     {
-                        "n"             : 1,
+                        "n"             : 0,
                         "atoms"         : [false,false],
                         "factor"        : {
                             "size"          : 1,
@@ -55,7 +55,8 @@
         "eta0"          : 0.1,
 
         "t_prep"        : 0,
-        "xi"            : 0,
+        "xi"            : 5e3,
+        "omega_xi"      : 0,
 
         "sequence"      : [
             {
@@ -66,8 +67,8 @@
                 "inner"         : {
                     "tau"           : 0,
                     "builder"       : "strong_coupling3",
-                    "n_t"           : 10,
-                    "phase"         : 0.5,
+                    "n_t"           : 100,
+                    "phase"         : 0.125,
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01
@@ -78,5 +79,5 @@
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling_var.npz"
+    "fname"         : "strong_coupling3_var.npz"
 }

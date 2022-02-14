@@ -859,8 +859,8 @@ def ME_Interaction_OR(data):
         for d in data['beams']:
 
             if(d.get('carrier_corr',False)):
-                ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(np.abs(d['Omega0'])*t)])
-                ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if d['y'] else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(np.abs(d['Omega0'])*t)])
+                for i in perturbing_term_nw(data,d["Omega0"],d['y']):
+                    ret.append(i)
                 assert not C_corr
                 C_corr = True
                 continue
@@ -896,9 +896,10 @@ def ME_Interaction_OR(data):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
-        err = state_error(data)
-        if err is not None and not C_corr:
-            ret.append(err)
+
+        if not C_corr:
+            for i in perturbing_term_nw(data,0,data.get('y',True)):
+                ret.append(i)
         return ret
 
     params = data['c_param']
@@ -950,8 +951,8 @@ def ME_Interaction_Reduced(data):
         for d in data['beams']:
 
             if(d.get('carrier_corr',False)):
-                ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(np.abs(d['Omega0'])*t)])
-                ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if d['y'] else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(np.abs(d['Omega0'])*t)])
+                for i in perturbing_term_nw(data,d["Omega0"],d['y']):
+                    ret.append(i)
                 assert not C_corr
                 C_corr = True
                 continue
@@ -987,9 +988,10 @@ def ME_Interaction_Reduced(data):
                     continue
                 ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
                 ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
-        err = state_error(data)
-        if err is not None and not C_corr:
-            ret.append(err)
+
+        if not C_corr:
+            for i in perturbing_term_nw(data,0,data.get('y',True)):
+                ret.append(i)
         return ret
 
     params = data['c_param']
@@ -1021,6 +1023,14 @@ def perturbing_term(data, Omega0, y = True):
     ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(phase + Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau'])))])
     ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if y else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(phase + Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau'])))])
     endphase = lambda t : Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau']))
+    return ret
+
+def perturbing_term_nw(data, Omega0, y = True):
+    global endphase
+    ret = []
+    ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',0)*(t + data['t0']))*np.cos(phase + Omega0*t)])
+    ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if y else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',0)*(t + data['t0']))*np.sin(phase + Omega0*t)])
+    endphase = lambda t : Omega0*t
     return ret
 
 def ME_Interaction_Windup_Reduced(data):
