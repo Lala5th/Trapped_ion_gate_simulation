@@ -1016,11 +1016,20 @@ def plot_var_2d_fid(data_pack):
     density_matrix /= np.sqrt(np.einsum(params['norm'],np.abs(density_matrix)))
 
     if(params['fidelity']):
-        ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+        fid = np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target))
     else:
-        ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+        fid = 1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target))
+    fid = fid.reshape((len(ps[0]),len(ps[1])))
     # ax.legend()
+    x = ps[0]
+    x = np.append(x,2*x[-1] - x[-2])
+    x -= (x[-1] - x[-2])/2
+    y = ps[1]
+    y = np.append(y,2*y[-1] - y[-2])
+    y -= (y[-1] - y[-2])/2
     print(target)
+    mappable = ax.pcolormesh(x,y,fid.T,norm=colors.LogNorm(vmin=np.min(fid),vmax=np.max(fid)),cmap=cm.get_cmap("gnuplot"))
+    clrbar = plt.colorbar(mappable,ax=ax,cmap=cm.get_cmap("gnuplot"))
 
     # ax.legend(ps,legend)
     # fig2, ax2 = plt.subplots()
@@ -1028,10 +1037,11 @@ def plot_var_2d_fid(data_pack):
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
     ax.set_xlabel(labels[0])
+    ax.set_ylabel(labels[1])
     if(params['fidelity']):
-        ax.set_ylabel("Fidelity [1]")
+        clrbar.set_label("Fidelity [1]")
     else:
-        ax.set_ylabel("Infidelity [1]")
+        clrbar.set_label("Infidelity [1]")
 
     # ax.set_yscale("logit")
 
@@ -1083,6 +1093,7 @@ plot_methods = {
     'me_seq_wigner'         : [load_ME_seq,plot_me_seq_scan_Wigner],
     'me_seq_fidelity'       : [load_ME_seq,plot_me_seq_scan_fidelity],
     'me_var_1d_fidelity'    : [load_ME_var,plot_var_1d_fid],
+    'me_var_2d_fidelity'    : [load_ME_var,plot_var_2d_fid],
     'me_var_1d_expectation' : [load_ME_var,plot_var_1d_exp],
     'groundup_time'         : [load_Ground_up,plot_time_scan],
     'groundup_detuning'     : [load_Ground_up,plot_detuning_scan]

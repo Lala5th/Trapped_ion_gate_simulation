@@ -31,6 +31,7 @@ def parse_json(js_fname):
     return js_obj
 
 def fill_template(data,params):
+    params = np.hstack(params)
     for p in params:
         a = [data]
         for k in p['key'][:-1]:
@@ -154,10 +155,12 @@ def run_var(js_fname):
         for p in params[0]['value']:
             val = {'key' : params[0]['key'], 'value' : p}
             if(len(params) != 1):
-                for a in gen_map(params[0]):
-                    ret.append([a.append(val)])
+                for a in gen_map(params[1:]):
+                    ret.append([a])
+                    for b in ret[-1]:
+                        b.append(val)
             else:
-                ret.append([val])     
+                ret.append([val])
         return ret
     ps = gen_map(data['params'])
     templates = []
@@ -185,4 +188,4 @@ if __name__ == "__main__":
         if(data["fname"] == None):
             data["fname"] = "temp"
         metadata = [data['template']['n_num'],data['template']['n_ion']]
-        np.savez(data["fname"], s3d = result,metadata=metadata,params=[i['value'] for i in data['params']],labels=[i['label'] for i in data['params']])
+        np.savez(data["fname"], s3d = result,metadata=metadata,params=np.array([i['value'] for i in data['params']],dtype=object),labels=[i['label'] for i in data['params']])
