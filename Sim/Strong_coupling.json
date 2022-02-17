@@ -55,12 +55,12 @@
             
             "inner"         : {
                 "tau"           : 0,
-                "builder"       : "strong_coupling2",
+                "builder"       : "custom_sc2",
                 "n_t"           : 500,
-                "phase"         : 0.125,
+                "phase"         : 0.5,
                 "K"             : 2,
                 "detuning"      : null,
-                "Omega0"		: 0.01
+                "Omega0"		: 0.001
             }
         }
     ],
