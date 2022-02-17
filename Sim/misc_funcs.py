@@ -233,10 +233,10 @@ def strong_coupling2(data,params):
     r = np.roots([3*(data['eta0'])**6,-(1+data['eta0']**2)*data['eta0']**2,params['phase']])
     frac = np.sqrt(r[np.logical_and((r.imag==0),(r.real>=0))].real.min())
     if (params['detuning'] is not None):
-        Omega0 = -1j*frac*params['detuning']*data['nu0']*np.exp(0.5*data['eta0']**2)
+        Omega0 = -1j*frac*params['detuning']*data['nu0']
         detuning = params['detuning']
     else:
-        detuning = params['Omega0']/(frac*np.exp(0.5*data['eta0']**2))
+        detuning = params['Omega0']/(frac)
         Omega0 = -1j*params['Omega0']*data['nu0']
 
     sequence = [{
@@ -289,10 +289,10 @@ def strong_coupling3(data,params):
     frac = np.sqrt(r[(r.imag==0) & (r.real>=0) ].real.min())
     f = frac*data['eta0']**2
     if (params['detuning'] is not None):
-        Omega0 = -1j*frac*params['detuning']*data['nu0']*np.exp(0.5*data['eta0']**2)
+        Omega0 = -1j*frac*params['detuning']*data['nu0']
         detuning = params['detuning']
     else:
-        detuning = params['Omega0']/(frac*np.exp(0.5*data['eta0']**2))
+        detuning = params['Omega0']/(frac)
         Omega0 = -1j*params['Omega0']*data['nu0']
     sequence = [{
         "reltime"           : 0,

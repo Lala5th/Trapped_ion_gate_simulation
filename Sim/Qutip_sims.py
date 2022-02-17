@@ -915,9 +915,15 @@ def ME_Interaction_OR(data):
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
     def run_sim(args, state0=state0):
-        global t_col
+        global t_col, endphase, phase
         # print(state0.shape)
+        endphase = None
         res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+                
+        if data['t0'] == 0:
+            phase = endphase(ts[-1])
+        else:
+            phase += endphase(ts[-1])
         return res.states
 
     return run_sim
@@ -1007,9 +1013,15 @@ def ME_Interaction_Reduced(data):
     # Simulation run function
     options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
     def run_sim(args, state0=state0):
-        global t_col
+        global t_col, endphase, phase
         # print(state0.shape)
+        endphase = None
         res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+                
+        if data['t0'] == 0:
+            phase = endphase(ts[-1])
+        else:
+            phase += endphase(ts[-1])
         return res.states
 
     return run_sim

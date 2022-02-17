@@ -993,6 +993,50 @@ def plot_var_1d_fid(data_pack):
 
     plt.show()
 
+def plot_var_2d_fid(data_pack):
+    global ax, args
+
+    state_data, ps, _, labels, _, _ = data_pack
+    with open(args[2]) as jsfile:
+        params = json.load(jsfile)
+
+    density_matrix = np.einsum(params['prep'],state_data)
+    if(len(args) <= 3):
+        _, ax = plt.subplots()
+        ax.grid()
+    elif(args[3] != "True"):
+        _, ax = plt.subplots()
+        ax.grid()
+
+    target = np.zeros(density_matrix.shape[:int((len(density_matrix.shape)-1)/2)],dtype=np.complex128)
+    for m_index in params['target']:
+        target[tuple(m_index['index'])] += factor(m_index['factor'])
+
+    target /= np.sqrt(np.real(np.sum(target*np.conj(target))))
+    density_matrix /= np.sqrt(np.einsum(params['norm'],np.abs(density_matrix)))
+
+    if(params['fidelity']):
+        ax.plot(ps[0],np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+    else:
+        ax.plot(ps[0],1-np.real(np.einsum(params['expectation'],np.conj(target),density_matrix,target)))
+    # ax.legend()
+    print(target)
+
+    # ax.legend(ps,legend)
+    # fig2, ax2 = plt.subplots()
+    # ax2.plot(t,sol[0])
+    # ax2.plot(t,sol[1])q
+    # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
+    ax.set_xlabel(labels[0])
+    if(params['fidelity']):
+        ax.set_ylabel("Fidelity [1]")
+    else:
+        ax.set_ylabel("Infidelity [1]")
+
+    # ax.set_yscale("logit")
+
+    plt.show()
+
 def plot_var_1d_exp(data_pack):
     global ax, args
 
