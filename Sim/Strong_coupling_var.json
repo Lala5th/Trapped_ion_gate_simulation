@@ -4,12 +4,7 @@
         {
             "key"   : ["eta0"],
             "label" : "$\\eta [1]$",
-            "range" : [0.05,0.25,5]
-        },
-        {
-            "key"   : ["sequence",0,"inner","Omega0"],
-            "label" : "$\\Omega_0 [s^{-1}]$",
-            "range" : [0.01,0.1,10]
+            "range" : [0.05,1,20]
         }
     ],
 
@@ -71,12 +66,12 @@
                 
                 "inner"         : {
                     "tau"           : 0,
-                    "builder"       : "custom_sc",
+                    "builder"       : "custom_sc2",
                     "n_t"           : 10,
                     "phase"         : 0.125,
                     "K"             : 2,
                     "detuning"      : null,
-                    "Omega0"		: 0.01
+                    "Omega0"		: 0.1
                 }
             }
         ]

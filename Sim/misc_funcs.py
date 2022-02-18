@@ -444,7 +444,7 @@ def custom_sc(data,params):
     return sequence
 
 def custom_sc2(data,params):
-    r = np.roots([data['eta0']**6*17*5/39,data['eta0']**2*(1+data['eta0']**2)*13*5/39,-params['phase']])
+    r = np.roots([-data['eta0']**6*3,data['eta0']**2*(1+data['eta0']**2),-params['phase']])
     frac = np.sqrt(r[(r.imag==0) & (r.real>=0) ].real.min())
     detuning = params['Omega0']/(frac*np.exp(0.5*data['eta0']**2))
     Omega0 = -1j*params['Omega0']*data['nu0']
@@ -456,7 +456,7 @@ def custom_sc2(data,params):
         "beams"             : []
     }]
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0,
+        "Omega0"            : -Omega0*2/3,
         "detuning"          : 1-2*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -465,7 +465,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : Omega0*2/3,
         "detuning"          : -1+2*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -474,7 +474,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0,
+        "Omega0"            : Omega0,
         "detuning"          : 1-3*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -483,7 +483,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
+        "Omega0"            : -Omega0,
         "detuning"          : -1+3*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -492,8 +492,8 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
-        "detuning"          : 2+detuning,
+        "Omega0"            : 0*Omega0,
+        "detuning"          : 2-2*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
         "abspi"             : False,
@@ -501,8 +501,8 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
-        "detuning"          : -2-detuning,
+        "Omega0"            : 0*Omega0,
+        "detuning"          : -2+2*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
         "abspi"             : False,
@@ -510,8 +510,8 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
-        "detuning"          : 2-detuning,
+        "Omega0"            : 0*Omega0,
+        "detuning"          : 2-3*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
         "abspi"             : False,
@@ -519,8 +519,8 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : Omega0,
-        "detuning"          : -2+detuning,
+        "Omega0"            : 0*Omega0,
+        "detuning"          : -2+3*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
         "abspi"             : False,
