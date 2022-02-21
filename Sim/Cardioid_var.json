@@ -2,13 +2,14 @@
 
     "params"    : [
         {
-            "key"   : ["xi"],
-            "range" : [0,1e4,101]
+            "key"   : ["eta0"],
+            "range" : [0.01,0.5,50],
+            "label" : "$\\eta [1]$"
         }
     ],
 
     "template"  : {
-        "solver"        : "SC_paper",
+        "solver"        : "ME_Interaction_OR",
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
@@ -52,7 +53,7 @@
         },
 
         "eta0"          : 0.1,
-        "xi"          : 0,
+        "xi"            : 0,
 
         "t_prep"        : 0,
 
@@ -61,11 +62,12 @@
                 "builder"       : "Add_carrier_S",
                 "m"             : 5,
                 "phi"           : 0.5,
+                "y"             : true,
     
                 "inner"         : {
                         "builder"       : "cardioid",
-                        "n_t"           : 1000,
-                        "n"             : [2,3],
+                        "n_t"           : 5,
+                        "n"             : [4,6],
                         "r"             : [1,-1],
                         "detuning"      : null,
                         "Omega0"		: 0.1

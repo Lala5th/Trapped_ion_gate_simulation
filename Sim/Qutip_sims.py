@@ -47,6 +47,18 @@ def Sy(data):
         Sy = Sy_p if Sy is None else Sy + Sy_p
     return Sy
 
+def sigma_i(data,t,i):
+    types = {'x' : qtip.sigmax()
+            ,'y' : qtip.sigmay()
+            ,'z' : qtip.sigmaz()}
+    s = types[t]
+    identity = qtip.identity(2)
+    ret = None
+    for j in range(data['n_ion']):
+        c = identity if i != j else s
+        ret = c if ret is None else qtip.tensor(ret,c)
+    return ret
+
 def state_error(data):
     return -data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num']))/2
 
@@ -913,7 +925,7 @@ def ME_Interaction_OR(data):
     state0 = state0
 
     # Simulation run function
-    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    options = qtip.Options(atol=1e-16,rtol=1e-16,nsteps=1e10)
     def run_sim(args, state0=state0):
         global t_col, endphase, phase
         # print(state0.shape)
@@ -1011,7 +1023,201 @@ def ME_Interaction_Reduced(data):
     state0 = state0
 
     # Simulation run function
-    options = qtip.Options(atol=1e-8,rtol=1e-8,nsteps=1e6)
+    options = qtip.Options(atol=1e-16,rtol=1e-16,nsteps=1e10)
+    def run_sim(args, state0=state0):
+        global t_col, endphase, phase
+        # print(state0.shape)
+        endphase = None
+        res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+                
+        if data['t0'] == 0:
+            phase = endphase(ts[-1])
+        else:
+            phase += endphase(ts[-1])
+        return res.states
+
+    return run_sim
+
+def ME_Interaction_SReduced(data):
+    global t_col
+
+    # Set up params
+    n_num = data["n_num"]
+    nu0 = data['nu0']
+
+    # Set up standard operators
+    # Most of these could be called on demand, however 
+    # caching these will reduce calling overhead
+    sigma_p = qtip.sigmam() # Due to different convention used in previous code
+                            # and internally within QuTiP
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    # Create the initial state.
+    state0 = state_builders[data['state0']['builder']](data['state0'])
+
+    # Create Hamiltonian
+    def H_i(arg):
+        C_corr = False
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
+        ret = []
+        for d in data['beams']:
+
+            if(d.get('carrier_corr',False)):
+                for i in perturbing_term_nw(data,d["Omega0"],d['y']):
+                    ret.append(i)
+                assert not C_corr
+                C_corr = True
+                continue
+
+            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
+            
+            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            address = None
+            if("ion" in d):
+                address = d['ion']
+            H_i_p = []
+            for i in range(len(H_M_p)):
+                H_data = None
+                for j in range(data['n_ion']):
+                    H_p = None
+                    if(address!=None):
+                        if(address!=j):
+                            continue
+                    for k in range(data['n_ion']):
+                        H_part = qtip.identity(2) if j!=k else H_A_p
+                        if(H_p == None):
+                            H_p = H_part
+                        else:
+                            H_p = qtip.tensor(H_p,H_part)
+                    if(H_data == None):
+                        H_data = H_p
+                    else:
+                        H_data += H_p
+                H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
+                
+            for i in H_i_p:
+                if abs(i[1]/data['nu0'] - d['detuning']) > np.abs(30*d['Omega0']*data['eta0']**i[1]/data['nu0']):
+                    continue
+                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
+                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+
+        if not C_corr:
+            for i in perturbing_term_nw(data,0,data.get('y',True)):
+                ret.append(i)
+        return ret
+
+    params = data['c_param']
+    params['n_ion'] = data['n_ion']
+    params['n_num'] = data['n_num']
+    c_ops = collapse_operators[params['c_operator']](params)
+
+    # Simulation ranges
+    ts = data["ts"]
+
+    state0 = state0
+
+    # Simulation run function
+    options = qtip.Options(atol=1e-16,rtol=1e-16,nsteps=1e10)
+    def run_sim(args, state0=state0):
+        global t_col, endphase, phase
+        # print(state0.shape)
+        endphase = None
+        res = qtip.mesolve(H=H_i({'eta' : data['eta0']}),rho0=state0,tlist=ts,options=options,c_ops=c_ops,progress_bar=EnhancedTextProgressBar())
+                
+        if data['t0'] == 0:
+            phase = endphase(ts[-1])
+        else:
+            phase += endphase(ts[-1])
+        return res.states
+
+    return run_sim
+
+def ME_Interaction_Full(data):
+    global t_col
+
+    # Set up params
+    n_num = data["n_num"]
+    nu0 = data['nu0']
+
+    # Set up standard operators
+    # Most of these could be called on demand, however 
+    # caching these will reduce calling overhead
+    sigma_p = qtip.sigmam() # Due to different convention used in previous code
+                            # and internally within QuTiP
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    # Create the initial state.
+    state0 = state_builders[data['state0']['builder']](data['state0'])
+
+    # Create Hamiltonian
+    def H_i(arg):
+        C_corr = False
+        H_M_p = generate_qutip_exp_factor(manual_taylor_expm(a_sum*1j*arg['eta'],n=2*n_num), nu0)
+        ret = []
+        for d in data['beams']:
+
+            if(d.get('carrier_corr',False)):
+                for i in perturbing_term_nw(data,d["Omega0"],d['y']):
+                    ret.append(i)
+                assert not C_corr
+                C_corr = True
+                continue
+
+            H_A_p = (d['Omega0']/2)*sigma_p + 0j#*det_p(t,args['omega'])
+            
+            # H_M_p = (1j*args['eta']*a_sum(t)).expm()
+            address = None
+            if("ion" in d):
+                address = d['ion']
+            H_i_p = []
+            for i in range(len(H_M_p)):
+                H_data = None
+                for j in range(data['n_ion']):
+                    H_p = None
+                    if(address!=None):
+                        if(address!=j):
+                            continue
+                    for k in range(data['n_ion']):
+                        H_part = qtip.identity(2) if j!=k else H_A_p
+                        if(H_p == None):
+                            H_p = H_part
+                        else:
+                            H_p = qtip.tensor(H_p,H_part)
+                    if(H_data == None):
+                        H_data = H_p
+                    else:
+                        H_data += H_p
+                H_i_p.append([qtip.tensor(H_data,H_M_p[i][0]), H_M_p[i][1],1])
+                
+            for i in H_i_p:
+                ret.append([i[0]        ,lambda t,args,e = i[1] - d['detuning']*data['nu0'], b = d : c_exp(t + data['t0'],e, b['phase0'])])
+                ret.append([i[0].dag()  ,lambda t,args,e = d['detuning']*data['nu0'] - i[1], b = d : c_exp(t + data['t0'],e,-b['phase0'])])
+
+        if not C_corr:
+            for i in perturbing_term_nw(data,0,data.get('y',True)):
+                ret.append(i)
+        return ret
+
+    params = data['c_param']
+    params['n_ion'] = data['n_ion']
+    params['n_num'] = data['n_num']
+    c_ops = collapse_operators[params['c_operator']](params)
+
+    # Simulation ranges
+    ts = data["ts"]
+
+    state0 = state0
+
+    # Simulation run function
+    options = qtip.Options(atol=1e-16,rtol=1e-16,nsteps=1e10)
     def run_sim(args, state0=state0):
         global t_col, endphase, phase
         # print(state0.shape)
@@ -1032,16 +1238,22 @@ endphase = None
 def perturbing_term(data, Omega0, y = True):
     global endphase
     ret = []
-    ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(phase + Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau'])))])
-    ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if y else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.sin(phase + Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau'])))])
+    if np.array(data['xi']).size == 1:
+        data['xi'] = [np.array(data['xi'])]*data['n_ion']
+    for i in range(len(data['xi'])):
+        ret.append([-0.5*data['xi'][i]*qtip.tensor(sigma_i(data,'z',i),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',[0]*(i+1))[i]*(t + data['t0']))*np.cos(phase + Omega0*t)])
+        ret.append([-0.5*data['xi'][i]*qtip.tensor(sigma_i(data,'y',i) if y else sigma_i(data,'x',i),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',[0]*(i+1))[i]*(t + data['t0']))*np.sin(phase + Omega0*t)])
     endphase = lambda t : Omega0*tprime(t - pre_sim(data['tau']), data['abstime'], data['tau'],-pre_sim(data['tau']))
     return ret
 
 def perturbing_term_nw(data, Omega0, y = True):
     global endphase
     ret = []
-    ret.append([-0.5*data['xi']*qtip.tensor(Sz(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',0)*(t + data['t0']))*np.cos(phase + Omega0*t)])
-    ret.append([-0.5*data['xi']*qtip.tensor(Sy(data) if y else Sx(data),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',0)*(t + data['t0']))*np.sin(phase + Omega0*t)])
+    if np.array(data['xi']).size == 1:
+        data['xi'] = [np.array(data['xi'])]*data['n_ion']
+    for i in range(len(data['xi'])):
+        ret.append([-0.5*data['xi'][i]*qtip.tensor(sigma_i(data,'z',i),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',[0]*(i+1))[i]*(t + data['t0']))*np.cos(phase + Omega0*t)])
+        ret.append([-0.5*data['xi'][i]*qtip.tensor(sigma_i(data,'y',i) if y else sigma_i(data,'x',i),qtip.identity(data['n_num'])),lambda t, _ : np.cos(data.get('omega_xi',[0]*(i+1))[i]*(t + data['t0']))*np.sin(phase + Omega0*t)])
     endphase = lambda t : Omega0*t
     return ret
 
@@ -1264,6 +1476,8 @@ sim_methods = {
     'SC_paper'                                  : SC_paper,
     'ME_Interaction_OR'                         : ME_Interaction_OR,
     'ME_Interaction_Reduced'                    : ME_Interaction_Reduced,
+    'ME_Interaction_SReduced'                   : ME_Interaction_SReduced,
+    'ME_Interaction_Full'                       : ME_Interaction_Full,
     'ME_Interaction_Windup_Reduced'             : ME_Interaction_Windup_Reduced,
     'ME_Interaction_Windup_OR'                  : ME_Interaction_Windup_OR
 }
