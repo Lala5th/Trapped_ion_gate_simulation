@@ -9,7 +9,7 @@
     ],
 
     "template"  : {
-        "solver"        : "ME_Interaction_Reduced",
+        "solver"        : "ME_Interaction_OR",
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
@@ -66,9 +66,9 @@
                 
                 "inner"         : {
                     "tau"           : 0,
-                    "builder"       : "strong_coupling2",
-                    "n_t"           : 10,
-                    "phase"         : 0.125,
+                    "builder"       : "custom_sc2",
+                    "n_t"           : 5,
+                    "phase"         : 0.5,
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01
@@ -79,5 +79,5 @@
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling2_var.npz"
+    "fname"         : "custom_sc2_var.npz"
 }

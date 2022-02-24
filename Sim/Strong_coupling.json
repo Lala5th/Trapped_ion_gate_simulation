@@ -24,7 +24,7 @@
 
             "states"        : [
                 {
-                    "n"             : 1,
+                    "n"             : 0,
                     "atoms"         : [false,false],
                     "factor"        : {
                         "size"          : 1,

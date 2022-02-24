@@ -1,5 +1,5 @@
 {
-    "solver"        : "SC_paper",
+    "solver"        : "ME_Interaction_Reduced",
 
     "omega0Hz"      : 411e12,
     "omega0"        : null,
@@ -13,7 +13,7 @@
 
     "state0"        :
         {
-            "builder"       : "Thermal_state",
+            "builder"       : "Generic_state",
 
             "n"             : 0,
 
@@ -24,7 +24,7 @@
 
             "states"        : [
                 {
-                    "n"             : 2,
+                    "n"             : 0,
                     "atoms"         : [false,false],
                     "factor"        : {
                         "size"          : 1,
@@ -43,7 +43,7 @@
     },
 
     "eta0"          : 0.1,
-    "xi"          : 0,
+    "xi"            : 0,
 
     "t_prep"        : 0,
 
@@ -51,7 +51,7 @@
         {
             "builder"       : "cardioid",
             "n_t"           : 1000,
-            "n"             : [2,3],
+            "n"             : [4,6],
             "r"             : [1,-1],
             "detuning"      : null,
             "Omega0"		: 0.1

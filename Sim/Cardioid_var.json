@@ -3,7 +3,7 @@
     "params"    : [
         {
             "key"   : ["eta0"],
-            "range" : [0.01,0.5,50],
+            "range" : [0.01,1,100],
             "label" : "$\\eta [1]$"
         }
     ],
@@ -23,7 +23,7 @@
 
         "state0"        :
             {
-                "builder"       : "Thermal_state",
+                "builder"       : "Generic_state",
 
                 "n"             : 0,
 
@@ -34,7 +34,7 @@
 
                 "states"        : [
                     {
-                        "n"             : 2,
+                        "n"             : 0,
                         "atoms"         : [false,false],
                         "factor"        : {
                             "size"          : 1,
@@ -60,7 +60,7 @@
         "sequence"      : [
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 5,
+                "m"             : 0,
                 "phi"           : 0.5,
                 "y"             : true,
     
@@ -70,7 +70,7 @@
                         "n"             : [4,6],
                         "r"             : [1,-1],
                         "detuning"      : null,
-                        "Omega0"		: 0.1
+                        "Omega0"		: 0.01
                     }
             }
         ]
