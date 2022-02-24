@@ -66,9 +66,24 @@
                 
                 "inner"         : {
                     "tau"           : 0,
-                    "builder"       : "custom_sc2",
+                    "builder"       : "strong_coupling2",
                     "n_t"           : 5,
-                    "phase"         : 0.5,
+                    "phase"         : 0.25,
+                    "K"             : 2,
+                    "detuning"      : null,
+                    "Omega0"		: 0.01
+                }
+            },
+            {
+                "builder"       : "Add_carrier_S",
+                "m"             : 0,
+                "y"             : true,
+                
+                "inner"         : {
+                    "tau"           : 0,
+                    "builder"       : "strong_coupling2",
+                    "n_t"           : 5,
+                    "phase"         : 0.25,
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01
@@ -79,5 +94,5 @@
     },
 
     "output"        : true,
-    "fname"         : "custom_sc2_var.npz"
+    "fname"         : "strong_coupling2_var.npz"
 }

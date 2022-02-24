@@ -496,7 +496,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0/np.sqrt(2),
+        "Omega0"            : -Omega0*np.sqrt(5/6),
         "detuning"          : 2-1*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -505,7 +505,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0/np.sqrt(2),
+        "Omega0"            : -Omega0*np.sqrt(5/6),
         "detuning"          : -2+1*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -513,24 +513,24 @@ def custom_sc2(data,params):
         "ion"               : None,
         "phase0"            : params.get('phase0',0)
     })
-    sequence[0]["beams"].append({
-        "Omega0"            : -Omega0,
-        "detuning"          : 2-3*detuning,
-        "phase0abs"         : 0,
-        "phase_match"       : False,
-        "abspi"             : False,
-        "ion"               : None,
-        "phase0"            : params.get('phase0',0)
-    })
-    sequence[0]["beams"].append({
-        "Omega0"            : -Omega0,
-        "detuning"          : -2+3*detuning,
-        "phase0abs"         : 0,
-        "phase_match"       : False,
-        "abspi"             : False,
-        "ion"               : None,
-        "phase0"            : params.get('phase0',0)
-    })
+    # sequence[0]["beams"].append({
+    #     "Omega0"            : -Omega0,
+    #     "detuning"          : 2-3*detuning,
+    #     "phase0abs"         : 0,
+    #     "phase_match"       : False,
+    #     "abspi"             : False,
+    #     "ion"               : None,
+    #     "phase0"            : params.get('phase0',0)
+    # })
+    # sequence[0]["beams"].append({
+    #     "Omega0"            : -Omega0,
+    #     "detuning"          : -2+3*detuning,
+    #     "phase0abs"         : 0,
+    #     "phase_match"       : False,
+    #     "abspi"             : False,
+    #     "ion"               : None,
+    #     "phase0"            : params.get('phase0',0)
+    # })
     return sequence
 
 def cardioid(data,params):
