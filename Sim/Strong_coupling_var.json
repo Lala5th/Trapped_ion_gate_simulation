@@ -4,12 +4,7 @@
         {
             "key"   : ["eta0"],
             "label" : "$\\eta [1]$",
-            "range" : [0.1,0.5,5]
-        },
-        {
-            "key"   : ["sequence",0,"inner","Omega0"],
-            "label" : "$\\Omega_0 [\\nu_0]$",
-            "range" : [0.02,0.2,10]
+            "range" : [0.01,1,100]
         }
     ],
 
@@ -73,7 +68,7 @@
                     "tau"           : 0,
                     "builder"       : "strong_coupling2",
                     "n_t"           : 10,
-                    "phase"         : 0.5,
+                    "phase"         : 0.125,
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01
@@ -84,5 +79,5 @@
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling2_2d_2.npz"
+    "fname"         : "strong_coupling2_var.npz"
 }
