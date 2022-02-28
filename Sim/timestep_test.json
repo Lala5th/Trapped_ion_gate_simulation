@@ -1,0 +1,64 @@
+{
+    "solver"        : "QuTiP_C_mult_laser",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : 1.1e6,
+    "nu0"           : null,
+
+    "n_num"         : 50,
+
+    "state0"        :
+        {
+            "builder"       : "Coherent_state",
+            "sim_file"      : "exp.npz",
+            "states"        : [
+                {
+                    "n0"            : 0,
+                    "g"             : true,
+                    "factor"        : 1
+                }
+            ],
+            "alpha"         : {
+                "size"          : 5,
+                "phase"         : 0
+            },
+            "g"             : {
+                "size"          : 1,
+                "phase"         : 0
+            },
+            "e"             : {
+                "size"          : 0,
+                "phase"         : 0
+            }
+        },
+
+    "eta0"          : 0.09,
+
+    "t_prep"        : 0,
+
+    "sequence"      : [
+        {
+            "reltime"       : 0,
+            "abstime"       : 1e-3,
+            "n_t"           : 1000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 1,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : 77e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false 
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : null
+}

@@ -1,0 +1,83 @@
+{
+    "solver"        : "ME_C_mult_laser_generic_collapse",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : 1e6,
+    "nu0"           : null,
+
+    "n_num"         : 20,
+    "n_ion"         : 2,
+
+    "state0"        :
+        {
+            "builder"       : "Generic_state",
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 2,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 1,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+    
+    "c_param"       : {
+        "c_operator"        : "heating_collapse",
+
+        "n_therm"           : 2,
+        "Gamma"             : 2e2
+    },
+
+    "eta0"          : 0.10,
+
+    "t_prep"        : 0,
+
+    "sequence"      : [
+        {
+            "reltime"       : 0,
+            "abstime"       : 100e-6,
+            "n_t"           : 1000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 0.95,
+                    "Omega0_rel"    : 0.2,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : null
+                },
+                {
+                    "detuning"      : -0.95,
+                    "Omega0_rel"    : 0.2,
+                    "Omega0"        : null,
+                    "Omega0Hz"      : null,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0,
+                    "phase_match"   : false,
+                    "abspi"         : false,
+
+                    "ion"           : null
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "ms_fast.npz"
+}

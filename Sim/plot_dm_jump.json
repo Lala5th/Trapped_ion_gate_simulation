@@ -1,0 +1,13 @@
+{
+    "prep"          : "ijk,imk->jmk",
+    "plot"          : [
+        {
+            "index"         : [5,5],
+            "label"         : "$\\langle$5|$\\hat{\\rho}$|5$\\rangle$"
+        },
+        {
+            "index"         : [4,4],
+            "label"         : "$\\langle$4|$\\hat{\\rho}$|4$\\rangle$"
+        }
+    ]
+}

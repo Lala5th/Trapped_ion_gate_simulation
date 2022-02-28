@@ -1,0 +1,87 @@
+{
+
+    "params"    : [
+        {
+            "key"   : ["eta0"],
+            "range" : [0.1,1,10],
+            "label" : "$\\eta [1]$"
+        }
+    ],
+
+    "template"  : {
+        "solver"        : "ME_Interaction_Reduced",
+
+        "omega0Hz"      : 411e12,
+        "omega0"        : null,
+        "nu0Hz"         : null,
+        "nu0"           : 1e6,
+
+        "n_num"         : 20,
+        "n_ion"         : 2,
+
+        "ntraj"         : 1,
+
+        "state0"        :
+            {
+                "builder"       : "Generic_state",
+
+                "n"             : 0,
+
+                "alpha"         : {
+                    "size"          : 1.41421356237,
+                    "phase"         : 0
+                },
+
+                "states"        : [
+                    {
+                        "n"             : 0,
+                        "atoms"         : [false,false],
+                        "factor"        : {
+                            "size"          : 1,
+                            "phase"         : 0
+                        }
+                    }
+                ]
+            },
+        
+        "c_param"       : {
+            "c_operator"        : "heating_collapse",
+
+
+            "n_therm"           : 2,
+            "Gamma"             : 0
+        },
+
+        "eta0"          : 0.1,
+        "xi"            : 0,
+
+        "t_prep"        : 0,
+
+        "n_t"           : 51,
+        "t_r"           : 0.05,
+
+        "sequence"      : [
+            {
+                "builder"       : "Add_carrier_S",
+                "m"             : 0,
+                "phi"           : 0.5,
+                "y"             : true,
+    
+                "inner"         : {
+                        "builder"       : "custom_sc2",
+                        "n_t"           : 5,
+                        "n"             : [4,6],
+                        "r"             : [1,-1],
+                        "j"             : -0.79056941504,
+                        "detuning"      : null,
+                        "Omega0"		: 0.1,
+                        "phase"         : 0.5
+                    }
+            }
+        ]
+
+    },
+
+    "output"        : true,
+    "fname"         : "cardioid_time.npz"
+}

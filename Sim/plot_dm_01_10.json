@@ -1,0 +1,17 @@
+{
+    "prep"          : "ijljk->ilk",
+    "plot"          : [
+        {
+            "index"         : [1,1],
+            "label"         : "$\\langle$ge|$\\hat{\\rho}$|ge$\\rangle$"
+        },
+        {
+            "index"         : [2,2],
+            "label"         : "$\\langle$eg|$\\hat{\\rho}$|eg$\\rangle$"
+        },
+        {
+            "index"         : [1,2],
+            "label"         : "$\\langle$ge|$\\hat{\\rho}$|eg$\\rangle$"
+        }
+    ]
+}
