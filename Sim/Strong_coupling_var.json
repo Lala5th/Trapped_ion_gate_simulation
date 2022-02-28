@@ -2,9 +2,9 @@
 
     "params"    : [
         {
-            "key"   : ["eta0"],
-            "label" : "$\\eta [1]$",
-            "range" : [0.01,1,100]
+            "key"   : ["xi"],
+            "label" : "$\\xi [s^{-1}]$",
+            "range" : [0,7000,15]
         }
     ],
 
@@ -61,8 +61,9 @@
         "sequence"      : [
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 0,
+                "m"             : null,
                 "y"             : true,
+                "Omegac"        : 0,
                 
                 "inner"         : {
                     "tau"           : 0,
@@ -76,8 +77,9 @@
             },
             {
                 "builder"       : "Add_carrier_S",
-                "m"             : 0,
+                "m"             : null,
                 "y"             : true,
+                "Omegac"        : 0,
                 
                 "inner"         : {
                     "tau"           : 0,
@@ -94,5 +96,5 @@
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling2_var.npz"
+    "fname"         : "strong_coupling_var.npz"
 }

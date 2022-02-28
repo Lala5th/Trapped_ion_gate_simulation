@@ -446,6 +446,7 @@ def custom_sc(data,params):
 def custom_sc2(data,params):
     r = np.roots([-data['eta0']**6*7*5/72,data['eta0']**2*(1+data['eta0']**2)*12*5/72,-params['phase']])
     frac = np.sqrt(r[(r.imag==0) & (r.real>=0) ].real.min())*np.exp(0.5*data['eta0']**2)
+    params.get('j',0)
     if (params['detuning'] is not None):
         Omega0 = -1j*frac*params['detuning']*data['nu0']
         detuning = params['detuning']
@@ -496,7 +497,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0*np.sqrt(5/6),
+        "Omega0"            : -Omega0*np.sqrt((5-2*params['j']**2)/6),
         "detuning"          : 2-1*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -505,7 +506,7 @@ def custom_sc2(data,params):
         "phase0"            : params.get('phase0',0)
     })
     sequence[0]["beams"].append({
-        "Omega0"            : -Omega0*np.sqrt(5/6),
+        "Omega0"            : -Omega0*np.sqrt((5-2*params['j']**2)/6),
         "detuning"          : -2+1*detuning,
         "phase0abs"         : 0,
         "phase_match"       : False,
@@ -513,24 +514,24 @@ def custom_sc2(data,params):
         "ion"               : None,
         "phase0"            : params.get('phase0',0)
     })
-    # sequence[0]["beams"].append({
-    #     "Omega0"            : -Omega0,
-    #     "detuning"          : 2-3*detuning,
-    #     "phase0abs"         : 0,
-    #     "phase_match"       : False,
-    #     "abspi"             : False,
-    #     "ion"               : None,
-    #     "phase0"            : params.get('phase0',0)
-    # })
-    # sequence[0]["beams"].append({
-    #     "Omega0"            : -Omega0,
-    #     "detuning"          : -2+3*detuning,
-    #     "phase0abs"         : 0,
-    #     "phase_match"       : False,
-    #     "abspi"             : False,
-    #     "ion"               : None,
-    #     "phase0"            : params.get('phase0',0)
-    # })
+    sequence[0]["beams"].append({
+        "Omega0"            : -params['j']*Omega0,
+        "detuning"          : 2-3*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : params.get('phase0',0)
+    })
+    sequence[0]["beams"].append({
+        "Omega0"            : -params['j']*Omega0,
+        "detuning"          : -2+3*detuning,
+        "phase0abs"         : 0,
+        "phase_match"       : False,
+        "abspi"             : False,
+        "ion"               : None,
+        "phase0"            : params.get('phase0',0)
+    })
     return sequence
 
 def cardioid(data,params):
@@ -572,7 +573,7 @@ def cardioid(data,params):
 def add_carrier_S(data,params):
     sequence = sequence_builders[params['inner']['builder']](data,params['inner'])
     if (params.get('Omegac',None) is not None):
-        Omega0 = params['Omegac']
+        Omega0 = params['Omegac']*data["nu0"]
     else:
         Omega0 = 2*const.pi*params['m']/sequence[0]['abstime']
     sequence[0]['beams'].append({
