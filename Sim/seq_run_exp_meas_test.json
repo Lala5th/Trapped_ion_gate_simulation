@@ -1,0 +1,77 @@
+{
+    "solver"        : "QuTiP_C_meas_mult_laser",
+
+    "omega0"        : 411e12,
+    "nu0Hz"         : 1.1e6,
+    "nu0"           : null,
+
+    "n_num"         : 7,
+    
+    "state0"        :
+        {
+            "builder"       : "Final_state",
+            
+            "sim_file"      : "exp.npz"
+
+        },
+    
+    "params"        :
+        {
+            "solver"        : "QuTiP_C_mult_laser",
+
+            "reltime"       : 2,
+            "abstime"       : null,
+            "n_t"           : 2,
+            
+            "beams"         : [
+                {
+                    "detuning"      : -1,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 90e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0
+                }
+            ]
+        },
+
+    "eta0"          : 0.09,
+
+    "sequence"      : [
+        {
+            "reltime"       : 0.5,
+            "abstime"       : null,
+            "n_t"           : 10,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 0,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 90e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 2.23053078405
+                }
+            ]
+        },
+        {
+            "reltime"       : 1.59,
+            "abstime"       : null,
+            "n_t"           : 10,
+    
+            "beams"         : [
+                {
+                    "detuning"      : 0,
+                    "Omega0_rel"    : null,
+                    "Omega0"        : 90e3,
+
+                    "phase0"        : null,
+                    "phase0abs"     : 0.3141592653
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : null
+}

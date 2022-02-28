@@ -1,0 +1,76 @@
+{
+    "solver"        : "SC_paper",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : null,
+    "nu0"           : 1e6,
+
+    "n_num"         : 20,
+    "n_ion"         : 2,
+
+    "ntraj"         : 1,
+
+    "state0"        :
+        {
+            "builder"       : "Thermal_state",
+
+            "n"             : 0,
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 2,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 1,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+    
+    "c_param"       : {
+        "c_operator"        : "heating_collapse",
+
+
+        "n_therm"           : 2,
+        "Gamma"             : 0
+    },
+
+    "eta0"          : 0.1,
+
+    "t_prep"        : 0,
+
+    "sequence"      : [
+        {
+            "builder"       : "raw",
+            "sequence"      : [
+                {
+                    "reltime"          : 0,
+                    "abstime"          : 157e-6,
+                    "n_t"              : 1000,
+                    "beams"            : [
+                        {
+                            "Omega0"            : 1e4,
+                            "detuning"          : 0,
+                            "phase0abs"         : 0,
+                            "phase_match"       : false,
+                            "abspi"             : false,
+                            "ion"               : null,
+                            "phase0"            : 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "temp.npz"
+    
+}

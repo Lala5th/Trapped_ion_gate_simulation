@@ -1,0 +1,10 @@
+{
+    "prep"          : "ijljk->ilk",
+    "expectation"   : "ijk,ji->k",
+    "norm"          : "iik->k",
+    "label"         : "P [1]",
+    "target"        : [[ 1, 0, 0, 0]
+                      ,[ 0,-1, 0, 0]
+                      ,[ 0, 0,-1, 0]
+                      ,[ 0, 0, 0, 1]]
+}

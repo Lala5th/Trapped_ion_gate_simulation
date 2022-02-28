@@ -1,0 +1,40 @@
+{
+    "solver"        : "QuTiP_C",
+    "n_cores"       : 16,
+
+    "omega0"        : 1e10,
+    "nu0Hz"         : 1000,
+    "nu0"           : null,
+
+    "n_num"         : 7,
+    "n0"            : 3,
+    "eta0"          : 0.1,
+
+    "sequence"      : [
+        {
+            "reltime"       : null,
+            "abstime"       : 0.1,
+            "n_t"           : 1000,
+    
+            "beams"         : [
+                {
+                    "detuning"      : -1,
+                    "Omega0_rel"    : 0.2,
+                    "Omega0"        : null,
+
+                    "phase0"        : null
+                },
+                {
+                    "detuning"      : 100,
+                    "Omega0_rel"    : 2,
+                    "Omega0"        : null,
+
+                    "phase0"        : null
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : null
+}

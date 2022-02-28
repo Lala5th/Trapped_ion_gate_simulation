@@ -4,7 +4,6 @@
 *.npz
 __pycache__/*
 __pycache__
-*.json
 !Sim/scan_example.json
 !Sim/seq_example.json
 *.o

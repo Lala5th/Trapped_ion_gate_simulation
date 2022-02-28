@@ -169,7 +169,9 @@ def run_var(js_fname):
     for p in ps:
         templates.append(deepcopy(data))
         templates[-1]['params'] = p
-
+    if(templates == []):
+        templates.append(deepcopy(data))
+        templates[-1]['params'] = []
     with Pool(16) as process_pool:
         results = process_pool.map(run_templated_sim,templates)
 

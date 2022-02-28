@@ -1,0 +1,81 @@
+{
+
+    "params"    : [
+        {
+            "key"   : ["sequence",0,"Omega0"],
+            "range" : [0.005,0.1,20],
+            "label" : "$\\Omega_0 [\\nu_0]$"
+        }
+    ],
+
+    "template"  : {
+        "solver"        : "ME_Interaction_Reduced",
+
+        "omega0Hz"      : 411e12,
+        "omega0"        : null,
+        "nu0Hz"         : null,
+        "nu0"           : 1e6,
+
+        "n_num"         : 20,
+        "n_ion"         : 2,
+
+        "ntraj"         : 1,
+
+        "state0"        :
+            {
+                "builder"       : "Generic_state",
+
+                "n"             : 0,
+
+                "alpha"         : {
+                    "size"          : 1.41421356237,
+                    "phase"         : 0
+                },
+
+                "states"        : [
+                    {
+                        "n"             : 0,
+                        "atoms"         : [false,false],
+                        "factor"        : {
+                            "size"          : 1,
+                            "phase"         : 0
+                        }
+                    }
+                ]
+            },
+        
+        "c_param"       : {
+            "c_operator"        : "heating_collapse",
+
+
+            "n_therm"           : 2,
+            "Gamma"             : 0
+        },
+
+        "eta0"          : 0.1,
+        "xi"            : 0,
+
+        "t_prep"        : 0,
+
+        "n_t"           : 101,
+        "t_r"           : 0.05,
+
+        "sequence"      : [
+            {
+                "builder"       : "strong_coupling2",
+                "n_t"           : 5,
+                "n"             : [4,6],
+                "r"             : [1,-1],
+                "phase"         : 0.5,
+                "detuning"      : null,
+                "Omega0"		: 0.01,
+                "j"             : 0
+            }
+
+        ]
+
+    },
+
+    "output"        : true,
+    "fname"         : "strong_coupling2_time.npz"
+}
