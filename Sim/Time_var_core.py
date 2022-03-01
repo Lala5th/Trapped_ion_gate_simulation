@@ -163,7 +163,9 @@ def run_var(js_fname):
             else:
                 ret.append([val])
         return ret
-    ps = gen_map(data['params'])
+    ps = []
+    if data['params'] != []:
+        ps = gen_map(data['params'])
     templates = []
     print(ps)
     for p in ps:
@@ -171,7 +173,7 @@ def run_var(js_fname):
         templates[-1]['params'] = p
     if(templates == []):
         templates.append(deepcopy(data))
-        templates[-1]['params'] = []
+        templates[-1]['params'] = [{"key":["NULL"],"value":None}]
     with Pool(16) as process_pool:
         results = process_pool.map(run_templated_sim,templates)
 

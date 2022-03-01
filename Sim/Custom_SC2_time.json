@@ -1,11 +1,6 @@
 {
 
     "params"    : [
-        {
-            "key"   : ["eta0"],
-            "range" : [0.1,1,10],
-            "label" : "$\\eta [1]$"
-        }
     ],
 
     "template"  : {
@@ -58,24 +53,25 @@
         "t_prep"        : 0,
 
         "n_t"           : 101,
-        "t_r"           : 0.05,
+        "t_r"           : 0.1,
 
         "sequence"      : [
             {
-                "builder"       : "cardioid",
+                "tau"           : 0,
+                "builder"       : "strong_coupling2",
                 "n_t"           : 5,
+                "phase"         : 0.5,
+                "K"             : 2,
                 "n"             : [4,6],
                 "r"             : [1,-1],
-                "phase"         : 0.5,
                 "detuning"      : null,
-                "Omega0"		: 0.1,
-                "j"             : 0
+                "Omega0"		: 0.01,
+                "j"             : -1
             }
-
         ]
 
     },
 
     "output"        : true,
-    "fname"         : "cardioid_time_eta.npz"
+    "fname"         : "strong_coupling2_time.npz"
 }
