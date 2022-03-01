@@ -3,15 +3,15 @@
     "plot"          : [
         {
             "index"         : [0,0],
-            "label"         : "$\\langle$↓↓|$\\hat{\\rho}$|↓↓$\\rangle$"
+            "label"         : "$\\langle\\!\\!\\downarrow\\!\\!\\!\\!\\downarrow\\!\\!$|$\\hat{\\rho}$|$\\!\\!\\downarrow\\!\\!\\!\\!\\downarrow\\!\\!\\rangle$"
         },
         {
             "index"         : [-1,-1],
-            "label"         : "$\\langle$↑↑|$\\hat{\\rho}$|↑↑$\\rangle$"
+            "label"         : "$\\langle\\!\\!\\uparrow\\!\\!\\!\\!\\uparrow\\!\\!$|$\\hat{\\rho}$|$\\!\\!\\uparrow\\!\\!\\!\\!\\uparrow\\!\\!\\rangle$"
         },
         {
             "index"         : [0,-1],
-            "label"         : "$\\langle$↓↓|$\\hat{\\rho}$|↑↑$\\rangle$"
+            "label"         : "$\\langle\\!\\!\\downarrow\\!\\!\\!\\!\\downarrow\\!\\!$|$\\hat{\\rho}$|$\\!\\!\\uparrow\\!\\!\\!\\!\\uparrow\\!\\!\\rangle$"
         }
     ]
 }
