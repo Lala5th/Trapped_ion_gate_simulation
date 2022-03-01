@@ -2,30 +2,25 @@
 
     "params"    : [
         {
-            "key"   : ["xi"],
-            "label" : "$\\xi [s^{-1}]$",
-            "range" : [0,7e3,16]
+            "key"   : ["sequence","Omega0"],
+            "range" : [0.001,0.1,100]
         }
     ],
 
     "template"  : {
-        "solver"        : "ME_Interaction_OR",
+        "solver"        : "ME_C_mult_laser_generic_collapse_reduced",
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
         "nu0Hz"         : null,
         "nu0"           : 1e6,
 
-        "n_num"         : 25,
+        "n_num"         : 20,
         "n_ion"         : 2,
-
-        "ntraj"         : 1,
 
         "state0"        :
             {
-                "builder"       : "Generic_state",
-
-                "n"             : 0,
+                "builder"       : "Generic_coherent_state",
 
                 "alpha"         : {
                     "size"          : 1.41421356237,
@@ -34,7 +29,7 @@
 
                 "states"        : [
                     {
-                        "n"             : 0,
+                        "n"             : 2,
                         "atoms"         : [false,false],
                         "factor"        : {
                             "size"          : 1,
@@ -43,7 +38,11 @@
                     }
                 ]
             },
-        
+
+        "eta0"          : 0.10,
+
+        "t_prep"        : 0,
+
         "c_param"       : {
             "c_operator"        : "heating_collapse",
 
@@ -52,51 +51,21 @@
             "Gamma"             : 0
         },
 
-        "eta0"          : 0.1,
-
-        "t_prep"        : 0,
-        "xi"            : 5e3,
-        "omega_xi"      : 0,
-
         "sequence"      : [
             {
-                "builder"       : "Add_carrier_S",
-                "Omegac"        : 2e6,
-                "y"             : true,
-                
-                "inner"         : {
-                    "tau"           : 0,
-                    "builder"       : "strong_coupling2",
-                    "n_t"           : 100,
-                    "phase"         : 0.25,
-                    "K"             : 2,
-                    "n"             : [2,3],
-                    "r"             : [1,-1],
-                    "detuning"      : null,
-                    "Omega0"		: 0.1
-                }
-            },
-            {
-                "builder"       : "Add_carrier_S",
-                "Omegac"        : -2e6,
-                "y"             : true,
-                
-                "inner"         : {
-                    "tau"           : 0,
-                    "builder"       : "strong_coupling2",
-                    "n_t"           : 100,
-                    "phase"         : 0.25,
-                    "K"             : 2,
-                    "n"             : [2,3],
-                    "r"             : [1,-1],
-                    "detuning"      : null,
-                    "Omega0"		: 0.1
-                }
+
+                "builder"       : "cardioid",
+                "n_t"           : 1000,
+                "n"             : [1],
+                "r"             : [1],
+                "detuning"      : null,
+                "Omega0"		: 0.1
+
             }
         ]
-
     },
 
     "output"        : true,
-    "fname"         : "strong_coupling2_xi_DD_Oc.npz"
+    "fname"         : "temp_var.npz"
+
 }
