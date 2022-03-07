@@ -17,13 +17,6 @@ def parse_json(js_fname):
 
     n_num = data['n_num']
 
-    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
-    for i in range(n_num-1):
-        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
-        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
-
-    corrections = manual_taylor_expm(a_sum*1j*data['eta0'],1)
-    
     if(data['nu0'] == None):
         data['nu0'] = data['nu0Hz']*2*const.pi
     
@@ -35,6 +28,16 @@ def parse_json(js_fname):
     else:
         t = data['t_prep']
 
+    if(data['eta0'] == None):
+        data['eta0'] = np.sqrt(const.hbar/(2*data['m']*data['nu0']))*data['omega0']/const.c
+
+    a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
+    for i in range(n_num-1):
+        a_sum[i,i+1] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp=-1)])
+        a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
+
+    corrections = manual_taylor_expm(a_sum*1j*data['eta0'],1)
+    
     seq = deepcopy(data['sequence'])
     data['sequence'] = []
 
