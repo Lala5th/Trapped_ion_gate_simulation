@@ -3,7 +3,7 @@
     "params"    : [
         {
             "key"   : ["sequence",0,"inner","detuning"],
-            "label" : "$\\eta [1]$",
+            "label" : "$\\delta [\\nu_0]$",
             "range" : [0.005,0.04,71]
         }
     ],
@@ -26,7 +26,7 @@
             {
                 "builder"       : "Thermal_state",
 
-                "n"             : 2,
+                "n"             : 0,
 
                 "alpha"         : {
                     "size"          : 1.41421356237,
@@ -53,7 +53,7 @@
             "Gamma"             : 0
         },
 
-        "eta0"          : 0.1,
+        "eta0"          : null,
 
         "t_prep"        : 0,
         "xi"            : [0,0],
@@ -67,9 +67,11 @@
                 
                 "inner"         : {
                     "tau"           : 0,
-                    "builder"       : "strong_coupling2",
+                    "builder"       : "cardioid",
                     "n_t"           : 5,
                     "phase"         : 0.5,
+                    "n"             : [4,6],
+                    "r"             : [1,-1],
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01,
@@ -81,5 +83,5 @@
     },
 
     "output"        : true,
-    "fname"         : "sc2_var_det.npz"
+    "fname"         : "cardioid_var_det0.npz"
 }
