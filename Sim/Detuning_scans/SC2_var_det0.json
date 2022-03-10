@@ -13,8 +13,8 @@
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
-        "nu0Hz"         : null,
-        "nu0"           : 1e6,
+        "nu0Hz"         : 1e6,
+        "nu0"           : null,
 
         "n_num"         : 25,
         "n_ion"         : 2,
