@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+import numpy as np
+t = False
+p = []
+labels = []
+for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
+    p.append(plt.Line2D([0,0],[0,1],color='black',linestyle=ls))
+    labels.append("$\\bar{n}="+d+"$")
+for g,c,l in [("cardioid","C0","Cardioid(4,6)"),("custom_sc2","C1","Cardioid(4,6) + SC2"),("sc2","C2","SC2")]:
+    p.append(plt.Line2D([0,0],[0,1],color=c))
+    labels.append(l)
+    for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
+        %run ~/MSc-Project/Sim/plot.py me_var_1d_fidelity {g}_var_det{d}.npz ~/MSc-Project/Sim/plot_fidelity.json {t}
+        plot_results.ax.get_lines()[-1].set_linestyle(ls)
+        plot_results.ax.get_lines()[-1].set_xdata(1/(plot_results.ax.get_lines()[-1].get_xdata()))
+        plot_results.ax.get_lines()[-1].set_color(c)
+        t = True
+plot_results.ax.legend(p,labels)
+plot_results.ax.get_figure().set_size_inches([9.58, 4.27])
+plot_results.ax.set_yscale('log')
+plot_results.ax.set_xscale('log')
+plot_results.ax.set_xlabel('$t_g\;[\mu s]$')
+plot_results.ax.relim()
+plot_results.ax.autoscale_view()
