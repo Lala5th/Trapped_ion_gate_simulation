@@ -1,0 +1,85 @@
+{
+
+    "params"    : [
+        {
+            "key"   : ["sequence",0,"inner","detuning"],
+            "label" : "$\\delta [\\nu_0]$",
+            "range" : [0.005,0.04,281]
+        }
+    ],
+
+    "template"  : {
+        "solver"        : "ME_Interaction_Reduced",
+
+        "omega0Hz"      : 411e12,
+        "omega0"        : null,
+        "nu0Hz"         : 1e6,
+        "nu0"           : null,
+
+        "n_num"         : 25,
+        "n_ion"         : 2,
+
+        "ntraj"         : 1,
+        "m"             : 6.6551079e-26,
+
+        "state0"        :
+            {
+                "builder"       : "Thermal_state",
+
+                "n"             : 0,
+
+                "alpha"         : {
+                    "size"          : 1.41421356237,
+                    "phase"         : 0
+                },
+
+                "states"        : [
+                    {
+                        "n"             : 0,
+                        "atoms"         : [false,false],
+                        "factor"        : {
+                            "size"          : 1,
+                            "phase"         : 0
+                        }
+                    }
+                ]
+            },
+        
+        "c_param"       : {
+            "c_operator"        : "heating_collapse",
+
+ 
+            "n_therm"           : 2,
+            "Gamma"             : 2e2
+        },
+
+        "eta0"          : null,
+
+        "t_prep"        : 0,
+        "xi"            : [0,0],
+        "omega_xi"      : [0,0],
+
+        "sequence"      : [
+            {
+                "builder"       : "Add_carrier_S",
+                "m"             : 0,
+                "y"             : true,
+                
+                "inner"         : {
+                    "tau"           : 0,
+                    "builder"       : "custom_sc2",
+                    "n_t"           : 5,
+                    "phase"         : 0.5,
+                    "K"             : 2,
+                    "detuning"      : null,
+                    "Omega0"		: 0.01,
+                    "j"             : -0.79056941504
+                }
+            }
+        ]
+
+    },
+
+    "output"        : true,
+    "fname"         : "custom_sc2_di_var_det0.npz"
+}
