@@ -4,7 +4,7 @@
         {
             "key"   : ["sequence",0,"inner","detuning"],
             "label" : "$\\delta [\\nu_0]$",
-            "range" : [0.005,0.04,71]
+            "range" : [0.005,0.04,281]
         }
     ],
 
@@ -13,8 +13,8 @@
 
         "omega0Hz"      : 411e12,
         "omega0"        : null,
-        "nu0Hz"         : null,
-        "nu0"           : 1e6,
+        "nu0Hz"         : 1e6,
+        "nu0"           : null,
 
         "n_num"         : 25,
         "n_ion"         : 2,

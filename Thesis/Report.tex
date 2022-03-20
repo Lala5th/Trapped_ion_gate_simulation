@@ -1,0 +1,103 @@
+\documentclass[12pt,twoside]{report}
+\usepackage[utf8x]{inputenc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Definitions for the title page
+% Edit these to provide the correct information
+% e.g. \newcommand{\reportauthor}{Timothy Kimber}
+
+\newcommand{\reporttitle}{Evaluation of various entangling gates for trapped-ion quantum computers}
+\newcommand{\projectcode}{QOLS-Thompson-1}
+\newcommand{\supervisor}{Prof. Richard Thompson}
+\newcommand{\degreetype}{MSci Physics}
+%\newcommand{\partner}{Zhang Rongjie}
+\newcommand{\CID}{01496799}
+\newcommand{\assessor}{Dr. Steve Kolthammer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% load some definitions and default packages
+\input{includes}
+
+% load some macros
+%\input{notation}
+
+\date{May 2022}
+
+\begin{document}
+
+% load title page
+\input{titlepage}
+
+
+
+% page numbering etc.
+\pagenumbering{roman}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+
+\vspace*{\fill}
+\begin{center}
+	\textbf{Declaration}\\
+\end{center}
+\vspace*{\fill}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+\end{abstract}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Acknowledgments}
+
+\vspace*{\fill}
+\begin{center}
+	\textbf{Acknowledgements}\\
+
+\end{center}
+\vspace*{\fill}
+%Comment this out if not needed.
+\newpage
+%\clearpage{\pagestyle{empty}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%--- table of contents
+\fancyhead[RE,LO]{\sffamily {Table of Contents}}
+\tableofcontents
+\listoffigures
+%\listoftables 
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\fancyhead[LE,RO]{\slshape \rightmark}
+\fancyhead[LO,RE]{\slshape \leftmark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+\label{Intro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Background}
+\label{Background}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Detector Design}
+\label{DetDesign}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Spectrum recovery}
+\label{SpecRec}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusion}
+\label{Conclusion}
+
+%% bibliography
+\bibliographystyle{ieeetran}
+\bibliography{sources}
+
+\end{document}

@@ -26,7 +26,7 @@
             {
                 "builder"       : "Thermal_state",
 
-                "n"             : 0.5,
+                "n"             : 0,
 
                 "alpha"         : {
                     "size"          : 1.41421356237,
@@ -73,7 +73,7 @@
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01,
-                    "j"             : -1
+                    "j"             : -0.79056941504
                 }
             }
         ]
@@ -81,5 +81,5 @@
     },
 
     "output"        : true,
-    "fname"         : "custom_sc2_var_det0.5.npz"
+    "fname"         : "custom_sc2_di_var_det0.npz"
 }
