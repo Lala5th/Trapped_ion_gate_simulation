@@ -17,203 +17,98 @@
 \endgroup
 
 \datalist[entry]{none/global//global/global}
-  \entry{elias}{thesis}{}
-    \name{author}{1}{}{%
-      {{hash=GE}{%
-         family={Gerstmayr},
-         familyi={G\bibinitperiod},
-         given={Elias},
-         giveni={E\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{GE1}
-    \strng{fullhash}{GE1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{Energetic Radiation from Wakefield Acceleration and its
-  Applications}
-    \list{institution}{1}{%
-      {Imperial College London}%
-    }
-    \field{type}{PhD}
-    \warn{\item Invalid format of field 'date' \item Invalid format of field
-  'date'}
-  \endentry
-
-  \entry{RR}{article}{}
-    \name{author}{25}{}{%
-      {{hash=CJM}{%
-         family={Cole},
-         familyi={C\bibinitperiod},
-         given={J.\bibnamedelima M.},
-         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=BKT}{%
-         family={Behm},
-         familyi={B\bibinitperiod},
-         given={K.\bibnamedelima T.},
-         giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod},
-      }}%
-      {{hash=GE}{%
-         family={Gerstmayr},
-         familyi={G\bibinitperiod},
-         given={E.},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=BTG}{%
-         family={Blackburn},
-         familyi={B\bibinitperiod},
-         given={T.\bibnamedelima G.},
-         giveni={T\bibinitperiod\bibinitdelim G\bibinitperiod},
-      }}%
-      {{hash=WJC}{%
-         family={Wood},
-         familyi={W\bibinitperiod},
-         given={J.\bibnamedelima C.},
-         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
-      }}%
-      {{hash=BCD}{%
-         family={Baird},
-         familyi={B\bibinitperiod},
-         given={C.\bibnamedelima D.},
-         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=DMJ}{%
-         family={Duff},
-         familyi={D\bibinitperiod},
-         given={M.\bibnamedelima J.},
-         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-      {{hash=HC}{%
-         family={Harvey},
-         familyi={H\bibinitperiod},
-         given={C.},
-         giveni={C\bibinitperiod},
-      }}%
-      {{hash=IA}{%
-         family={Ilderton},
-         familyi={I\bibinitperiod},
-         given={A.},
+  \entry{MS-gate}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SA}{%
+         family={Sørensen},
+         familyi={S\bibinitperiod},
+         given={Anders},
          giveni={A\bibinitperiod},
       }}%
-      {{hash=JAS}{%
-         family={Joglekar},
-         familyi={J\bibinitperiod},
-         given={A.\bibnamedelima S.},
-         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=KK}{%
-         family={Krushelnick},
-         familyi={K\bibinitperiod},
-         given={K.},
+      {{hash=MK}{%
+         family={Mølmer},
+         familyi={M\bibinitperiod},
+         given={Klaus},
          giveni={K\bibinitperiod},
       }}%
-      {{hash=KS}{%
-         family={Kuschel},
-         familyi={K\bibinitperiod},
-         given={S.},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=MM}{%
-         family={Marklund},
-         familyi={M\bibinitperiod},
-         given={M.},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=MP}{%
-         family={McKenna},
-         familyi={M\bibinitperiod},
-         given={P.},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=MCD}{%
-         family={Murphy},
-         familyi={M\bibinitperiod},
-         given={C.\bibnamedelima D.},
-         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=PK}{%
-         family={Poder},
-         familyi={P\bibinitperiod},
-         given={K.},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=RCP}{%
-         family={Ridgers},
-         familyi={R\bibinitperiod},
-         given={C.\bibnamedelima P.},
-         giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod},
-      }}%
-      {{hash=SGM}{%
-         family={Samarin},
-         familyi={S\bibinitperiod},
-         given={G.\bibnamedelima M.},
-         giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=SG}{%
-         family={Sarri},
-         familyi={S\bibinitperiod},
-         given={G.},
-         giveni={G\bibinitperiod},
-      }}%
-      {{hash=SDR}{%
-         family={Symes},
-         familyi={S\bibinitperiod},
-         given={D.\bibnamedelima R.},
-         giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
-      }}%
-      {{hash=TAGR}{%
-         family={Thomas},
-         familyi={T\bibinitperiod},
-         given={A.\bibnamedelima G.\bibnamedelima R.},
-         giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim
-  R\bibinitperiod},
-      }}%
-      {{hash=WJ}{%
-         family={Warwick},
-         familyi={W\bibinitperiod},
-         given={J.},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=ZM}{%
-         family={Zepf},
-         familyi={Z\bibinitperiod},
-         given={M.},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=NZ}{%
-         family={Najmudin},
-         familyi={N\bibinitperiod},
-         given={Z.},
-         giveni={Z\bibinitperiod},
-      }}%
-      {{hash=MSPD}{%
-         family={Mangles},
-         familyi={M\bibinitperiod},
-         given={S.\bibnamedelima P.\bibnamedelima D.},
-         giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim
-  D\bibinitperiod},
-      }}%
     }
-    \list{publisher}{1}{%
-      {American Physical Society}%
-    }
-    \strng{namehash}{CJMBKTGE+1}
-  \strng{fullhash}{CJMBKTGEBTGWJCBCDDMJHCIAJASKKKSMMMPMCDPKRCPSGMSGSDRTAGRWJZMNZMSPD1}
+    \strng{namehash}{SAMK1}
+    \strng{fullhash}{SAMK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \verb{doi}
-    \verb 10.1103/PhysRevX.8.011020
-    \endverb
-    \field{issue}{1}
-    \field{pages}{011020}
-    \field{title}{Experimental Evidence of Radiation Reaction in the Collision
-  of a High-Intensity Laser Pulse with a Laser-Wakefield Accelerated Electron
-  Beam}
-    \field{volume}{8}
-    \field{journaltitle}{Phys. Rev. X}
+    \field{title}{Entanglement and quantum computation with ions in thermal
+  motion}
+    \field{year}{2000}
+  \endentry
+
+  \entry{SC2}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SM}{%
+         family={Sameti},
+         familyi={S\bibinitperiod},
+         given={Mahdi},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lishman},
+         familyi={L\bibinitperiod},
+         given={Jake},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MF}{%
+         family={Mintert},
+         familyi={M\bibinitperiod},
+         given={Florian},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SMLJMF1}
+    \strng{fullhash}{SMLJMF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Strong-coupling quantum logic of trapped ions}
+    \field{year}{2021}
+  \endentry
+
+  \entry{Cardioid}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SY}{%
+         family={Shapira},
+         familyi={S\bibinitperiod},
+         given={Yotam},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Shaniv},
+         familyi={S\bibinitperiod},
+         given={Ravid},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MT}{%
+         family={Manovitz},
+         familyi={M\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=AN}{%
+         family={Akerman},
+         familyi={A\bibinitperiod},
+         given={Nitzan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=OR}{%
+         family={Ozeri},
+         familyi={O\bibinitperiod},
+         given={Roee},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SYSRMT+1}
+    \strng{fullhash}{SYSRMTANOR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Robust Entanglement Gates for Trapped-Ion Qubits}
     \field{year}{2018}
-    \warn{\item Invalid format of field 'month'}
   \endentry
 \enddatalist
 \endinput

@@ -9,13 +9,14 @@
     \\%
     Imperial College London%
 } %You can change the Institution if you are from somewhere else
-\date{March 25, 2022}
+\date{March, 2022}
 %\logo{\includegraphics[width= 0.2\textwidth]{images/a-logo.png}}
 \usepackage[style=ieee,backend=bibtex]{biblatex}
 \usepackage[percent]{overpic}
 \addbibresource{sources.bib}
 \DeclareFieldFormat{labelnumberwidth}{}
-\setlength{\biblabelsep}{0pt} 
+\setlength{\biblabelsep}{0pt}
+\renewcommand{\footnotesize}{\scriptsize}
 \beamertemplatenavigationsymbolsempty
 \begin{document}
     
@@ -44,34 +45,41 @@
 	\end{frame}
     \begin{frame}{Driving the system}
     	\begin{align*}
-    		\onslide<1->{\hat{H}&=-\frac{\hbar\omega_0}{2}\hat{S}_z+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{i}\frac{\Omega_i}{2}\hat{S}_+e^{-i\left(\mathbf{kz}-\omega_i t\right)} + h.c.}\\
-    		\onslide<2->{\hat{H}&=-\frac{\hbar\omega_0}{2}\hat{S}_z+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{i}\frac{\Omega_i}{2}\hat{S}_+e^{-i\left(\eta\left(\hat{a}+\hat{a}^\dagger\right) -\omega_i t\right)} + h.c.}\\
-    		\onslide<3->{\hat{H}_I&=\sum_{i}\frac{\Omega_i}{2}\hat{S}_+e^{-i\left(\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) -\Delta_i t\right)} + h.c.}
+    		\onslide<1->{\hat{H}&=-\frac{\hbar\omega_0}{2}\hat{S}_z+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{l}\frac{\Omega_l}{2}\hat{S}_+e^{-i\left(\mathbf{kz}-\omega_l t\right)} + h.c.}\\
+    		\onslide<2->{\hat{H}&=-\frac{\hbar\omega_0}{2}\hat{S}_z+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{l}\frac{\Omega_l}{2}\hat{S}_+e^{-i\left(\eta\left(\hat{a}+\hat{a}^\dagger\right) -\omega_l t\right)} + h.c.}\\
+    		\onslide<3->{\hat{H}_I&=\sum_{l}\frac{\Omega_l}{2}\hat{S}_+e^{-i\left(\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) -\Delta_l t\right)} + h.c.}
     	\end{align*}
     	\[\onslide<2->{\eta = \mathbf{kz_0}}\onslide<3->{\hspace{5em}\hat{\tilde{a}}=\hat{a}e^{-i\nu t}\hspace{5em}\hat{\tilde{a}}^\dagger =\hat{a}^\dagger e^{i\nu t}}\]
     \end{frame}
 
 	\section{Driving schemes}
-	\begin{frame}{M\o lmer-S\o rensen gate}
+	\begin{frame}{M\o lmer-S\o rensen gate\footfullcite{MS-gate}}
 		\centering
-		\includegraphics[height=12.5em]{test.pdf}
+		\includegraphics[height=12em]{test.pdf}
 		\includegraphics[width=0.75\linewidth]{MS-gate.pdf}
 	\end{frame}
-	\begin{frame}{Strong coupling gate}
+	\begin{frame}{Strong coupling gate\footfullcite{SC2}}
 		\centering
-		\includegraphics[height=12.5em]{test.pdf}
+		\includegraphics[height=12em]{test.pdf}
 		\includegraphics[width=0.75\linewidth]{SC2-gate.pdf}
 	\end{frame}
-	\begin{frame}{Cardioid gate}
+	\begin{frame}{Cardioid gate\footfullcite{Cardioid}}
 		\centering
-		\includegraphics[height=12.5em]{test.pdf}
+		\includegraphics[height=12em]{test.pdf}
 		\includegraphics[width=0.75\linewidth]{Cardioid-gate.pdf}
 	\end{frame}
 	\begin{frame}{Compound gate}
 		\centering
-		\includegraphics[height=12.5em]{test.pdf}
+		\only<1>{\includegraphics[height=12em]{test.pdf}}
+		\only<2>{\includegraphics[height=12em]{Comparison.pdf}}
 		\includegraphics[width=0.75\linewidth]{Compound-gate.pdf}
+		\vspace{1.5em}
 	\end{frame}
+%	\begin{frame}{Comparison}
+%		\centering
+%		\includegraphics[height=12em]{Comparison.pdf}
+%		\vspace{1.5em}
+%	\end{frame}
 
 %    \section*{Acknowledgments} %You can remove this if you do not want to use it
 %        \begin{frame}{Acknowledgments}
