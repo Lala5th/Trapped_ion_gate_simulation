@@ -5,13 +5,13 @@ mpl.rcParams["legend.fontsize"]=10
 t = False
 p = []
 labels = []
-for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
-    p.append(plt.Line2D([0,0],[0,1],color='white',linestyle=ls))
-    labels.append("$\\bar{n}="+d+"$")
-for g,c,l in [("sc2","C2","Strong coupling"),("cardioid","C0","Cardioid"),("custom_sc2_di","C1","Compound"),("ms_gate","C3","Mølmer–Sørensen")]:
+#for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
+#    p.append(plt.Line2D([0,0],[0,1],color='black',linestyle=ls))
+#    labels.append("$\\bar{n}="+d+"$")
+for g,c,l in [("sc2","C2","SC2"),("cardioid","C0","Cardioid(4,6)"),("custom_sc2_di","C1","Cardioid(4,6) + SC2")]:# + SC2; j=-1"), ("custom_sc2_di","C3","Cardioid(4,6) + SC2; j=-$\\sqrt{5/8}$")]:
     p.append(plt.Line2D([0,0],[0,1],color=c))
     labels.append(l)
-    for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
+    for d,ls in [("0","solid")]:
         %run ~/MSc-Project/Sim/plot.py me_var_1d_fidelity {g}_var_det{d}.npz ~/MSc-Project/Sim/plot_fidelity.json {t}
         plot_results.ax.get_lines()[-1].set_linestyle(ls)
         plot_results.ax.get_lines()[-1].set_xdata(1/(plot_results.ax.get_lines()[-1].get_xdata()))
@@ -24,3 +24,4 @@ plot_results.ax.set_yscale('log')
 plot_results.ax.set_xlabel('$t_g\;[\mu s]$')
 plot_results.ax.relim()
 plot_results.ax.autoscale_view()
+plot_results.ax.get_figure().tight_layout()

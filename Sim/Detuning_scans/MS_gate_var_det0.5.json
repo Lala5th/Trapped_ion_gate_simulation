@@ -26,7 +26,7 @@
             {
                 "builder"       : "Thermal_state",
 
-                "n"             : 0,
+                "n"             : 0.5,
 
                 "alpha"         : {
                     "size"          : 1.41421356237,
@@ -50,7 +50,7 @@
 
  
             "n_therm"           : 2,
-            "Gamma"             : 2
+            "Gamma"             : 0
         },
 
         "eta0"          : null,
@@ -67,9 +67,11 @@
                 
                 "inner"         : {
                     "tau"           : 0,
-                    "builder"       : "custom_sc2",
+                    "builder"       : "fast_ms",
                     "n_t"           : 5,
                     "phase"         : 0.5,
+                    "n"             : [4,6],
+                    "r"             : [1,-1],
                     "K"             : 2,
                     "detuning"      : null,
                     "Omega0"		: 0.01,
@@ -81,5 +83,5 @@
     },
 
     "output"        : true,
-    "fname"         : "custom_sc2_var_det0.npz"
+    "fname"         : "ms_gate_var_det0.5.npz"
 }
