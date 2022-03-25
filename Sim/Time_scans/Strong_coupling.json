@@ -1,0 +1,78 @@
+{
+    "solver"        : "ME_Interaction_Reduced",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : 1e6,
+    "nu0"           : null,
+
+    "n_num"         : 20,
+    "n_ion"         : 2,
+
+    "ntraj"         : 1,
+
+    "state0"        :
+        {
+            "builder"       : "Generic_state",
+
+            "n"             : 0,
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 0,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 1,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+    
+    "c_param"       : {
+        "c_operator"        : "heating_collapse",
+
+
+        "n_therm"           : 2,
+        "Gamma"             : 0
+    },
+
+    "eta0"          : null,
+    "xi"            : 0,
+
+    "t_prep"        : 0,
+
+    "n_t"           : 201,
+    "t_r"           : 0.99,
+    "m"             : 6.6551079e-26,
+
+    "sequence"      : [
+        {
+            "builder"       : "Add_carrier_S",
+            "m"             : 0,
+            "phi"           : 0.5,
+            "y"             : true,
+
+            "inner"         : {
+                    "builder"       : "strong_coupling2",
+                    "n_t"           : 1000,
+                    "K"             : 2,
+                    "n"             : [4,6],
+                    "r"             : [1,-1],
+                    "j"             : -0.79056941504,
+                    "detuning"      : null,
+                    "Omega0"		: 0.1,
+                    "phase"         : 0.5
+                }
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "SC2_seq.npz"
+
+}

@@ -3,15 +3,15 @@
     "plot"          : [
         {
             "index"         : [0,0],
-            "label"         : "$\\langle\\!\\!\\downarrow\\!\\!\\!\\!\\downarrow\\!\\!$|$\\hat{\\rho}$|$\\!\\!\\downarrow\\!\\!\\!\\!\\downarrow\\!\\!\\rangle$"
+            "label"         : "$\\langle gg$|$\\hat{\\rho}$|$ee\\rangle$"
         },
         {
             "index"         : [-1,-1],
-            "label"         : "$\\langle\\!\\!\\uparrow\\!\\!\\!\\!\\uparrow\\!\\!$|$\\hat{\\rho}$|$\\!\\!\\uparrow\\!\\!\\!\\!\\uparrow\\!\\!\\rangle$"
+            "label"         : "$\\langle ee$|$\\hat{\\rho}$|$ee\\rangle$"
         },
         {
             "index"         : [0,-1],
-            "label"         : "$\\langle\\!\\!\\downarrow\\!\\!\\!\\!\\downarrow\\!\\!$|$\\hat{\\rho}$|$\\!\\!\\uparrow\\!\\!\\!\\!\\uparrow\\!\\!\\rangle$"
+            "label"         : "$\\langle gg$|$\\hat{\\rho}$|$ee\\rangle$"
         }
     ]
 }

@@ -39,6 +39,15 @@ def fill_template(data,params):
         a[-1][p['key'][-1]] = p['value']
 
     n_num = data['n_num']
+    
+    if(data['nu0'] == None):
+        data['nu0'] = data['nu0Hz']*2*const.pi
+    
+    if(data['omega0'] == None):
+        data['omega0'] = 2*const.pi*data['omega0Hz']
+
+    if(data['eta0'] == None):
+        data['eta0'] = np.sqrt(const.hbar/(2*data['m']*data['nu0']))*data['omega0']/const.c
 
     a_sum = np.array([[simplified_matrix_data() for _ in range(n_num)] for _ in range(n_num)],dtype=simplified_matrix_data)
     for i in range(n_num-1):
@@ -46,12 +55,6 @@ def fill_template(data,params):
         a_sum[i+1,i] = simplified_matrix_data([entry(val=np.sqrt(i+1),exp= 1)])
 
     corrections = manual_taylor_expm(a_sum*1j*data['eta0'],1)
-    
-    if(data['nu0'] == None):
-        data['nu0'] = data['nu0Hz']*2*const.pi
-    
-    if(data['omega0'] == None):
-        data['omega0'] = 2*const.pi*data['omega0Hz']
 
     if(data['t_prep'] == None):
         t = 0
@@ -193,5 +196,5 @@ if __name__ == "__main__":
         if(data["fname"] == None):
             data["fname"] = "temp"
         metadata = [data['template']['n_num'],data['template']['n_ion']]
-        data['params'].append({'label':"$\Delta t [t_g]$",'value':np.linspace(-data["template"].get('t_r',0.1),data["template"].get('t_r',0.1),data["template"]['n_t'])})
+        data['params'].append({'label':"$\Delta t\;[t_g]$",'value':np.linspace(-data["template"].get('t_r',0.1),data["template"].get('t_r',0.1),data["template"]['n_t'])})
         np.savez(data["fname"], s3d = result,metadata=metadata,params=np.array([i['value'] for i in data['params']],dtype=object),labels=[i['label'] for i in data['params']])

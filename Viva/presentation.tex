@@ -51,29 +51,43 @@
     	\end{align*}
     	\[\onslide<2->{\eta = \mathbf{kz_0}}\onslide<3->{\hspace{5em}\hat{\tilde{a}}=\hat{a}e^{-i\nu t}\hspace{5em}\hat{\tilde{a}}^\dagger =\hat{a}^\dagger e^{i\nu t}}\]
     \end{frame}
+	\section{Simulation Details}
+	\begin{frame}{Approximations}
+		\[\derivative{\hat{\rho}}{t}=-\frac{i}{\hbar}[\hat{H},\hat{\rho}]\]
+	\end{frame}
 
 	\section{Driving schemes}
 	\begin{frame}{M\o lmer-S\o rensen gate\footfullcite{MS-gate}}
 		\centering
-		\includegraphics[height=12em]{test.pdf}
+		\only<1>{\includegraphics[height=12em]{MS_gate_seq_OR.pdf}}
 		\includegraphics[width=0.75\linewidth]{MS-gate.pdf}
 	\end{frame}
 	\begin{frame}{Strong coupling gate\footfullcite{SC2}}
 		\centering
-		\includegraphics[height=12em]{test.pdf}
+		\only<1>{\includegraphics[height=12em]{SC2_seq_OR.pdf}}
+		\only<2>{\includegraphics[height=12em]{SC2_therm.pdf}}
+		\only<3>{\includegraphics[height=12em]{SC2_seq.pdf}}
 		\includegraphics[width=0.75\linewidth]{SC2-gate.pdf}
 	\end{frame}
 	\begin{frame}{Cardioid gate\footfullcite{Cardioid}}
 		\centering
-		\includegraphics[height=12em]{test.pdf}
+		\only<1>{\includegraphics[height=12em]{Cardioid_seq_OR.pdf}}
+		\only<2>{\includegraphics[height=12em]{MS_Card_time_OR.pdf}}
+		\only<3>{\includegraphics[height=12em]{Cardioid_seq.pdf}}
+		\only<4>{\includegraphics[height=12em]{MS_Card_time.pdf}}
 		\includegraphics[width=0.75\linewidth]{Cardioid-gate.pdf}
 	\end{frame}
 	\begin{frame}{Compound gate}
 		\centering
-		\only<1>{\includegraphics[height=12em]{test.pdf}}
-		\only<2>{\includegraphics[height=12em]{Comparison.pdf}}
+		\only<1>{\includegraphics[height=12em]{Custom_SC2_seq_OR.pdf}}
+		\only<2>{\includegraphics[height=12em]{Comp_time_OR.pdf}}
+		\only<3>{\includegraphics[height=12em]{Comp_therm.pdf}}
+		\only<4>{\includegraphics[height=12em]{Custom_SC2_seq.pdf}}
+		\only<5>{\includegraphics[height=12em]{Comp_time.pdf}}
+		\only<6>{\includegraphics[height=12em]{Comparison.pdf}}
 		\includegraphics[width=0.75\linewidth]{Compound-gate.pdf}
-		\vspace{1.5em}
+		
+		\vspace{0.70em}
 	\end{frame}
 %	\begin{frame}{Comparison}
 %		\centering
@@ -86,10 +100,11 @@
 %            The author is extremely thankful to Prof. Antônio F. R. T. Piza for the short, yet wonderful, conversations about this seminar.
 %        \end{frame}
 
-%    \section{}
-%    \begin{frame}{}
-%        \centering
-%            \Huge\bfseries
-%        \textcolor{orange}{The End}
-%    \end{frame}
+    \section{}
+    \begin{frame}{}
+        \centering
+            \Huge\bfseries
+        \textcolor{orange}{Thank you for the attention}
+    \end{frame}
+
 \end{document}

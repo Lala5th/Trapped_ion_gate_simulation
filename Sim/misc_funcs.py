@@ -189,17 +189,21 @@ def raw_sequence(_,params):
     return params['sequence']
 
 def fast_ms(data,params):
-    if (params['detuning'] is not None and params['Omega0'] is not None):
-        detuning = params['detuning']
-        Omega0  = params['Omega0']*data['nu0']
-        time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
-    elif (params['detuning'] is not None):
+    # if (params['detuning'] is not None and params['Omega0'] is not None):
+    #     detuning = params['detuning']
+    #     Omega0  = params['Omega0']*data['nu0']
+    #     time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
+    # #el
+    if (params['detuning'] is not None):
         Omega0 = (params["detuning"]*data["nu0"])/(2*data['eta0']*np.sqrt(params['K']))
-        time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
+        #time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
         detuning  = params['detuning']
     else:
         detuning = (params["Omega0"])*(2*data['eta0']*np.sqrt(params['K']))
         Omega0  = params['Omega0']*data['nu0']
+    if params.get('corr',False):
+        time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0*np.exp(data['eta0']**2/2))
+    else:
         time = const.pi*np.sqrt(params['K'])/(data['eta0']*Omega0)
 
     sequence = [{
@@ -544,7 +548,7 @@ def cardioid(data,params):
     r = params['r']/np.sqrt(np.sum([ri*ri/ni for ri,ni in zip(params['r'],params['n'])]))
     sequence = [{
         "reltime"           : 0,
-        "abstime"           : 2*const.pi/(detuning*data['nu0']),
+        "abstime"           : 2*const.pi/(detuning*data['nu0']*np.exp(data['eta0']**2/2)) if params.get('corr',False) else 2*const.pi/(detuning*data['nu0']),
         "n_t"               : params['n_t'],
         "tau"               : params.get('tau',0),
         "beams"             : []
