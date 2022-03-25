@@ -4,7 +4,7 @@
 *.npz
 __pycache__/*
 __pycache__
-
+!Viva/*.pdf
 !Sim/scan_example.json
 !Sim/seq_example.json
 *.o
