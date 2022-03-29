@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.12.8)  24 MAR 2022 22:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.12.8)  29 MAR 2022 02:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -765,22 +765,45 @@ Package babel Info: \l@australian = using hyphenrules for english
 Package babel Info: \l@newzealand = using hyphenrules for english
 (babel)             (\language0) on input line 108.
 ))
-(./preamble.tex
+(/usr/share/texlive/texmf-dist/tex/latex/doublestroke/dsfont.sty
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen285
+\ar@mcellbox=\box72
+\extrarowheight=\dimen286
+\NC@list=\toks44
+\extratabsurround=\skip63
+\backup@length=\skip64
+\ar@cellbox=\box73
+)
+\TX@col@width=\dimen287
+\TX@old@table=\dimen288
+\TX@old@col=\dimen289
+\TX@target=\dimen290
+\TX@delta=\dimen291
+\TX@cols=\count322
+\TX@ftn=\toks45
+) (./preamble.tex
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2020/03/24 v1.24 mathematical typesetting tools
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count322
-\calc@Bcount=\count323
-\calc@Adimen=\dimen285
-\calc@Bdimen=\dimen286
-\calc@Askip=\skip63
-\calc@Bskip=\skip64
+\calc@Acount=\count323
+\calc@Bcount=\count324
+\calc@Adimen=\dimen292
+\calc@Bdimen=\dimen293
+\calc@Askip=\skip65
+\calc@Bskip=\skip66
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count324
-\calc@Cskip=\skip65
+\calc@Ccount=\count325
+\calc@Cskip=\skip67
 )
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
@@ -789,17 +812,17 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count325
-\l_MT_multwidth_dim=\dimen287
-\origjot=\skip66
-\l_MT_shortvdotswithinadjustabove_dim=\dimen288
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen289
-\l_MT_above_intertext_sep=\dimen290
-\l_MT_below_intertext_sep=\dimen291
-\l_MT_above_shortintertext_sep=\dimen292
-\l_MT_below_shortintertext_sep=\dimen293
-\xmathstrut@box=\box72
-\xmathstrut@dim=\dimen294
+\g_MT_multlinerow_int=\count326
+\l_MT_multwidth_dim=\dimen294
+\origjot=\skip68
+\l_MT_shortvdotswithinadjustabove_dim=\dimen295
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen296
+\l_MT_above_intertext_sep=\dimen297
+\l_MT_below_intertext_sep=\dimen298
+\l_MT_above_shortintertext_sep=\dimen299
+\l_MT_below_shortintertext_sep=\dimen300
+\xmathstrut@box=\box74
+\xmathstrut@dim=\dimen301
 )
 (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
 Package: physics 
@@ -810,8 +833,8 @@ Package: expl3 2021-01-09 L3 programming layer (loader)
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2020-01-29 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count326
-\l__pdf_internal_box=\box73
+\l__color_backend_stack_int=\count327
+\l__pdf_internal_box=\box75
 ))
 Package: xparse 2020-10-27 L3 Experimental document command parser
 
@@ -821,13 +844,13 @@ Package: calligra 2012/04/10 v1.9 LaTeX package calligra
 )
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2021-01-04 v5.2k context-sensitive quotations (JAW)
-\csq@reset=\count327
-\csq@gtype=\count328
-\csq@glevel=\count329
-\csq@qlevel=\count330
-\csq@maxlvl=\count331
-\csq@tshold=\count332
-\csq@ltx@everypar=\toks44
+\csq@reset=\count328
+\csq@gtype=\count329
+\csq@glevel=\count330
+\csq@qlevel=\count331
+\csq@maxlvl=\count332
+\csq@tshold=\count333
+\csq@ltx@everypar=\toks46
 
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2021-01-04 v5.2k csquotes generic definitions (JAW)
@@ -840,11 +863,11 @@ File: csquotes.cfg
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tensor/tensor.sty
 Package: tensor 2004/12/20 v2.1 tensor indices package (PGR)
-\tnsr@Sps=\toks45
-\tnsr@Sbs=\toks46
-\tnsr@Spe=\toks47
-\tnsr@Sbe=\toks48
-\ncld@Mno=\toks49
+\tnsr@Sps=\toks47
+\tnsr@Sbs=\toks48
+\tnsr@Spe=\toks49
+\tnsr@Sbe=\toks50
+\ncld@Mno=\toks51
 )
 (/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
@@ -857,23 +880,23 @@ Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfnodeparttextbox=\box74
+\pgfnodeparttextbox=\box76
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty
 Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
-\pgf@nodesepstart=\dimen295
-\pgf@nodesepend=\dimen296
+\pgf@nodesepstart=\dimen302
+\pgf@nodesepend=\dimen303
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
 .sty
 Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks50
-\verbatim@line=\toks51
+\every@verbatim=\toks52
+\verbatim@line=\toks53
 \verbatim@in@stream=\read4
 )
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
@@ -882,17 +905,17 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box75
-\tcb@upperbox=\box76
-\tcb@lowerbox=\box77
-\tcb@phantombox=\box78
-\c@tcbbreakpart=\count333
-\c@tcblayer=\count334
-\c@tcolorbox@number=\count335
-\tcb@temp=\box79
-\tcb@temp=\box80
+\tcb@titlebox=\box77
+\tcb@upperbox=\box78
+\tcb@lowerbox=\box79
+\tcb@phantombox=\box80
+\c@tcbbreakpart=\count334
+\c@tcblayer=\count335
+\c@tcolorbox@number=\count336
 \tcb@temp=\box81
 \tcb@temp=\box82
+\tcb@temp=\box83
+\tcb@temp=\box84
 \tcb@out=\write5
 \tcb@record@out=\write6
 )
@@ -907,72 +930,72 @@ Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 
 (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks52
-\XKV@tempa@toks=\toks53
+\XKV@toks=\toks54
+\XKV@tempa@toks=\toks55
 )
-\XKV@depth=\count336
+\XKV@depth=\count337
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count337
-\pstFP@xia=\count338
-\pstFP@xib=\count339
-\pstFP@xfa=\count340
-\pstFP@xfb=\count341
-\pstFP@rega=\count342
-\pstFP@regb=\count343
-\pstFP@regs=\count344
-\pstFP@times=\count345
+\pstFP@xs=\count338
+\pstFP@xia=\count339
+\pstFP@xib=\count340
+\pstFP@xfa=\count341
+\pstFP@xfb=\count342
+\pstFP@rega=\count343
+\pstFP@regb=\count344
+\pstFP@regs=\count345
+\pstFP@times=\count346
 )
-\psLoopIndex=\count346
+\psLoopIndex=\count347
 
 `PSTricks' v3.01  <2020/09/18> (tvz,hv)
-\pst@dima=\dimen297
-\pst@dimb=\dimen298
-\pst@dimc=\dimen299
-\pst@dimd=\dimen300
-\pst@dimg=\dimen301
-\pst@dimh=\dimen302
-\pst@dimm=\dimen303
-\pst@dimn=\dimen304
-\pst@dimo=\dimen305
-\pst@dimp=\dimen306
-\pst@hbox=\box83
-\pst@ibox=\box84
-\pst@boxg=\box85
-\pst@cnta=\count347
-\pst@cntb=\count348
-\pst@cntc=\count349
-\pst@cntd=\count350
-\pst@cntg=\count351
-\pst@cnth=\count352
-\pst@cntm=\count353
-\pst@cntn=\count354
-\pst@cnto=\count355
-\pst@cntp=\count356
-\@zero=\count357
-\pst@toks=\toks54
+\pst@dima=\dimen304
+\pst@dimb=\dimen305
+\pst@dimc=\dimen306
+\pst@dimd=\dimen307
+\pst@dimg=\dimen308
+\pst@dimh=\dimen309
+\pst@dimm=\dimen310
+\pst@dimn=\dimen311
+\pst@dimo=\dimen312
+\pst@dimp=\dimen313
+\pst@hbox=\box85
+\pst@ibox=\box86
+\pst@boxg=\box87
+\pst@cnta=\count348
+\pst@cntb=\count349
+\pst@cntc=\count350
+\pst@cntd=\count351
+\pst@cntg=\count352
+\pst@cnth=\count353
+\pst@cntm=\count354
+\pst@cntn=\count355
+\pst@cnto=\count356
+\pst@cntp=\count357
+\@zero=\count358
+\pst@toks=\toks56
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.con)
-\psunit=\dimen307
-\psxunit=\dimen308
-\psyunit=\dimen309
-\pst@C@@rType=\count358
-\pslinewidth=\dimen310
-\psk@startLW=\dimen311
-\psk@endLW=\dimen312
-\pst@customdefs=\toks55
-\pslinearc=\dimen313
-\pst@symbolStep=\dimen314
-\pst@symbolWidth=\dimen315
-\pst@symbolLinewidth=\dimen316
-\everypsbox=\toks56
-\psframesep=\dimen317
-\pslabelsep=\dimen318
-\sh@wgridXunit=\dimen319
-\sh@wgridYunit=\dimen320
-\pst@shift=\dimen321
+\psunit=\dimen314
+\psxunit=\dimen315
+\psyunit=\dimen316
+\pst@C@@rType=\count359
+\pslinewidth=\dimen317
+\psk@startLW=\dimen318
+\psk@endLW=\dimen319
+\pst@customdefs=\toks57
+\pslinearc=\dimen320
+\pst@symbolStep=\dimen321
+\pst@symbolWidth=\dimen322
+\pst@symbolLinewidth=\dimen323
+\everypsbox=\toks58
+\psframesep=\dimen324
+\pslabelsep=\dimen325
+\sh@wgridXunit=\dimen326
+\sh@wgridYunit=\dimen327
+\pst@shift=\dimen328
 )
 File: pstricks.tex 2020/09/18 v3.01 `PSTricks' (tvz,hv)
 
@@ -993,7 +1016,7 @@ Package: biblatex 2020/12/31 v3.16 programmable bibliographies (PK/MW)
 
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count359
+\lrq@indent=\count360
 
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -1001,62 +1024,62 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@tabx@nest=\count360
-\c@listtotal=\count361
-\c@listcount=\count362
-\c@liststart=\count363
-\c@liststop=\count364
-\c@citecount=\count365
-\c@citetotal=\count366
-\c@multicitecount=\count367
-\c@multicitetotal=\count368
-\c@instcount=\count369
-\c@maxnames=\count370
-\c@minnames=\count371
-\c@maxitems=\count372
-\c@minitems=\count373
-\c@citecounter=\count374
-\c@maxcitecounter=\count375
-\c@savedcitecounter=\count376
-\c@uniquelist=\count377
-\c@uniquename=\count378
-\c@refsection=\count379
-\c@refsegment=\count380
-\c@maxextratitle=\count381
-\c@maxextratitleyear=\count382
-\c@maxextraname=\count383
-\c@maxextradate=\count384
-\c@maxextraalpha=\count385
-\c@abbrvpenalty=\count386
-\c@highnamepenalty=\count387
-\c@lownamepenalty=\count388
-\c@maxparens=\count389
-\c@parenlevel=\count390
-\blx@tempcnta=\count391
-\blx@tempcntb=\count392
-\blx@tempcntc=\count393
-\blx@maxsection=\count394
-\blx@maxsegment@0=\count395
-\blx@notetype=\count396
-\blx@parenlevel@text=\count397
-\blx@parenlevel@foot=\count398
-\blx@sectionciteorder@0=\count399
-\blx@entrysetcounter=\count400
-\blx@biblioinstance=\count401
-\labelnumberwidth=\skip67
-\labelalphawidth=\skip68
-\biblabelsep=\skip69
-\bibitemsep=\skip70
-\bibnamesep=\skip71
-\bibinitsep=\skip72
-\bibparsep=\skip73
-\bibhang=\skip74
+\c@tabx@nest=\count361
+\c@listtotal=\count362
+\c@listcount=\count363
+\c@liststart=\count364
+\c@liststop=\count365
+\c@citecount=\count366
+\c@citetotal=\count367
+\c@multicitecount=\count368
+\c@multicitetotal=\count369
+\c@instcount=\count370
+\c@maxnames=\count371
+\c@minnames=\count372
+\c@maxitems=\count373
+\c@minitems=\count374
+\c@citecounter=\count375
+\c@maxcitecounter=\count376
+\c@savedcitecounter=\count377
+\c@uniquelist=\count378
+\c@uniquename=\count379
+\c@refsection=\count380
+\c@refsegment=\count381
+\c@maxextratitle=\count382
+\c@maxextratitleyear=\count383
+\c@maxextraname=\count384
+\c@maxextradate=\count385
+\c@maxextraalpha=\count386
+\c@abbrvpenalty=\count387
+\c@highnamepenalty=\count388
+\c@lownamepenalty=\count389
+\c@maxparens=\count390
+\c@parenlevel=\count391
+\blx@tempcnta=\count392
+\blx@tempcntb=\count393
+\blx@tempcntc=\count394
+\blx@maxsection=\count395
+\blx@maxsegment@0=\count396
+\blx@notetype=\count397
+\blx@parenlevel@text=\count398
+\blx@parenlevel@foot=\count399
+\blx@sectionciteorder@0=\count400
+\blx@entrysetcounter=\count401
+\blx@biblioinstance=\count402
+\labelnumberwidth=\skip69
+\labelalphawidth=\skip70
+\biblabelsep=\skip71
+\bibitemsep=\skip72
+\bibnamesep=\skip73
+\bibinitsep=\skip74
+\bibparsep=\skip75
+\bibhang=\skip76
 \blx@bcfin=\read5
 \blx@bcfout=\write7
 \blx@langwohyphens=\language8
-\c@mincomprange=\count402
-\c@maxcomprange=\count403
-\c@mincompwidth=\count404
+\c@mincomprange=\count403
+\c@maxcomprange=\count404
+\c@mincompwidth=\count405
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -1067,88 +1090,88 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'ieee.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count405
-\c@savedafterword=\count406
-\c@annotator=\count407
-\c@savedannotator=\count408
-\c@author=\count409
-\c@savedauthor=\count410
-\c@bookauthor=\count411
-\c@savedbookauthor=\count412
-\c@commentator=\count413
-\c@savedcommentator=\count414
-\c@editor=\count415
-\c@savededitor=\count416
-\c@editora=\count417
-\c@savededitora=\count418
-\c@editorb=\count419
-\c@savededitorb=\count420
-\c@editorc=\count421
-\c@savededitorc=\count422
-\c@foreword=\count423
-\c@savedforeword=\count424
-\c@holder=\count425
-\c@savedholder=\count426
-\c@introduction=\count427
-\c@savedintroduction=\count428
-\c@namea=\count429
-\c@savednamea=\count430
-\c@nameb=\count431
-\c@savednameb=\count432
-\c@namec=\count433
-\c@savednamec=\count434
-\c@translator=\count435
-\c@savedtranslator=\count436
-\c@shortauthor=\count437
-\c@savedshortauthor=\count438
-\c@shorteditor=\count439
-\c@savedshorteditor=\count440
-\c@labelname=\count441
-\c@savedlabelname=\count442
-\c@institution=\count443
-\c@savedinstitution=\count444
-\c@lista=\count445
-\c@savedlista=\count446
-\c@listb=\count447
-\c@savedlistb=\count448
-\c@listc=\count449
-\c@savedlistc=\count450
-\c@listd=\count451
-\c@savedlistd=\count452
-\c@liste=\count453
-\c@savedliste=\count454
-\c@listf=\count455
-\c@savedlistf=\count456
-\c@location=\count457
-\c@savedlocation=\count458
-\c@organization=\count459
-\c@savedorganization=\count460
-\c@origlocation=\count461
-\c@savedoriglocation=\count462
-\c@origpublisher=\count463
-\c@savedorigpublisher=\count464
-\c@publisher=\count465
-\c@savedpublisher=\count466
-\c@language=\count467
-\c@savedlanguage=\count468
-\c@origlanguage=\count469
-\c@savedoriglanguage=\count470
-\c@pageref=\count471
-\c@savedpageref=\count472
-\shorthandwidth=\skip75
-\shortjournalwidth=\skip76
-\shortserieswidth=\skip77
-\shorttitlewidth=\skip78
-\shortauthorwidth=\skip79
-\shorteditorwidth=\skip80
-\locallabelnumberwidth=\skip81
-\locallabelalphawidth=\skip82
-\localshorthandwidth=\skip83
-\localshortjournalwidth=\skip84
-\localshortserieswidth=\skip85
-\localshorttitlewidth=\skip86
-\localshortauthorwidth=\skip87
-\localshorteditorwidth=\skip88
+\c@afterword=\count406
+\c@savedafterword=\count407
+\c@annotator=\count408
+\c@savedannotator=\count409
+\c@author=\count410
+\c@savedauthor=\count411
+\c@bookauthor=\count412
+\c@savedbookauthor=\count413
+\c@commentator=\count414
+\c@savedcommentator=\count415
+\c@editor=\count416
+\c@savededitor=\count417
+\c@editora=\count418
+\c@savededitora=\count419
+\c@editorb=\count420
+\c@savededitorb=\count421
+\c@editorc=\count422
+\c@savededitorc=\count423
+\c@foreword=\count424
+\c@savedforeword=\count425
+\c@holder=\count426
+\c@savedholder=\count427
+\c@introduction=\count428
+\c@savedintroduction=\count429
+\c@namea=\count430
+\c@savednamea=\count431
+\c@nameb=\count432
+\c@savednameb=\count433
+\c@namec=\count434
+\c@savednamec=\count435
+\c@translator=\count436
+\c@savedtranslator=\count437
+\c@shortauthor=\count438
+\c@savedshortauthor=\count439
+\c@shorteditor=\count440
+\c@savedshorteditor=\count441
+\c@labelname=\count442
+\c@savedlabelname=\count443
+\c@institution=\count444
+\c@savedinstitution=\count445
+\c@lista=\count446
+\c@savedlista=\count447
+\c@listb=\count448
+\c@savedlistb=\count449
+\c@listc=\count450
+\c@savedlistc=\count451
+\c@listd=\count452
+\c@savedlistd=\count453
+\c@liste=\count454
+\c@savedliste=\count455
+\c@listf=\count456
+\c@savedlistf=\count457
+\c@location=\count458
+\c@savedlocation=\count459
+\c@organization=\count460
+\c@savedorganization=\count461
+\c@origlocation=\count462
+\c@savedoriglocation=\count463
+\c@origpublisher=\count464
+\c@savedorigpublisher=\count465
+\c@publisher=\count466
+\c@savedpublisher=\count467
+\c@language=\count468
+\c@savedlanguage=\count469
+\c@origlanguage=\count470
+\c@savedoriglanguage=\count471
+\c@pageref=\count472
+\c@savedpageref=\count473
+\shorthandwidth=\skip77
+\shortjournalwidth=\skip78
+\shortserieswidth=\skip79
+\shorttitlewidth=\skip80
+\shortauthorwidth=\skip81
+\shorteditorwidth=\skip82
+\locallabelnumberwidth=\skip83
+\locallabelalphawidth=\skip84
+\localshorthandwidth=\skip85
+\localshortjournalwidth=\skip86
+\localshortserieswidth=\skip87
+\localshorttitlewidth=\skip88
+\localshortauthorwidth=\skip89
+\localshorteditorwidth=\skip90
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
@@ -1170,19 +1193,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
-\c@textcitecount=\count473
-\c@textcitetotal=\count474
-\c@textcitemaxnames=\count475
-\c@biburlbigbreakpenalty=\count476
-\c@biburlbreakpenalty=\count477
-\c@biburlnumpenalty=\count478
-\c@biburlucpenalty=\count479
-\c@biburllcpenalty=\count480
+\c@textcitecount=\count474
+\c@textcitetotal=\count475
+\c@textcitemaxnames=\count476
+\c@biburlbigbreakpenalty=\count477
+\c@biburlbreakpenalty=\count478
+\c@biburlnumpenalty=\count479
+\c@biburlucpenalty=\count480
+\c@biburllcpenalty=\count481
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count481
+\c@smartand=\count482
 )
 Package biblatex Info: Trying to load bibliography style 'ieee'...
 Package biblatex Info: ... file 'ieee.bbx' found.
@@ -1204,8 +1227,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count482
-\c@bbx:relatedtotal=\count483
+\c@bbx:relatedcount=\count483
+\c@bbx:relatedtotal=\count484
 ))))
 Package biblatex Info: Trying to load citation style 'ieee'...
 Package biblatex Info: ... file 'ieee.cbx' found.
@@ -1217,10 +1240,10 @@ Package biblatex Info: ... file 'numeric-comp.cbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric-comp.cbx
 File: numeric-comp.cbx 2020/12/31 v3.16 biblatex citation style (PK/MW)
-\c@cbx@tempcnta=\count484
-\c@cbx@tempcntb=\count485
-\c@cbx@tempcntc=\count486
-\c@cbx@tempcntd=\count487
+\c@cbx@tempcnta=\count485
+\c@cbx@tempcntb=\count486
+\c@cbx@tempcntc=\count487
+\c@cbx@tempcntd=\count488
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -1247,24 +1270,24 @@ Package: overpic 2020/02/22 1.3 picture overlays (RN)
 
 (/usr/share/texlive/texmf-dist/tex/latex/eepic/epic.sty
 Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
-\@@multicnt=\count488
-\d@lta=\count489
-\@delta=\dimen322
-\@@delta=\dimen323
-\@gridcnt=\count490
-\@joinkind=\count491
-\@dotgap=\dimen324
-\@ddotgap=\dimen325
-\@x@diff=\count492
-\@y@diff=\count493
-\x@diff=\dimen326
-\y@diff=\dimen327
-\@dotbox=\box86
-\num@segments=\count494
-\num@segmentsi=\count495
+\@@multicnt=\count489
+\d@lta=\count490
+\@delta=\dimen329
+\@@delta=\dimen330
+\@gridcnt=\count491
+\@joinkind=\count492
+\@dotgap=\dimen331
+\@ddotgap=\dimen332
+\@x@diff=\count493
+\@y@diff=\count494
+\x@diff=\dimen333
+\y@diff=\dimen334
+\@dotbox=\box88
+\num@segments=\count495
+\num@segmentsi=\count496
 \@datafile=\read6
 )
-\OVP@box=\box87
+\OVP@box=\box89
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -1273,22 +1296,22 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./presentation.aux)
 \openout1 = `presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1326,17 +1349,17 @@ LaTeX Font Info:    ... okay on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count496
-\scratchdimen=\dimen328
-\scratchbox=\box88
-\nofMPsegments=\count497
-\nofMParguments=\count498
-\everyMPshowfont=\toks57
-\MPscratchCnt=\count499
-\MPscratchDim=\dimen329
-\MPnumerator=\count500
-\makeMPintoPDFobject=\count501
-\everyMPtoPDFconversion=\toks58
+\scratchcounter=\count497
+\scratchdimen=\dimen335
+\scratchbox=\box90
+\nofMPsegments=\count498
+\nofMParguments=\count499
+\everyMPshowfont=\toks59
+\MPscratchCnt=\count500
+\MPscratchDim=\dimen336
+\MPnumerator=\count501
+\makeMPintoPDFobject=\count502
+\everyMPtoPDFconversion=\toks60
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 
@@ -1354,7 +1377,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1365,11 +1388,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count502
+\c@section@level=\count503
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
 
 (./presentation.out) (./presentation.out)
 \@outlinefile=\write8
@@ -1427,8 +1450,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'presentation.bbl' found.
 
 (./presentation.bbl)
-Package biblatex Info: Reference section=0 on input line 21.
-Package biblatex Info: Reference segment=0 on input line 21.
+Package biblatex Info: Reference section=0 on input line 23.
+Package biblatex Info: Reference segment=0 on input line 23.
  (./presentation.nav) [1
 Non-PDF special ignored!
 <special> header=pstricks.pro
@@ -1449,15 +1472,15 @@ Non-PDF special ignored!
 <1ion_Elevels.pdf, id=45, 1149.4914pt x 512.1496pt>
 File: 1ion_Elevels.pdf Graphic file (type pdf)
 <use 1ion_Elevels.pdf>
-Package pdftex.def Info: 1ion_Elevels.pdf  used on input line 45.
+Package pdftex.def Info: 1ion_Elevels.pdf  used on input line 47.
 (pdftex.def)             Requested size: 325.00801pt x 144.80756pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1468,214 +1491,220 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <2ion_Elevels.pdf, id=63, 1149.4914pt x 512.1496pt>
 File: 2ion_Elevels.pdf Graphic file (type pdf)
 <use 2ion_Elevels.pdf>
-Package pdftex.def Info: 2ion_Elevels.pdf  used on input line 45.
+Package pdftex.def Info: 2ion_Elevels.pdf  used on input line 47.
 (pdftex.def)             Requested size: 325.00801pt x 144.80756pt.
  [3
 
- <./2ion_Elevels.pdf>]
-File: 2ion_Elevels.pdf Graphic file (type pdf)
-<use 2ion_Elevels.pdf>
-Package pdftex.def Info: 2ion_Elevels.pdf  used on input line 45.
-(pdftex.def)             Requested size: 325.00801pt x 144.80756pt.
- [4
+ <./2ion_Elevels.pdf>] [4
 
 ] [5
 
 ] [6
 
-] [7
-
-] [8
-
 ]
-<MS_gate_seq_OR.pdf, id=113, 692.3466pt x 308.5929pt>
+<Coupling_Elevels.pdf, id=98, 1149.4914pt x 512.1496pt>
+File: Coupling_Elevels.pdf Graphic file (type pdf)
+<use Coupling_Elevels.pdf>
+Package pdftex.def Info: Coupling_Elevels.pdf  used on input line 61.
+(pdftex.def)             Requested size: 325.00801pt x 144.80756pt.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 6
+1.
+
+(/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+) [7
+
+ <./Coupling_Elevels.pdf>]
+<MS_gate_seq_OR.pdf, id=110, 692.3466pt x 308.5929pt>
 File: MS_gate_seq_OR.pdf Graphic file (type pdf)
 <use MS_gate_seq_OR.pdf>
-Package pdftex.def Info: MS_gate_seq_OR.pdf  used on input line 64.
+Package pdftex.def Info: MS_gate_seq_OR.pdf  used on input line 68.
 (pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
-<MS-gate.pdf, id=114, 1158.02719pt x 210.5504pt>
+<MS-gate.pdf, id=111, 1158.02719pt x 210.5504pt>
 File: MS-gate.pdf Graphic file (type pdf)
 <use MS-gate.pdf>
-Package pdftex.def Info: MS-gate.pdf  used on input line 64.
+Package pdftex.def Info: MS-gate.pdf  used on input line 68.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [9
+ [8
 
  <./MS_gate_seq_OR.pdf> <./MS-gate.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./MS-gate.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
 >]
-<SC2_seq_OR.pdf, id=165, 692.3466pt x 308.5929pt>
+<SC2_seq_OR.pdf, id=162, 692.3466pt x 308.5929pt>
 File: SC2_seq_OR.pdf Graphic file (type pdf)
 <use SC2_seq_OR.pdf>
-Package pdftex.def Info: SC2_seq_OR.pdf  used on input line 71.
+Package pdftex.def Info: SC2_seq_OR.pdf  used on input line 75.
 (pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
-<SC2-gate.pdf, id=166, 1158.02719pt x 210.5504pt>
+<SC2-gate.pdf, id=163, 1158.02719pt x 210.5504pt>
 File: SC2-gate.pdf Graphic file (type pdf)
 <use SC2-gate.pdf>
-Package pdftex.def Info: SC2-gate.pdf  used on input line 71.
+Package pdftex.def Info: SC2-gate.pdf  used on input line 75.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [10
+ [9
 
  <./SC2_seq_OR.pdf> <./SC2-gate.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./SC2-gate.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]
-<SC2_therm.pdf, id=217, 692.3466pt x 303.534pt>
+<SC2_therm.pdf, id=214, 692.3466pt x 303.534pt>
 File: SC2_therm.pdf Graphic file (type pdf)
 <use SC2_therm.pdf>
-Package pdftex.def Info: SC2_therm.pdf  used on input line 71.
+Package pdftex.def Info: SC2_therm.pdf  used on input line 75.
 (pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
 File: SC2-gate.pdf Graphic file (type pdf)
 <use SC2-gate.pdf>
-Package pdftex.def Info: SC2-gate.pdf  used on input line 71.
+Package pdftex.def Info: SC2-gate.pdf  used on input line 75.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [11
+ [10
 
  <./SC2_therm.pdf>]
-<SC2_seq.pdf, id=270, 692.3466pt x 308.5929pt>
+<SC2_seq.pdf, id=267, 692.3466pt x 308.5929pt>
 File: SC2_seq.pdf Graphic file (type pdf)
 <use SC2_seq.pdf>
-Package pdftex.def Info: SC2_seq.pdf  used on input line 71.
+Package pdftex.def Info: SC2_seq.pdf  used on input line 75.
 (pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
 File: SC2-gate.pdf Graphic file (type pdf)
 <use SC2-gate.pdf>
-Package pdftex.def Info: SC2-gate.pdf  used on input line 71.
+Package pdftex.def Info: SC2-gate.pdf  used on input line 75.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [12
+ [11
 
  <./SC2_seq.pdf>]
-<Cardioid_seq_OR.pdf, id=320, 692.3466pt x 308.5929pt>
+<Cardioid_seq_OR.pdf, id=317, 692.3466pt x 308.5929pt>
 File: Cardioid_seq_OR.pdf Graphic file (type pdf)
 <use Cardioid_seq_OR.pdf>
-Package pdftex.def Info: Cardioid_seq_OR.pdf  used on input line 79.
+Package pdftex.def Info: Cardioid_seq_OR.pdf  used on input line 83.
 (pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
-<Cardioid-gate.pdf, id=321, 1158.02719pt x 210.5504pt>
+<Cardioid-gate.pdf, id=318, 1158.02719pt x 210.5504pt>
 File: Cardioid-gate.pdf Graphic file (type pdf)
 <use Cardioid-gate.pdf>
-Package pdftex.def Info: Cardioid-gate.pdf  used on input line 79.
+Package pdftex.def Info: Cardioid-gate.pdf  used on input line 83.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [13
+ [12
 
  <./Cardioid_seq_OR.pdf> <./Cardioid-gate.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Cardioid-gate.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<MS_Card_time_OR.pdf, id=373, 692.3466pt x 303.534pt>
+<MS_Card_time_OR.pdf, id=369, 690.90121pt x 323.04689pt>
 File: MS_Card_time_OR.pdf Graphic file (type pdf)
 <use MS_Card_time_OR.pdf>
-Package pdftex.def Info: MS_Card_time_OR.pdf  used on input line 79.
-(pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
+Package pdftex.def Info: MS_Card_time_OR.pdf  used on input line 83.
+(pdftex.def)             Requested size: 281.03636pt x 131.40033pt.
 File: Cardioid-gate.pdf Graphic file (type pdf)
 <use Cardioid-gate.pdf>
-Package pdftex.def Info: Cardioid-gate.pdf  used on input line 79.
+Package pdftex.def Info: Cardioid-gate.pdf  used on input line 83.
+(pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
+ [13
+
+ <./MS_Card_time_OR.pdf>]
+<Cardioid_seq.pdf, id=420, 692.3466pt x 308.5929pt>
+File: Cardioid_seq.pdf Graphic file (type pdf)
+<use Cardioid_seq.pdf>
+Package pdftex.def Info: Cardioid_seq.pdf  used on input line 83.
+(pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
+File: Cardioid-gate.pdf Graphic file (type pdf)
+<use Cardioid-gate.pdf>
+Package pdftex.def Info: Cardioid-gate.pdf  used on input line 83.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
  [14
 
- <./MS_Card_time_OR.pdf>]
-<Cardioid_seq.pdf, id=413, 692.3466pt x 308.5929pt>
-File: Cardioid_seq.pdf Graphic file (type pdf)
-<use Cardioid_seq.pdf>
-Package pdftex.def Info: Cardioid_seq.pdf  used on input line 79.
-(pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
+ <./Cardioid_seq.pdf>]
+<MS_Card_time.pdf, id=469, 690.90121pt x 323.04689pt>
+File: MS_Card_time.pdf Graphic file (type pdf)
+<use MS_Card_time.pdf>
+Package pdftex.def Info: MS_Card_time.pdf  used on input line 83.
+(pdftex.def)             Requested size: 281.03636pt x 131.40033pt.
 File: Cardioid-gate.pdf Graphic file (type pdf)
 <use Cardioid-gate.pdf>
-Package pdftex.def Info: Cardioid-gate.pdf  used on input line 79.
+Package pdftex.def Info: Cardioid-gate.pdf  used on input line 83.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
  [15
 
- <./Cardioid_seq.pdf>]
-<MS_Card_time.pdf, id=462, 692.3466pt x 303.534pt>
-File: MS_Card_time.pdf Graphic file (type pdf)
-<use MS_Card_time.pdf>
-Package pdftex.def Info: MS_Card_time.pdf  used on input line 79.
-(pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
-File: Cardioid-gate.pdf Graphic file (type pdf)
-<use Cardioid-gate.pdf>
-Package pdftex.def Info: Cardioid-gate.pdf  used on input line 79.
-(pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [16
-
  <./MS_Card_time.pdf>]
-<Custom_SC2_seq_OR.pdf, id=512, 692.3466pt x 308.5929pt>
+<Custom_SC2_seq_OR.pdf, id=519, 692.3466pt x 308.5929pt>
 File: Custom_SC2_seq_OR.pdf Graphic file (type pdf)
 <use Custom_SC2_seq_OR.pdf>
-Package pdftex.def Info: Custom_SC2_seq_OR.pdf  used on input line 91.
+Package pdftex.def Info: Custom_SC2_seq_OR.pdf  used on input line 95.
 (pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
-<Compound-gate.pdf, id=513, 1158.02719pt x 210.5504pt>
+<Compound-gate.pdf, id=520, 1158.02719pt x 210.5504pt>
 File: Compound-gate.pdf Graphic file (type pdf)
 <use Compound-gate.pdf>
-Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
+Package pdftex.def Info: Compound-gate.pdf  used on input line 95.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [17
+ [16
 
  <./Custom_SC2_seq_OR.pdf> <./Compound-gate.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Compound-gate.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<Comp_time_OR.pdf, id=565, 692.3466pt x 303.534pt>
+<Comp_time_OR.pdf, id=572, 692.3466pt x 303.534pt>
 File: Comp_time_OR.pdf Graphic file (type pdf)
 <use Comp_time_OR.pdf>
-Package pdftex.def Info: Comp_time_OR.pdf  used on input line 91.
+Package pdftex.def Info: Comp_time_OR.pdf  used on input line 95.
 (pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
 File: Compound-gate.pdf Graphic file (type pdf)
 <use Compound-gate.pdf>
-Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
+Package pdftex.def Info: Compound-gate.pdf  used on input line 95.
+(pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
+ [17
+
+ <./Comp_time_OR.pdf>]
+<Comp_therm.pdf, id=627, 692.3466pt x 303.534pt>
+File: Comp_therm.pdf Graphic file (type pdf)
+<use Comp_therm.pdf>
+Package pdftex.def Info: Comp_therm.pdf  used on input line 95.
+(pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
+File: Compound-gate.pdf Graphic file (type pdf)
+<use Compound-gate.pdf>
+Package pdftex.def Info: Compound-gate.pdf  used on input line 95.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
  [18
 
- <./Comp_time_OR.pdf>]
-<Comp_therm.pdf, id=620, 692.3466pt x 303.534pt>
-File: Comp_therm.pdf Graphic file (type pdf)
-<use Comp_therm.pdf>
-Package pdftex.def Info: Comp_therm.pdf  used on input line 91.
-(pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
-File: Compound-gate.pdf Graphic file (type pdf)
-<use Compound-gate.pdf>
-Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
-(pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [19
-
  <./Comp_therm.pdf>]
-<Custom_SC2_seq.pdf, id=675, 692.3466pt x 308.5929pt>
+<Custom_SC2_seq.pdf, id=681, 692.3466pt x 308.5929pt>
 File: Custom_SC2_seq.pdf Graphic file (type pdf)
 <use Custom_SC2_seq.pdf>
-Package pdftex.def Info: Custom_SC2_seq.pdf  used on input line 91.
+Package pdftex.def Info: Custom_SC2_seq.pdf  used on input line 95.
 (pdftex.def)             Requested size: 294.80861pt x 131.40033pt.
 File: Compound-gate.pdf Graphic file (type pdf)
 <use Compound-gate.pdf>
-Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
+Package pdftex.def Info: Compound-gate.pdf  used on input line 95.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [20
+ [19
 
  <./Custom_SC2_seq.pdf>]
-<Comp_time.pdf, id=725, 692.3466pt x 303.534pt>
+<Comp_time.pdf, id=732, 692.3466pt x 303.534pt>
 File: Comp_time.pdf Graphic file (type pdf)
 <use Comp_time.pdf>
-Package pdftex.def Info: Comp_time.pdf  used on input line 91.
+Package pdftex.def Info: Comp_time.pdf  used on input line 95.
 (pdftex.def)             Requested size: 299.71046pt x 131.40033pt.
 File: Compound-gate.pdf Graphic file (type pdf)
 <use Compound-gate.pdf>
-Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
+Package pdftex.def Info: Compound-gate.pdf  used on input line 95.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [21
+ [20
 
  <./Comp_time.pdf>]
-<Comparison.pdf, id=778, 692.3466pt x 307.87021pt>
+<Comparison.pdf, id=785, 692.3466pt x 307.87021pt>
 File: Comparison.pdf Graphic file (type pdf)
 <use Comparison.pdf>
-Package pdftex.def Info: Comparison.pdf  used on input line 91.
+Package pdftex.def Info: Comparison.pdf  used on input line 95.
 (pdftex.def)             Requested size: 295.50586pt x 131.40033pt.
 File: Compound-gate.pdf Graphic file (type pdf)
 <use Compound-gate.pdf>
-Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
+Package pdftex.def Info: Compound-gate.pdf  used on input line 95.
 (pdftex.def)             Requested size: 325.00801pt x 59.09184pt.
- [22
+ [21
 
- <./Comparison.pdf>] [23
+ <./Comparison.pdf>] [22
+
+] [23
 
 ]
 \tf@nav=\write9
@@ -1688,49 +1717,41 @@ Package pdftex.def Info: Compound-gate.pdf  used on input line 91.
 \openout11 = `presentation.snm'.
 
  (./presentation.aux)
-
-Package rerunfilecheck Warning: File `presentation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `presentation.out':
-(rerunfilecheck)             Before: DFFBFF766D0D634264E61BBD8A494166;226
-(rerunfilecheck)             After:  2046612B6FEF85945B17F70811292AFB;183.
+Package rerunfilecheck Info: File `presentation.out' has not changed.
+(rerunfilecheck)             Checksum: E142360F3529EB24F0B266F110D08F00;245.
 Package logreq Info: Writing requests to 'presentation.run.xml'.
 \openout1 = `presentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31754 strings out of 481176
- 610477 string characters out of 5914226
- 1349926 words of memory out of 5000000
- 47978 multiletter control sequences out of 15000+600000
- 416253 words of font info for 75 fonts, out of 8000000 for 9000
+ 31894 strings out of 481176
+ 612532 string characters out of 5914226
+ 1353363 words of memory out of 5000000
+ 48101 multiletter control sequences out of 15000+600000
+ 416925 words of font info for 82 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  131i,16n,132p,1855b,2179s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Outline0.5} has been referenced but does not exis
-t, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (23 pages, 497745 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (23 pages, 515780 bytes).
 PDF statistics:
- 914 PDF objects out of 1000 (max. 8388607)
- 381 compressed objects within 4 object streams
+ 930 PDF objects out of 1000 (max. 8388607)
+ 386 compressed objects within 4 object streams
  52 named destinations out of 1000 (max. 500000)
- 183 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 188 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -3,6 +3,8 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {1}{Background}{2}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Simulation Details}{8}{0}{2}
+\beamer@sectionintoc {2}{Properties of the system}{7}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{Driving schemes}{9}{0}{3}
+\beamer@sectionintoc {3}{Driving schemes}{8}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {4}{Qubit frequency error}{22}{0}{4}

@@ -1,5 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage[english]{babel}
+\usepackage{dsfont}
+\usepackage{tabularx}
 \input{preamble}
 \title{Evaluation of gate designs} %->->->->-> Check hyperref title <-<-<-<-<-
 \subtitle{For trapped ion quantum computers}
@@ -38,22 +40,24 @@
 		\begin{figure}
 			\centering
 			\only<1>{\includegraphics[width=0.75\linewidth]{1ion_Elevels.pdf}}
-			\only<2-3>{\includegraphics[width=0.75\linewidth]{2ion_Elevels.pdf}}
-			\only<3>{\vspace{0.57em}}
-			\[\hat{H}=-\frac{\hbar\omega_0}{2}\only<1>{\hat{\sigma}_z}\only<2>{\sum_i^n\hat{\sigma}_z^{(i)}}\only<3>{\hat{S}_z}+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right)\]
+			\only<2>{\includegraphics[width=0.75\linewidth]{2ion_Elevels.pdf}}
+			%\only<3>{\vspace{0.57em}}
+			\[\hat{H}=-\frac{\hbar\omega_0}{2}\only<1>{\hat{\sigma}_z}\only<2>{\sum_i^n\hat{\sigma}_z^{(i)}} + \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right)\]
 		\end{figure}
 	\end{frame}
     \begin{frame}{Driving the system}
     	\begin{align*}
-    		\onslide<1->{\hat{H}&=-\frac{\hbar\omega_0}{2}\hat{S}_z+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{l}\frac{\Omega_l}{2}\hat{S}_+e^{-i\left(\mathbf{kz}-\omega_l t\right)} + h.c.}\\
-    		\onslide<2->{\hat{H}&=-\frac{\hbar\omega_0}{2}\hat{S}_z+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{l}\frac{\Omega_l}{2}\hat{S}_+e^{-i\left(\eta\left(\hat{a}+\hat{a}^\dagger\right) -\omega_l t\right)} + h.c.}\\
-    		\onslide<3->{\hat{H}_I&=\sum_{l}\frac{\Omega_l}{2}\hat{S}_+e^{-i\left(\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) -\Delta_l t\right)} + h.c.}
+    		\onslide<1->{\hat{H}&=-\frac{\hbar\omega_0}{2}\sum_i^n\hat{\sigma}_z^{(i)}+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{l}\frac{\Omega_l}{2}\hat{\sigma}_+^{\left(n_l\right)}e^{-i\left(\mathbf{kz}-\omega_l t\right)} + h.c.}\\
+    		\onslide<2->{\hat{H}&=-\frac{\hbar\omega_0}{2}\sum_i^n\hat{\sigma}_z^{(i)}+ \hbar\nu \left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) + \sum_{l}\frac{\Omega_l}{2}\hat{\sigma}_+^{\left(n_l\right)}e^{-i\left(\eta\left(\hat{a}+\hat{a}^\dagger\right) -\omega_l t\right)} + h.c.}\\
+    		\onslide<3->{\hat{H}_I&=\sum_{l}\frac{\Omega_l}{2}\hat{\sigma}_+^{\left(n_l\right)}e^{-i\left(\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) -\Delta_l t\right)} + h.c.}
     	\end{align*}
     	\[\onslide<2->{\eta = \mathbf{kz_0}}\onslide<3->{\hspace{5em}\hat{\tilde{a}}=\hat{a}e^{-i\nu t}\hspace{5em}\hat{\tilde{a}}^\dagger =\hat{a}^\dagger e^{i\nu t}}\]
     \end{frame}
-	\section{Simulation Details}
-	\begin{frame}{Approximations}
-		\[\derivative{\hat{\rho}}{t}=-\frac{i}{\hbar}[\hat{H},\hat{\rho}]\]
+
+	\begin{frame}{Lamb-Dicke regime}
+		\centering
+		\includegraphics[width=0.75\linewidth]{Coupling_Elevels.pdf}
+		{\[e^{i\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right)}\approxeq\hat{\mathds{1}} + i\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) + \mathcal{O}\left(\eta^2\right)\]}
 	\end{frame}
 
 	\section{Driving schemes}
@@ -89,6 +93,14 @@
 		
 		\vspace{0.70em}
 	\end{frame}
+
+	\section{Qubit frequency error}
+	\begin{frame}{Dynamical decoupling}
+		\begin{tabular*}{\linewidth}{c @{\extracolsep{\fill}} c}
+			a & b \\
+		\end{tabular*}
+	\end{frame}
+
 %	\begin{frame}{Comparison}
 %		\centering
 %		\includegraphics[height=12em]{Comparison.pdf}
