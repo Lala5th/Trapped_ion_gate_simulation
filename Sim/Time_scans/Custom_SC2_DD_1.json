@@ -80,12 +80,12 @@
             },
             {
                 "builder"       : "Add_carrier_S",
-                "Omegac"        : 0,
+                "Omegac"        : -1,
                 "y"             : true,
     
                 "inner"         : {
                     "builder"       : "custom_sc2",
-                    "n_t"           : -1,
+                    "n_t"           : 2,
                     "phase"         : 0.25,
                     "K"             : 4,
                     "j"             : -0.79056941504,
