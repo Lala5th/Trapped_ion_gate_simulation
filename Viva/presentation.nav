@@ -9,65 +9,67 @@
 \defcounter {refsection}{0}\relax 
 \headcommand {\sectionentry {1}{Background}{2}{Background}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {1}{0}{1}{2/3}{}{0}}
+\headcommand {\slideentry {1}{0}{1}{2/2}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {2}{3}}
+\headcommand {\beamer@framepages {2}{2}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {1}{0}{2}{4/6}{}{0}}
+\headcommand {\slideentry {1}{0}{2}{3/4}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {4}{6}}
+\headcommand {\beamer@framepages {3}{4}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@sectionpages {2}{6}}
+\headcommand {\slideentry {1}{0}{3}{5/7}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionpages {2}{6}}
+\headcommand {\beamer@framepages {5}{7}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\sectionentry {2}{Properties of the system}{7}{Properties of the system}{0}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {2}{0}{1}{7/7}{}{0}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {7}{7}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\beamer@sectionpages {7}{7}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionpages {7}{7}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\sectionentry {3}{Driving schemes}{8}{Driving schemes}{0}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {3}{0}{1}{8/8}{}{0}}
+\headcommand {\slideentry {1}{0}{4}{8/8}{}{0}}
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {8}{8}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {3}{0}{2}{9/11}{}{0}}
+\headcommand {\beamer@sectionpages {2}{8}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {9}{11}}
+\headcommand {\beamer@subsectionpages {2}{8}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {3}{0}{3}{12/15}{}{0}}
+\headcommand {\sectionentry {2}{Driving schemes}{9}{Driving schemes}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {12}{15}}
+\headcommand {\slideentry {2}{0}{1}{9/10}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {3}{0}{4}{16/21}{}{0}}
+\headcommand {\beamer@framepages {9}{10}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {16}{21}}
+\headcommand {\slideentry {2}{0}{2}{11/13}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@sectionpages {8}{21}}
+\headcommand {\beamer@framepages {11}{13}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionpages {8}{21}}
+\headcommand {\slideentry {2}{0}{3}{14/17}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\sectionentry {4}{Qubit frequency error}{22}{Qubit frequency error}{0}}
+\headcommand {\beamer@framepages {14}{17}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {4}{0}{1}{22/22}{}{0}}
+\headcommand {\slideentry {2}{0}{4}{18/23}{}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\beamer@framepages {18}{23}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@sectionpages {22}{22}}
+\headcommand {\beamer@sectionpages {9}{23}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionpages {22}{22}}
+\headcommand {\beamer@subsectionpages {9}{23}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {5}{0}{1}{23/23}{}{0}}
+\headcommand {\sectionentry {3}{Qubit frequency error}{24}{Qubit frequency error}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\beamer@partpages {1}{23}}
-\headcommand {\beamer@subsectionpages {23}{23}}
-\headcommand {\beamer@sectionpages {23}{23}}
-\headcommand {\beamer@documentpages {23}}
-\headcommand {\gdef \inserttotalframenumber {10}}
+\headcommand {\slideentry {3}{0}{1}{24/26}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {24}{26}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{0}{2}{27/27}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {27}{27}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@sectionpages {24}{27}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {24}{27}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {4}{0}{1}{28/28}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\beamer@partpages {1}{28}}
+\headcommand {\beamer@subsectionpages {28}{28}}
+\headcommand {\beamer@sectionpages {28}{28}}
+\headcommand {\beamer@documentpages {28}}
+\headcommand {\gdef \inserttotalframenumber {12}}

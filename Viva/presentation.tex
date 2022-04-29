@@ -33,8 +33,11 @@
     %\input{chapters/playing-around.tex}
     
     %\input{chapters/fourier-playground.tex}
-    
     \section{Background}
+    \begin{frame}{Introduction}
+    	\centering
+    	\includegraphics[width=0.6\linewidth]{RF_Trap.pdf}
+    \end{frame}
     %\frame{\sectionpage}
 	\begin{frame}{Energy structure}
 		\begin{figure}
@@ -57,13 +60,14 @@
 	\begin{frame}{Lamb-Dicke regime}
 		\centering
 		\includegraphics[width=0.75\linewidth]{Coupling_Elevels.pdf}
-		{\[e^{i\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right)}\approxeq\hat{\mathds{1}} + i\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) + \mathcal{O}\left(\eta^2\right)\]}
+		{\[e^{-i\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right)}\approx\hat{\mathds{1}} - i\eta\left(\hat{\tilde{a}}+\hat{\tilde{a}}^\dagger\right) + \mathcal{O}\left(\eta^2\right)\]}
 	\end{frame}
 
 	\section{Driving schemes}
 	\begin{frame}{M\o lmer-S\o rensen gate\footfullcite{MS-gate}}
 		\centering
-		\only<1>{\includegraphics[height=12em]{MS_gate_seq_OR.pdf}}
+		\only<1>{\includegraphics[height=12em]{MS_Gate_Schematic.pdf}}
+		\only<2>{\includegraphics[height=12em]{MS_gate_seq_OR.pdf}}
 		\includegraphics[width=0.75\linewidth]{MS-gate.pdf}
 	\end{frame}
 	\begin{frame}{Strong coupling gate\footfullcite{SC2}}
@@ -95,10 +99,25 @@
 	\end{frame}
 
 	\section{Qubit frequency error}
-	\begin{frame}{Dynamical decoupling}
-		\begin{tabular*}{\linewidth}{c @{\extracolsep{\fill}} c}
-			a & b \\
+	\begin{frame}{\only<1>{Qubit frequency error}\only<2->{Dynamical decoupling\footfullcite{DD}}}
+		\begin{tabular*}{\linewidth}{c @{\extracolsep{\fill}}*3 c}
+			\includegraphics[width=0.7\textheight]{qubit_err.pdf} &%
+			%\begin{tabular}{c}
+			\parbox[b][0.7\textheight][c]{0.7\textwidth}{
+				\begin{align*}%
+					\onslide<1->{\hat{H}_I &= \hat{H}_G - \sum_i^n\frac{\hbar\xi_i}{2}\hat{\sigma}_z^{(i)}}\\%
+					\onslide<2->{\hat{H}_I &= \hat{H}_G - \sum_i^n\frac{\hbar\xi_i}{2}\hat{\sigma}_z^{(i)} + \frac{\hbar\Omega_c}{2}\sum_i^n\hat{\sigma}_y^{(i)}}\\%
+					\onslide<3->{\hat{H}_I^\prime &= \hat{H}_G - \sum_i^n\frac{\hbar\xi_i}{2}\left(\hat{\sigma}_z^{(i)}\cos\left(\Omega_ct\right) + \hat{\sigma}_x^{(i)}\sin\left(\Omega_ct\right)\right)}
+				\end{align*}
+				\onslide<3->{\[\left[\hat{H}_G, \hat{\sigma}_y^{(i)}\right]=0\hspace*{2em} \Omega_c \gg \xi_i\hspace*{2em}\Omega_c \gg \frac{1}{t_g}\hspace*{2em}\]}
+			}%
+			%\end{tabular}
 		\end{tabular*}
+	\end{frame}
+
+	\begin{frame}{Dynamically decoupled compound gate}
+		\centering
+		\includegraphics[width=0.9\textwidth]{Dynamical_decoupling.pdf}
 	\end{frame}
 
 %	\begin{frame}{Comparison}
@@ -116,7 +135,7 @@
     \begin{frame}{}
         \centering
             \Huge\bfseries
-        \textcolor{orange}{Thank you for the attention}
+        \textcolor{orange}{Thank you for the attention!}
     \end{frame}
 
 \end{document}

@@ -110,5 +110,53 @@
     \field{title}{Robust Entanglement Gates for Trapped-Ion Qubits}
     \field{year}{2018}
   \endentry
+
+  \entry{DD}{article}{}
+    \name{author}{6}{}{%
+      {{hash=HT}{%
+         family={Harty},
+         familyi={H\bibinitperiod},
+         given={T.{\hspace{0.167em} }P.},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sepiol},
+         familyi={S\bibinitperiod},
+         given={M.{\hspace{0.167em}}A.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AD}{%
+         family={Allcock},
+         familyi={A\bibinitperiod},
+         given={D.{\hspace{0.167em}}T.{\hspace{0.167em}}C.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Ballance},
+         familyi={B\bibinitperiod},
+         given={C.{\hspace{0.167em}}J.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Tarlton},
+         familyi={T\bibinitperiod},
+         given={J.{\hspace{0.167em}}E.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LD}{%
+         family={Lucas},
+         familyi={L\bibinitperiod},
+         given={D.{\hspace{0.167em}}M.},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HTSMAD+1}
+    \strng{fullhash}{HTSMADBCTJLD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{High-Fidelity Trapped-Ion Quantum Logic Using Near-Field
+  Microwaves}
+    \field{year}{2016}
+  \endentry
 \enddatalist
 \endinput
