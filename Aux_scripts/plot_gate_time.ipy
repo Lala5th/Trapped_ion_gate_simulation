@@ -6,9 +6,9 @@ t = False
 p = []
 labels = []
 for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
-    p.append(plt.Line2D([0,0],[0,1],color='white',linestyle=ls))
+    p.append(plt.Line2D([0,0],[0,1],color='black',linestyle=ls))
     labels.append("$\\bar{n}="+d+"$")
-for g,c,l in [("ms_gate","C0","Mølmer–Sørensen"),("cardioid","C1","Cardioid"),("sc2","C2","Strong Coupling"),("custom_sc2_di","C3","Compound")]:
+for g,c,l in [("ms_gate","C0","Mølmer–Sørensen"),("cardioid","C1","Cardioid"),("sc2","C2","Strong Coupling 2"),("custom_sc2_di","C3","Compound")]:
     p.append(plt.Line2D([0,0],[0,1],color=c))
     labels.append(l)
     for d,ls in [("0","solid"),("0.5","dashed"),("1","dotted"),("2","dashdot")]:
