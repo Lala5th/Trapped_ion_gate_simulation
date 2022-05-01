@@ -1,10 +1,63 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Report.aux
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Report.aux
 The style file: ieeetran.bst
-I found no \citation commands---while reading file Report.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: sources.bib
+Warning--entry type for "Sideband_cooling_penning_trap" isn't style-file defined
+--line 308 of file sources.bib
 -- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing publisher in RF_Traps
+Warning--empty year in RF_Traps
+Warning--missing publisher in QIP_Trapped_ions
+Warning--empty year in QIP_Trapped_ions
 
 Done.
-(There was 1 error message)
+You've used 6 entries,
+            4024 wiz_defined-function locations,
+            852 strings with 8251 characters,
+and the built_in function-call counts, 3397 in all, are:
+= -- 269
+> -- 46
+< -- 25
++ -- 28
+- -- 7
+* -- 175
+:= -- 568
+add.period$ -- 10
+call.type$ -- 6
+change.case$ -- 2
+chr.to.int$ -- 51
+cite$ -- 10
+duplicate$ -- 236
+empty$ -- 306
+format.name$ -- 8
+if$ -- 756
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 39
+newline$ -- 47
+num.names$ -- 6
+pop$ -- 90
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 271
+stack$ -- 0
+substring$ -- 121
+swap$ -- 185
+text.length$ -- 8
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 6
+warning$ -- 4
+while$ -- 15
+width$ -- 7
+write$ -- 81
+(There were 5 warnings)

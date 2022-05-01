@@ -480,7 +480,7 @@ def plot_me_seq_scan_dm(data_pack):
     # ax2.plot(t,sol[1])q
     # ax.get_xaxis().set_major_formatter(rabi_detuning_format)
     ax.set_xlabel("Time [$\\mu$s]")
-    ax.set_ylabel("p[1]")
+    ax.set_ylabel("Value [1]")
     # ax.set_yscale("logit")
     ax.grid()
 

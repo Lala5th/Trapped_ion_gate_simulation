@@ -3,7 +3,7 @@
     "plot"          : [
         {
             "index"         : [0,0],
-            "label"         : "$\\langle gg$|$\\hat{\\rho}$|$ee\\rangle$"
+            "label"         : "$\\langle gg$|$\\hat{\\rho}$|$gg\\rangle$"
         },
         {
             "index"         : [-1,-1],
