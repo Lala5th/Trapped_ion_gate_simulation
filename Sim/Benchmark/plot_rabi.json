@@ -1,0 +1,13 @@
+{
+    "prep"          : "ijljk->ilk",
+    "plot"          : [
+        {
+            "index"         : [0,0],
+            "label"         : "$\\langle g$|$\\hat{\\rho}$|$g\\rangle$"
+        },
+        {
+            "index"         : [-1,-1],
+            "label"         : "$\\langle e$|$\\hat{\\rho}$|$e\\rangle$"
+        }
+    ]
+}

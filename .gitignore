@@ -33,3 +33,4 @@ order_3_sidebands_2.json
 !Sim/plot_dm_fig3.json
 !Sim/DDMS*.json
 *.db
+!Thesis/*

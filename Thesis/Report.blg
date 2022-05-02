@@ -1,6 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Report.aux
+A level-1 auxiliary file: Layperson_summary.aux
 The style file: ieeetran.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -19,45 +20,45 @@ Warning--missing publisher in QIP_Trapped_ions
 Warning--empty year in QIP_Trapped_ions
 
 Done.
-You've used 6 entries,
+You've used 18 entries,
             4024 wiz_defined-function locations,
-            852 strings with 8251 characters,
-and the built_in function-call counts, 3397 in all, are:
-= -- 269
-> -- 46
-< -- 25
-+ -- 28
-- -- 7
-* -- 175
-:= -- 568
-add.period$ -- 10
-call.type$ -- 6
-change.case$ -- 2
-chr.to.int$ -- 51
-cite$ -- 10
-duplicate$ -- 236
-empty$ -- 306
-format.name$ -- 8
-if$ -- 756
+            942 strings with 10334 characters,
+and the built_in function-call counts, 11660 in all, are:
+= -- 997
+> -- 224
+< -- 79
++ -- 124
+- -- 41
+* -- 572
+:= -- 1898
+add.period$ -- 34
+call.type$ -- 18
+change.case$ -- 12
+chr.to.int$ -- 153
+cite$ -- 22
+duplicate$ -- 845
+empty$ -- 939
+format.name$ -- 50
+if$ -- 2643
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 39
-newline$ -- 47
-num.names$ -- 6
-pop$ -- 90
+int.to.str$ -- 18
+missing$ -- 148
+newline$ -- 105
+num.names$ -- 18
+pop$ -- 333
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 271
+skip$ -- 935
 stack$ -- 0
-substring$ -- 121
-swap$ -- 185
-text.length$ -- 8
+substring$ -- 411
+swap$ -- 696
+text.length$ -- 28
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 6
+type$ -- 18
 warning$ -- 4
-while$ -- 15
-width$ -- 7
-write$ -- 81
+while$ -- 43
+width$ -- 20
+write$ -- 224
 (There were 5 warnings)

@@ -458,8 +458,8 @@ def plot_me_seq_scan_dm(data_pack):
         p, =  ax.plot(1e6*ts,np.real(density_matrix)[tuple(m_index['index'])],label = f"Re({m_index['label']})")
         ax.plot(1e6*ts,np.imag(density_matrix)[tuple(m_index['index'])],label = f"Im({m_index['label']})",linestyle='dotted',c=p.get_color())
         if(ps == []):
-            ps.append(plt.Line2D([0],[0],color='white'))
-            ps.append(plt.Line2D([0],[0],color='white',linestyle='dotted'))
+            ps.append(plt.Line2D([0],[0],color='black'))
+            ps.append(plt.Line2D([0],[0],color='black',linestyle='dotted'))
             legend.append("Real")
             legend.append("Imag")
         ps.append(p)
@@ -1111,7 +1111,7 @@ if __name__ == '__main__':
     # 'xtick.labelsize'   : 12,
     # 'ytick.labelsize'   : 12,
     # 'legend.fontsize'   : 12,
-    'font.size'         : 16
+    'font.size'         : 20
     }
     for e in rcparams.keys():
         mpl.rcParams[e] = rcparams[e]

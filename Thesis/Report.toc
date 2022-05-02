@@ -1,8 +1,13 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.4}%
-\contentsline {chapter}{\numberline {2}Background}{2}{chapter.5}%
-\contentsline {section}{\numberline {2.1}Radio-frequency trap}{2}{section.6}%
-\contentsline {section}{\numberline {2.2}M\o lmer-S\o rensen gate}{4}{section.14}%
-\contentsline {chapter}{\numberline {3}Explored driving schemes}{5}{chapter.15}%
-\contentsline {chapter}{\numberline {4}Dynamical decoupling}{6}{chapter.16}%
-\contentsline {chapter}{\numberline {5}Conclusion}{7}{chapter.17}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.3}%
+\contentsline {chapter}{\numberline {2}Background}{2}{chapter.4}%
+\contentsline {section}{\numberline {2.1}Radio-Frequency Trap}{2}{section.5}%
+\contentsline {section}{\numberline {2.2}M\o lmer-S\o rensen Gate}{4}{section.13}%
+\contentsline {section}{\numberline {2.3}Physical System}{5}{section.15}%
+\contentsline {chapter}{\numberline {3}Simulation Framework}{6}{chapter.16}%
+\contentsline {chapter}{\numberline {4}Explored Driving Schemes}{9}{chapter.21}%
+\contentsline {section}{\numberline {4.1}Strong Coupling Gate}{9}{section.22}%
+\contentsline {section}{\numberline {4.2}Cardioid Gate}{11}{section.25}%
+\contentsline {section}{\numberline {4.3}Compound Gate}{12}{section.28}%
+\contentsline {section}{\numberline {4.4}Dynamical Decoupling}{13}{section.31}%
+\contentsline {chapter}{\numberline {5}Conclusion}{15}{chapter.32}%

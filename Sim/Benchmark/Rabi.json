@@ -1,0 +1,81 @@
+{
+    "solver"        : "ME_Interaction_Full",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : 1e6,
+    "nu0"           : null,
+
+    "n_num"         : 20,
+    "n_ion"         : 1,
+
+    "ntraj"         : 1,
+
+    "state0"        :
+        {
+            "builder"       : "Generic_state",
+
+            "n"             : 0,
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 0,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 1,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+    
+    "c_param"       : {
+        "c_operator"        : "heating_collapse",
+
+
+        "n_therm"           : 2,
+        "Gamma"             : 0
+    },
+
+    "eta0"          : 0,
+    "xi"            : 0,
+
+    "t_prep"        : 0,
+
+    "n_t"           : 2001,
+    "t_r"           : 0.05,
+    "m"             : 6.6551079e-26,
+
+    "sequence"      : [
+        {
+            "builder"       : "raw",
+            "sequence"      : [
+                {
+                    "reltime"           : 0,
+                    "abstime"           : 2000e-6,
+                    "n_t"               : 1000,
+                    "tau"               : 0,
+                    "beams"             : [
+                        {
+                            "Omega0"            : 6.28318530718e3,
+                            "detuning"          : 0,
+                            "phase0abs"         : 0,
+                            "phase_match"       : false,
+                            "abspi"             : false,
+                            "ion"               : 0,
+                            "phase0"            : 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    
+    "output"        : true,
+    "fname"         : "rabi.npz"
+}

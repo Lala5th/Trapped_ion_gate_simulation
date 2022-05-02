@@ -1,0 +1,90 @@
+{
+    "solver"        : "ME_Interaction_Reduced",
+
+    "omega0Hz"      : 411e12,
+    "omega0"        : null,
+    "nu0Hz"         : 200e3,
+    "nu0"           : null,
+
+    "n_num"         : 20,
+    "n_ion"         : 2,
+
+    "ntraj"         : 1,
+
+    "state0"        :
+        {
+            "builder"       : "Thermal_state",
+
+            "n"             : 2,
+
+            "alpha"         : {
+                "size"          : 1.41421356237,
+                "phase"         : 0
+            },
+
+            "states"        : [
+                {
+                    "n"             : 0,
+                    "atoms"         : [false,false],
+                    "factor"        : {
+                        "size"          : 1,
+                        "phase"         : 0
+                    }
+                }
+            ]
+        },
+    
+    "c_param"       : {
+        "c_operator"        : "heating_collapse",
+
+
+        "n_therm"           : 2,
+        "Gamma"             : 0
+    },
+
+    "eta0"          : 0.1,
+    "xi"            : 0,
+
+    "t_prep"        : 0,
+
+    "n_t"           : 201,
+    "t_r"           : 0.05,
+    "m"             : null,
+
+    "sequence"      : [
+        {
+            "builder"       : "raw",
+            "sequence"      : [
+                {
+                    "reltime"           : 0,
+                    "abstime"           : 14e-3,
+                    "n_t"               : 1400,
+                    "tau"               : 0,
+                    "beams"             : [
+                        {
+                            "Omega0"            : 125.6637e3,
+                            "detuning"          : 0.9,
+                            "phase0abs"         : 0,
+                            "phase_match"       : false,
+                            "abspi"             : false,
+                            "ion"               : 0,
+                            "phase0"            : 0
+                        },
+                        {
+                            "Omega0"            : 125.6637e3,
+                            "detuning"          : -0.9,
+                            "phase0abs"         : 0,
+                            "phase_match"       : false,
+                            "abspi"             : false,
+                            "ion"               : 1,
+                            "phase0"            : 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+
+    "output"        : true,
+    "fname"         : "ms_gate_benchmark.npz"
+}

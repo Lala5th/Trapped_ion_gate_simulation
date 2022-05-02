@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.10)  29 APR 2022 08:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.10)  2 MAY 2022 05:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -272,6 +272,14 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -359,7 +367,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
-\symlasy=\mathgroup4
+\symlasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 )
@@ -445,9 +453,9 @@ File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
 \c@bookmark@seq@number=\count299
 \Hy@SectionHShift=\skip69
 )
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 47.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 47.
-Package hyperref Info: Option `colorlinks' set `true' on input line 47.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 48.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 48.
+Package hyperref Info: Option `colorlinks' set `true' on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
@@ -792,7 +800,7 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count321
 \l__pdf_internal_box=\box72
 )
-(./Report.aux)
+(./Report.aux (./Layperson_summary.aux))
 \openout1 = `Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
@@ -813,7 +821,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
- (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
+
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 *geometry* driver: auto-detecting
@@ -898,7 +907,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ) (./titlepage.tex
-<./imperial.pdf, id=35, 301.125pt x 90.3375pt>
+<./imperial.pdf, id=55, 301.125pt x 90.3375pt>
 File: ./imperial.pdf Graphic file (type pdf)
 <use ./imperial.pdf>
 Package pdftex.def Info: ./imperial.pdf  used on input line 11.
@@ -908,85 +917,166 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
+LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 42
 .
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./imperial.pdf>])
-<Images//TIQC.jpg, id=46, 1035.11719pt x 492.33937pt>
+\openout2 = `Layperson_summary.aux'.
+
+ (./Layperson_summary.tex
+<Images//TIQC.jpg, id=66, 1035.11719pt x 492.33937pt>
 File: Images//TIQC.jpg Graphic file (type jpg)
 <use Images//TIQC.jpg>
-Package pdftex.def Info: Images//TIQC.jpg  used on input line 54.
+Package pdftex.def Info: Images//TIQC.jpg  used on input line 14.
 (pdftex.def)             Requested size: 172.98956pt x 82.27672pt.
 
-Overfull \hbox (8.53201pt too wide) in paragraph at lines 52--59
+Overfull \hbox (8.53201pt too wide) in paragraph at lines 12--19
  []|  [] 
  []
 
 [1
 
 
- <./Images//TIQC.jpg>]
+
+ <./Images//TIQC.jpg>])
 \c@abstractpage=\count329
- [2] [3] (./Report.toc)
+ [2
+
+
+] [3] (./Report.toc)
 \tf@toc=\write5
 \openout5 = `Report.toc'.
 
  [4
 
-] (./Report.lof)
-\tf@lof=\write6
-\openout6 = `Report.lof'.
-
- [5
-
-] [6
-
-
 ]
 Chapter 1.
 [1
+
+
 
 ]
 Chapter 2.
 [2
 
 ]
-<Images//RF_Trap.pdf, id=120, 312.98033pt x 213.39566pt>
+<Images//RF_Trap.pdf, id=138, 312.98033pt x 213.39566pt>
 File: Images//RF_Trap.pdf Graphic file (type pdf)
 <use Images//RF_Trap.pdf>
-Package pdftex.def Info: Images//RF_Trap.pdf  used on input line 155.
+Package pdftex.def Info: Images//RF_Trap.pdf  used on input line 126.
 (pdftex.def)             Requested size: 182.09486pt x 124.15704pt.
-<Images//1ion_Elevels.pdf, id=121, 1149.4914pt x 512.1496pt>
+<Images//1ion_Elevels.pdf, id=139, 1149.4914pt x 512.1496pt>
 File: Images//1ion_Elevels.pdf Graphic file (type pdf)
 <use Images//1ion_Elevels.pdf>
-Package pdftex.def Info: Images//1ion_Elevels.pdf  used on input line 162.
+Package pdftex.def Info: Images//1ion_Elevels.pdf  used on input line 133.
 (pdftex.def)             Requested size: 250.38564pt x 111.55574pt.
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 1
-80.
+51.
  (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ) [3 <./Images//RF_Trap.pdf> <./Images//1ion_Elevels.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Images//1ion_Elevels.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
->] [4]
-Chapter 3.
-[5
+>]
+<Images//MS_Gate_Schematic.pdf, id=167, 1149.4914pt x 512.1496pt>
+File: Images//MS_Gate_Schematic.pdf Graphic file (type pdf)
+<use Images//MS_Gate_Schematic.pdf>
+Package pdftex.def Info: Images//MS_Gate_Schematic.pdf  used on input line 164.
 
-]
-Chapter 4.
+(pdftex.def)             Requested size: 409.71692pt x 182.54506pt.
+ [4 <./Images//MS_Gate_Schematic.pdf>] [5]
+Chapter 3.
+<Images//Rabi.pdf, id=200, 690.90121pt x 327.3831pt>
+File: Images//Rabi.pdf Graphic file (type pdf)
+<use Images//Rabi.pdf>
+Package pdftex.def Info: Images//Rabi.pdf  used on input line 190.
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
+<Images//Rabi_residual.pdf, id=201, 690.90121pt x 327.3831pt>
+File: Images//Rabi_residual.pdf Graphic file (type pdf)
+<use Images//Rabi_residual.pdf>
+Package pdftex.def Info: Images//Rabi_residual.pdf  used on input line 197.
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
 [6
 
+ <./Images//Rabi.pdf> <./Images//Rabi_residual.pdf>]
+<Images//MS_Gate_Benchmark.pdf, id=281, 690.90121pt x 327.3831pt>
+File: Images//MS_Gate_Benchmark.pdf Graphic file (type pdf)
+<use Images//MS_Gate_Benchmark.pdf>
+Package pdftex.def Info: Images//MS_Gate_Benchmark.pdf  used on input line 221.
+
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
+<Images//MS_Gate_paper.pdf, id=282, 301.125pt x 175.65625pt>
+File: Images//MS_Gate_paper.pdf Graphic file (type pdf)
+<use Images//MS_Gate_paper.pdf>
+Package pdftex.def Info: Images//MS_Gate_paper.pdf  used on input line 228.
+(pdftex.def)             Requested size: 216.24373pt x 126.14807pt.
+ [7 <./Images//MS_Gate_Benchmark.pdf> <./Images//MS_Gate_paper.pdf>] [8]
+Chapter 4.
+[9
+
 ]
+<Images//SC2_therm.pdf, id=373, 690.90121pt x 327.3831pt>
+File: Images//SC2_therm.pdf Graphic file (type pdf)
+<use Images//SC2_therm.pdf>
+Package pdftex.def Info: Images//SC2_therm.pdf  used on input line 280.
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
+
+Underfull \hbox (badness 1189) in paragraph at lines 281--281
+\OT1/bch/m/n/10 strong cou-pling scheme's ef-fec-tive-ness against
+ []
+
+<Images//SC2_off_res.pdf, id=374, 690.90121pt x 327.3831pt>
+File: Images//SC2_off_res.pdf Graphic file (type pdf)
+<use Images//SC2_off_res.pdf>
+Package pdftex.def Info: Images//SC2_off_res.pdf  used on input line 287.
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <./Images//SC2_therm.pdf> <./Images//SC2_off_res.pdf>]
+<Images//Card_time.pdf, id=469, 690.90121pt x 327.3831pt>
+File: Images//Card_time.pdf Graphic file (type pdf)
+<use Images//Card_time.pdf>
+Package pdftex.def Info: Images//Card_time.pdf  used on input line 318.
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
+<Images//Card_therm.pdf, id=470, 690.90121pt x 327.3831pt>
+File: Images//Card_therm.pdf Graphic file (type pdf)
+<use Images//Card_therm.pdf>
+Package pdftex.def Info: Images//Card_therm.pdf  used on input line 325.
+(pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]
+[12 <./Images//Card_time.pdf> <./Images//Card_therm.pdf>]
+<Images//Comparison.pdf, id=571, 692.3466pt x 307.87021pt>
+File: Images//Comparison.pdf Graphic file (type pdf)
+<use Images//Comparison.pdf>
+Package pdftex.def Info: Images//Comparison.pdf  used on input line 359.
+(pdftex.def)             Requested size: 409.71692pt x 182.19147pt.
+ [13 <./Images//Comparison.pdf>] [14]
 Chapter 5.
 (./Report.bbl (./Report.brf)
-\tf@brf=\write7
-\openout7 = `Report.brf'.
+\tf@brf=\write6
+\openout6 = `Report.brf'.
 
- [7
+ [15
 
 ]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
@@ -995,22 +1085,28 @@ Chapter 5.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `eng'. Using the pattern for
 ** the default language instead.
-) [8
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
+File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
+) [16
 
-] (./Report.aux)
+]
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `eng'. Using the pattern for
+** the default language instead.
+) [17] (./Report.aux (./Layperson_summary.aux))
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 9BA6CB82A235FC03C5CB535DB15D38F5;1028.
+(rerunfilecheck)             Checksum: 87B4CEBC7A011A2869B3EFE685B2894A;1833.
 Package rerunfilecheck Info: File `Report.brf' has not changed.
-(rerunfilecheck)             Checksum: 730BC1EF77AA5FD200EFDE0C9BB2227E;520.
+(rerunfilecheck)             Checksum: 57C998F9A99979FEA32829E11E77E69A;1974.
  ) 
 Here is how much of TeX's memory you used:
- 23226 strings out of 480171
- 419519 string characters out of 5894489
- 707696 words of memory out of 5000000
- 40642 multiletter control sequences out of 15000+600000
- 509207 words of font info for 97 fonts, out of 8000000 for 9000
+ 23825 strings out of 480171
+ 429626 string characters out of 5894489
+ 715630 words of memory out of 5000000
+ 41171 multiletter control sequences out of 15000+600000
+ 515933 words of font info for 124 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 77i,14n,80p,1371b,642s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 77i,14n,80p,1563b,646s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1021,22 +1117,27 @@ st/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/share/texlive/texmf-dist/fonts
 itstrea/charter/bchri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/d
-srom12.pfb>
-Output written on Report.pdf (15 pages, 317372 bytes).
+ex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cme
+x8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Report.pdf (22 pages, 645064 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 40 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 790 PDF objects out of 1000 (max. 8388607)
+ 443 compressed objects within 5 object streams
+ 74 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 
