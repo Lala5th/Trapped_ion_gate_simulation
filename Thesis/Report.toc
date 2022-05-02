@@ -9,6 +9,6 @@
 \contentsline {section}{\numberline {4.1}Strong Coupling Gate}{9}{section.22}%
 \contentsline {section}{\numberline {4.2}Cardioid Gate}{11}{section.25}%
 \contentsline {section}{\numberline {4.3}Compound Gate}{12}{section.28}%
-\contentsline {section}{\numberline {4.4}Comparison}{14}{section.32}%
-\contentsline {section}{\numberline {4.5}Dynamical Decoupling}{14}{section.34}%
-\contentsline {chapter}{\numberline {5}Conclusion}{17}{chapter.38}%
+\contentsline {section}{\numberline {4.4}Comparison}{14}{section.33}%
+\contentsline {section}{\numberline {4.5}Dynamical Decoupling}{15}{section.35}%
+\contentsline {chapter}{\numberline {5}Conclusion}{18}{chapter.39}%

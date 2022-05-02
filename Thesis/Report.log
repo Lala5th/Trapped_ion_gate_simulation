@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.10)  2 MAY 2022 09:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.10)  2 MAY 2022 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -958,35 +958,36 @@ Overfull \hbox (8.53201pt too wide) in paragraph at lines 12--19
  [2
 
 
-] [3] (./Report.toc)
+] [3] [4] (./Report.toc)
 \tf@toc=\write5
 \openout5 = `Report.toc'.
 
- [4
+ [5
+
+] [6
+
 
 ]
 Chapter 1.
 [1
-
-
 
 ]
 Chapter 2.
 [2
 
 ]
-<Images//RF_Trap.pdf, id=143, 312.98033pt x 213.39566pt>
+<Images//RF_Trap.pdf, id=176, 312.98033pt x 213.39566pt>
 File: Images//RF_Trap.pdf Graphic file (type pdf)
 <use Images//RF_Trap.pdf>
-Package pdftex.def Info: Images//RF_Trap.pdf  used on input line 126.
+Package pdftex.def Info: Images//RF_Trap.pdf  used on input line 144.
 (pdftex.def)             Requested size: 182.09486pt x 124.15704pt.
-<Images//1ion_Elevels.pdf, id=144, 1149.4914pt x 512.1496pt>
+<Images//1ion_Elevels.pdf, id=177, 1149.4914pt x 512.1496pt>
 File: Images//1ion_Elevels.pdf Graphic file (type pdf)
 <use Images//1ion_Elevels.pdf>
-Package pdftex.def Info: Images//1ion_Elevels.pdf  used on input line 133.
+Package pdftex.def Info: Images//1ion_Elevels.pdf  used on input line 151.
 (pdftex.def)             Requested size: 250.38564pt x 111.55574pt.
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 1
-51.
+69.
  (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ) [3 <./Images//RF_Trap.pdf> <./Images//1ion_Elevels.pdf
@@ -994,109 +995,114 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 pdfTeX warning: /usr/bin/pdflatex (file ./Images//1ion_Elevels.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
 >]
-<Images//MS_Gate_Schematic.pdf, id=172, 1149.4914pt x 512.1496pt>
+<Images//MS_Gate_Schematic.pdf, id=206, 1149.4914pt x 512.1496pt>
 File: Images//MS_Gate_Schematic.pdf Graphic file (type pdf)
 <use Images//MS_Gate_Schematic.pdf>
-Package pdftex.def Info: Images//MS_Gate_Schematic.pdf  used on input line 164.
+Package pdftex.def Info: Images//MS_Gate_Schematic.pdf  used on input line 182.
 
 (pdftex.def)             Requested size: 409.71692pt x 182.54506pt.
  [4 <./Images//MS_Gate_Schematic.pdf>] [5]
 Chapter 3.
-<Images//Rabi.pdf, id=205, 690.90121pt x 327.3831pt>
+<Images//Rabi.pdf, id=240, 690.90121pt x 327.3831pt>
 File: Images//Rabi.pdf Graphic file (type pdf)
 <use Images//Rabi.pdf>
-Package pdftex.def Info: Images//Rabi.pdf  used on input line 190.
+Package pdftex.def Info: Images//Rabi.pdf  used on input line 210.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
-<Images//Rabi_residual.pdf, id=206, 690.90121pt x 327.3831pt>
+<Images//Rabi_residual.pdf, id=241, 690.90121pt x 327.3831pt>
 File: Images//Rabi_residual.pdf Graphic file (type pdf)
 <use Images//Rabi_residual.pdf>
-Package pdftex.def Info: Images//Rabi_residual.pdf  used on input line 197.
+Package pdftex.def Info: Images//Rabi_residual.pdf  used on input line 217.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
 [6
 
  <./Images//Rabi.pdf> <./Images//Rabi_residual.pdf>]
-<Images//MS_Gate_Benchmark.pdf, id=286, 690.90121pt x 327.3831pt>
+<Images//MS_Gate_Benchmark.pdf, id=322, 690.90121pt x 327.3831pt>
 File: Images//MS_Gate_Benchmark.pdf Graphic file (type pdf)
 <use Images//MS_Gate_Benchmark.pdf>
-Package pdftex.def Info: Images//MS_Gate_Benchmark.pdf  used on input line 221.
+Package pdftex.def Info: Images//MS_Gate_Benchmark.pdf  used on input line 243.
 
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
-<Images//MS_Gate_paper.pdf, id=287, 301.125pt x 175.65625pt>
+<Images//MS_Gate_paper.pdf, id=323, 301.125pt x 175.65625pt>
 File: Images//MS_Gate_paper.pdf Graphic file (type pdf)
 <use Images//MS_Gate_paper.pdf>
-Package pdftex.def Info: Images//MS_Gate_paper.pdf  used on input line 228.
+Package pdftex.def Info: Images//MS_Gate_paper.pdf  used on input line 250.
 (pdftex.def)             Requested size: 216.24373pt x 126.14807pt.
  [7 <./Images//MS_Gate_Benchmark.pdf> <./Images//MS_Gate_paper.pdf>] [8]
 Chapter 4.
 [9
 
 ]
-<Images//SC2_therm.pdf, id=378, 690.90121pt x 327.3831pt>
+<Images//SC2_therm.pdf, id=407, 690.90121pt x 327.3831pt>
 File: Images//SC2_therm.pdf Graphic file (type pdf)
 <use Images//SC2_therm.pdf>
-Package pdftex.def Info: Images//SC2_therm.pdf  used on input line 280.
+Package pdftex.def Info: Images//SC2_therm.pdf  used on input line 296.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
 
-Underfull \hbox (badness 1189) in paragraph at lines 281--281
+Underfull \hbox (badness 1189) in paragraph at lines 297--297
 \OT1/bch/m/n/10 strong cou-pling scheme's ef-fec-tive-ness against
  []
 
-<Images//SC2_off_res.pdf, id=379, 690.90121pt x 327.3831pt>
+<Images//SC2_off_res.pdf, id=408, 690.90121pt x 327.3831pt>
 File: Images//SC2_off_res.pdf Graphic file (type pdf)
 <use Images//SC2_off_res.pdf>
-Package pdftex.def Info: Images//SC2_off_res.pdf  used on input line 287.
+Package pdftex.def Info: Images//SC2_off_res.pdf  used on input line 303.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10 <./Images//SC2_therm.pdf> <./Images//SC2_off_res.pdf>]
-<Images//Card_time.pdf, id=474, 690.90121pt x 327.3831pt>
+[10 <./Images//SC2_therm.pdf> <./Images//SC2_off_res.pdf>] [11]
+<Images//Card_time.pdf, id=514, 690.90121pt x 327.3831pt>
 File: Images//Card_time.pdf Graphic file (type pdf)
 <use Images//Card_time.pdf>
-Package pdftex.def Info: Images//Card_time.pdf  used on input line 318.
+Package pdftex.def Info: Images//Card_time.pdf  used on input line 344.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
-<Images//Card_therm.pdf, id=475, 690.90121pt x 327.3831pt>
+<Images//Card_therm.pdf, id=515, 690.90121pt x 327.3831pt>
 File: Images//Card_therm.pdf Graphic file (type pdf)
 <use Images//Card_therm.pdf>
-Package pdftex.def Info: Images//Card_therm.pdf  used on input line 325.
+Package pdftex.def Info: Images//Card_therm.pdf  used on input line 351.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+[]\OT1/bch/b/n/10 (b) |\OT1/bch/m/n/10 Fi-delity com-par-i-son be-tween the
+ []
 
- [11]
+
+Underfull \hbox (badness 2521) in paragraph at lines 352--352
+[] \OT1/bch/m/n/10 and MS gates un-der dif-fer-ent
+ []
+
 [12 <./Images//Card_time.pdf> <./Images//Card_therm.pdf>]
-<Images//Compound_time.pdf, id=576, 690.90121pt x 327.3831pt>
+<Images//Compound_time.pdf, id=611, 690.90121pt x 327.3831pt>
 File: Images//Compound_time.pdf Graphic file (type pdf)
 <use Images//Compound_time.pdf>
-Package pdftex.def Info: Images//Compound_time.pdf  used on input line 360.
+Package pdftex.def Info: Images//Compound_time.pdf  used on input line 382.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
-<Images//Compound_therm.pdf, id=577, 690.90121pt x 327.3831pt>
+<Images//Compound_therm.pdf, id=612, 690.90121pt x 327.3831pt>
 File: Images//Compound_therm.pdf Graphic file (type pdf)
 <use Images//Compound_therm.pdf>
-Package pdftex.def Info: Images//Compound_therm.pdf  used on input line 367.
+Package pdftex.def Info: Images//Compound_therm.pdf  used on input line 389.
 (pdftex.def)             Requested size: 216.24373pt x 102.46681pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [13 <./Images//Compound_time.pdf> <./Images//Compound_therm.pdf>]
-<Images//Comparison.pdf, id=674, 692.3466pt x 307.87021pt>
+<Images//Comparison.pdf, id=712, 692.3466pt x 307.87021pt>
 File: Images//Comparison.pdf Graphic file (type pdf)
 <use Images//Comparison.pdf>
-Package pdftex.def Info: Images//Comparison.pdf  used on input line 394.
+Package pdftex.def Info: Images//Comparison.pdf  used on input line 418.
 (pdftex.def)             Requested size: 409.71692pt x 182.19147pt.
- [14 <./Images//Comparison.pdf>]
-<Images//DD.pdf, id=734, 690.90121pt x 327.3831pt>
+ [14] [15 <./Images//Comparison.pdf>]
+<Images//DD.pdf, id=777, 690.90121pt x 327.3831pt>
 File: Images//DD.pdf Graphic file (type pdf)
 <use Images//DD.pdf>
-Package pdftex.def Info: Images//DD.pdf  used on input line 418.
+Package pdftex.def Info: Images//DD.pdf  used on input line 446.
 (pdftex.def)             Requested size: 409.71692pt x 194.14844pt.
- [15 <./Images//DD.pdf>] [16]
+ [16 <./Images//DD.pdf>] [17]
 Chapter 5.
-(./Report.bbl (./Report.brf)
+[18
+
+] (./Report.bbl (./Report.brf)
 \tf@brf=\write6
 \openout6 = `Report.brf'.
 
- [17
+ [19]
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-1.def
+File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
+) [20
 
 ]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
@@ -1105,28 +1111,26 @@ Chapter 5.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `eng'. Using the pattern for
 ** the default language instead.
-(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
+[21] (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-) [18
-
-]
+)
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `eng'. Using the pattern for
 ** the default language instead.
-) [19] (./Report.aux (./Layperson_summary.aux))
+) [22] (./Report.aux (./Layperson_summary.aux))
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: F41AFA026215106D69B24BCB8CEE75AF;1960.
+(rerunfilecheck)             Checksum: D0FC06E0B78C6561F0B41AD64B0FFEE2;1960.
 Package rerunfilecheck Info: File `Report.brf' has not changed.
-(rerunfilecheck)             Checksum: B99FE17439677A3F3D1774B29A7C2694;2212.
+(rerunfilecheck)             Checksum: 1DEB064C79F8E2484A8C4CA60B0133FF;3085.
  ) 
 Here is how much of TeX's memory you used:
- 23873 strings out of 480171
- 430651 string characters out of 5894489
- 717310 words of memory out of 5000000
- 41207 multiletter control sequences out of 15000+600000
- 515933 words of font info for 124 fonts, out of 8000000 for 9000
+ 24524 strings out of 480171
+ 437530 string characters out of 5894489
+ 717603 words of memory out of 5000000
+ 41841 multiletter control sequences out of 15000+600000
+ 515339 words of font info for 123 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 77i,14n,80p,1563b,646s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 77i,14n,80p,1725b,642s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1154,10 +1158,10 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (24 pages, 694326 bytes).
+Output written on Report.pdf (29 pages, 713932 bytes).
 PDF statistics:
- 950 PDF objects out of 1000 (max. 8388607)
- 501 compressed objects within 6 object streams
- 83 named destinations out of 1000 (max. 500000)
+ 1012 PDF objects out of 1200 (max. 8388607)
+ 558 compressed objects within 6 object streams
+ 97 named destinations out of 1000 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -14,51 +14,51 @@ Warning--entry type for "Sideband_cooling_penning_trap" isn't style-file defined
 -- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--missing publisher in RF_Traps
-Warning--empty year in RF_Traps
 Warning--missing publisher in QIP_Trapped_ions
 Warning--empty year in QIP_Trapped_ions
+Warning--missing publisher in RF_Traps
+Warning--empty year in RF_Traps
 
 Done.
-You've used 19 entries,
+You've used 27 entries,
             4024 wiz_defined-function locations,
-            949 strings with 10695 characters,
-and the built_in function-call counts, 12322 in all, are:
-= -- 1051
-> -- 249
-< -- 81
-+ -- 136
-- -- 47
-* -- 611
-:= -- 2014
-add.period$ -- 36
-call.type$ -- 19
-change.case$ -- 13
-chr.to.int$ -- 153
-cite$ -- 23
-duplicate$ -- 896
-empty$ -- 987
-format.name$ -- 57
-if$ -- 2787
+            1004 strings with 13034 characters,
+and the built_in function-call counts, 18369 in all, are:
+= -- 1531
+> -- 482
+< -- 101
++ -- 252
+- -- 102
+* -- 919
+:= -- 2952
+add.period$ -- 52
+call.type$ -- 27
+change.case$ -- 21
+chr.to.int$ -- 174
+cite$ -- 31
+duplicate$ -- 1360
+empty$ -- 1441
+format.name$ -- 118
+if$ -- 4165
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 160
-newline$ -- 110
-num.names$ -- 19
-pop$ -- 358
+int.to.str$ -- 27
+missing$ -- 264
+newline$ -- 146
+num.names$ -- 27
+pop$ -- 608
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 984
+skip$ -- 1455
 stack$ -- 0
-substring$ -- 412
-swap$ -- 737
-text.length$ -- 30
+substring$ -- 505
+swap$ -- 1109
+text.length$ -- 43
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 19
+type$ -- 27
 warning$ -- 4
-while$ -- 44
-width$ -- 21
-write$ -- 237
+while$ -- 58
+width$ -- 29
+write$ -- 331
 (There were 5 warnings)

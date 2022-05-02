@@ -21,6 +21,100 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{SC_Paper}
+\BIBentryALTinterwordspacing
+M.~Sameti, J.~Lishman, and F.~Mintert, ``Strong-coupling quantum logic of
+  trapped ions,'' \emph{Physical Review A}, vol. 103, no.~5, may 2021.
+  [Online]. Available: \url{https://doi.org/10.1103\%2Fphysreva.103.052603}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Cardioid}
+\BIBentryALTinterwordspacing
+Y.~Shapira, R.~Shaniv, T.~Manovitz, N.~Akerman, and R.~Ozeri, ``Robust
+  entanglement gates for trapped-ion qubits,'' \emph{Physical Review Letters},
+  vol. 121, no.~18, nov 2018. [Online]. Available:
+  \url{https://doi.org/10.1103\%2Fphysrevlett.121.180502}
+\BIBentrySTDinterwordspacing
+
+\bibitem{DD_Paper}
+\BIBentryALTinterwordspacing
+T.~Harty, M.~Sepiol, D.~Allcock, C.~Ballance, J.~Tarlton, and D.~Lucas,
+  ``High-fidelity trapped-ion quantum logic using near-field microwaves,''
+  \emph{Physical Review Letters}, vol. 117, no.~14, sep 2016. [Online].
+  Available: \url{https://doi.org/10.1103\%2Fphysrevlett.117.140501}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Shor}
+P.~Shor, ``Algorithms for quantum computation: discrete logarithms and
+  factoring,'' in \emph{Proceedings 35th Annual Symposium on Foundations of
+  Computer Science}, 1994, pp. 124--134.
+
+\bibitem{Quantum_optimiser}
+\BIBentryALTinterwordspacing
+M.~J. Rančić, ``An exponentially more efficient optimization algorithm for
+  noisy quantum computers,'' 2021. [Online]. Available:
+  \url{https://arxiv.org/abs/2110.10788}
+\BIBentrySTDinterwordspacing
+
+\bibitem{VQE_CMTH}
+\BIBentryALTinterwordspacing
+K.~Mizuta, M.~Fujii, S.~Fujii, K.~Ichikawa, Y.~Imamura, Y.~Okuno, and Y.~O.
+  Nakagawa, ``Deep variational quantum eigensolver for excited states and its
+  application to quantum chemistry calculation of periodic materials,''
+  \emph{Physical Review Research}, vol.~3, no.~4, nov 2021. [Online].
+  Available: \url{https://doi.org/10.1103\%2Fphysrevresearch.3.043121}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Trapped_ion_rev}
+\BIBentryALTinterwordspacing
+C.~D. Bruzewicz, J.~Chiaverini, R.~McConnell, and J.~M. Sage, ``Trapped-ion
+  quantum computing: Progress and challenges,'' \emph{Applied Physics Reviews},
+  vol.~6, no.~2, p. 021314, 2019. [Online]. Available:
+  \url{https://doi.org/10.1063/1.5088164}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Trapped_ion_qbit_toolbox}
+\BIBentryALTinterwordspacing
+R.~Ozeri, ``The trapped-ion qubit tool box,'' \emph{Contemporary Physics},
+  vol.~52, no.~6, pp. 531--550, 2011. [Online]. Available:
+  \url{https://doi.org/10.1080/00107514.2011.603578}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Trapped_Quantum_Computer}
+\BIBentryALTinterwordspacing
+I.~Pogorelov, T.~Feldker, C.~D. Marciniak, L.~Postler, G.~Jacob,
+  O.~Krieglsteiner, V.~Podlesnic, M.~Meth, V.~Negnevitsky, M.~Stadler,
+  B.~H\"ofer, C.~W\"achter, K.~Lakhmanskiy, R.~Blatt, P.~Schindler, and
+  T.~Monz, ``Compact ion-trap quantum computing demonstrator,'' \emph{PRX
+  Quantum}, vol.~2, p. 020343, Jun 2021. [Online]. Available:
+  \url{https://link.aps.org/doi/10.1103/PRXQuantum.2.020343}
+\BIBentrySTDinterwordspacing
+
+\bibitem{QIP_Trapped_ions}
+\BIBentryALTinterwordspacing
+C.~F. Roos, \emph{Physics with Trapped Charged Particles}, ch.~9, pp. 239--260.
+  [Online]. Available:
+  \url{https://www.worldscientific.com/doi/abs/10.1142/9781783264063_0009}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Hyperfine_qubit}
+\BIBentryALTinterwordspacing
+J.~P. Gaebler, T.~R. Tan, Y.~Lin, Y.~Wan, R.~Bowler, A.~C. Keith, S.~Glancy,
+  K.~Coakley, E.~Knill, D.~Leibfried, and D.~J. Wineland, ``High-fidelity
+  universal gate set for ${^{9}\mathrm{Be}}^{+}$ ion qubits,'' \emph{Phys. Rev.
+  Lett.}, vol. 117, p. 060505, Aug 2016. [Online]. Available:
+  \url{https://link.aps.org/doi/10.1103/PhysRevLett.117.060505}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Optical_qubit}
+\BIBentryALTinterwordspacing
+A.~Erhard, J.~J. Wallman, L.~Postler, M.~Meth, R.~Stricker, E.~A. Martinez,
+  P.~Schindler, T.~Monz, J.~Emerson, and R.~Blatt, ``Characterizing large-scale
+  quantum computers via cycle benchmarking,'' \emph{Nature Communications},
+  vol.~10, no.~1, nov 2019. [Online]. Available:
+  \url{https://doi.org/10.1038\%2Fs41467-019-13068-7}
+\BIBentrySTDinterwordspacing
+
 \bibitem{RF_Traps}
 \BIBentryALTinterwordspacing
 M.~Knoop, \emph{Trapped Charged Particles}, ch.~2, pp. 35--53. [Online].
@@ -58,25 +152,11 @@ A.~S{\o}rensen and K.~M{\o}lmer, ``Entanglement and quantum computation with
   [Online]. Available: \url{https://doi.org/10.1103\%2Fphysreva.62.022311}
 \BIBentrySTDinterwordspacing
 
-\bibitem{QIP_Trapped_ions}
-\BIBentryALTinterwordspacing
-C.~F. Roos, \emph{Physics with Trapped Charged Particles}, ch.~9, pp. 239--260.
-  [Online]. Available:
-  \url{https://www.worldscientific.com/doi/abs/10.1142/9781783264063_0009}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Cirac_Zoller}
 \BIBentryALTinterwordspacing
 J.~I. Cirac and P.~Zoller, ``Quantum computations with cold trapped ions,''
   \emph{Phys. Rev. Lett.}, vol.~74, pp. 4091--4094, May 1995. [Online].
   Available: \url{https://link.aps.org/doi/10.1103/PhysRevLett.74.4091}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Trapped_ion_qbit_toolbox}
-\BIBentryALTinterwordspacing
-R.~Ozeri, ``The trapped-ion qubit tool box,'' \emph{Contemporary Physics},
-  vol.~52, no.~6, pp. 531--550, 2011. [Online]. Available:
-  \url{https://doi.org/10.1080/00107514.2011.603578}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Fast_MS}
@@ -86,6 +166,12 @@ A.~S{\o}rensen and K.~M{\o}lmer, ``Quantum computation with ions in thermal
   1999. [Online]. Available:
   \url{https://doi.org/10.1103\%2Fphysrevlett.82.1971}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Ca_lifetime}
+P.~F. Staanum, I.~Jensen, R.~Martinussen, D.~Voigt, and M.~Drewsen, ``Lifetime
+  measurement of the metastable 3d (2)d5(/2) state in the ca-40(+) ion using
+  the shelving technique on a few-ion string,'' \emph{Physical Review. A},
+  vol.~69, 03 2004.
 
 \bibitem{QuTip1}
 \BIBentryALTinterwordspacing
@@ -116,21 +202,6 @@ F.~G. Major, \emph{\BIBforeignlanguage{eng}{Charged particle traps : physics
   on atomic, optical, and plasma physics, 37.\hskip 1em plus 0.5em minus
   0.4em\relax Berlin ;: Springer, 2005, ch.~14, pp. 221--258.
 
-\bibitem{Cardioid}
-\BIBentryALTinterwordspacing
-Y.~Shapira, R.~Shaniv, T.~Manovitz, N.~Akerman, and R.~Ozeri, ``Robust
-  entanglement gates for trapped-ion qubits,'' \emph{Physical Review Letters},
-  vol. 121, no.~18, nov 2018. [Online]. Available:
-  \url{https://doi.org/10.1103\%2Fphysrevlett.121.180502}
-\BIBentrySTDinterwordspacing
-
-\bibitem{SC_Paper}
-\BIBentryALTinterwordspacing
-M.~Sameti, J.~Lishman, and F.~Mintert, ``Strong-coupling quantum logic of
-  trapped ions,'' \emph{Physical Review A}, vol. 103, no.~5, may 2021.
-  [Online]. Available: \url{https://doi.org/10.1103\%2Fphysreva.103.052603}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Github}
 \BIBentryALTinterwordspacing
 L.~Palanki. Trapped ion gate simulation. [Online]. Available:
@@ -142,14 +213,6 @@ L.~Palanki. Trapped ion gate simulation. [Online]. Available:
 M.~Sameti, J.~Lishman, and F.~Mintert. {S}trong {C}oupling {Q}uantum {L}ogic of
   {T}rapped {I}ons. [Online]. Available:
   \url{https://github.com/ImperialCQD/Strong-Coupling-Quantum-Logic-of-Trapped-Ions}
-\BIBentrySTDinterwordspacing
-
-\bibitem{DD_Paper}
-\BIBentryALTinterwordspacing
-T.~Harty, M.~Sepiol, D.~Allcock, C.~Ballance, J.~Tarlton, and D.~Lucas,
-  ``High-fidelity trapped-ion quantum logic using near-field microwaves,''
-  \emph{Physical Review Letters}, vol. 117, no.~14, sep 2016. [Online].
-  Available: \url{https://doi.org/10.1103\%2Fphysrevlett.117.140501}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
