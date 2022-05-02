@@ -20,45 +20,45 @@ Warning--missing publisher in QIP_Trapped_ions
 Warning--empty year in QIP_Trapped_ions
 
 Done.
-You've used 18 entries,
+You've used 19 entries,
             4024 wiz_defined-function locations,
-            942 strings with 10334 characters,
-and the built_in function-call counts, 11660 in all, are:
-= -- 997
-> -- 224
-< -- 79
-+ -- 124
-- -- 41
-* -- 572
-:= -- 1898
-add.period$ -- 34
-call.type$ -- 18
-change.case$ -- 12
+            949 strings with 10695 characters,
+and the built_in function-call counts, 12322 in all, are:
+= -- 1051
+> -- 249
+< -- 81
++ -- 136
+- -- 47
+* -- 611
+:= -- 2014
+add.period$ -- 36
+call.type$ -- 19
+change.case$ -- 13
 chr.to.int$ -- 153
-cite$ -- 22
-duplicate$ -- 845
-empty$ -- 939
-format.name$ -- 50
-if$ -- 2643
+cite$ -- 23
+duplicate$ -- 896
+empty$ -- 987
+format.name$ -- 57
+if$ -- 2787
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 148
-newline$ -- 105
-num.names$ -- 18
-pop$ -- 333
+int.to.str$ -- 19
+missing$ -- 160
+newline$ -- 110
+num.names$ -- 19
+pop$ -- 358
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 935
+skip$ -- 984
 stack$ -- 0
-substring$ -- 411
-swap$ -- 696
-text.length$ -- 28
+substring$ -- 412
+swap$ -- 737
+text.length$ -- 30
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 18
+type$ -- 19
 warning$ -- 4
-while$ -- 43
-width$ -- 20
-write$ -- 224
+while$ -- 44
+width$ -- 21
+write$ -- 237
 (There were 5 warnings)

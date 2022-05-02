@@ -84,6 +84,8 @@
 \chapter{Introduction}
 \label{Intro}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Background}
 \label{Background}
@@ -267,7 +269,7 @@ From this we can then require that, at gate time, $\hat{V}_d=e^{i\Phi\hat{S}_y^2
 
 In the original paper discussing the design, they provide two proof of concept driving profiles. One utilising two and an other using three sidebands. Unfortunately when we consider terms that are off resonant their fidelity is quickly lost, but if gates with speed on the order of $100\;\mu\text{s}$ are needed, these terms become necessary to consider. Due to this we will only be including the two sideband case as a baseline for results in Section \ref{Driving_schemes:Compound} and for the ideal operation of a three sideband case one can refer to \cite{SC_Paper}.
 
-The two sideband proof of concept provided in \cite{SC_Paper} can be brought into our formulation as 4 lasers driving each of our ions. Using the definition we established in Sections \ref{Background:RF_Trap} and \ref{Sim_Framework} the parameters will be $\Delta_0 = -\Delta_1 = \nu - 2\delta$ and $\Delta_2 = -\Delta_3 = 2\nu-\delta$. These lasers will have coupling strengths ${\Omega_1 = \Omega_2 = -\Omega_3 = \Omega_4 = ie^{\frac{\eta^2}{2}}\Omega}$, where $\Omega$ and $\delta$ are parameters related by the entangling condition ${3\eta^6(\frac{\Omega}{\delta})^4 - (1 + \eta^2)\eta^2(\frac{\Omega}{\delta})^2 + \frac{\Phi}{\pi} = 0}$. This will produce the expected state in $t_g = \frac{2\pi}{\delta}$.
+The two sideband proof of concept provided in \cite{SC_Paper} can be brought into our formulation as 4 lasers driving each of our ions. Using the definition we established in Sections \ref{Background:RF_Trap} and \ref{Sim_Framework} the parameters will be $\Delta_0 = -\Delta_1 = \nu - 2\delta$ and $\Delta_2 = -\Delta_3 = 2\nu-\delta$. These lasers will have coupling strengths ${\Omega_1 = -\Omega_2 = \Omega_3 = \Omega_4 = ie^{\frac{\eta^2}{2}}\Omega}$, where $\Omega$ and $\delta$ are parameters related by the entangling condition ${3\eta^6(\frac{\Omega}{\delta})^4 - (1 + \eta^2)\eta^2(\frac{\Omega}{\delta})^2 + \frac{\Phi}{\pi} = 0}$. This will produce the expected state in $t_g = \frac{2\pi}{\delta}$.
 
 We have then compared this strong coupling gate design with the MS gate, for which the results are seen in Figure \ref{fig:sc2:comparison}. In this simulation, to highlight the benefits of the strong coupling gate, by only considering the on resonant terms. We however also show in Figure \ref{fig:sc2:time} that including these terms are detrimental to the gate's operation. If the gate is only weakly driven, these issues can be avoided, but that comes at the cost of gate speed.
 
@@ -307,7 +309,7 @@ The cardioid is one such gate design. It is characterised by 2 tones on both the
 	\label{eq:Cardioid}
 \end{equation}
 
-Where we have ignored the far resonant sideband terms, such as the red sideband driving the blue sideband off resonantly. While we could represent the propagator as $\hat{U}\approx \prod_0^t e^{-i\int_{t}^{t + \Delta t}\hat{H}_I\text{d}t'}$, the treatment and evaluation of this expression would be extremely laborious and this work's scope is too limited for such a discussion. Alternatively we can take an other, more naive approach. Instead of using the extra degrees of freedom to reduce the overall loss of fidelity that happens during gate operation, we can focus on the noise generated at gate time. This noise is extremely problematic, due to it adding a randomness to the final state, with the only remedy being very precise timing. By requiring the first term to disappear at gate time, we can ensure that these unwanted transitions disappear as well.It is easy to see that for a cardioid gate, the first term will become proportional to $\cos(\frac{(n_0 - n_1)\delta}{2}t)$. Since $n_0, n_1 \in \mathbb{Z}$, this will ensure that at $t_g = \frac{2\pi}{\delta}$ this expression becomes zero. This is while still providing resistance against timing errors as was discussed in \cite{Cardioid}.
+Where we have ignored the far resonant sideband terms, such as the red sideband driving the blue sideband off resonantly. While we could represent the propagator as $\hat{U}\approx \prod_0^t e^{-i\int_{t}^{t + \Delta t}\hat{H}_I\text{d}t'}$, the treatment and evaluation of this expression would be extremely laborious and this work's scope is too limited for such a discussion. Alternatively we can take an other, more naive approach. Instead of using the extra degrees of freedom to reduce the overall loss of fidelity that happens during gate operation, we can focus on the noise generated at gate time. This noise is extremely problematic, due to it adding a randomness to the final state, with the only remedy being very precise timing. By requiring the first term to disappear at gate time, we can ensure that these unwanted transitions disappear as well. It is easy to see that for a cardioid gate, the first term will become proportional to $\cos(\frac{(n_0 - n_1)\delta}{2}t)$. Since $n_0, n_1 \in \mathbb{Z}$, this will ensure that at $t_g = \frac{2\pi}{\delta}$ this expression becomes zero. This is while still providing resistance against timing errors as was discussed in \cite{Cardioid}.
 
 We decided that out of the variety of cardioid gates the Cardioid($4$, $6$), would be explored. Here numbers represent the values of $n_i$. As a note, since all gates in this family exhibit the behaviour of reducing off resonant carrier transitions near gate time, our choice of focusing our simulation on Cardioid($4$, $6$) was somewhat arbitrary. This is due to us wanting to provide an example of these beneficial properties as well as its shortcomings. Figure \ref{fig:cardioid} highlights how the cardioid scheme improves the fidelity near gate time, but does nothing to combat thermal effects.
 
@@ -336,25 +338,62 @@ We decided that out of the variety of cardioid gates the Cardioid($4$, $6$), wou
 
 Finally we have aimed to create a gate design that has the benefits of both the strong coupling and the cardioid scheme. We have used the expansion detailed in Section \ref{Driving_schemes:SC}. We have done this by creating a wrapper around the conditions provided in \cite{SC_github}, and feeding it parametrised versions of driving terms. This was done using Mathematica, for which the code is included in \texttt{SC2.nb}. Here the terms on the first sideband were set to mimic a chosen driving scheme, while the second sideband was used to reduce the necessary terms in our equation to zero. The solution we used however is far from automatic and there does not seem to be a simple way of making it automatic. This also did not produce compound schemes for all gates we tried. As an example, we have originally experimented with a Cardioid($2$, $3$) gate, however we could not find a second sideband driving, which would reduce the unwanted propagator terms to zero.
 
-Due to the manual nature of this parameter variation, we also decided that three sideband driving cases would not be attempted. This decision is mainly due to the fact that a three sideband driving would require a staggering number of terms to become zero, compared to the $12$, which is needed for a two sideband design. We also believed that a three sideband gate would not improve the final gate's fidelity drastically as the extra driving terms would possibly create more noise from off resonant transitions. This is however only speculative on trends noticeable in Figure \ref{fig:comparison}. In it we can see that even though the strong coupling should outperform the MS gate, it only starts approaching a similar level of fidelity as the driving term becomes weaker, which reduces the prevalence of off resonant transitions we do not mitigate against. An example of this would be a second sideband laser driving a first sideband transition off resonantly.
+Due to the manual nature of this parameter variation, we also decided that three sideband driving cases would not be attempted. This decision is mainly due to the fact that a three sideband driving would require a staggering number of terms to become zero, compared to the $12$, which is needed for a two sideband design. We also believed that a three sideband gate would not improve the final gate's fidelity drastically as the extra driving terms would possibly create more noise from off resonant transitions. This however is only speculation on trends noticeable in Figure \ref{fig:comparison}. In it we can see that even though the strong coupling should outperform the MS gate, it only starts approaching a similar level of fidelity as the driving term becomes weaker, which reduces the prevalence of off resonant transitions these designs do not mitigate against. An example of this would be a second sideband laser driving a first sideband transition off resonantly.
 
-The gate we have found a working extension using the strong coupling constraints was the Cardioid($4$, $6$). Using the same $4$ lasers on the first order as discussed in Section \ref{Driving_schemes:Cardioid} and adding a $4$ extra driving terms on the second sideband would reduce the unwanted terms in the propagator to zero. The driving scheme's breakdown can be found in Table \ref{tab:Compound}.
-
+The gate we have found a working extension using the strong coupling constraints was the Cardioid($4$, $6$). Using the same $4$ lasers on the first order as discussed in Section \ref{Driving_schemes:Cardioid} and adding a $4$ extra driving terms on the second sideband would reduce the unwanted terms in the propagator to zero. The driving scheme's breakdown can be found in Table \ref{tab:Compound} and the entangling condition relating $\delta$ and $\Omega$ will be:
 
 \begin{table}[t!]
 	\centering
 	\begin{tabular}{c||cccc|cc}
 		\hline
-		$\Delta_i$ & $\pm(\nu - 4\delta)$ & $\pm(\nu - 4\delta)$ & $\pm(\nu - 6\delta)$ & $-(\nu - 6\delta)$ & $2\nu - \delta$ & $-(2\nu - \delta)$ & $2\nu - 3\delta$ & $-(2\nu - 3\delta)$ \\
+		$\Delta_i$ & $\nu - 4\delta$ & $-(\nu - 4\delta)$ & $\nu - 6\delta$ & $-(\nu - 6\delta)$ & $\pm(2\nu - \delta)$ & $\pm(2\nu - 3\delta)$ \\
 		\hline
-		$\Omega_i$ & $\Omega'$ & $-\Omega'$ & $\Omega'$ & $-\Omega'$& $\sqrt{\frac{5}{8}}\Omega'$ & $-\sqrt{\frac{5}{8}}\Omega'$\\
+		$\Omega_i$ & $\Omega'$ & $-\Omega'$ & $\Omega'$ & $-\Omega'$ & $\sqrt{\frac{5}{8}}\Omega'$ & $-\sqrt{\frac{5}{8}}\Omega'$\\
 		\hline
 	\end{tabular}
-	\caption{The relative driving strengths and detunings required for the compound gate's operation. We have defined $\Omega' = ie^{\frac{\eta^2}{2}}$ for a more compact description.}
+	\caption{The relative driving strengths and detunings required for the compound gate's operation. We have defined $\Omega' = ie^{\frac{\eta^2}{2}}\Omega$ for a more compact description. This design eliminates the off resonant carrier transitions from both the first and second sideband terms.}
 	\label{tab:Compound}
 \end{table}
 
 \begin{figure}[b!]
+	\centering
+	\begin{subfigure}[t]{0.475\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Compound_time.pdf}
+		\caption{A comparison between the fidelities of the Cardioid($4$, $6$) and our compound gate. As we can see both fulfil their roles in reducing the gate time off resonant transitions. The compound gate is quite a bit more noisy, which is most definitely due to the extra lasers driving the transition.}
+		\label{fig:compound:time}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.475\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Compound_therm.pdf}
+		\caption{Fidelity plot showing that our compound gate retains the strong coupling gate's resistance against thermal effects. As with the other plots showing dependence on the thermal occupation $\overline{n}$ only on resonant terms were considered.}
+		\label{fig:compound:therm}
+	\end{subfigure}
+	%\includegraphics[width=0.7\linewidth]{RF_Trap.pdf}
+	\caption[Cardioid gate comparison]{Evaluation of the compound gate. On the left we highlight its ability to reduce off resonant transitions near gate time, while on the right we show its robustness against thermal effects. As with other simulations $\Omega_0=0.1\nu$}
+	\label{fig:compound}
+\end{figure}
+
+\begin{equation}
+	\frac{5}{72}\left(7\eta^6\left(\frac{\Omega}{\delta}\right)^4-12\eta^2\left(1+\eta^2\right)\left(\frac{\Omega}{\delta}\right)^2\right) + \frac{\Phi}{\pi} = 0
+	\label{eq:compound_entangling}
+\end{equation}
+
+With the gate time staying at $t_g = \frac{2\pi}{\delta}$. As we can see in Figure \ref{fig:compound}, this gate combines the desired qualities of the cardioid and strong coupling schemes. It is important to note however that the off resonant transitions seem more intensive in the compound gate's case compared to the cardioid. We believe this is a combination of two properties of the system. Since the cardioid cannot achieve the same fidelities, the logarithmic plot possibly skews the perception of the results. However extra lasers addressing farther off sidebands also contribute to this noise, due to the fact that we only made carrier transitions interfere destructively at gate time, not off resonant sideband transitions.
+
+\section{Comparison}
+\label{Driving_schemes:Comparison}
+
+To evaluate which driving scheme is the most promising candidate for implementation, we have decided to set up an array of simulations. We would then vary two parameters in these, $t_g$ and $\overline{n}$. Reducing gate time would require stronger driving yielding unwanted off resonant transitions, while increasing the thermal state would start to break down the Lamb-Dicke approximation.
+
+The results pictured in Figure \ref{fig:comparison} are somewhat expected. The MS and strong coupling gates are not designed for such intensive driving. This issue is more prevalent in the strong coupling case due to the additional lasers included to reduce errors arising from thermal noise.
+
+The two best functioning ones are the cardioid and the compound design. It is quite interesting that the cardioid seems to outperform the compound gate above $110\;\mu\text{s}$. This issue is compounded by the minimum the compound gate's fidelity produces. As of yet we have not found a satisfactory explanation to the shape of this curve. The obvious culprit would be the culling condition \eqref{eq:culling}, however a breakdown in that would show as a violent discontinuity in rather than a slowly stabilising fidelity curve.
+
+The cardioid gate however also has its own flaws, as evident from the quick loss of fidelity that is related to an increase in the thermal state $\overline{n}$. This is not noticeable as strongly on the other designs, either due to the design mitigating against this problem like the compound, having an error source, which produces larger infidelities like in the case of the MS gate or possessing both these qualities like the strong coupling gate.
+
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.9\linewidth]{Comparison.pdf}
 	\caption[Gate comparison]{Comparison between the various driving schemes. The colour indicates the type of gate, while its drawing style shows the initial thermal occupation simulated. As we can see both the MS and the strong coupling gates suffer from large fluctuations in fidelity, most likely due to off resonant carrier transitions. The compound and cardioid schemes have minor noise visible as well, and these are most likely due to off resonant transitions on some sideband. Since the driving terms couple to the sidebands less strongly, their perturbation is much weaker.}
@@ -364,18 +403,48 @@ The gate we have found a working extension using the strong coupling constraints
 \section{Dynamical Decoupling}
 \label{Driving_schemes:DD}
 
-Finally I would like to talk about an addition to the previous schemes. The dynamical decoupling (DD) scheme is aimed to eliminate infidelity from errors in the qubits' transition frequencies. These errors arise naturally from electric and magnetic interferences inducing Zeeman and Stark shifts []. Including these errods the original interaction Hamiltonian from eref can be modified as:
+Finally I would like to talk about an addition to the previous schemes. The dynamical decoupling scheme is aimed to eliminate infidelity from errors in the qubits' transition frequencies. These drifts in qubit energy arise naturally from electric and magnetic interferences inducing Zeeman and Stark shifts \cite{Foot}. One can include any error that would shift the energy level of the qubit as:
 
-Where $\xi_i$ is the error in the $i$th qubit's frequency.  We can include a strong carrier driving of form $ $, and then moving into the interaction picture with respect to this new term, we find that:
+\begin{equation}
+	\hat{H}_I' = \hat{H}_I + \sum_i \frac{\hbar \xi_i}{2} \hat{\sigma}_z^{\left(i\right)}
+	\label{eq:qubit_err}
+\end{equation}
 
-The most important result is that if $[\hat{H}_I,\hat{S}_y]=0$, then our gate operation is unaffected by the addition of this new term. As it turns out this is the case for both our compund and the strong coupling gates. For the M\o lmer-S\o rensen and cardioid gates a similar driving term can be used to produce similar results, detailed in the original paper []. We can also see that for $t_g, \xi_i \ll \Omega_c$ the error ter reduces to fast oscillations. This Hamiltoinan however will not coincide with the lab frame hamiltonian, only when $\Omega_c t_g = 2\pi n$ for $n \in \mathbb{Z}$.
+Where $\xi_i$ is the error in the $i$th qubit's frequency. Unfortunately these errors are capable of disrupting our gate operation even with a small $\xi_i$. However we can include a strong carrier driving of form $\frac{\hbar \Omega_c}{2}\hat{S}_y$ similar to \cite{DD_Paper}. We can then move into the interaction picture with respect to this new term, to find that:
 
-As discussed in [] this requirement can be avoided, by implementing the gate in two equal time phases and applying a $\pi$ pulse between them. This is easily doable in the case of the strong coupling gates including our compund gate.
-We aimed to eliminate noise on the order of $1000\;\text{Hz}$ or $\sim 6300\;\text{s}^{-1}$.
+\begin{equation}
+	\hat{H}_I'' = \hat{H}_I + \sum_i \frac{\hbar \xi_i}{2}\left(\hat{\sigma}_z^{\left(i\right)}\cos\left(\Omega_c t\right) + \hat{\sigma}_x^{\left(i\right)}\sin\left(\Omega_c t\right)\right)
+	\label{eq:qubit_err_I}
+\end{equation}
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{DD.pdf}
+	\caption[Dynamical Decoupling]{Difference between gate fidelity if the dynamical decoupling correction term is not used compared to when $\Omega_c=\nu$. Here we set $\xi_1 = \xi_2 = \xi$. We can clearly see that while the original gate quickly loses fidelity, the dynamically decoupled gate maintains it throughout, above the desired $6300\;\text{s}^{-1}$. Due to performance bottlenecks, we had to limit ourselves to simulating the on resonant terms only. The gate we used to simulate this with is the compound gate discussed in Section \ref{Driving_schemes:Compound}.}
+	\label{fig:DD}
+\end{figure}
+
+This will however only be the case if $[\hat{H}_I,\hat{S}_y]=0$, otherwise our gate operation will not be unaffected by the addition of this new term. This adaptation of the driving term provided in \cite{DD_Paper} commutes with both our compound and the strong coupling gates. For the M\o lmer-S\o rensen and cardioid gates the original driving term can be used to produce equivalent results, detailed in the original paper \cite{DD_Paper}. We can also see that for $t_g, \xi_i \ll \Omega_c$ the error term reduces to fast oscillations. This will allow us to ignore it when dealing with the Hamiltonian.
+
+One issue to be aware of however is that this Hamiltoinan will only coincide with the lab frame Hamiltonian, if $\Omega_c t_g = 2\pi n$ for $n \in \mathbb{Z}$. While it might cause a problem if this condition was not perfectly implemented, there is an other way of ensuring that the theoretical and Lab frames will match.  As discussed in \cite{DD_Paper}, if the gate is implemented as two equivalent gate operations and applying a $\pi$ pulse between them, then any partial oscillations will be refocused. This condition can be implemented easily on the compound and strong coupling gates, but some cardioid gates, might also be capable of this.
+
+In the case of the strong coupling and compound gate designs this "split" gate can be implemented by performing two gates, each of which having a target phase $\Phi$, one which is half the original goal. This unfortunately will have the side effect of halving the gate's speed. On a larger system, this may be solved, if the two gates were actually disjunct operations that always meant to run in sequence. If both are designed to have the same gate time, then the same $\pi$ pulse may be applied between them.
+
+Our aim was to demonstrate that noise on the order of $1000\;\text{Hz}$ or $\sim 6300\;\text{s}^{-1}$, can be eliminated using this method. By implementing the Hamiltonian in Equation \eqref{eq:qubit_err_I}, we could accurately simulate how the dynamical decoupling scheme maintains the high fidelity required, compared to the standard compound gate as can be seen in Figure \ref{fig:DD}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}
 \label{Conclusion}
+
+Out of the driving schemes we considered here, we believe that the compound design, combining the cardioid and the strong coupling gates would be the most worthwhile to explore. This design allows for resistance against both thermal effects and reduces the impact of off resonant transitions, which would hinder the performance of fast gates. This proposed gate design would allow infidelities as low as $\sim 2\cdot10^{-5}\%$ with speeds as fast as $90\;\mu\text{s}$.
+
+The second gate to which attention should be paid is the cardioid gate. Our evaluation of the Cardioid($4$, $6$) suggest that under the right conditions it can create a gate with similar fidelity to the compound case. The benefit of this design is that it only uses $4$ lasers instead of the $8$ required for our compound gate. It was also the only design, which showed that as long as the temperature was kept low it could reliably perform below infidelities of $10^{-4}$, on a $100\;\mu\text{s}$ timescale, matching our compound gate. This design however strongly suffers from issues pertaining to temperature and a such care must be taken to operate it as close to the ground state motional mode as possible.
+
+The strong coupling gate and the MS gate unfortunately does not perform well under the extremely strong driving that would be required to reduce the gate time to the $100\;\mu\text{s}$ range and as such they would be best explored in a slower regime, where off resonant transitions are weak.
+
+We have also explored the dynamical decoupling scheme, which is an addition to several other gates. We demonstrated that a modified version of the original idea from \cite{DD_Paper} can be used to reduce qubit errors in the strong coupling as well as compound gates.
+
+Finally we have identified several key points that can be expanded upon. While our formulation to the problem of off resonant transitions solves some of the major problems associated with them, it does not address the key question of whether a gate where the off resonant transitions are suppressed could be formulated. An other possible continuation of the work is to extend the compound gate to include further terms for greater flexibility in optimising the gate. This would also benefit from a computational system that would be able to find second order sideband terms given any first order driving pattern, which would greatly increase the flexibility of the produced gates.
 
 %% bibliography
 \bibliographystyle{ieeetran}

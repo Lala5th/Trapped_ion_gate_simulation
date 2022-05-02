@@ -144,4 +144,12 @@ M.~Sameti, J.~Lishman, and F.~Mintert. {S}trong {C}oupling {Q}uantum {L}ogic of
   \url{https://github.com/ImperialCQD/Strong-Coupling-Quantum-Logic-of-Trapped-Ions}
 \BIBentrySTDinterwordspacing
 
+\bibitem{DD_Paper}
+\BIBentryALTinterwordspacing
+T.~Harty, M.~Sepiol, D.~Allcock, C.~Ballance, J.~Tarlton, and D.~Lucas,
+  ``High-fidelity trapped-ion quantum logic using near-field microwaves,''
+  \emph{Physical Review Letters}, vol. 117, no.~14, sep 2016. [Online].
+  Available: \url{https://doi.org/10.1103\%2Fphysrevlett.117.140501}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
